@@ -1,0 +1,236 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+@import "../vendors/bootstrap-mixins";
+
+// See: https://github.com/twbs/bootstrap/pull/31438
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+    @each $breakpoint, $container-max-width in $max-widths {
+        @include media-breakpoint-up($breakpoint, $breakpoints) {
+            max-width: $container-max-width;
+        }
+    }
+}
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+    @if $self {
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    }
+    @else {
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+    #{$context} & {
+        @content;
+    }
+}
+
+/// Returns URL to an image based on its path
+/// @param {String} $path - image path
+/// @param {String} $base [$images-path] - base URL
+/// @return {Url}
+/// @require $images-path
+@function image($path, $base: $images-path) {
+    @return url($base + $path);
+}
+
+/// Returns URL to a font based on its path
+/// @param {String} $path - font path
+/// @param {String} $base [$fonts-path] - base URL
+/// @return {Url}
+/// @require $fonts-path
+@function font($path, $base: $fonts-path) {
+    @return url($base + $path);
+}
+
+/// Applies breakpoint-specific values to a given property.
+/// @param {String} $property - The property to apply the values to.
+/// @param {Map} $breakpoint-values - The dictionary where the breakpoints are keys and the values are the values to be applied.
+/// @param {Bool} $down - Defines whether the values should be applied above or below the given breakpoint (true = down).
+@mixin breakpoint-property-value($property, $breakpoint-values, $down: false) {
+    @each $breakpoint, $value in $breakpoint-values {
+        @if ($down) {
+            @include media-breakpoint-down($breakpoint) {
+                #{$property}: $value;
+            }
+        }
+        @else {
+            @include media-breakpoint-up($breakpoint) {
+                #{$property}: $value;
+            }
+        }
+    }
+}
+
+/// Applies values to a given property (should be 'padding' or 'margin') based on a breakpoint-value dictionary
+/// that is either horizontal or vertical (or both) with an additional option to apply negative values.
+/// @param {String} $property - The property to apply the values to, 'padding' or 'margin'.
+/// @param {Map} $breakpoint-values - The dictionary where the breakpoints are keys and the values will be applied.
+/// @param {Bool} $horizontal [true] - Defines whether horizontal values should be applied or not.
+/// @param {Bool} $vertical [false] - Defines whether vertical values should be applied or not.
+/// @param {Bool} $negative [false] - Defines whether the values should be applied will be negated or not
+///                                   based on the assumption that the dictionary holds positive values only.
+/// @require $property, $breakpoint-values
+@mixin breakpoint-side-property($property, $breakpoint-values, $horizontal: true, $vertical: false, $negative: false) {
+    @each $breakpoint, $values in $breakpoint-values {
+        $value: if($negative, -$values, $values);
+
+        @include media-breakpoint-up($breakpoint) {
+            @if ($horizontal == true) {
+                #{$property}: {
+                    left: $value;
+                    right: $value;
+                }
+            }
+
+            @if ($vertical == true) {
+                #{$property}: {
+                    top: $value;
+                    bottom: $value;
+                }
+            }
+        }
+    }
+}
+
+/// Creates a horizontal or vertical (or both) margin based on a breakpoint-value dictionary
+/// with an additional option to apply negative values.
+/// @param {Map} $breakpoint-values - The dictionary where the breakpoints are keys and the values will be applied.
+/// @param {Bool} $horizontal [true] - Defines whether horizontal values should be applied or not.
+/// @param {Bool} $vertical [false] - Defines whether vertical values should be applied or not.
+/// @param {Bool} $negative [false] - Defines whether the values should be applied will be negated or not
+///                                   based on the assumption that the dictionary holds positive values only.
+/// @require $breakpoint-values
+@mixin breakpoint-margin($breakpoint-values, $horizontal: true, $vertical: false, $negative: false) {
+    @include breakpoint-side-property($property: "margin", $breakpoint-values: $breakpoint-values, $horizontal: $horizontal, $vertical: $vertical, $negative: $negative);
+}
+
+/// Creates a horizontal or vertical (or both) padding based on a breakpoint-value dictionary
+/// with an additional option to apply negative values.
+/// @param {Map} $breakpoint-values - The dictionary where the breakpoints are keys and the values will be applied.
+/// @param {Bool} $horizontal [true] - Defines whether horizontal values should be applied or not.
+/// @param {Bool} $vertical [false] - Defines whether vertical values should be applied or not.
+/// @param {Bool} $negative [false] - Defines whether the values should be applied will be negated or not
+///                                   based on the assumption that the dictionary holds positive values only.
+/// @require $breakpoint-values
+@mixin breakpoint-padding($breakpoint-values, $horizontal: true, $vertical: false, $negative: false) {
+    @include breakpoint-side-property($property: "padding", $breakpoint-values: $breakpoint-values, $horizontal: $horizontal, $vertical: $vertical, $negative: $negative);
+}
+
+@mixin text-size($text-size-level: 1) {
+    @if $text-size-level < 5 {
+        font-size: map-get($font-sizes, $text-size-level + 1);
+
+        @include media-breakpoint-up(md) {
+            font-size: map-get($font-sizes, $text-size-level);
+        }
+    }
+    @else {
+        font-size: map-get($font-sizes, $text-size-level);
+    }
+}
+
+@mixin breakpoint-heading($downscale: false, $downscale-breakpoint: "md", $color: $text-color-heading) {
+    // Headings (h1 to h6)
+    @each $heading in $headings {
+        h#{$heading} {
+            color: $color;
+        }
+    }
+
+    @each $heading, $value in $heading-line-heights {
+        h#{$heading} {
+            @if $downscale and $heading < 4 {
+                line-height: map-get($heading-line-heights, $heading + 1);
+
+                @include media-breakpoint-up($downscale-breakpoint) {
+                    line-height: $value;
+                }
+            }
+            @else {
+                line-height: $value;
+            }
+        }
+    }
+
+    @each $heading, $value in $heading-font-sizes {
+        h#{$heading} {
+            @if $downscale and $heading < 4 {
+                font-size: map-get($heading-font-sizes, $heading + 1);
+
+                @include media-breakpoint-up($downscale-breakpoint) {
+                    font-size: $value;
+                }
+            }
+            @else {
+                font-size: $value;
+            }
+        }
+    }
+}
+
+@mixin breakpoint-description-text($downscale: false, $downscale-breakpoint: "md") {
+    // Description text.
+    .u-dsc {
+        color: $text-color-description;
+        letter-spacing: map-get($letter-spacings, lg);
+        line-height: map-get($description-line-heights, 1);
+        font-size: map-get($description-font-sizes, 1);
+    }
+    // Numbered description text: u-dsc1 .. u-dsc3
+    @each $description-level in $description-levels {
+        .u-dsc#{$description-level} {
+            color: $text-color-description;
+        }
+    }
+
+    @each $description-level, $value in $description-font-sizes {
+        .u-dsc#{$description-level} {
+            @if $downscale and $description-level == 1 {
+                font-size: map-get($description-font-sizes, $description-level + 1);
+                letter-spacing: map-get($letter-spacings, lg);
+
+                @include media-breakpoint-up($downscale-breakpoint) {
+                    font-size: $value;
+                }
+            }
+            @else {
+                font-size: $value;
+            }
+        }
+    }
+
+    @each $description-level, $value in $description-line-heights {
+        .u-dsc#{$description-level} {
+            @if $downscale and $description-level == 1 {
+                line-height: map-get($description-line-heights, $description-level + 1);
+
+                @include media-breakpoint-up($downscale-breakpoint) {
+                    line-height: $value;
+                }
+            }
+            @else {
+                line-height: $value;
+            }
+        }
+    }
+}
