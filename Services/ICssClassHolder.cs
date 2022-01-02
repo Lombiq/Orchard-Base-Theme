@@ -1,10 +1,4 @@
-﻿using GraphQL;
-using Microsoft.AspNetCore.Html;
-using OrchardCore.DisplayManagement;
-using OrchardCore.DisplayManagement.Razor;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Lombiq.BaseTheme.Services
 {
@@ -16,7 +10,7 @@ namespace Lombiq.BaseTheme.Services
         /// <summary>
         /// Gets the classes associated with the <c>&lt;body&gt;</c> element.
         /// </summary>
-        HashSet<string> Body { get; }
+        ISet<string> Body { get; }
 
         /// <summary>
         /// Adds a <paramref name="className"/> to the zone called <paramref name="zoneName"/>.
@@ -27,7 +21,7 @@ namespace Lombiq.BaseTheme.Services
         /// Returns the set of classes belonging to the zone called <paramref name="zoneName"/>. You can use this to
         /// remove classes if needed.
         /// </summary>
-        HashSet<string> GetZoneClasses(string zoneName);
+        ISet<string> GetZoneClasses(string zoneName);
 
         /// <summary>
         /// Returns the string you can insert into the zone's template.

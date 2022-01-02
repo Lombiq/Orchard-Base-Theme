@@ -12,39 +12,38 @@
     <resources type="Header" />
 
     <shape type="Styles" prop-layoutModel="@Model"></shape>
-
-    @{
-        var zones = new ZoneDescriptor[]
-        {
-            new ZoneDescriptor("Header")
-            {
-                ChildrenBefore = new [] { new ZoneDescriptor("Banner") },
-            },
-            new ZoneDescriptor("Navigation", "nav"),
-            new ZoneDescriptor("BeforeMain"),
-            new ZoneDescriptor("Featured"),
-            new ZoneDescriptor("Content")
-            {
-                ChildrenBefore = new []
-                {
-                    new ZoneDescriptor("AsideFirst"),
-                    new ZoneDescriptor("Messages"),
-                    new ZoneDescriptor("BeforeContent"),
-                },
-                ChildrenAfter = new []
-                {
-                    new ZoneDescriptor("AfterContent"),
-                    new ZoneDescriptor("AsideSecond"),
-                },
-            },
-            new ZoneDescriptor("AfterMain"),
-            new ZoneDescriptor("Footer", "footer"),
-        };
-    }
 </head>
 <body dir="@Orchard.CultureDir()" class="@string.Join(" ", CssClassHolder.Body)">
 
-@await ZoneDescriptor.DisplayZonesAsync(CssClassHolder, this, zones);
+@await ZoneDescriptor.DisplayZonesAsync(
+    CssClassHolder,
+    page: this,
+    new ZoneDescriptor[]
+    {
+        new ZoneDescriptor("Header")
+        {
+            ChildrenBefore = new [] { new ZoneDescriptor("Banner") },
+        },
+        new ZoneDescriptor("Navigation", "nav"),
+        new ZoneDescriptor("BeforeMain"),
+        new ZoneDescriptor("Featured"),
+        new ZoneDescriptor("Content")
+        {
+            ChildrenBefore = new []
+            {
+                new ZoneDescriptor("AsideFirst"),
+                new ZoneDescriptor("Messages"),
+                new ZoneDescriptor("BeforeContent"),
+            },
+            ChildrenAfter = new []
+            {
+                new ZoneDescriptor("AfterContent"),
+                new ZoneDescriptor("AsideSecond"),
+            },
+        },
+        new ZoneDescriptor("AfterMain"),
+        new ZoneDescriptor("Footer", "footer"),
+    });
 <resources type="FootScript"/>
 
 </body>
