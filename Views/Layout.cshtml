@@ -1,0 +1,123 @@
+@using Expression = System.Linq.Expressions.Expression
+@using Lombiq.BaseTheme.Helpers
+@using Microsoft.AspNetCore.Html
+<!DOCTYPE html>
+@inject ICssClassHolder CssClassHolder
+<html lang="@Orchard.CultureName()">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><shape type="PageTitle"></shape></title>
+    <resources type="Header" />
+
+    <shape type="Styles" prop-layoutModel="@Model"></shape>
+
+    @{
+        Task<IHtmlContent> DisplayZoneAsync(string zoneName) => ZoneHelper.DisplayZoneAsync(this, zoneName);
+    }
+</head>
+<body dir="@Orchard.CultureDir()" class="@string.Join(" ", CssClassHolder.Body)">
+
+    <div class="layoutContainer container-fluid">
+        <nav class="layoutHeader header navbar navbar-expand-md navbar-light">
+            @await DisplayZoneAsync("Banner");
+            <div class="menuAndLogo">
+                <div class="logoContainer">
+                    <environment include="Development">
+                        <a class="navbar-brand" href="~/#">
+                            <img src="~/Finitive.Theme/images/logo-dev.png" title="@Site.SiteName" alt="@T["Finitive logo"]"/>
+                        </a>
+                    </environment>
+
+                    <environment exclude="Development">
+                        <a class="navbar-brand" href="~/#">
+                            <img src="~/Finitive.Theme/images/logo.png" title="@Site.SiteName" alt="@T["Finitive logo"]"/>
+                        </a>
+                    </environment>
+
+                    <p class="creditMarketPlace">
+                        <span class="creditMarketPlace__divider">@T["|"]</span>
+                        @T["Intelligent Credit Marketplace"]
+                    </p>
+
+                    @await DisplayZoneAsync("Header");
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="@T["Toggle main menu navigation"]">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <div id="mainMenu" class="collapse navbar-collapse justify-content-end mainMenu">
+                    <partial name="FeatureMenu"/>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <menu alias="alias:main-menu" cache-id="main-menu" cache-fixed-duration="00:05:00" cache-tag="alias:main-menu"/>
+                    }
+                    else
+                    {
+                        <menu alias="alias:main-menu-authenticated" cache-id="main-menu-authenticated" cache-fixed-duration="00:05:00" cache-tag="alias:main-menu-authenticated"/>
+                    }
+                    <partial name="LoginMenu"/>
+                </div>
+            </div>
+        </nav>
+
+        @if (Model.BeforeContent != null)
+        {
+            <div class="container-fluid layoutBeforeContent">
+                @await RenderSectionAsync("BeforeContent", required: false)
+            </div>
+        }
+
+        <div class="layoutContent ">
+            @if (Model.Messages != null)
+            {
+                <div class="container-fluid layoutContent__messages">
+                    @await RenderSectionAsync("Messages", required: false)
+                </div>
+            }
+
+            <div class="container-fluid layoutContent__bodyContainer @if (Model.SideMenu != null) {<text>layoutContent__bodyContainer_hasSideMenu</text>}">
+                @if (Model.AsideFirst != null)
+                {
+                    <div class="layoutContent__asideFirst">
+                        @await RenderSectionAsync("AsideFirst", required: false)
+                    </div>}
+
+                @if (Model.AsideFirst != null)
+                {
+                    <div class="layoutContent__asideFirst">
+                        @await RenderSectionAsync("AsideFirst", required: false)
+                    </div>}
+                @if (Model.SideMenu != null)
+                {
+                    <div class="layoutContent__sideMenu">
+                        @await RenderSectionAsync("SideMenu", required: false)
+                    </div>
+                }
+
+                <div class="layoutContent__body @if (Model.AsideFirst != null) {<text>layoutContent__body_hasAsideFirst</text>} @if (Model.SideMenu != null) {<text>layoutContent__body_hasSideMenu</text>} @if (Model.AsideSecond != null) {<text>layoutContent__body_hasAsideSecond</text>}">
+                    @await RenderBodyAsync()
+                </div>
+
+                @if (Model.AsideSecond != null)
+                {
+                    <div class="layoutContent__asideSecond">
+                        @await RenderSectionAsync("AsideSecond", required: false)
+                    </div>
+                }
+            </div>
+        </div>
+
+        @if (Model.Footer != null)
+        {
+            <footer class="layoutFooter footer">
+                @await RenderSectionAsync("Footer", required: false)
+            </footer>
+        }
+    </div>
+
+    <resources type="FootScript" />
+
+</body>
+</html>
