@@ -1,4 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using GraphQL;
+using Microsoft.AspNetCore.Html;
+using OrchardCore.DisplayManagement;
+using OrchardCore.DisplayManagement.Razor;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Services
 {
@@ -26,6 +32,6 @@ namespace Lombiq.BaseTheme.Services
         /// <summary>
         /// Returns the string you can insert into the zone's template.
         /// </summary>
-        string ConcatenateZoneClasses(string zoneName);
+        string ConcatenateZoneClasses(string zoneName, params string[] additionalClasses);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Lombiq.BaseTheme.Services
 {
@@ -23,6 +24,7 @@ namespace Lombiq.BaseTheme.Services
 
         public HashSet<string> GetZoneClasses(string zoneName) => _zones.GetMaybe(zoneName) ?? new();
 
-        public string ConcatenateZoneClasses(string zoneName) => string.Join(" ", GetZoneClasses(zoneName));
+        public string ConcatenateZoneClasses(string zoneName, params string[] additionalClasses) =>
+            string.Join(" ", GetZoneClasses(zoneName).Concat(additionalClasses));
     }
 }
