@@ -5,15 +5,6 @@
 @use "sass:map";
 @import "../vendors/bootstrap-mixins";
 
-// See: https://github.com/twbs/bootstrap/pull/31438
-@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
-    @each $breakpoint, $container-max-width in $max-widths {
-        @include media-breakpoint-up($breakpoint, $breakpoints) {
-            max-width: $container-max-width;
-        }
-    }
-}
-
 /// Event wrapper
 /// @author Harry Roberts
 /// @param {Bool} $self [false] - Whether or not to include current selector
