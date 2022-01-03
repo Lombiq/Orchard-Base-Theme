@@ -1,0 +1,782 @@
+{
+  "name": "Lombiq.BaseTheme.StylingDemo",
+  "displayName": "Lombiq Orchard Core Base Theme - Styling Demo",
+  "description": "",
+  "author": "Lombiq Technologies",
+  "website": "https://github.com/Lombiq/Orchard-Base-Theme",
+  "version": "1.0",
+  "categories": [ "content", "demo" ],
+  "tags": [],
+
+  "steps": [
+    {
+      "name": "content",
+      "data": [
+        {
+          "ContentItemId": "[js:uuid()]",
+          "ContentItemVersionId": "[js:uuid()]",
+          "ContentType": "Page",
+          "DisplayText": "Styling Demo",
+          "Latest": true,
+          "Published": true,
+          "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+          "PublishedUtc": "2022-01-01T01:01:01.0000000Z",
+          "CreatedUtc": "2022-01-01T01:01:01.0000000Z",
+          "Owner": "admin",
+          "Author": "admin",
+          "TitlePart": {
+            "Title": "Styling Demo"
+          },
+          "FlowPart": {
+            "Widgets": [
+              {
+                "ContentItemId": "[js:uuid()]",
+                "ContentItemVersionId": null,
+                "ContentType": "HtmlWidget",
+                "DisplayText": null,
+                "Latest": false,
+                "Published": false,
+                "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                "PublishedUtc": null,
+                "CreatedUtc": null,
+                "Owner": null,
+                "Author": "admin",
+                "HtmlBodyPart": {
+                  "Html": "<h3>Outer content container (below) with large padding around</h3>\r\n<div class=\"u-dsc1\">u-occ u-pd-all-lg</div>"
+                },
+                "AdditionalStylingPart": {
+                  "CustomClasses": "u-occ u-oln",
+                  "RemoveGridExtensionClasses": true
+                },
+                "@WeldedPartSettings": {
+                  "AdditionalStylingPart": {}
+                },
+                "FlowMetadata": {
+                  "Alignment": 3,
+                  "Size": 100
+                }
+              },
+              {
+                "ContentItemId": "[js:uuid()]",
+                "ContentItemVersionId": null,
+                "ContentType": "ContainerWidget",
+                "DisplayText": null,
+                "Latest": false,
+                "Published": false,
+                "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                "PublishedUtc": null,
+                "CreatedUtc": null,
+                "Owner": null,
+                "Author": "admin",
+                "FlowPart": {
+                  "Widgets": [
+                    {
+                      "ContentItemId": "[js:uuid()]",
+                      "ContentItemVersionId": null,
+                      "ContentType": "HtmlWidget",
+                      "DisplayText": null,
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": null,
+                      "Author": "admin",
+                      "HtmlBodyPart": {
+                        "Html": "<h3>Default shadow</h3>\r\n<div class=\"u-dsc1\">u-shw-default</div>"
+                      },
+                      "AdditionalStylingPart": {
+                        "CustomClasses": "u-shw-default u-oln",
+                        "RemoveGridExtensionClasses": false
+                      },
+                      "@WeldedPartSettings": {
+                        "AdditionalStylingPart": {}
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
+                    },
+                    {
+                      "ContentItemId": "[js:uuid()]",
+                      "ContentItemVersionId": null,
+                      "ContentType": "ContainerWidget",
+                      "DisplayText": null,
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": null,
+                      "Author": "admin",
+                      "FlowPart": {
+                        "Widgets": [
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "HtmlWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "HtmlBodyPart": {
+                              "Html": "<h3>Default background color</h3>\r\n<div class=\"u-dsc1\">u-bgc-default</div>"
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": "u-bgc-default u-oln",
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 50
+                            }
+                          },
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "HtmlWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "HtmlBodyPart": {
+                              "Html": "<h3>Content background color</h3>\r\n<div class=\"u-dsc1\">u-bgc-content</div>"
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": "u-bgc-content u-oln",
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 50
+                            }
+                          }
+                        ]
+                      },
+                      "AdditionalStylingPart": {
+                        "CustomClasses": " u-oln u-mg-top-md",
+                        "RemoveGridExtensionClasses": false
+                      },
+                      "@WeldedPartSettings": {
+                        "AdditionalStylingPart": {}
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
+                    },
+                    {
+                      "ContentItemId": "[js:uuid()]",
+                      "ContentItemVersionId": null,
+                      "ContentType": "ContainerWidget",
+                      "DisplayText": null,
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": null,
+                      "Author": "admin",
+                      "FlowPart": {
+                        "Widgets": [
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "HtmlWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "HtmlBodyPart": {
+                              "Html": "<h3>Headings</h3>\r\n<div class=\"u-dsc1\">h1 to h6</div>\r\n\r\n<ul class=\"u-dsc2\">\r\n    <li><div>First 3 levels have dark blue color, the rest are grey.</div></li>\r\n    <li><div>First 3 levels scale down (font-size and line-height) one level lower below large screen size.</div></li>\r\n</ul>"
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": " u-oln",
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 100
+                            }
+                          },
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "HtmlWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "HtmlBodyPart": {
+                              "Html": "<h1>Heading 1</h1>\r\n<h2>Heading 2</h2>\r\n<h3>Heading 3</h3>\r\n<h4>Heading 4</h4>\r\n<h5>Heading 5</h5>\r\n<h6>Heading 6</h6>"
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": " u-oln",
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 100
+                            }
+                          }
+                        ]
+                      },
+                      "AdditionalStylingPart": {
+                        "CustomClasses": " u-oln u-mg-top-md",
+                        "RemoveGridExtensionClasses": false
+                      },
+                      "@WeldedPartSettings": {
+                        "AdditionalStylingPart": {}
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
+                    },
+                    {
+                      "ContentItemId": "[js:uuid()]",
+                      "ContentItemVersionId": null,
+                      "ContentType": "ContainerWidget",
+                      "DisplayText": null,
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": null,
+                      "Author": "admin",
+                      "FlowPart": {
+                        "Widgets": [
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "HtmlWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "HtmlBodyPart": {
+                              "Html": "<h3>Description</h3>\r\n<div class=\"u-dsc1\">u-dsc</div>\r\n\r\n<ul class=\"u-dsc2\">\r\n    <li><div>Behaves exactly like \"u-dsc1\" except for scaling down.</div></li>\r\n</ul>"
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": "u-oln",
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 100
+                            }
+                          },
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "HtmlWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "HtmlBodyPart": {
+                              "Html": "<div class=\"u-dsc\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque suscipit a quam ut hendrerit. Nullam dapibus non ipsum et ullamcorper. Aenean quis efficitur nisi. Suspendisse tempor lorem ex, non faucibus metus tincidunt sed. Duis nec sollicitudin nunc. Quisque non bibendum libero. Nam faucibus leo eget diam pellentesque, ut pulvinar dui accumsan.</div>"
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": "u-oln",
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 100
+                            }
+                          }
+                        ]
+                      },
+                      "AdditionalStylingPart": {
+                        "CustomClasses": " u-oln u-mg-top-md",
+                        "RemoveGridExtensionClasses": false
+                      },
+                      "@WeldedPartSettings": {
+                        "AdditionalStylingPart": {}
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
+                    },
+                    {
+                      "ContentItemId": "[js:uuid()]",
+                      "ContentItemVersionId": null,
+                      "ContentType": "ContainerWidget",
+                      "DisplayText": null,
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": null,
+                      "Author": "admin",
+                      "FlowPart": {
+                        "Widgets": [
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "HtmlWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "HtmlBodyPart": {
+                              "Html": "<h3>Descriptions</h3>\r\n<div class=\"u-dsc1\">\"u-dsc1\" down to \"u-dsc3\"</div>\r\n\r\n<ul class=\"u-dsc2\">\r\n    <li><div>First level has larger letter spacing.</div></li>\r\n    <li><div>First level scales down (font-size and line-height) one level lower below large screen size.</div></li>\r\n</ul>"
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": "u-oln",
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 100
+                            }
+                          },
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "HtmlWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "HtmlBodyPart": {
+                              "Html": "<div class=\"u-dsc1\">Nulla scelerisque urna gravida, sollicitudin nisi sed, porttitor elit. Praesent egestas dapibus ligula sed tristique. Nunc fermentum, lectus sit amet eleifend volutpat, lacus nisi venenatis elit, eget aliquet justo est ut risus. Integer vitae sagittis libero. Cras ultricies nunc id massa aliquet, vel placerat ex condimentum.</div>"
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": null,
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 100
+                            }
+                          }
+                        ]
+                      },
+                      "AdditionalStylingPart": {
+                        "CustomClasses": " u-oln u-mg-top-md",
+                        "RemoveGridExtensionClasses": false
+                      },
+                      "@WeldedPartSettings": {
+                        "AdditionalStylingPart": {}
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
+                    }
+                  ]
+                },
+                "AdditionalStylingPart": {
+                  "CustomClasses": "u-occ u-pd-all-lg u-oln u-iln",
+                  "RemoveGridExtensionClasses": true
+                },
+                "@WeldedPartSettings": {
+                  "AdditionalStylingPart": {}
+                },
+                "FlowMetadata": {
+                  "Alignment": 3,
+                  "Size": 100
+                }
+              },
+              {
+                "ContentItemId": "[js:uuid()]",
+                "ContentItemVersionId": null,
+                "ContentType": "ContainerWidget",
+                "DisplayText": null,
+                "Latest": false,
+                "Published": false,
+                "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                "PublishedUtc": null,
+                "CreatedUtc": null,
+                "Owner": null,
+                "Author": "admin",
+                "FlowPart": {
+                  "Widgets": [
+                    {
+                      "ContentItemId": "[js:uuid()]",
+                      "ContentItemVersionId": null,
+                      "ContentType": "HtmlWidget",
+                      "DisplayText": null,
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": null,
+                      "Author": "admin",
+                      "HtmlBodyPart": {
+                        "Html": "<h3>Spacing</h3>\r\n<div class=\"u-dsc1\">Different scales (depending on the screen size) and directions of padding and margin.<br>Class name structure: \"u-{property}-{direction}-{scale}:</div>\r\n\r\n<ul class=\"u-dsc2\">\r\n    <li><div>Property: \"pd\" (padding) or \"mg\" (margin). Padding and margin use the same values.</div></li>\r\n    <li>\r\n\t\t<div>Direction:\r\n\t\t\t<ul>\r\n\t\t\t\t<li>4 sides separately: \"top\", \"bottom\", \"left\", \"right\"</li>\r\n\t\t\t\t<li>All 4 sides together: \"all\"</li>\r\n\t\t\t\t<li>Axes: \"hor\" (horizontal: left and right), \"ver\" (vertical: top and bottom)</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</li>\r\n    <li>\r\n\t\t<div>Scale: Different sets of values, where each value corresponds to a screen size. Naming is analogous to Bootstrap screen size names.\r\n\t\t\t<ul>\r\n\t\t\t\t<li>\"xs\", \"sm\", \"md\", \"lg\", \"xl\"</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</li>\r\n    <li>\r\n\t\t<div>Examples:\r\n\t\t\t<ul>\r\n\t\t\t\t<li>u-pd-hor-md: Medium-sized horizontal padding.</li>\r\n\t\t\t\t<li>u-pd-all-xs: Extra small padding around.</li>\r\n\t\t\t\t<li>u-mg-top-xl: Extra large top margin.</li>\r\n\t\t\t\t<li>u-mg-ver-sm: Small vertical margin.</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</li>\r\n</ul>"
+                      },
+                      "AdditionalStylingPart": {
+                        "CustomClasses": null,
+                        "RemoveGridExtensionClasses": false
+                      },
+                      "@WeldedPartSettings": {
+                        "AdditionalStylingPart": {}
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
+                    },
+                    {
+                      "ContentItemId": "[js:uuid()]",
+                      "ContentItemVersionId": null,
+                      "ContentType": "ContainerWidget",
+                      "DisplayText": null,
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": null,
+                      "Author": "admin",
+                      "FlowPart": {
+                        "Widgets": [
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "HtmlWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "HtmlBodyPart": {
+                              "Html": "<h3>Extra large padding around</h3>\r\n<div class=\"u-dsc1\">u-pd-all-xl</div>"
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": "u-oln",
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 100
+                            }
+                          },
+                          {
+                            "ContentItemId": "[js:uuid()]",
+                            "ContentItemVersionId": null,
+                            "ContentType": "ContainerWidget",
+                            "DisplayText": null,
+                            "Latest": false,
+                            "Published": false,
+                            "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                            "PublishedUtc": null,
+                            "CreatedUtc": null,
+                            "Owner": null,
+                            "Author": "admin",
+                            "FlowPart": {
+                              "Widgets": [
+                                {
+                                  "ContentItemId": "[js:uuid()]",
+                                  "ContentItemVersionId": null,
+                                  "ContentType": "HtmlWidget",
+                                  "DisplayText": null,
+                                  "Latest": false,
+                                  "Published": false,
+                                  "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                                  "PublishedUtc": null,
+                                  "CreatedUtc": null,
+                                  "Owner": null,
+                                  "Author": "admin",
+                                  "HtmlBodyPart": {
+                                    "Html": "<h3>Large padding around</h3>\r\n<div class=\"u-dsc1\">u-pd-all-lg</div>"
+                                  },
+                                  "AdditionalStylingPart": {
+                                    "CustomClasses": "u-oln",
+                                    "RemoveGridExtensionClasses": false
+                                  },
+                                  "@WeldedPartSettings": {
+                                    "AdditionalStylingPart": {}
+                                  },
+                                  "FlowMetadata": {
+                                    "Alignment": 3,
+                                    "Size": 100
+                                  }
+                                },
+                                {
+                                  "ContentItemId": "[js:uuid()]",
+                                  "ContentItemVersionId": null,
+                                  "ContentType": "ContainerWidget",
+                                  "DisplayText": null,
+                                  "Latest": false,
+                                  "Published": false,
+                                  "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                                  "PublishedUtc": null,
+                                  "CreatedUtc": null,
+                                  "Owner": null,
+                                  "Author": "admin",
+                                  "FlowPart": {
+                                    "Widgets": [
+                                      {
+                                        "ContentItemId": "[js:uuid()]",
+                                        "ContentItemVersionId": null,
+                                        "ContentType": "HtmlWidget",
+                                        "DisplayText": null,
+                                        "Latest": false,
+                                        "Published": false,
+                                        "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                                        "PublishedUtc": null,
+                                        "CreatedUtc": null,
+                                        "Owner": null,
+                                        "Author": "admin",
+                                        "HtmlBodyPart": {
+                                          "Html": "<h3>Medium-sized padding around</h3>\r\n<div class=\"u-dsc1\">u-pd-all-md</div>"
+                                        },
+                                        "AdditionalStylingPart": {
+                                          "CustomClasses": "u-oln",
+                                          "RemoveGridExtensionClasses": false
+                                        },
+                                        "@WeldedPartSettings": {
+                                          "AdditionalStylingPart": {}
+                                        },
+                                        "FlowMetadata": {
+                                          "Alignment": 3,
+                                          "Size": 100
+                                        }
+                                      },
+                                      {
+                                        "ContentItemId": "[js:uuid()]",
+                                        "ContentItemVersionId": null,
+                                        "ContentType": "ContainerWidget",
+                                        "DisplayText": null,
+                                        "Latest": false,
+                                        "Published": false,
+                                        "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                                        "PublishedUtc": null,
+                                        "CreatedUtc": null,
+                                        "Owner": null,
+                                        "Author": "admin",
+                                        "FlowPart": {
+                                          "Widgets": [
+                                            {
+                                              "ContentItemId": "[js:uuid()]",
+                                              "ContentItemVersionId": null,
+                                              "ContentType": "HtmlWidget",
+                                              "DisplayText": null,
+                                              "Latest": false,
+                                              "Published": false,
+                                              "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                                              "PublishedUtc": null,
+                                              "CreatedUtc": null,
+                                              "Owner": null,
+                                              "Author": "admin",
+                                              "HtmlBodyPart": {
+                                                "Html": "<h3>Small padding around</h3>\r\n<div class=\"u-dsc1\">u-pd-all-sm</div>"
+                                              },
+                                              "AdditionalStylingPart": {
+                                                "CustomClasses": "u-oln",
+                                                "RemoveGridExtensionClasses": false
+                                              },
+                                              "@WeldedPartSettings": {
+                                                "AdditionalStylingPart": {}
+                                              },
+                                              "FlowMetadata": {
+                                                "Alignment": 3,
+                                                "Size": 100
+                                              }
+                                            },
+                                            {
+                                              "ContentItemId": "[js:uuid()]",
+                                              "ContentItemVersionId": null,
+                                              "ContentType": "ContainerWidget",
+                                              "DisplayText": null,
+                                              "Latest": false,
+                                              "Published": false,
+                                              "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                                              "PublishedUtc": null,
+                                              "CreatedUtc": null,
+                                              "Owner": null,
+                                              "Author": "admin",
+                                              "FlowPart": {
+                                                "Widgets": [
+                                                  {
+                                                    "ContentItemId": "[js:uuid()]",
+                                                    "ContentItemVersionId": null,
+                                                    "ContentType": "HtmlWidget",
+                                                    "DisplayText": null,
+                                                    "Latest": false,
+                                                    "Published": false,
+                                                    "ModifiedUtc": "2022-01-01T01:01:01.0000000Z",
+                                                    "PublishedUtc": null,
+                                                    "CreatedUtc": null,
+                                                    "Owner": null,
+                                                    "Author": "admin",
+                                                    "HtmlBodyPart": {
+                                                      "Html": "<h3>Extra small padding around</h3>\r\n<div class=\"u-dsc1\">u-pd-all-xs</div>"
+                                                    },
+                                                    "AdditionalStylingPart": {
+                                                      "CustomClasses": "u-oln",
+                                                      "RemoveGridExtensionClasses": false
+                                                    },
+                                                    "@WeldedPartSettings": {
+                                                      "AdditionalStylingPart": {}
+                                                    },
+                                                    "FlowMetadata": {
+                                                      "Alignment": 3,
+                                                      "Size": 100
+                                                    }
+                                                  }
+                                                ]
+                                              },
+                                              "AdditionalStylingPart": {
+                                                "CustomClasses": "u-pd-all-xs u-oln u-bgc-content",
+                                                "RemoveGridExtensionClasses": false
+                                              },
+                                              "@WeldedPartSettings": {
+                                                "AdditionalStylingPart": {}
+                                              },
+                                              "FlowMetadata": {
+                                                "Alignment": 3,
+                                                "Size": 100
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "AdditionalStylingPart": {
+                                          "CustomClasses": "u-pd-all-sm u-oln u-bgc-default",
+                                          "RemoveGridExtensionClasses": false
+                                        },
+                                        "@WeldedPartSettings": {
+                                          "AdditionalStylingPart": {}
+                                        },
+                                        "FlowMetadata": {
+                                          "Alignment": 3,
+                                          "Size": 100
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "AdditionalStylingPart": {
+                                    "CustomClasses": "u-pd-all-md u-oln u-bgc-content",
+                                    "RemoveGridExtensionClasses": false
+                                  },
+                                  "@WeldedPartSettings": {
+                                    "AdditionalStylingPart": {}
+                                  },
+                                  "FlowMetadata": {
+                                    "Alignment": 3,
+                                    "Size": 100
+                                  }
+                                }
+                              ]
+                            },
+                            "AdditionalStylingPart": {
+                              "CustomClasses": "u-pd-all-lg u-oln u-bgc-default",
+                              "RemoveGridExtensionClasses": false
+                            },
+                            "@WeldedPartSettings": {
+                              "AdditionalStylingPart": {}
+                            },
+                            "FlowMetadata": {
+                              "Alignment": 3,
+                              "Size": 100
+                            }
+                          }
+                        ]
+                      },
+                      "AdditionalStylingPart": {
+                        "CustomClasses": "u-pd-all-xl u-oln u-bgc-content",
+                        "RemoveGridExtensionClasses": false
+                      },
+                      "@WeldedPartSettings": {
+                        "AdditionalStylingPart": {}
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
+                    }
+                  ]
+                },
+                "AdditionalStylingPart": {
+                  "CustomClasses": " u-oln u-mg-top-md",
+                  "RemoveGridExtensionClasses": false
+                },
+                "@WeldedPartSettings": {
+                  "AdditionalStylingPart": {}
+                },
+                "FlowMetadata": {
+                  "Alignment": 3,
+                  "Size": 100
+                }
+              }
+            ]
+          },
+          "AutoroutePart": {
+            "Path": "styling-demo",
+            "SetHomepage": false
+          }
+        }
+      ]
+    }
+  ]
+}
