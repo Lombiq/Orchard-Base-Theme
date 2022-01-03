@@ -3,6 +3,7 @@ using Lombiq.BaseTheme.Services;
 using Microsoft.AspNetCore.Html;
 using OrchardCore.DisplayManagement;
 using OrchardCore.DisplayManagement.Razor;
+using OrchardCore.DisplayManagement.Zones;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -30,8 +31,8 @@ namespace Lombiq.BaseTheme.Models
             RazorPage<TModel> page,
             string parent)
         {
-            if (page.Model is not IDictionary<string, object> model ||
-                model.GetMaybe(ZoneName) is not IShape zone)
+            if (page.Model is not IZoneHolding model ||
+                model.Zones[ZoneName] is not { } zone)
             {
                 return new HtmlString(string.Empty);
             }
@@ -46,10 +47,25 @@ namespace Lombiq.BaseTheme.Models
 
             var classNames = classHolder.ConcatenateZoneClasses(ZoneName, layoutClassName);
 
+            var body = await page.DisplayAsync(zone);
+            if (WrapBody)
+            {
+                // If there no parent then "body" becomes the BEM element, otherwise there already is an element so
+                // "Body" becomes a suffix to that.
+                var bodyWrapperClass = string.IsNullOrEmpty(parent)
+                    ? layoutClassName + "__body"
+                    : layoutClassName + "Body";
+
+                body = new HtmlContentBuilder()
+                    .AppendHtml(FormattableString.Invariant($"<div classes=\"{bodyWrapperClass}\">"))
+                    .AppendHtml(body)
+                    .AppendHtml("</div>");
+            }
+
             return new HtmlContentBuilder()
                 .AppendHtml(FormattableString.Invariant($"<{ElementName} id=\"{id}\" classes=\"{classNames}\">"))
                 .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenBefore, parent))
-                .AppendHtml(await page.DisplayAsync(zone))
+                .AppendHtml(body)
                 .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenAfter, parent))
                 .AppendHtml(FormattableString.Invariant($"</{ElementName}>"));
         }

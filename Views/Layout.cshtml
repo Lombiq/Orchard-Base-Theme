@@ -18,14 +18,14 @@
     page: this,
     new ZoneDescriptor[]
     {
-        new ZoneDescriptor("Header")
+        new ZoneDescriptor("Header", wrapBody: true)
         {
             ChildrenBefore = new [] { new ZoneDescriptor("Banner") },
         },
         new ZoneDescriptor("Navigation", "nav"),
         new ZoneDescriptor("BeforeMain"),
         new ZoneDescriptor("Featured"),
-        new ZoneDescriptor("Content")
+        new ZoneDescriptor("Content", wrapBody: true)
         {
             ChildrenBefore = new []
             {
