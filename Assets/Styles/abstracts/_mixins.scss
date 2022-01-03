@@ -138,3 +138,38 @@
         font-size: map.get($font-sizes, $text-size-level);
     }
 }
+
+/// The following class names will be generated for each breakpoint (one value from each row, concatenated by hyphen, prefixed by "u-"):
+/// pd mg
+/// top bottom left right hor ver all
+/// xs sm md lg xl
+///
+/// Examples: u-pd-hor-md, u-pd-all-xs, u-mg-top-xl, u-mg-ver-sm, etc.
+/// @param {Map} $spacing-sizes - The dictionary where the breakpoints are keys and the values are spacing maps like
+//                                "(xs: 24px, sm: 36px, md: 48px, lg: 96px)".
+/// @param {Map} $spacing-directions - The dictionary where the breakpoints are keys and the values are padding/margin directions.
+@mixin generate-spacing(
+    $spacing-sizes: (xs: $spacing-xs, sm: $spacing-sm, md: $spacing-md, lg: $spacing-lg, xl: $spacing-xl),
+    $spacing-directions: (top: top, bottom: bottom, left: left, right: right, hor: left right, ver: top bottom, all: top bottom left right)) {
+    @each $spacing-size, $spacing-values in $spacing-sizes { // Mapping size maps to size names, analogous to Bootstrap size names.
+        @each $breakpoint, $size in $spacing-values { // Mapping spacing values to breakpoints.
+            @include media-breakpoint-up($breakpoint) { // Applying breakpoint.
+                // Mapping directions to sides, e.g. top = top, hor(izontal) = left + right.
+                @each $spacing-direction, $spacing-sides in $spacing-directions {
+                    .u-pd-#{$spacing-direction}-#{$spacing-size} { // Padding utility class name with direction and size.
+                        @each $spacing-side in $spacing-sides { // Iterating through each side in the direction map.
+                            padding-#{$spacing-side}: $size; // Applying spacing value to the current side.
+                            word-break: break-word;
+                        }
+                    }
+
+                    .u-mg-#{$spacing-direction}-#{$spacing-size} { // Margin utility class name with direction and size.
+                        @each $spacing-side in $spacing-sides {
+                            margin-#{$spacing-side}: $size;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
