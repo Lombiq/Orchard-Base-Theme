@@ -7,7 +7,7 @@ namespace Lombiq.BaseTheme.Services
     {
         private readonly Dictionary<string, HashSet<string>> _zones = new();
 
-        public HashSet<string> Body { get; } = new();
+        public ISet<string> Body { get; } = new HashSet<string>();
 
         public void AddClassToZone(string zoneName, string className)
         {
@@ -22,7 +22,7 @@ namespace Lombiq.BaseTheme.Services
             classes.Add(className);
         }
 
-        public HashSet<string> GetZoneClasses(string zoneName) => _zones.GetMaybe(zoneName) ?? new();
+        public ISet<string> GetZoneClasses(string zoneName) => _zones.GetMaybe(zoneName) ?? new();
 
         public string ConcatenateZoneClasses(string zoneName, params string[] additionalClasses) =>
             string.Join(" ", GetZoneClasses(zoneName).Concat(additionalClasses));
