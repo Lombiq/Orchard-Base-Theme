@@ -57,13 +57,13 @@ namespace Lombiq.BaseTheme.Models
                     : layoutClassName + "Body";
 
                 body = new HtmlContentBuilder()
-                    .AppendHtml(FormattableString.Invariant($"<div classes=\"{bodyWrapperClass}\">"))
+                    .AppendHtml(FormattableString.Invariant($"<div class=\"{bodyWrapperClass}\">"))
                     .AppendHtml(body)
                     .AppendHtml("</div>");
             }
 
             return new HtmlContentBuilder()
-                .AppendHtml(FormattableString.Invariant($"<{ElementName} id=\"{id}\" classes=\"{classNames}\">"))
+                .AppendHtml(FormattableString.Invariant($"<{ElementName} id=\"{id}\" class=\"{classNames}\">"))
                 .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenBefore, parent))
                 .AppendHtml(body)
                 .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenAfter, parent))

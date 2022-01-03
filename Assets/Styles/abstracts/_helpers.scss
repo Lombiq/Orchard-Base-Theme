@@ -13,7 +13,7 @@
     display: table;
 }
 
-@if $debug-mode {
+@if variable-exists(debug-mode) and $debug-mode {
     * {
         // Required to override existing styles for debugging.
         // stylelint-disable declaration-no-important
