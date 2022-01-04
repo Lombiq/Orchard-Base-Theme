@@ -1,7 +1,6 @@
 ﻿using GraphQL;
 using Lombiq.BaseTheme.Services;
 using Microsoft.AspNetCore.Html;
-using OrchardCore.DisplayManagement;
 using OrchardCore.DisplayManagement.Razor;
 using OrchardCore.DisplayManagement.Zones;
 using System;
