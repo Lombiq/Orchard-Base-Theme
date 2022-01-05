@@ -1,8 +1,10 @@
 ﻿using Lombiq.HelpfulExtensions.Extensions.Widgets;
 using Lombiq.HelpfulExtensions.Extensions.Widgets.ViewModels;
 using Lombiq.HelpfulLibraries.Libraries.Mvc;
+using Lombiq.HelpfulLibraries.Libraries.Navigation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using OrchardCore.DisplayManagement;
 using OrchardCore.DisplayManagement.Layout;
 using OrchardCore.Navigation;
@@ -15,6 +17,8 @@ namespace Lombiq.BaseTheme.Services
     public class PortalMenuWidgetFilter : WidgetFilterBase<PortalMenuWidgetViewModel>
     {
         private readonly IAuthorizationService _authorizationService;
+        private readonly INavigationManager _navigationManager;
+        private readonly IActionContextAccessor _actionContextAccessor;
         private readonly IEnumerable<INavigationProvider> _navigationProviders;
         private readonly IHttpContextAccessor _hca;
         private readonly ICssClassHolder _cssClassHolder;
@@ -27,14 +31,14 @@ namespace Lombiq.BaseTheme.Services
             IAuthorizationService authorizationService,
             ILayoutAccessor layoutAccessor,
             IShapeFactory shapeFactory,
-            IEnumerable<INavigationProvider> navigationProviders,
-            IHttpContextAccessor hca,
+            INavigationManager navigationManager,
+            IActionContextAccessor actionContextAccessor,
             ICssClassHolder cssClassHolder)
             : base(requiredPermission: null, authorizationService, layoutAccessor, shapeFactory)
         {
             _authorizationService = authorizationService;
-            _navigationProviders = navigationProviders;
-            _hca = hca;
+            _navigationManager = navigationManager;
+            _actionContextAccessor = actionContextAccessor;
             _cssClassHolder = cssClassHolder;
         }
 
@@ -46,10 +50,9 @@ namespace Lombiq.BaseTheme.Services
 
             return new()
             {
-                MenuItems = await PortalMenuWidgetDisplayDriver.GetMenuItemsAsync(
-                    _authorizationService,
-                    _navigationProviders,
-                    _hca),
+                MenuItems = await _navigationManager.BuildMenuAsync(
+                    PortalNavigationProviderBase.NavigationName,
+                    _actionContextAccessor.ActionContext),
                 NoWrapper = true, // The navigation zone is already the wrapper.
             };
         }
