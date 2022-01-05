@@ -3,12 +3,10 @@ using Lombiq.HelpfulExtensions.Extensions.Widgets.ViewModels;
 using Lombiq.HelpfulLibraries.Libraries.Mvc;
 using Lombiq.HelpfulLibraries.Libraries.Navigation;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using OrchardCore.DisplayManagement;
 using OrchardCore.DisplayManagement.Layout;
 using OrchardCore.Navigation;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Lombiq.BaseTheme.Constants.ZoneNames;
 
@@ -16,11 +14,8 @@ namespace Lombiq.BaseTheme.Services
 {
     public class PortalMenuWidgetFilter : WidgetFilterBase<PortalMenuWidgetViewModel>
     {
-        private readonly IAuthorizationService _authorizationService;
         private readonly INavigationManager _navigationManager;
         private readonly IActionContextAccessor _actionContextAccessor;
-        private readonly IEnumerable<INavigationProvider> _navigationProviders;
-        private readonly IHttpContextAccessor _hca;
         private readonly ICssClassHolder _cssClassHolder;
 
         protected override string ZoneName => Navigation;
@@ -36,7 +31,6 @@ namespace Lombiq.BaseTheme.Services
             ICssClassHolder cssClassHolder)
             : base(requiredPermission: null, authorizationService, layoutAccessor, shapeFactory)
         {
-            _authorizationService = authorizationService;
             _navigationManager = navigationManager;
             _actionContextAccessor = actionContextAccessor;
             _cssClassHolder = cssClassHolder;
