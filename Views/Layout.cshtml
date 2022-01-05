@@ -19,29 +19,29 @@
     page: this,
     new ZoneDescriptor[]
     {
-        new ZoneDescriptor("Header", wrapBody: true)
+        new ZoneDescriptor(Header, wrapBody: true)
         {
             ChildrenBefore = new [] { new ZoneDescriptor("Banner") },
         },
-        new ZoneDescriptor("Navigation", "nav"),
-        new ZoneDescriptor("BeforeMain"),
-        new ZoneDescriptor("Featured"),
-        new ZoneDescriptor("Content", wrapBody: true)
+        new ZoneDescriptor(Navigation, "nav"),
+        new ZoneDescriptor(BeforeMain),
+        new ZoneDescriptor(Featured),
+        new ZoneDescriptor(Content, wrapBody: true)
         {
             ChildrenBefore = new []
             {
-                new ZoneDescriptor("AsideFirst"),
-                new ZoneDescriptor("Messages"),
-                new ZoneDescriptor("BeforeContent"),
+                new ZoneDescriptor(AsideFirst),
+                new ZoneDescriptor(Messages),
+                new ZoneDescriptor(BeforeContent),
             },
             ChildrenAfter = new []
             {
-                new ZoneDescriptor("AfterContent"),
-                new ZoneDescriptor("AsideSecond"),
+                new ZoneDescriptor(AfterContent),
+                new ZoneDescriptor(AsideSecond),
             },
         },
-        new ZoneDescriptor("AfterMain"),
-        new ZoneDescriptor("Footer", "footer"),
+        new ZoneDescriptor(AfterMain),
+        new ZoneDescriptor(Footer, "footer"),
     })
 <resources type="FootScript"/>
 
