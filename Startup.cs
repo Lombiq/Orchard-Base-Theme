@@ -1,5 +1,6 @@
 using Lombiq.BaseTheme.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -15,6 +16,7 @@ namespace Lombiq.BaseTheme
         {
             services.AddScoped<ICssClassHolder, CssClassHolder>();
             services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
+            services.Configure<MvcOptions>(options => options.Filters.Add(typeof(PortalMenuWidgetFilter)));
         }
 
         public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
