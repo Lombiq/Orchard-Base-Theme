@@ -1,4 +1,5 @@
 ﻿using GraphQL;
+using Lombiq.BaseTheme.Constants;
 using Lombiq.BaseTheme.Services;
 using Microsoft.AspNetCore.Html;
 using OrchardCore.DisplayManagement.Razor;
@@ -55,10 +56,14 @@ namespace Lombiq.BaseTheme.Models
                     ? layoutClassName + "__body"
                     : layoutClassName + "Body";
 
+                // This improves accessibility by providing a main landmark, see:
+                // https://dequeuniversity.com/rules/axe/4.2/bypass?application=axeAPI
+                var elementName = ZoneName == ZoneNames.Content ? "main" : "div";
+
                 body = new HtmlContentBuilder()
-                    .AppendHtml(FormattableString.Invariant($"<div class=\"{bodyWrapperClass}\">"))
+                    .AppendHtml(FormattableString.Invariant($"<{elementName} class=\"{bodyWrapperClass}\">"))
                     .AppendHtml(body)
-                    .AppendHtml("</div>");
+                    .AppendHtml(FormattableString.Invariant($"</{elementName}>"));
             }
 
             return new HtmlContentBuilder()
