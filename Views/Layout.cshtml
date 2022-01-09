@@ -11,7 +11,9 @@
     <shape type="Lombiq_BaseTheme_Styles" prop-layoutModel="@Model"></shape>
 
     <script asp-name="bootstrap"></script>
-    <resources type="Header" />
+    <script asp-name="@ResourceNames.Helpers"></script>
+
+    <resources type="Header"/>
 </head>
 <body dir="@Orchard.CultureDir()" class="@string.Join(" ", CssClassHolder.Body)">
 
