@@ -27,19 +27,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><shape type="PageTitle"></shape></title>
 
-    <shape type="Lombiq_BaseTheme_Styles" prop-layoutModel="@Model"></shape>
+    <shape type="Lombiq_BaseTheme_LayoutInjections" prop-layoutModel="@Model"></shape>
 
     <script asp-name="bootstrap"></script>
     <script asp-name="@ResourceNames.Helpers"></script>
 
     <resources type="Header"/>
 </head>
-<body dir="@Orchard.CultureDir()" class="@string.Join(" ", CssClassHolder.Body)">
+<body dir="@Orchard.CultureDir()" class="@CssClassHolder.Body.JoinWords()">
 
 @await ZoneDescriptor.DisplayZonesAsync(
     CssClassHolder,
     page: this,
-    new ZoneDescriptor[]
+    new[]
     {
         new ZoneDescriptor(Header, wrapBody: true)
         {

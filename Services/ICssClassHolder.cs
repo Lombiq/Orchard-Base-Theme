@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Lombiq.BaseTheme.Services
 {
@@ -22,10 +23,14 @@ namespace Lombiq.BaseTheme.Services
         /// remove classes if needed.
         /// </summary>
         ISet<string> GetZoneClasses(string zoneName);
+    }
 
+    public static class CssClassHolderExtensions
+    {
         /// <summary>
         /// Returns the string you can insert into the zone's template.
         /// </summary>
-        string ConcatenateZoneClasses(string zoneName, params string[] additionalClasses);
+        public static string ConcatenateZoneClasses(this ICssClassHolder holder, string zoneName, params string[] additionalClasses) =>
+            string.Join(" ", holder.GetZoneClasses(zoneName).Concat(additionalClasses));
     }
 }
