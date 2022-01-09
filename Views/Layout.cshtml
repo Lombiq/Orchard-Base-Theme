@@ -12,7 +12,7 @@
 
     <resources type="Header" />
 </head>
-<body dir="@Orchard.CultureDir()" class="@string.Join(" ", CssClassHolder.Body)">
+<body dir="@Orchard.CultureDir()" class="@CssClassHolder.Body.JoinWords()">
 
 @await ZoneDescriptor.DisplayZonesAsync(
     CssClassHolder,
