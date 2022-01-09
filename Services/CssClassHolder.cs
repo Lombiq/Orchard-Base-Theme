@@ -23,8 +23,5 @@ namespace Lombiq.BaseTheme.Services
         }
 
         public ISet<string> GetZoneClasses(string zoneName) => _zones.GetMaybe(zoneName) ?? new();
-
-        public string ConcatenateZoneClasses(string zoneName, params string[] additionalClasses) =>
-            string.Join(" ", GetZoneClasses(zoneName).Concat(additionalClasses));
     }
 }

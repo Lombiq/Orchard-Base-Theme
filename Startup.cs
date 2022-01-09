@@ -16,10 +16,5 @@ namespace Lombiq.BaseTheme
             services.AddScoped<ICssClassHolder, CssClassHolder>();
             services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
         }
-
-        public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
-        {
-            // Method left empty, for future use.
-        }
     }
 }
