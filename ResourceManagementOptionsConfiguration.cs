@@ -9,10 +9,14 @@ namespace Lombiq.BaseTheme
         private const string WwwRoot = "~/" + FeatureIds.Area + "/";
         private const string Css = WwwRoot + "css/";
         private const string Js = WwwRoot + "js/";
+        private const string Vendors = WwwRoot + "vendors/";
 
         private static readonly ResourceManifest _manifest = new();
 
-        static ResourceManagementOptionsConfiguration() =>
+        static ResourceManagementOptionsConfiguration()
+        {
+            _manifest.DefineResource("$" + nameof(FeatureIds.Area), FeatureIds.Area);
+
             _manifest
                 .DefineStyle(ResourceNames.Site)
                 .SetUrl(Css + "site.min.css", Css + "site.css");
@@ -20,6 +24,12 @@ namespace Lombiq.BaseTheme
             _manifest
                 .DefineScript(ResourceNames.Helpers)
                 .SetUrl(Js + "helpers.js");
+
+            _manifest
+                .DefineScript("bootstrap")
+                    .SetUrl(Vendors + "bootstrap/js/bootstrap.min.js", Vendors + "bootstrap/js/bootstrap.js");
+        }
+
         public void Configure(ResourceManagementOptions options) => options.ResourceManifests.Add(_manifest);
     }
 }

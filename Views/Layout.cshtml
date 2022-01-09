@@ -1,9 +1,28 @@
 <!DOCTYPE html>
+@using Microsoft.Extensions.Options
+@using OrchardCore.ResourceManagement
 
 @inject ICssClassHolder CssClassHolder
+@inject IOptions<ResourceManagementOptions> ResourceManagementOptions
 
 <html lang="@Orchard.CultureName()">
 <head>
+    @{
+        // Remove all external Bootstrap 5 resources. (This way we can update Bootstrap independent of OC.)
+        foreach (var manifest in ResourceManagementOptions.Value.ResourceManifests)
+        {
+            if (manifest.GetResources("$" + nameof(FeatureIds.Area)).ContainsKey(FeatureIds.Area)) { continue; }
+
+            foreach (var resourceType in new[] { "stylesheet", "script" })
+            {
+                if (manifest.GetResources(resourceType).TryGetValue("bootstrap", out var resource))
+                {
+                    resource.Clear();
+                }
+            }
+        }
+    }
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><shape type="PageTitle"></shape></title>
