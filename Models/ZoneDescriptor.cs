@@ -50,7 +50,7 @@ namespace Lombiq.BaseTheme.Models
             var body = await page.DisplayAsync(zone);
             if (WrapBody)
             {
-                // If there no parent then "body" becomes the BEM element, otherwise there already is an element so
+                // If there is no parent then "body" becomes the BEM element, otherwise there already is an element so
                 // "Body" becomes a suffix to that.
                 var bodyWrapperClass = string.IsNullOrEmpty(parent)
                     ? layoutClassName + "__body"
