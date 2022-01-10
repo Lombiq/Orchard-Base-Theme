@@ -1,4 +1,7 @@
-﻿:root {
+﻿// Paths
+$images-path: "/Lombiq.BaseTheme/images/" !default;
+
+:root {
     // Fonts
     --font-default: var(--bs-body-font-family);
     --font-header: var(--bs-font-sans-serif);

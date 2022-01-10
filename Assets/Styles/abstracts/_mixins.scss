@@ -5,6 +5,10 @@
 @use "sass:map";
 @import "../vendors/bootstrap-mixins";
 
+@function image($path, $base: $images-path) {
+    @return url($base + $path);
+}
+
 /// Event wrapper
 /// @author Harry Roberts
 /// @param {Bool} $self [false] - Whether or not to include current selector
