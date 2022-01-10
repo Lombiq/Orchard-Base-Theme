@@ -1,8 +1,12 @@
 @charset "UTF-8";
 
 // Configuration and helpers
+@import "abstracts/variables";
 @import "abstracts/mixins";
 @import "abstracts/helpers";
 
 // Vendors
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+// Rules for every page
+@import "general/general";
