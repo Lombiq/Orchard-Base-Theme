@@ -31,6 +31,10 @@ namespace Lombiq.BaseTheme.Services
         /// Returns the string you can insert into the zone's template.
         /// </summary>
         public static string ConcatenateZoneClasses(this ICssClassHolder holder, string zoneName, params string[] additionalClasses) =>
-            string.Join(" ", holder.GetZoneClasses(zoneName).Concat(additionalClasses));
+            holder
+                .GetZoneClasses(zoneName)
+                .Concat(additionalClasses)
+                .WhereNot(string.IsNullOrEmpty)
+                .Join();
     }
 }
