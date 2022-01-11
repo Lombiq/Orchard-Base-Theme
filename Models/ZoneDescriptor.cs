@@ -6,12 +6,16 @@ using OrchardCore.DisplayManagement.Razor;
 using OrchardCore.DisplayManagement.Zones;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Models
 {
     public class ZoneDescriptor
     {
+        public const string LayoutElementClassName = "layoutElement";
+        public const string LeafClassName = LayoutElementClassName + "_leaf";
+
         public string ZoneName { get; set; }
         public string ElementName { get; set; }
         public bool WrapBody { get; set; }
@@ -45,7 +49,11 @@ namespace Lombiq.BaseTheme.Models
                 ? "layout" + ZoneName
                 : FormattableString.Invariant($"layout{parent}__{id}");
 
-            var classNames = classHolder.ConcatenateZoneClasses(ZoneName, layoutClassName);
+            var classNames = classHolder.ConcatenateZoneClasses(
+                ZoneName,
+                layoutClassName,
+                LayoutElementClassName,
+                ChildrenBefore?.Any() == true || ChildrenAfter?.Any() == true ? LeafClassName : null);
 
             var body = await page.DisplayAsync(zone);
             if (WrapBody)
@@ -61,7 +69,7 @@ namespace Lombiq.BaseTheme.Models
                 var elementName = ZoneName == ZoneNames.Content ? "main" : "div";
 
                 body = new HtmlContentBuilder()
-                    .AppendHtml(FormattableString.Invariant($"<{elementName} class=\"{bodyWrapperClass}\">"))
+                    .AppendHtml(FormattableString.Invariant($"<{elementName} class=\"{bodyWrapperClass} {LeafClassName}\">"))
                     .AppendHtml(body)
                     .AppendHtml(FormattableString.Invariant($"</{elementName}>"));
             }
