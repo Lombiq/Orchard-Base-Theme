@@ -1,0 +1,23 @@
+﻿// -----------------------------------------------------------------------------
+// Application-wide CSS variables.
+// -----------------------------------------------------------------------------
+
+:root {
+    // Fonts
+    --font-default: var(--bs-body-font-family);
+    --font-header: var(--bs-font-sans-serif);
+
+    // Gutters
+    --gutter-x-small: 1rem;
+    --gutter-small: 1.5rem;
+    --gutter-medium: 2rem;
+    --gutter-large: 5rem;
+    --gutter-x-large: 10rem;
+
+    // Page Margins
+    --page-margin-x-small: var(--gutter-x-small);
+    --page-margin-small: var(--gutter-small);
+    --page-margin-medium: var(--gutter-medium);
+    --page-margin-large: var(--gutter-large);
+    --page-margin-x-large: var(--gutter-x-large);
+}

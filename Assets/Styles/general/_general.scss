@@ -1,4 +1,11 @@
 ﻿@for $i from 1 through 9 {
+﻿// -----------------------------------------------------------------------------
+// General layout rules.
+// -----------------------------------------------------------------------------
+
+@import "../abstracts/mixins";
+
+@for $i from 1 through 9 {
     h#{$i} {
         font-family: var(--font-header);
     }
