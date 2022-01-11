@@ -53,7 +53,7 @@ namespace Lombiq.BaseTheme.Models
                 ZoneName,
                 layoutClassName,
                 LayoutElementClassName,
-                ChildrenBefore?.Any() == true || ChildrenAfter?.Any() == true ? LeafClassName : null);
+                ChildrenBefore?.Any() != true || ChildrenAfter?.Any() != true ? LeafClassName : null);
 
             var body = await page.DisplayAsync(zone);
             if (WrapBody)
