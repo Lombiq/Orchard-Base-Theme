@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+@inject ICssClassHolder CssClassHolder
+
+<html lang="@Orchard.CultureName()">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><shape type="PageTitle"></shape></title>
+
+    <shape type="Lombiq_BaseTheme_LayoutInjections" prop-layoutModel="@Model"></shape>
+
+    <resources type="Header" />
+</head>
+<body dir="@Orchard.CultureDir()" class="@CssClassHolder.Body.Join()">
+
+@await ZoneDescriptor.DisplayZonesAsync(
+    CssClassHolder,
+    page: this,
+    new[]
+    {
+        new ZoneDescriptor(Header, wrapBody: true)
+        {
+            ChildrenBefore = new [] { new ZoneDescriptor("Banner") },
+        },
+        new ZoneDescriptor(Navigation, "nav"),
+        new ZoneDescriptor(BeforeMain),
+        new ZoneDescriptor(Featured),
+        new ZoneDescriptor(Content, wrapBody: true)
+        {
+            ChildrenBefore = new []
+            {
+                new ZoneDescriptor(AsideFirst),
+                new ZoneDescriptor(Messages),
+                new ZoneDescriptor(BeforeContent),
+            },
+            ChildrenAfter = new []
+            {
+                new ZoneDescriptor(AfterContent),
+                new ZoneDescriptor(AsideSecond),
+            },
+        },
+        new ZoneDescriptor(AfterMain),
+        new ZoneDescriptor(Footer, "footer"),
+    })
+<resources type="FootScript"/>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+// -----------------------------------------------------------------------------
+// Application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+@use "sass:map";
+@import "../vendors/bootstrap-mixins";
+
+@function image($path, $base: $images-path) {
+    @return url($base + $path);
+}
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+    @if $self {
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    } @else {
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+    #{$context} & {
+        @content;
+    }
+}
+
+/// Applies breakpoint-specific values to a given property.
+/// @param {String} $property - The property to apply the values to.
+/// @param {Map} $breakpoint-values - The dictionary where the breakpoints are keys and the values are the values to be applied.
+/// @param {Bool} $down - Defines whether the values should be applied above or below the given breakpoint (true = down).
+@mixin breakpoint-property-value($property, $breakpoint-values, $down: false) {
+    @each $breakpoint, $value in $breakpoint-values {
+        @if $down {
+            @include media-breakpoint-down($breakpoint) {
+                #{$property}: $value;
+            }
+        } @else {
+            @include media-breakpoint-up($breakpoint) {
+                #{$property}: $value;
+            }
+        }
+    }
+}
+
+/// Applies values to a given property (should be 'padding' or 'margin') based on a breakpoint-value dictionary
+/// that is either horizontal or vertical (or both) with an additional option to apply negative values.
+/// @param {String} $property - The property to apply the values to, 'padding' or 'margin'.
+/// @param {Map} $breakpoint-values - The dictionary where the breakpoints are keys and the values will be applied.
+/// @param {Bool} $horizontal [true] - Defines whether horizontal values should be applied or not.
+/// @param {Bool} $vertical [false] - Defines whether vertical values should be applied or not.
+/// @param {Bool} $negative [false] - Defines whether the values should be applied will be negated or not
+///                                   based on the assumption that the dictionary holds positive values only.
+/// @require $property, $breakpoint-values
+@mixin breakpoint-side-property($property, $breakpoint-values, $horizontal: true, $vertical: false, $negative: false) {
+    @each $breakpoint, $values in $breakpoint-values {
+        $value: if($negative, -$values, $values);
+
+        @include media-breakpoint-up($breakpoint) {
+            @if $horizontal == true {
+                #{$property}: {
+                    left: $value;
+                    right: $value;
+                }
+            }
+
+            @if $vertical == true {
+                #{$property}: {
+                    top: $value;
+                    bottom: $value;
+                }
+            }
+        }
+    }
+}
+
+/// Creates a horizontal or vertical (or both) margin based on a breakpoint-value dictionary
+/// with an additional option to apply negative values.
+/// @param {Map} $breakpoint-values - The dictionary where the breakpoints are keys and the values will be applied.
+/// @param {Bool} $horizontal [true] - Defines whether horizontal values should be applied or not.
+/// @param {Bool} $vertical [false] - Defines whether vertical values should be applied or not.
+/// @param {Bool} $negative [false] - Defines whether the values should be applied will be negated or not
+///                                   based on the assumption that the dictionary holds positive values only.
+/// @require $breakpoint-values
+@mixin breakpoint-margin($breakpoint-values, $horizontal: true, $vertical: false, $negative: false) {
+    @include breakpoint-side-property(
+        $property: "margin",
+        $breakpoint-values: $breakpoint-values,
+        $horizontal: $horizontal,
+        $vertical: $vertical,
+        $negative: $negative);
+}
+
+/// Creates a horizontal or vertical (or both) padding based on a breakpoint-value dictionary
+/// with an additional option to apply negative values.
+/// @param {Map} $breakpoint-values - The dictionary where the breakpoints are keys and the values will be applied.
+/// @param {Bool} $horizontal [true] - Defines whether horizontal values should be applied or not.
+/// @param {Bool} $vertical [false] - Defines whether vertical values should be applied or not.
+/// @param {Bool} $negative [false] - Defines whether the values should be applied will be negated or not
+///                                   based on the assumption that the dictionary holds positive values only.
+/// @require $breakpoint-values
+@mixin breakpoint-padding($breakpoint-values, $horizontal: true, $vertical: false, $negative: false) {
+    @include breakpoint-side-property(
+        $property: "padding",
+        $breakpoint-values: $breakpoint-values,
+        $horizontal: $horizontal,
+        $vertical: $vertical,
+        $negative: $negative);
+}
+
+@mixin text-size($text-size-level: 1) {
+    @if $text-size-level < 5 {
+        font-size: map.get($font-sizes, $text-size-level + 1);
+
+        @include media-breakpoint-up(md) {
+            font-size: map.get($font-sizes, $text-size-level);
+        }
+    } @else {
+        font-size: map.get($font-sizes, $text-size-level);
+    }
+}
+
+/// The following class names will be generated for each breakpoint (one value from each row, concatenated by hyphen, prefixed by "u-"):
+/// pd mg
+/// top bottom left right hor ver all
+/// xs sm md lg xl
+///
+/// Examples: u-pd-hor-md, u-pd-all-xs, u-mg-top-xl, u-mg-ver-sm, etc.
+/// @param {Map} $spacing-sizes - The dictionary where the breakpoints are keys and the values are spacing maps like
+//                                "(xs: 24px, sm: 36px, md: 48px, lg: 96px)".
+/// @param {Map} $spacing-directions - The dictionary where the breakpoints are keys and the values are padding/margin directions.
+@mixin generate-spacing(
+    $spacing-sizes: (xs: $spacing-xs, sm: $spacing-sm, md: $spacing-md, lg: $spacing-lg, xl: $spacing-xl),
+    $spacing-directions: (top: top, bottom: bottom, left: left, right: right, hor: left right, ver: top bottom, all: top bottom left right)) {
+    @each $spacing-size, $spacing-values in $spacing-sizes { // Mapping size maps to size names, analogous to Bootstrap size names.
+        @each $breakpoint, $size in $spacing-values { // Mapping spacing values to breakpoints.
+            @include media-breakpoint-up($breakpoint) { // Applying breakpoint.
+                // Mapping directions to sides, e.g. top = top, hor(izontal) = left + right.
+                @each $spacing-direction, $spacing-sides in $spacing-directions {
+                    .u-pd-#{$spacing-direction}-#{$spacing-size} { // Padding utility class name with direction and size.
+                        @each $spacing-side in $spacing-sides { // Iterating through each side in the direction map.
+                            padding-#{$spacing-side}: $size; // Applying spacing value to the current side.
+                            word-break: break-word;
+                        }
+                    }
+
+                    .u-mg-#{$spacing-direction}-#{$spacing-size} { // Margin utility class name with direction and size.
+                        @each $spacing-side in $spacing-sides {
+                            margin-#{$spacing-side}: $size;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin hide-text {
+    line-height: 0;
+    font-size: 0;
+    color: transparent;
+}
+
+@mixin padding-gutter($vertical-multiplier: $default-vertical-multiplier) {
+    @include media-breakpoint-only(xs) { padding: calc(var(--gutter-x-small) * #{$vertical-multiplier}) var(--gutter-x-small); }
+
+    @include media-breakpoint-only(sm) { padding: calc(var(--gutter-small) * #{$vertical-multiplier}) var(--gutter-small); }
+
+    @include media-breakpoint-only(md) { padding: calc(var(--gutter-medium) * #{$vertical-multiplier}) var(--gutter-medium); }
+
+    @include media-breakpoint-only(lg) { padding: calc(var(--gutter-large) * #{$vertical-multiplier}) var(--gutter-large); }
+
+    @include media-breakpoint-up(xl) { padding: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large); }
+}
+
+@mixin margin-gutter($vertical-multiplier: $default-vertical-multiplier) {
+    @include media-breakpoint-only(xs) { margin: calc(var(--gutter-x-small) * #{$vertical-multiplier}) var(--gutter-x-small); }
+
+    @include media-breakpoint-only(sm) { margin: calc(var(--gutter-small) * #{$vertical-multiplier}) var(--gutter-small); }
+
+    @include media-breakpoint-only(md) { margin: calc(var(--gutter-medium) * #{$vertical-multiplier}) var(--gutter-medium); }
+
+    @include media-breakpoint-only(lg) { margin: calc(var(--gutter-large) * #{$vertical-multiplier}) var(--gutter-large); }
+
+    @include media-breakpoint-up(xl) { margin: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large); }
+}
+
+@mixin padding-side-gutter($direction) {
+    @include media-breakpoint-only(xs) { padding-#{$direction}: var(--gutter-x-small); }
+
+    @include media-breakpoint-only(sm) { padding-#{$direction}: var(--gutter-small); }
+
+    @include media-breakpoint-only(md) { padding-#{$direction}: var(--gutter-medium); }
+
+    @include media-breakpoint-only(lg) { padding-#{$direction}: var(--gutter-large); }
+
+    @include media-breakpoint-up(xl) { padding-#{$direction}: var(--gutter-x-large); }
+}
+
+@mixin padding-top-gutter() {
+    @include padding-side-gutter("top");
+}
+
+@mixin padding-right-gutter() {
+    @include padding-side-gutter("right");
+}
+
+@mixin padding-bottom-gutter() {
+    @include padding-side-gutter("bottom");
+}
+
+@mixin padding-left-gutter() {
+    @include padding-side-gutter("left");
+}
+
+@mixin margin-side-gutter($direction) {
+    @include media-breakpoint-only(xs) { margin-#{$direction}: var(--gutter-x-small); }
+
+    @include media-breakpoint-only(sm) { margin-#{$direction}: var(--gutter-small); }
+
+    @include media-breakpoint-only(md) { margin-#{$direction}: var(--gutter-medium); }
+
+    @include media-breakpoint-only(lg) { margin-#{$direction}: var(--gutter-large); }
+
+    @include media-breakpoint-up(xl) { margin-#{$direction}: var(--gutter-x-large); }
+}
+
+@mixin margin-top-gutter() {
+    @include margin-side-gutter("top");
+}
+
+@mixin margin-right-gutter() {
+    @include margin-side-gutter("right");
+}
+
+@mixin margin-bottom-gutter() {
+    @include margin-side-gutter("bottom");
+}
+
+@mixin margin-left-gutter() {
+    @include margin-side-gutter("left");
+}

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+// Site specific Sass variables
+@import "abstracts/variables";
+
+// Vendors
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// Configuration and helpers
+@import "abstracts/native-variables";
+@import "abstracts/mixins";
+@import "abstracts/helpers";
+
+// Rules for every page
+@import "general/general";

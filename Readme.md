@@ -1,17 +1,15 @@
-# Lombiq <add project name here>
+# Lombiq Orchard Core Base Theme
 
 
 
 ## About
 
-Add a general overview of the project here. Don't forget to update the year in the Licence! Keep or remove the OSOCE note below as necessary.
-
-Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
+A common base theme for our Orchard Core themes using Bootstrap 5. It can contain any shared content that are not specific to a specific project's theme.
 
 
 ## Documentation
 
-Add detailed documentation here. If it's a lot of content then create documentation pages under the *Docs* folder and link pages here.
+Use this as the base theme of any custom frontend themes you create.
 
 
 ## Contributing and support
