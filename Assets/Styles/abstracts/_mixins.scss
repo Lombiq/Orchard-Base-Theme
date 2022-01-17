@@ -143,9 +143,9 @@
 ///
 /// Examples: u-pd-hor-md, u-pd-all-xs, u-mg-top-xl, u-mg-ver-sm, etc.
 /// @param {Map} $spacing-sizes - The dictionary where the breakpoints are keys and the values are spacing maps like
-//                                "(xs: 24px, sm: 36px, md: 48px, lg: 96px)".
+///                               "(xs: 24px, sm: 36px, md: 48px, lg: 96px)".
 /// @param {Map} $spacing-directions - The dictionary where the breakpoints are keys and the values are padding/margin
-//                                     directions.
+///                                    directions.
 @mixin generate-spacing(
     $spacing-sizes: (xs: $spacing-xs, sm: $spacing-sm, md: $spacing-md, lg: $spacing-lg, xl: $spacing-xl),
     $spacing-directions: (top: top, bottom: bottom, left: left, right: right, hor: left right, ver: top bottom, all: top bottom left right)) {
