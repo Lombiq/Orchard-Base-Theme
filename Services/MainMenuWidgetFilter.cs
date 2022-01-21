@@ -12,17 +12,17 @@ using static Lombiq.BaseTheme.Constants.ZoneNames;
 
 namespace Lombiq.BaseTheme.Services
 {
-    public class PortalMenuWidgetFilter : WidgetFilterBase<PortalMenuWidgetViewModel>
+    public class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
     {
         private readonly INavigationManager _navigationManager;
         private readonly IActionContextAccessor _actionContextAccessor;
         private readonly ICssClassHolder _cssClassHolder;
 
         protected override string ZoneName => Navigation;
-        protected override string ViewName => WidgetTypes.PortalMenuWidget;
+        protected override string ViewName => WidgetTypes.MenuWidget;
         protected override bool AdminOnly => false;
 
-        public PortalMenuWidgetFilter(
+        public MainMenuWidgetFilter(
             IAuthorizationService authorizationService,
             ILayoutAccessor layoutAccessor,
             IShapeFactory shapeFactory,
@@ -36,7 +36,7 @@ namespace Lombiq.BaseTheme.Services
             _cssClassHolder = cssClassHolder;
         }
 
-        protected override async Task<PortalMenuWidgetViewModel> GetViewModelAsync()
+        protected override async Task<MenuWidgetViewModel> GetViewModelAsync()
         {
             // Add the <nav> classes to the zone holder <nav>.
             _cssClassHolder.AddClassToZone(Navigation, "navbar-expand-md");
@@ -45,7 +45,7 @@ namespace Lombiq.BaseTheme.Services
             return new()
             {
                 MenuItems = await _navigationManager.BuildMenuAsync(
-                    PortalNavigationProviderBase.PortalNavigationName,
+                    MainMenuNavigationProviderBase.MainNavigationName,
                     _actionContextAccessor.ActionContext),
                 NoWrapper = true, // The navigation zone is already the wrapper.
             };
