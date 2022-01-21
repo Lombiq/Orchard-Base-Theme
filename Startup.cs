@@ -13,7 +13,7 @@ namespace Lombiq.BaseTheme
         {
             services.AddScoped<ICssClassHolder, CssClassHolder>();
             services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
-            services.Configure<MvcOptions>(options => options.Filters.Add(typeof(PortalMenuWidgetFilter)));
+            services.Configure<MvcOptions>(options => options.Filters.Add(typeof(MainMenuWidgetFilter)));
         }
     }
 }
