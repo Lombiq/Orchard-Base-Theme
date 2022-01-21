@@ -45,7 +45,7 @@ namespace Lombiq.BaseTheme.Services
             return new()
             {
                 MenuItems = await _navigationManager.BuildMenuAsync(
-                    PortalNavigationProviderBase.NavigationName,
+                    PortalNavigationProviderBase.PortalNavigationName,
                     _actionContextAccessor.ActionContext),
                 NoWrapper = true, // The navigation zone is already the wrapper.
             };
