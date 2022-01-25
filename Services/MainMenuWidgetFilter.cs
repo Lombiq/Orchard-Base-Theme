@@ -20,7 +20,7 @@ namespace Lombiq.BaseTheme.Services
 
         protected override string ZoneName => Navigation;
         protected override string ViewName => WidgetTypes.MenuWidget;
-        protected override bool AdminOnly => false;
+        protected override bool FrontEndOnly => true;
 
         public MainMenuWidgetFilter(
             IAuthorizationService authorizationService,
