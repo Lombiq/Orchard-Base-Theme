@@ -1,4 +1,5 @@
 using Lombiq.BaseTheme.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OrchardCore.Modules;
@@ -12,6 +13,7 @@ namespace Lombiq.BaseTheme
         {
             services.AddScoped<ICssClassHolder, CssClassHolder>();
             services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
+            services.Configure<MvcOptions>(options => options.Filters.Add(typeof(MainMenuWidgetFilter)));
         }
     }
 }
