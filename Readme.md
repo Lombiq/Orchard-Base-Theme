@@ -1,4 +1,4 @@
-# Lombiq Orchard Core Base Theme
+# Lombiq Base Theme for Orchard Core
 
 
 
