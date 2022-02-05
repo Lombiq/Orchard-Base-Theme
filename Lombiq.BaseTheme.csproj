@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <PackageReference Include="OrchardCore.Theme.Targets" Version="1.2.2" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.2.2" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.2.2" />
   </ItemGroup>
 
   <ItemGroup>
