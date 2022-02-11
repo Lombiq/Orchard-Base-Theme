@@ -1,7 +1,7 @@
 using OrchardCore.DisplayManagement.Manifest;
 
 [assembly: Theme(
-    Name = "Lombiq Orchard Core Base Theme",
+    Name = "Lombiq Base Theme",
     Author = "Lombiq Technologies",
     Version = "1.0",
     Website = "https://github.com/Lombiq/Orchard-Base-Theme",

@@ -1,7 +1,7 @@
 {
   "name": "Lombiq.BaseTheme.StylingDemo",
   "displayName": "Lombiq Orchard Core Base Theme - Styling Demo",
-  "description": "",
+  "description": "Adds a sample Page that contains HTML Widgets with content that features various Bootstrap utility classes.",
   "author": "Lombiq Technologies",
   "website": "https://github.com/Lombiq/Orchard-Base-Theme",
   "version": "1.0",
