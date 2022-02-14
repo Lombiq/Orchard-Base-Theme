@@ -203,34 +203,6 @@
     @include media-breakpoint-up(xl) { margin: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large); }
 }
 
-@mixin padding-side-gutter($direction) {
-    @include media-breakpoint-only(xs) { padding-#{$direction}: var(--gutter-x-small); }
-
-    @include media-breakpoint-only(sm) { padding-#{$direction}: var(--gutter-small); }
-
-    @include media-breakpoint-only(md) { padding-#{$direction}: var(--gutter-medium); }
-
-    @include media-breakpoint-only(lg) { padding-#{$direction}: var(--gutter-large); }
-
-    @include media-breakpoint-up(xl) { padding-#{$direction}: var(--gutter-x-large); }
-}
-
-@mixin padding-top-gutter() {
-    @include padding-side-gutter("top");
-}
-
-@mixin padding-right-gutter() {
-    @include padding-side-gutter("right");
-}
-
-@mixin padding-bottom-gutter() {
-    @include padding-side-gutter("bottom");
-}
-
-@mixin padding-left-gutter() {
-    @include padding-side-gutter("left");
-}
-
 @mixin apply-gutter($property, $multiplier: 1) {
     @include media-breakpoint-only(xs) { #{$property}: calc(#{$multiplier} * var(--gutter-x-small)); }
 
@@ -243,20 +215,36 @@
     @include media-breakpoint-up(xl) { #{$property}: calc(#{$multiplier} * var(--gutter-x-large)); }
 }
 
-@mixin margin-top-gutter() {
-    @include apply-gutter("margin-top");
+@mixin padding-top-gutter($multiplier: 1) {
+    @include apply-gutter("padding-top", $multiplier);
 }
 
-@mixin margin-right-gutter() {
-    @include apply-gutter("margin-right");
+@mixin padding-right-gutter($multiplier: 1) {
+    @include apply-gutter("padding-right", $multiplier);
 }
 
-@mixin margin-bottom-gutter() {
-    @include apply-gutter("margin-bottom");
+@mixin padding-bottom-gutter($multiplier: 1) {
+    @include apply-gutter("padding-bottom", $multiplier);
 }
 
-@mixin margin-left-gutter() {
-    @include apply-gutter("margin-left");
+@mixin padding-left-gutter($multiplier: 1) {
+    @include apply-gutter("padding-left", $multiplier);
+}
+
+@mixin margin-top-gutter($multiplier: 1) {
+    @include apply-gutter("margin-top", $multiplier);
+}
+
+@mixin margin-right-gutter($multiplier: 1) {
+    @include apply-gutter("margin-right", $multiplier);
+}
+
+@mixin margin-bottom-gutter($multiplier: 1) {
+    @include apply-gutter("margin-bottom", $multiplier);
+}
+
+@mixin margin-left-gutter($multiplier: 1) {
+    @include apply-gutter("margin-left", $multiplier);
 }
 
 @mixin gap-gutter($multiplier: 1) {
