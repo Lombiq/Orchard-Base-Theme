@@ -258,3 +258,7 @@
 @mixin margin-left-gutter() {
     @include apply-gutter("margin-left");
 }
+
+@mixin gap-gutter($multiplier: 1) {
+    @include apply-gutter("gap", $multiplier);
+}
