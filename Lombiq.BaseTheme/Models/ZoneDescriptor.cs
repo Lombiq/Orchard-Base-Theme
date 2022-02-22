@@ -20,8 +20,8 @@ namespace Lombiq.BaseTheme.Models
         public string ElementName { get; set; }
         public bool WrapBody { get; set; }
 
-        public IEnumerable<ZoneDescriptor> ChildrenBefore { get; init; }
-        public IEnumerable<ZoneDescriptor> ChildrenAfter { get; init; }
+        public IEnumerable<ZoneDescriptor> ChildrenBefore { get; set; }
+        public IEnumerable<ZoneDescriptor> ChildrenAfter { get; set; }
 
         public ZoneDescriptor(string zoneName = null, string elementName = null, bool wrapBody = false)
         {

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <DefaultItemExcludes>$(DefaultItemExcludes);.git*;node_modules\**;Tests\**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <Import Project="..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
+  <Import Project="..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.targets" />
+  <Import Project="..\..\Utilities\Lombiq.Gulp.Extensions\Lombiq.Gulp.Extensions.targets" />
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lombiq.BaseTheme\Lombiq.BaseTheme.csproj" />
+  </ItemGroup>
+
+</Project>

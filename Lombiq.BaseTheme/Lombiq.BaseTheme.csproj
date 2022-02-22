@@ -1,16 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <DefaultItemExcludes>$(DefaultItemExcludes);.git*;node_modules\**;Tests\**</DefaultItemExcludes>
   </PropertyGroup>
 
-  <Import Project="..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
-  <Import Project="..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.targets" />
-  <Import Project="..\..\Utilities\Lombiq.Gulp.Extensions\Lombiq.Gulp.Extensions.targets" />
+  <Import Project="..\..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
+  <Import Project="..\..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.targets" />
+  <Import Project="..\..\..\Utilities\Lombiq.Gulp.Extensions\Lombiq.Gulp.Extensions.targets" />
 
   <ItemGroup>
+    <None Include="..\Readme.md" />
     <None Remove="node_modules\**" />
     <None Remove="Tests\**" />
   </ItemGroup>
@@ -26,10 +27,15 @@
     <PackageReference Include="OrchardCore.ResourceManagement" Version="1.2.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.csproj" />
-    <ProjectReference Include="..\..\Modules\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions.csproj" />
-    <ProjectReference Include="..\..\Utilities\Lombiq.Gulp.Extensions\Lombiq.Gulp.Extensions.csproj" />
+  <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
+    <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions.csproj" />
+    <ProjectReference Include="..\..\..\Utilities\Lombiq.Gulp.Extensions\Lombiq.Gulp.Extensions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
+    <PackageReference Include="Lombiq.HelpfulLibraries" Version="2.0.1" />
+    <PackageReference Include="Lombiq.HelpfulExtensions" Version="2.0.1" />
   </ItemGroup>
 
 </Project>
