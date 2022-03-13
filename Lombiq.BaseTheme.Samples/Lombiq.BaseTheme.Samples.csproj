@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="OrchardCore.Admin" Version="1.2.2" />
     <PackageReference Include="OrchardCore.Theme.Targets" Version="1.2.2" />
   </ItemGroup>
 
