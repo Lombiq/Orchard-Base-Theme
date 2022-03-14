@@ -1,11 +1,15 @@
 @using Lombiq.BaseTheme.Services
-@using Microsoft.AspNetCore.Http
 @using ResourceNames = Lombiq.BaseTheme.Samples.Constants.ResourceNames
-@using Lombiq.BaseTheme.Samples.Constants
 @using Microsoft.AspNetCore.Authorization
+@using Lombiq.BaseTheme.Constants
+@using FeatureIds = Lombiq.BaseTheme.Samples.Constants.FeatureIds
 
 @inject ICssClassHolder CssClassHolder
 @inject IAuthorizationService AuthorizationService
+
+@{
+    CssClassHolder.AddClassToZone(ZoneNames.Content, "additional-class-to-content");
+}
 
 <style asp-name="@ResourceNames.Site"></style>
 <link type="image/x-icon" rel="shortcut icon" href="~/@FeatureIds.Area/icons/favicon.ico" />
@@ -22,6 +26,6 @@
 @if (await AuthorizationService.AuthorizeAsync(User, OrchardCore.Admin.Permissions.AccessAdminPanel))
 {
     <zone name="Footer" position="1">
-        <a href="/Admin">@T["Admin Dashboard"]</a>
+        <a href="@Url.Content("~/Admin")">@T["Admin Dashboard"]</a>
     </zone>
 }
