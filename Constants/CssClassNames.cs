@@ -1,7 +1,6 @@
-namespace Lombiq.BaseTheme.Constants
+namespace Lombiq.BaseTheme.Constants;
+
+public static class CssClassNames
 {
-    public static class CssClassNames
-    {
-        public const string LayoutContentWithSidebar = "layoutContent_withSidebar";
-    }
+    public const string LayoutContentWithSidebar = "layoutContent_withSidebar";
 }

@@ -5,15 +5,14 @@ using Microsoft.Extensions.Options;
 using OrchardCore.Modules;
 using OrchardCore.ResourceManagement;
 
-namespace Lombiq.BaseTheme
+namespace Lombiq.BaseTheme;
+
+public class Startup : StartupBase
 {
-    public class Startup : StartupBase
+    public override void ConfigureServices(IServiceCollection services)
     {
-        public override void ConfigureServices(IServiceCollection services)
-        {
-            services.AddScoped<ICssClassHolder, CssClassHolder>();
-            services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
-            services.Configure<MvcOptions>(options => options.Filters.Add(typeof(MainMenuWidgetFilter)));
-        }
+        services.AddScoped<ICssClassHolder, CssClassHolder>();
+        services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
+        services.Configure<MvcOptions>(options => options.Filters.Add(typeof(MainMenuWidgetFilter)));
     }
 }
