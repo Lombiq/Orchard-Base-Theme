@@ -203,58 +203,50 @@
     @include media-breakpoint-up(xl) { margin: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large); }
 }
 
-@mixin padding-side-gutter($direction) {
-    @include media-breakpoint-only(xs) { padding-#{$direction}: var(--gutter-x-small); }
+@mixin apply-gutter($property, $multiplier: 1) {
+    @include media-breakpoint-only(xs) { #{$property}: calc(#{$multiplier} * var(--gutter-x-small)); }
 
-    @include media-breakpoint-only(sm) { padding-#{$direction}: var(--gutter-small); }
+    @include media-breakpoint-only(sm) { #{$property}: calc(#{$multiplier} * var(--gutter-small)); }
 
-    @include media-breakpoint-only(md) { padding-#{$direction}: var(--gutter-medium); }
+    @include media-breakpoint-only(md) { #{$property}: calc(#{$multiplier} * var(--gutter-medium)); }
 
-    @include media-breakpoint-only(lg) { padding-#{$direction}: var(--gutter-large); }
+    @include media-breakpoint-only(lg) { #{$property}: calc(#{$multiplier} * var(--gutter-large)); }
 
-    @include media-breakpoint-up(xl) { padding-#{$direction}: var(--gutter-x-large); }
+    @include media-breakpoint-up(xl) { #{$property}: calc(#{$multiplier} * var(--gutter-x-large)); }
 }
 
-@mixin padding-top-gutter() {
-    @include padding-side-gutter("top");
+@mixin padding-top-gutter($multiplier: 1) {
+    @include apply-gutter("padding-top", $multiplier);
 }
 
-@mixin padding-right-gutter() {
-    @include padding-side-gutter("right");
+@mixin padding-right-gutter($multiplier: 1) {
+    @include apply-gutter("padding-right", $multiplier);
 }
 
-@mixin padding-bottom-gutter() {
-    @include padding-side-gutter("bottom");
+@mixin padding-bottom-gutter($multiplier: 1) {
+    @include apply-gutter("padding-bottom", $multiplier);
 }
 
-@mixin padding-left-gutter() {
-    @include padding-side-gutter("left");
+@mixin padding-left-gutter($multiplier: 1) {
+    @include apply-gutter("padding-left", $multiplier);
 }
 
-@mixin margin-side-gutter($direction, $multiplier: 1) {
-    @include media-breakpoint-only(xs) { margin-#{$direction}: calc(#{$multiplier} * var(--gutter-x-small)); }
-
-    @include media-breakpoint-only(sm) { margin-#{$direction}: calc(#{$multiplier} * var(--gutter-small)); }
-
-    @include media-breakpoint-only(md) { margin-#{$direction}: calc(#{$multiplier} * var(--gutter-medium)); }
-
-    @include media-breakpoint-only(lg) { margin-#{$direction}: calc(#{$multiplier} * var(--gutter-large)); }
-
-    @include media-breakpoint-up(xl) { margin-#{$direction}: calc(#{$multiplier} * var(--gutter-x-large)); }
+@mixin margin-top-gutter($multiplier: 1) {
+    @include apply-gutter("margin-top", $multiplier);
 }
 
-@mixin margin-top-gutter() {
-    @include margin-side-gutter("top");
+@mixin margin-right-gutter($multiplier: 1) {
+    @include apply-gutter("margin-right", $multiplier);
 }
 
-@mixin margin-right-gutter() {
-    @include margin-side-gutter("right");
+@mixin margin-bottom-gutter($multiplier: 1) {
+    @include apply-gutter("margin-bottom", $multiplier);
 }
 
-@mixin margin-bottom-gutter() {
-    @include margin-side-gutter("bottom");
+@mixin margin-left-gutter($multiplier: 1) {
+    @include apply-gutter("margin-left", $multiplier);
 }
 
-@mixin margin-left-gutter() {
-    @include margin-side-gutter("left");
+@mixin gap-gutter($multiplier: 1) {
+    @include apply-gutter("gap", $multiplier);
 }

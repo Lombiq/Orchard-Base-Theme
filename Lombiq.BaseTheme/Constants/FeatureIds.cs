@@ -1,7 +1,6 @@
-﻿namespace Lombiq.BaseTheme.Constants
+﻿namespace Lombiq.BaseTheme.Constants;
+
+public static class FeatureIds
 {
-    public static class FeatureIds
-    {
-        public const string Area = "Lombiq.BaseTheme";
-    }
+    public const string Area = "Lombiq.BaseTheme";
 }
