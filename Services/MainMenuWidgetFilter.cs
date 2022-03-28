@@ -1,7 +1,7 @@
 ﻿using Lombiq.HelpfulExtensions.Extensions.Widgets;
 using Lombiq.HelpfulExtensions.Extensions.Widgets.ViewModels;
-using Lombiq.HelpfulLibraries.Libraries.Mvc;
-using Lombiq.HelpfulLibraries.Libraries.Navigation;
+using Lombiq.HelpfulLibraries.OrchardCore.Mvc;
+using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using OrchardCore.DisplayManagement;
