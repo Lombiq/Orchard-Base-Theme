@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "scripts": {
+    "dotnet-prebuild": "gulp",
+    "dotnet-postclean": "gulp clean"
+  }
+}
