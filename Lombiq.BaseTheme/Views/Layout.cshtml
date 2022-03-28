@@ -67,18 +67,5 @@
     })
 <resources type="FootScript"/>
 
-<script>
-    @* Based on https://getbootstrap.com/docs/5.0/components/navs-tabs/#via-javascript *@
-    helpers
-        .query('.nav-link[role="tab"]')
-        .forEach((tab) => {
-            const instance = new bootstrap.Tab(tab);
-            tab.addEventListener('click', (event) => {
-                event.preventDefault();
-                instance.show();
-            });
-        });
-</script>
-
 </body>
 </html>
