@@ -179,6 +179,15 @@
     color: transparent;
 }
 
+/// Apply it to <ul> elements to eliminate the padding and list style.
+@mixin reset-list {
+    padding: 0;
+
+    & > li {
+        list-style: none;
+    }
+}
+
 @mixin padding-gutter($vertical-multiplier: $default-vertical-multiplier) {
     @include media-breakpoint-only(xs) { padding: calc(var(--gutter-x-small) * #{$vertical-multiplier}) var(--gutter-x-small); }
 
