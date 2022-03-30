@@ -77,27 +77,6 @@
             "Name": null,
             "ConditionId": "4rdf2ykd6qx8s3ey03gg8hmv4h"
           }
-        },
-        {
-          "Name": "Help & Support",
-          "Rule": null,
-          "Description": "Only on help and support page",
-          "LayerRule": {
-            "Conditions": [
-              {
-                "$type": "OrchardCore.Rules.Models.UrlCondition, OrchardCore.Rules",
-                "Value": "/SnowMountain.Contents/HelpAndSupport/Index",
-                "Operation": {
-                  "$type": "OrchardCore.Rules.Models.StringEndsWithOperator, OrchardCore.Rules",
-                  "CaseSensitive": false
-                },
-                "Name": "UrlCondition",
-                "ConditionId": "4sqr80cnk2adw3fp1bqpshsa59"
-              }
-            ],
-            "Name": null,
-            "ConditionId": "4b9dt8tdj4vwa721t8344bkp42"
-          }
         }
       ]
     },
