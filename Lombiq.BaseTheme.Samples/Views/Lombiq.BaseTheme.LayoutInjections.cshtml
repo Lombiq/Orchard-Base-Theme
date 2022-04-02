@@ -9,23 +9,29 @@
 
 @{
     CssClassHolder.AddClassToZone(ZoneNames.Content, "additional-class-to-content");
+    CssClassHolder.AddClassToZone(ZoneNames.Footer, "additional-class-to-footer");
 }
 
 <style asp-name="@ResourceNames.Site"></style>
 <link type="image/x-icon" rel="shortcut icon" href="~/@FeatureIds.Area/icons/favicon.ico" />
 
-<zone name="Header">
+<layout-zone name="@ZoneNames.Header">
     <p>@T["Here you can easily inject shapes into the zones, kind of like always enabled widgets."]</p>
-</zone>
+</layout-zone>
 
-<zone name="Footer" position="0">
-    <div class="text-center">@T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]</div>
-</zone>
+<layout-zone name="@ZoneNames.Footer" position="0">
+    <div class="text-center">
+        @T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]
+    </div>
+</layout-zone>
 
-@* You can even include shapes conditionally. *@
+@* You can even include shapes conditionally. In this case we want a link to the admin dashboard but only for users who
+   are able to access it. *@
 @if (await AuthorizationService.AuthorizeAsync(User, OrchardCore.Admin.Permissions.AccessAdminPanel))
 {
-    <zone name="Footer" position="1">
-        <a href="@Url.Content("~/Admin")">@T["Admin Dashboard"]</a>
-    </zone>
+    <layout-zone name="@ZoneNames.Footer" position="1">
+        <div class="text-center">
+            <a href="@Url.Content("~/Admin")">@T["Admin Dashboard"]</a>
+        </div>
+    </layout-zone>
 }
