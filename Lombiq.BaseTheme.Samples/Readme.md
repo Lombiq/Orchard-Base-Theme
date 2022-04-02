@@ -15,6 +15,8 @@ Do you want to quickly try out this project and see it in action? Check it out i
 ## Training sections
 
 
+If you need help with setting up SCSS compilation, read the documentation of [Lombiq Gulp Extensions](https://github.com/Lombiq/Gulp-Extensions/#gulp-tasks) first. Also check out the [Gulpfile.js](Gulpfile.js) and [package.json](package.json) files in this project.
+
 - TODO
 
 

@@ -1,0 +1,49 @@
+// -----------------------------------------------------------------------------
+// Application-wide CSS variables.
+// ===============================
+// You don't need to import this in any other Sass file except in the site.scss
+// where it should be AFTER the Lombiq.BaseTheme import so those variables get
+// overwritten by the corresponding ones from this file.
+// -----------------------------------------------------------------------------
+
+@import "variables";
+
+:root {
+    // Fonts
+    --font-default: "Arial", sans-serif;
+    --font-size-default: 16px;
+    --font-line-height-default: 18px;
+    --font-header-size: 24px;
+    --font-header-weight: bold;
+
+    // Color Names. You can easily find human-readable color names with https://chir.ag/projects/name-that-color/#6195ED
+    --color-basethemesample-black: #000;
+    --color-basethemesample-white: #fff;
+    --color-basethemesample-alto: #d6d6d6;
+
+    // Color Features
+    --color-foreground-body: var(--color-basethemesample-black);
+    --color-background-body: var(--color-basethemesample-white);
+    --color-background-footer: var(--color-basethemesample-alto);
+    --color-border-footer: var(--color-basethemesample-black);
+
+    // Sizes
+    --height-header: 250px;
+
+    // Gutters and Page Margins are set by default in the base theme and they are used by various mixins (e.g.
+    // margin-gutter($vertical-multiplier)). This helps with making the site's spacing look more uniform and flexible.
+
+    // Gutters
+    --gutter-x-small: 12px;
+    --gutter-small: 12px;
+    --gutter-medium: 20px;
+    --gutter-large: 20px;
+    --gutter-x-large: 20px;
+
+    // Page Margins
+    --page-margin-x-small: 25px;
+    --page-margin-small: 25px;
+    --page-margin-medium: 32px;
+    --page-margin-large: 32px;
+    --page-margin-x-large: 32px;
+}

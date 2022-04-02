@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------------
+// Application-wide Sass variables.
+// ================================
+// The variables below override some defaults from the base theme. Generally you
+// don't need to use Sass variables, unless you need to pass them into Sass
+// mixins. Otherwise using native CSS variables is preferred to make the styles
+// more human readable.
+// -----------------------------------------------------------------------------
+
+// Mixin Defaults
+$default-vertical-multiplier: 0.5 !default;
+
+// Override breakpoints (it's identical for now).
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);

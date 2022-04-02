@@ -8,10 +8,16 @@
 @inject IAuthorizationService AuthorizationService
 
 @{
-    CssClassHolder.AddClassToZone(ZoneNames.Content, "additional-class-to-content");
-    CssClassHolder.AddClassToZone(ZoneNames.Footer, "additional-class-to-footer");
+    // You can use ICssClassHolder to add CSS classes to the zone wrapper elements. For example this can be used to
+    // add Bootstrap utility classes or shared classes across certain zones.
+    CssClassHolder.AddClassToZone(ZoneNames.Footer, "text-center");
+    CssClassHolder.AddClassToZone(ZoneNames.AsideFirst, "layoutAside");
+    CssClassHolder.AddClassToZone(ZoneNames.AsideSecond, "layoutAside");
 }
 
+@* This file is rendered in the <head> of Layout.cshtml after title and meta tags, but before resource injection. So you
+   can still use the resource tag helpers, as well as other <head> resources like a favicon.
+   Don't forget to inject your root style like below, it is the only required content for this shape. *@
 <style asp-name="@ResourceNames.Site"></style>
 <link type="image/x-icon" rel="shortcut icon" href="~/@FeatureIds.Area/icons/favicon.ico" />
 
@@ -19,14 +25,13 @@
     <p>@T["Here you can easily inject shapes into the zones, kind of like always enabled widgets."]</p>
 </layout-zone>
 
+@* We use the <layout-zone> tag helper so we can coexist with the prerendered shapes, e.g. from a widget. *@
 <layout-zone name="@ZoneNames.Footer" position="0">
-    <div class="text-center">
-        @T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]
-    </div>
+    @T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]
 </layout-zone>
 
 @* You can even include shapes conditionally. In this case we want a link to the admin dashboard but only for users who
-   are able to access it. *@
+   are able to access it. Using this approach can be much easier than implementing a custom layer condition. *@
 @if (await AuthorizationService.AuthorizeAsync(User, OrchardCore.Admin.Permissions.AccessAdminPanel))
 {
     <layout-zone name="@ZoneNames.Footer" position="1">
