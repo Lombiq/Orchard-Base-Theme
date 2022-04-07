@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 @using Microsoft.Extensions.Options
 @using OrchardCore.ResourceManagement
+@using Microsoft.AspNetCore.Http
 
 @inject ICssClassHolder CssClassHolder
 @inject IOptions<ResourceManagementOptions> ResourceManagementOptions
 
 <html lang="@Orchard.CultureName()">
+@if (Context.IsLocalhost())
+{
+    // Due to resource management, the <head> will accumulate some stray trailing whitespace in certain pages on the
+    // indented lines below. This is such a non-issue it's not worth ruining the document's indentation over it.
+    <text><!-- [html-validate-disable-block no-trailing-whitespace] --></text>
+}
 <head>
     @{
         // Remove all external Bootstrap 5 resources. (This way we can update Bootstrap independent of OC.)
