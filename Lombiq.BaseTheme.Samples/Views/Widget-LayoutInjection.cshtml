@@ -1,0 +1,37 @@
+@using Lombiq.BaseTheme.Services
+@using ResourceNames = Lombiq.BaseTheme.Samples.Constants.ResourceNames
+@using Microsoft.AspNetCore.Authorization
+@using Lombiq.BaseTheme.Constants
+@using FeatureIds = Lombiq.BaseTheme.Samples.Constants.FeatureIds
+
+@inject ICssClassHolder CssClassHolder
+@inject IAuthorizationService AuthorizationService
+
+@{
+    CssClassHolder.AddClassToZone(ZoneNames.Content, "additional-class-to-content");
+    CssClassHolder.AddClassToZone(ZoneNames.Footer, "additional-class-to-footer");
+}
+
+<style asp-name="@ResourceNames.Site"></style>
+<link type="image/x-icon" rel="shortcut icon" href="~/@FeatureIds.Area/icons/favicon.ico" />
+
+<zone name="@ZoneNames.Header">
+    <p>@T["Here you can easily inject shapes into the zones, kind of like always enabled widgets."]</p>
+</zone>
+
+<zone name="@ZoneNames.Footer" position="0">
+    <div class="text-center">
+        @T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]
+    </div>
+</zone>
+
+@* You can even include shapes conditionally. In this case we want a link to the admin dashboard but only for users who
+   are able to access it. *@
+@if (await AuthorizationService.AuthorizeAsync(User, OrchardCore.Admin.Permissions.AccessAdminPanel))
+{
+    <zone name="@ZoneNames.Footer" position="1">
+        <div class="text-center">
+            <a href="@Url.Content("~/Admin")">@T["Admin Dashboard"]</a>
+        </div>
+    </zone>
+}

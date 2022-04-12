@@ -84,6 +84,7 @@
       "name": "Settings",
       "LayerSettings": {
         "Zones": [
+          "LayoutInjection",
           "Header",
           "Navigation",
           "BeforeMain",
@@ -98,6 +99,37 @@
           "Footer"
         ]
       }
+    },
+    {
+      "name": "content",
+      "data": [
+        {
+          "ContentItemId": "[js:uuid()]",
+          "ContentItemVersionId": "[js:uuid()]",
+          "ContentType": "LayoutInjection",
+          "DisplayText": "Lombiq Base Theme Layout Injection",
+          "Latest": true,
+          "Published": true,
+          "ModifiedUtc": "2022-04-12T02:49:04.6871808Z",
+          "PublishedUtc": "2022-04-12T02:49:08.3646704Z",
+          "CreatedUtc": "2022-04-12T02:49:04.6871808Z",
+          "Owner": "493624k819933twmjgcvdh8jdj",
+          "Author": "admin",
+          "AdditionalStylingPart": {
+            "CustomClasses": null,
+            "RemoveGridExtensionClasses": false
+          },
+          "@WeldedPartSettings": {
+            "AdditionalStylingPart": {}
+          },
+          "LayerMetadata": {
+            "RenderTitle": false,
+            "Position": 0,
+            "Zone": "LayoutInjection",
+            "Layer": "Always"
+          }
+        }
+      ]
     }
   ]
 }

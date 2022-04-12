@@ -14,4 +14,7 @@ public static class ZoneNames
     public const string AsideSecond = nameof(AsideSecond);
     public const string AfterMain = nameof(AfterMain);
     public const string Footer = nameof(Footer);
+
+    // This needs to contain one widget of LayoutInjection content type whose template initializes the theme.
+    public const string LayoutInjection = ContentTypes.LayoutInjection;
 }
