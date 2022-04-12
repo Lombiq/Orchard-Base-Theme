@@ -1,6 +1,5 @@
 using Lombiq.BaseTheme.Migrations;
 using Lombiq.BaseTheme.Services;
-using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -17,8 +16,6 @@ public class Startup : StartupBase
         services.AddScoped<ICssClassHolder, CssClassHolder>();
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
         services.Configure<MvcOptions>(options => options.Filters.Add(typeof(MainMenuWidgetFilter)));
-
-        services.AddTagHelpers<LayoutZoneTagHelper>();
 
         services.AddScoped<IDataMigration, LayoutInjectionMigrations>();
     }
