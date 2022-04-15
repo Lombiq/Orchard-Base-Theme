@@ -8,25 +8,34 @@
 @inject IAuthorizationService AuthorizationService
 
 @{
-    CssClassHolder.AddClassToZone(ZoneNames.Content, "additional-class-to-content");
-    CssClassHolder.AddClassToZone(ZoneNames.Footer, "additional-class-to-footer");
+    // You can use ICssClassHolder to add CSS classes to the zone wrapper elements. For example this can be used to
+    // add Bootstrap utility classes or shared classes across certain zones.
+    CssClassHolder.AddClassToZone(ZoneNames.Footer, "text-center");
+    CssClassHolder.AddClassToZone(ZoneNames.AsideFirst, "layoutAside");
+    CssClassHolder.AddClassToZone(ZoneNames.AsideSecond, "layoutAside");
 }
 
+@* This file is rendered in the <head> of Layout.cshtml after title and meta tags, but before resource injection. So you
+   can still use the resource tag helpers, as well as other <head> resources like a favicon.
+   Don't forget to inject your root style like below, it is the only required content for this shape. *@
 <style asp-name="@ResourceNames.Site"></style>
 <link type="image/x-icon" rel="shortcut icon" href="~/@FeatureIds.Area/icons/favicon.ico" />
 
+@* The only reason this file has to be associated with a widget is to ensure these zones are rendered ahead of time,
+   before the Layout.cshtml is invoked. Orchard Core has shape pre-rendering which outputs the zone contents into
+   IHtmlContent (and replaces the zone Shape instances with PositionWrapper instances). If this file would be called
+   from the Layout.cshtml would prevent adding content to a zone with the tag helper, if the zone already contained
+   anything (like a conventional OC widget). By making this a widget, you can safely insert zones and resources. *@
 <zone name="@ZoneNames.Header">
     <p>@T["Here you can easily inject shapes into the zones, kind of like always enabled widgets."]</p>
 </zone>
 
 <zone name="@ZoneNames.Footer" position="0">
-    <div class="text-center">
-        @T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]
-    </div>
+    @T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]
 </zone>
 
 @* You can even include shapes conditionally. In this case we want a link to the admin dashboard but only for users who
-   are able to access it. *@
+   are able to access it. Using this approach can be much easier than implementing a custom layer condition. *@
 @if (await AuthorizationService.AuthorizeAsync(User, OrchardCore.Admin.Permissions.AccessAdminPanel))
 {
     <zone name="@ZoneNames.Footer" position="1">
