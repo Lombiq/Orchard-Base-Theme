@@ -25,3 +25,7 @@ body > .layoutElement {
 
     @include media-breakpoint-up(xl) { padding: 0 calc(var(--page-margin-x-large) - var(--gutter-x-large)); }
 }
+
+.menuWidget__dropdown {
+    cursor: pointer;
+}
