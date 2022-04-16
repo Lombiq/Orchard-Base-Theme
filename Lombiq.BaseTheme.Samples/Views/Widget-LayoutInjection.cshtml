@@ -17,12 +17,6 @@
     CssClassHolder.AddClassToZone(ZoneNames.AsideSecond, "layoutAside");
 }
 
-@* Unlike styles and scripts, the favicon link isn't pulled up, so you need to inject it directly to the zone to get
-   around the widget wrappers (technically works but HTML validators don't like it). *@
-<zone name="@ZoneNames.LayoutInjection">
-    <link type="image/x-icon" rel="shortcut icon" href="@Url.Content($"~/{FeatureIds.Area}/icons/favicon.ico")" />
-</zone>
-
 @* If you only need a site-wide style or just a handful fo content specific styles, you can inject them here. Otherwise
    you should use ResourceFilterMiddleware (see Startup.cs) and IResourceFilterProvider (see ResourceFilters.cs). You
    must use one or the other. If you use the middleware this file is optional. *@

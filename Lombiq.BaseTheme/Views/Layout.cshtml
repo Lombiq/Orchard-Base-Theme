@@ -26,6 +26,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><shape type="PageTitle"></shape></title>
+    <link type="image/x-icon" rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />
 
     @await RenderSectionAsync("LayoutInjection", required: false)
 
@@ -65,6 +66,11 @@
         new ZoneDescriptor(AfterMain),
         new ZoneDescriptor(Footer, "footer"),
     })
+
+<script>
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.id = 'navbar';
+</script>
 <resources type="FootScript"/>
 
 </body>
