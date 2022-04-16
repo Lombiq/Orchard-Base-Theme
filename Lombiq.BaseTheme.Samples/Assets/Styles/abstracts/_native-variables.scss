@@ -20,12 +20,15 @@
     --color-basethemesample-black: #000;
     --color-basethemesample-white: #fff;
     --color-basethemesample-alto: #d6d6d6;
+    --color-basethemesample-tundora: #444;
 
     // Color Features
     --color-foreground-body: var(--color-basethemesample-black);
     --color-background-body: var(--color-basethemesample-white);
     --color-background-footer: var(--color-basethemesample-alto);
     --color-border-footer: var(--color-basethemesample-black);
+    --color-background-menu: var(--color-basethemesample-tundora);
+    --color-foreground-menu: var(--color-basethemesample-white);
 
     // Sizes
     --height-header: 250px;
@@ -47,3 +50,5 @@
     --page-margin-large: 32px;
     --page-margin-x-large: 32px;
 }
+
+// NEXT STATION: Assets/Styles/abstracts/_mixins.scss

@@ -1,11 +1,13 @@
-@using Lombiq.BaseTheme.Services
-@using ResourceNames = Lombiq.BaseTheme.Samples.Constants.ResourceNames
-@using Microsoft.AspNetCore.Authorization
 @using Lombiq.BaseTheme.Constants
+@using Lombiq.BaseTheme.Services
+@using Microsoft.AspNetCore.Authorization
+@using OrchardCore.Admin
 @using FeatureIds = Lombiq.BaseTheme.Samples.Constants.FeatureIds
-
 @inject ICssClassHolder CssClassHolder
 @inject IAuthorizationService AuthorizationService
+
+@* This file overrides a widget content type created by a migration in Lombiq.BaseTheme and the content item added by
+   the Lombiq.BaseTheme.LayersAndZones recipe. *@
 
 @{
     // You can use ICssClassHolder to add CSS classes to the zone wrapper elements. For example this can be used to
@@ -16,10 +18,12 @@
 }
 
 @* This file is rendered in the <head> of Layout.cshtml after title and meta tags, but before resource injection. So you
-   can still use the resource tag helpers, as well as other <head> resources like a favicon.
-   Don't forget to inject your root style like below, it is the only required content for this shape. *@
-<style asp-name="@ResourceNames.Site"></style>
+   can still use the resource tag helpers, as well as other <head> resources like a favicon. *@
 <link type="image/x-icon" rel="shortcut icon" href="~/@FeatureIds.Area/icons/favicon.ico" />
+@* If you only need a site-wide style or just a handful fo content specific styles, you can inject them here. Otherwise
+   you should use ResourceFilterMiddleware (see Startup.cs) and IResourceFilterProvider (see ResourceFilters.cs). You
+   must use one or the other. If you use the middleware this file is optional. *@
+@* <style asp-name="@ResourceNames.Site"></style> *@
 
 @* The only reason this file has to be associated with a widget is to ensure these zones are rendered ahead of time,
    before the Layout.cshtml is invoked. Orchard Core has shape pre-rendering which outputs the zone contents into
@@ -36,7 +40,7 @@
 
 @* You can even include shapes conditionally. In this case we want a link to the admin dashboard but only for users who
    are able to access it. Using this approach can be much easier than implementing a custom layer condition. *@
-@if (await AuthorizationService.AuthorizeAsync(User, OrchardCore.Admin.Permissions.AccessAdminPanel))
+@if (await AuthorizationService.AuthorizeAsync(User, Permissions.AccessAdminPanel))
 {
     <zone name="@ZoneNames.Footer" position="1">
         <div class="text-center">
@@ -44,3 +48,7 @@
         </div>
     </zone>
 }
+
+@* END OF TRAINING SECTION: Layout injection *@
+
+@* NEXT STATION: Views/Widget-LayoutInjection.cshtml *@

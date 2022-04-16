@@ -15,9 +15,17 @@ Do you want to quickly try out this project and see it in action? Check it out i
 ## Training sections
 
 
+This module doesn't cover Orchard Core basics. Instead, sometimes we reference the [Lombiq Training Demo for Orchard Core](https://github.com/Lombiq/Orchard-Training-Demo-Module) which does. The [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) repository includes both the Training Demo and this project.
+
 If you need help with setting up SCSS compilation, read the documentation of [Lombiq Gulp Extensions](https://github.com/Lombiq/Gulp-Extensions/#gulp-tasks) first. Also check out the [Gulpfile.js](Gulpfile.js) and [package.json](package.json) files in this project.
 
-- TODO
+You can start with any of the top-level sections, but the indented sections should be followed in sequence. 
+
+- Make a custom theme
+  - [Configuration](Manifest.cs)
+  - [Layout injection](Views/Widget-LayoutInjection.cshtml)
+  - [Sass styling and structure](Assets/Styles/site.scss)
+- [Front-end navigation via the `"main"` menu](Services/AccountNavigationProvider.cs)
 
 
 ## Contributing and support

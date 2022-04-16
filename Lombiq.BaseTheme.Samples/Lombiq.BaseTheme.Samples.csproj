@@ -25,8 +25,4 @@
     <ProjectReference Include="..\Lombiq.BaseTheme\Lombiq.BaseTheme.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Assets\Styles\abstracts\_mixins.scss" />
-  </ItemGroup>
-
 </Project>

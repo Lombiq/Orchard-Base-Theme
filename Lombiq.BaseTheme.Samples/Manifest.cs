@@ -1,8 +1,9 @@
 using OrchardCore.DisplayManagement.Manifest;
 using static Lombiq.BaseTheme.Constants.FeatureIds;
 
-// Make sure to set the BaseTheme value in your custom theme to "Lombiq.BaseTheme" and reference Lombiq.BaseTheme in
-// your project file.
+// Theme manifests in Orchard Core are similar to module manifests (see "Module manifest" section in the training demo),
+// except you have to use the Theme attribute and set the BaseTheme value to the constant at
+// Lombiq.BaseTheme.Constants.FeatureIds.BaseTheme from the Lombiq.BaseTheme project.
 [assembly: Theme(
     Name = "Lombiq Base Theme - Samples",
     Author = "Lombiq Technologies",
@@ -11,3 +12,5 @@ using static Lombiq.BaseTheme.Constants.FeatureIds;
     Description = "A sample theme that builds on Lombiq Base Theme.",
     BaseTheme = BaseTheme
 )]
+
+// NEXT STATION: Gulpfile.js

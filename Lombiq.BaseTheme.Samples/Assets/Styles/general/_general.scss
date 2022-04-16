@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// General site-wide rules
+// ================================
+// This file is imported by the "site" stylesheet and it contains all the rules
+// that concern a specialized control or widget.
+// -----------------------------------------------------------------------------
+
+// If you followed the instructions in site.scss it's safe to import "mixins" in any file without making it larger.
 @import "../abstracts/mixins";
 
 img {
@@ -8,6 +16,9 @@ body {
     color: var(--color-foreground-body);
     background: var(--color-background-body);
     line-height: var(--font-line-height-default);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 
     font: {
         family: var(--font-default);
@@ -15,20 +26,23 @@ body {
     }
 }
 
+// This is one example of using our custom mixin.
 .field-name-blog-image {
-    img {
-        height: var(--height-header);
-        width: 100%;
-        object-fit: cover;
+    @include media-field-banner;
+}
+
+.layout {
+    &Content {
+        flex-grow: 1;
     }
 
-    .name { display: none; }
+    &Footer.layoutElement {
+        background: var(--color-background-footer);
+        border-top: 1px solid var(--color-border-footer);
+
+        @include padding-gutter($vertical-multiplier: 1);
+        @include margin-top-gutter;
+    }
 }
 
-.layoutFooter.layoutElement {
-    background: var(--color-background-footer);
-    border-top: 1px solid var(--color-border-footer);
-
-    @include padding-gutter($vertical-multiplier: 1);
-    @include margin-top-gutter;
-}
+// NEXT STATION: Assets/Styles/pages/blog-post.scss

@@ -1,0 +1,43 @@
+// -----------------------------------------------------------------------------
+// Blog Post page rules
+// ================================
+// This stylesheet is only injected as a resource when the server is displaying
+// a BlogPost content type (see: Services/ResourceFilters.cs).
+// -----------------------------------------------------------------------------
+
+@import "../abstracts/mixins";
+
+// Here we are styling built-in fields and parts.
+.blog-post {
+    & > p:first-child {
+        @include margin-top-gutter;
+    }
+
+    .field-type-taxonomyfield {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .taxonomy-tag-term, .taxonomy-term {
+        font-style: italic;
+    }
+
+    .field-type-taxonomyfield .taxonomy-tag-term {
+        &::before {
+            content: "|";
+            padding: 0 0.5rem;
+        }
+
+        &:first-child::before {
+            display: none;
+        }
+    }
+
+    .field-name-blog-post-image {
+        @include media-field-banner;
+    }
+}
+
+// END OF TRAINING SECTION: Sass styling and structure
+
+// NEXT STATION: Services/AccountNavigationProvider.cs
