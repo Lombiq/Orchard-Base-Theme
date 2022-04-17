@@ -28,6 +28,7 @@
    from the Layout.cshtml would prevent adding content to a zone with the tag helper, if the zone already contained
    anything (like a conventional OC widget). By making this a widget, you can safely insert zones and resources. *@
 <zone name="@ZoneNames.Header">
+    <div class="navbar-brand">@Site.SiteName</div>
     <p>@T["Here you can easily inject shapes into the zones, kind of like always enabled widgets."]</p>
 </zone>
 
