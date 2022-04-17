@@ -2,7 +2,7 @@
 @using Lombiq.BaseTheme.Services
 @using Microsoft.AspNetCore.Authorization
 @using OrchardCore.Admin
-@using FeatureIds = Lombiq.BaseTheme.Samples.Constants.FeatureIds
+
 @inject ICssClassHolder CssClassHolder
 @inject IAuthorizationService AuthorizationService
 
@@ -29,11 +29,13 @@
    anything (like a conventional OC widget). By making this a widget, you can safely insert zones and resources. *@
 <zone name="@ZoneNames.Header">
     <div class="navbar-brand">@Site.SiteName</div>
-    <p>@T["Here you can easily inject shapes into the zones, kind of like always enabled widgets."]</p>
+    <p class="zoneInsertionExample_header">
+        @T["Here you can easily inject shapes into the zones, kind of like always enabled widgets."]
+    </p>
 </zone>
 
 <zone name="@ZoneNames.Footer" position="0">
-    @T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]
+    <div class="zoneInsertionExample_footer">@T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]</div>
 </zone>
 
 @* You can even include shapes conditionally. In this case we want a link to the admin dashboard but only for users who
@@ -41,7 +43,7 @@
 @if (await AuthorizationService.AuthorizeAsync(User, Permissions.AccessAdminPanel))
 {
     <zone name="@ZoneNames.Footer" position="1">
-        <div class="text-center">
+        <div class="zoneInsertionExample_footer">
             <a href="@Url.Content("~/Admin")">@T["Admin Dashboard"]</a>
         </div>
     </zone>

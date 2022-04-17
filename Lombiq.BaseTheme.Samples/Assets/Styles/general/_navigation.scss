@@ -7,22 +7,24 @@
 .layoutNavigation {
     background: var(--color-background-menu);
 
-    .menuWidget__dropdown {
-        // Another mixin from Lombiq.BaseTheme, for styling all states (e.g. visited) af an <a> link element.
-        @include on-event($self: true) {
-            color: var(--color-foreground-menu);
+    .menuWidget {
+        &__dropdown, &__topLevel .nav-link {
+            // Another mixin from Lombiq.BaseTheme, for styling all states (e.g. visited) af an <a> link element.
+            @include on-event($self: true) {
+                color: var(--color-foreground-menu);
+            }
         }
-    }
 
-    .menuWidget__content > .navbar-nav {
-        // Sometimes you have to override rules created by some pre-made control's Bootstrap rules taht are marked as
-        // "!important" themselves so you have no choice but to use it in your own rule. Regardless, try to avoid it
-        // whenever possible.
-        margin: 0 !important; // stylelint-disable-line declaration-no-important
-        width: 100%;
+        &__content > .navbar-nav {
+            // Sometimes you have to override rules created by some pre-made control's Bootstrap rules taht are marked as
+            // "!important" themselves so you have no choice but to use it in your own rule. Regardless, try to avoid it
+            // whenever possible.
+            margin: 0 !important; // stylelint-disable-line declaration-no-important
+            width: 100%;
 
-        & > .nav-item.dropdown:last-child {
-            margin-left: auto;
+            & > .nav-item:last-child {
+                margin-left: auto;
+            }
         }
     }
 }
