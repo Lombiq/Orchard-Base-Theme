@@ -30,12 +30,12 @@ public static class TestCaseUITestContextExtensions
 
     public static async Task TestMainMenuWithAuthenticationAsync(this UITestContext context)
     {
-        var navigationState = context.AsPageNavigationState();
         await context.ClickMainMenuPathAsync("Account", "Admin");
-        navigationState.Wait();
-        new Uri(context.Driver.Url).AbsolutePath.ShouldBe("/Admin");
+        context.SwitchToLastWindow();
+        await context.DoWithRetriesOrFailAsync(() =>
+            Task.FromResult(new Uri(context.Driver.Url).AbsolutePath == "/Admin"));
+        context.SwitchToFirstWindow();
 
-        await context.GoToHomePageAsync();
         await context.ClickMainMenuPathAsync("Account", "Log Out");
 
         await context.ClickMainMenuPathAsync("Log In");

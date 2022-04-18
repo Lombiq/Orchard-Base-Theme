@@ -20,7 +20,9 @@ public static class UITestContextExtensions
         }
         else
         {
-            await context.SelectFromBootstrapDropdownReliablyAsync(byFirst, subMenuLabel);
+            await context.SelectFromBootstrapDropdownReliablyAsync(
+                context.Get(byFirst),
+                By.XPath($".//*[contains(@class, 'dropdown-item') and contains(., {JsonConvert.SerializeObject(subMenuLabel)})]"));
         }
     }
 }
