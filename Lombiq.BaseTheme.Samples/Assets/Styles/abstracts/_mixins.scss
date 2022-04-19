@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 
 // You can reference "Assets/Styles/abstracts/_variables.scss" here once and then you never have to again. Other .scss
-// files can import this one to have everything. Make sure to import "variables" before teh Base Theme's "mixins",
+// files can import this one to have everything. Make sure to import "variables" before the Base Theme's "mixins",
 // because that imports some default Sass variable declarations and you want them to override your custom values.
 @import "variables";
 @import "../Lombiq.BaseTheme/Assets/Styles/abstracts/mixins";
