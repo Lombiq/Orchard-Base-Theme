@@ -35,7 +35,9 @@
 </zone>
 
 <zone name="@ZoneNames.Footer" position="0">
-    <div class="zoneInsertionExample_footer">@T["© 2022 <a href=\"https://lombiq.com/\">Lombiq Technologies</a>"]</div>
+    <div class="zoneInsertionExample_footer">
+        @T["© {0} <a href=\"https://lombiq.com/\">Lombiq Technologies</a>", DateTime.UtcNow.Year]
+    </div>
 </zone>
 
 @* You can even include shapes conditionally. In this case we want a link to the admin dashboard but only for users who
@@ -51,4 +53,4 @@
 
 @* END OF TRAINING SECTION: Layout injection *@
 
-@* NEXT STATION: Views/Widget-LayoutInjection.cshtml *@
+@* NEXT STATION: Assets/Styles/site.scss *@
