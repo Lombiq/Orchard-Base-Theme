@@ -9,7 +9,7 @@
 
     .menuWidget {
         &__dropdown, &__topLevel .nav-link {
-            // Another mixin from Lombiq.BaseTheme, for styling all states (e.g. visited) af an <a> link element.
+            // Another mixin from Lombiq.BaseTheme, for styling all states (e.g. visited) of an anchor element.
             @include on-event($self: true) {
                 color: var(--color-foreground-menu);
             }
