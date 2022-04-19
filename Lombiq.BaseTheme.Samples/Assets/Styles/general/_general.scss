@@ -1,9 +1,9 @@
-// -----------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // General site-wide rules
 // ================================
-// This file is imported by the "site" stylesheet and it contains all the rules
-// that concern a specialized control or widget.
-// -----------------------------------------------------------------------------
+// This file is imported by the "site" stylesheet and it contains all the rules that don't concern a specialized control
+// or widget.
+// ---------------------------------------------------------------------------------------------------------------------
 
 // If you followed the instructions in site.scss it's safe to import "mixins" in any file without making it larger.
 @import "../abstracts/mixins";
