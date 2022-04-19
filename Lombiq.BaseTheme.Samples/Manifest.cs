@@ -16,4 +16,12 @@ using static Lombiq.BaseTheme.Constants.FeatureIds;
     BaseTheme = BaseTheme
 )]
 
+// Steps you need to do outside of this project:
+// - Reference the project in your web app.
+// - Enable the "Lombiq.BaseTheme.Samples" feature in your setup recipe.
+// - Set the site theme to "Lombiq.BaseTheme.Samples" in your setup recipe.
+// - Run the "Lombiq.BaseTheme.LayersAndZones" recipe from your setup recipe.
+// You can see these in the "Lombiq.OSOCE.Web.csproj" and the "Lombiq.OSOCE.Tests.recipe.json" files in the
+// https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions/ repository.
+
 // NEXT STATION: Gulpfile.js
