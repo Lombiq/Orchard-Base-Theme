@@ -30,7 +30,7 @@ public class Startup : StartupBase
         // this extension. See: https://github.com/Lombiq/Helpful-Libraries/blob/dev/Lombiq.HelpfulLibraries.OrchardCore/Docs/ResourceManagement.md
         app.UseResourceFilters();
 
-        // Certain browsers expect the sites favicon to be in the default location and try to load it from anyway. If
+        // Certain browsers expect the site's favicon to be in the default location and try to load it from anyway. If
         // you add a <link> element you will still get an unnecessary lost GET request because of that, and of course it
         // contributes to the page size. It's better to change what ~/favicon.ico means instead.
         // See https://orcharddojo.net/blog/how-to-add-a-favicon-under-favicon-ico-in-orchard-core-orchard-nuggets

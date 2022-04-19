@@ -16,9 +16,9 @@
         }
 
         &__content > .navbar-nav {
-            // Sometimes you have to override rules created by some pre-made control's Bootstrap rules taht are marked as
-            // "!important" themselves so you have no choice but to use it in your own rule. Regardless, try to avoid it
-            // whenever possible.
+            // Sometimes you have to override rules created by some pre-made control's Bootstrap rules that are marked
+            // as "!important" themselves so you have no choice but to use it in your own rule. Regardless, try to avoid
+            // it whenever possible.
             margin: 0 !important; // stylelint-disable-line declaration-no-important
             width: 100%;
 

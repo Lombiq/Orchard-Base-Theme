@@ -17,7 +17,7 @@ public class ResourceFilters : IResourceFilterProvider
 }
 
 // Additional steps outside of this project:
-// - Reference the project in your webapp.
+// - Reference the project in your web app.
 // - Enable the "Lombiq.BaseTheme.Samples" feature in your setup recipe.
 // - Set the site theme to "Lombiq.BaseTheme.Samples" in your setup recipe.
 // - Run the "Lombiq.BaseTheme.LayersAndZones" recipe from your setup recipe.

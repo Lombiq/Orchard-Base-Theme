@@ -1,5 +1,5 @@
 // We are using the prepared functions from the Lombiq Gulp Extensions repo to set up Gulp. See also the package.json
-// file or the Gulp Extensions readme.
+// file or the Gulp Extensions Readme.
 const recommendedSetup = require('../../../Utilities/Lombiq.Gulp.Extensions/recommended-setup');
 
 const assetsBasePath = './Assets/';
