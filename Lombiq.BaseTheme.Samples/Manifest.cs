@@ -1,7 +1,7 @@
 using OrchardCore.DisplayManagement.Manifest;
 using static Lombiq.BaseTheme.Constants.FeatureIds;
 
-// Theme manifests in Orchard Core are similar to module manifests (see "Module manifest" section in the training demo),
+// Theme manifests in Orchard Core are similar to module manifests (see "Module manifest" section in the Training Demo),
 // except you have to use the Theme attribute and set the BaseTheme value to the constant at
 // Lombiq.BaseTheme.Constants.FeatureIds.BaseTheme from the Lombiq.BaseTheme project.
 [assembly: Theme(
