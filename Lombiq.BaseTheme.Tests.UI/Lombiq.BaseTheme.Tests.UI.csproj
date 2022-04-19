@@ -13,7 +13,7 @@
     <PackageTags>OrchardCore;Lombiq;AspNetCore;Sass;;Shouldly;xUnit;UITesting;Testing</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Base-Theme</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Lombiq/Orchard-Base-Theme/Lombiq.BaseTheme.Tests.UI/Readme.md</PackageProjectUrl>
-    <PackageLicenseFile>Licence.md</PackageLicenseFile>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Licence.md" Pack="true" PackagePath="" />
+    <None Include="License.md" Pack="true" PackagePath="" />
     <None Include="Readme.md" />
     <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
   </ItemGroup>
