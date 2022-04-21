@@ -1,6 +1,10 @@
 # Lombiq Base Theme for Orchard Core
 
 
+[![Lombiq.BaseTheme NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme)](https://www.nuget.org/packages/Lombiq.BaseTheme/)
+[![Lombiq.BaseTheme.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Samples)](https://www.nuget.org/packages/Lombiq.BaseTheme.Samples/)
+[![Lombiq.BaseTheme.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Tests.UI)](https://www.nuget.org/packages/Lombiq.BaseTheme.Tests.UI/)
+
 
 ## About
 
