@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <DefaultItemExcludes>$(DefaultItemExcludes);.git*;node_modules\**;Tests\**</DefaultItemExcludes>
+    <AssemblyVersion>1.0.0-alpha</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0-alpha</AssemblyFileVersion>
   </PropertyGroup>
 
   <Import Project="..\..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
