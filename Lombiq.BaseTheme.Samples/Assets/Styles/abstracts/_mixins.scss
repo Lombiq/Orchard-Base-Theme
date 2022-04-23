@@ -6,7 +6,7 @@
 // files can import this one to have everything. Make sure to import "variables" before the Base Theme's "mixins",
 // because that imports some default Sass variable declarations and you want them to override your custom values.
 @import "variables";
-@import "../Lombiq.BaseTheme/Assets/Styles/abstracts/mixins";
+@import "../../../../Lombiq.BaseTheme/Assets/Styles/abstracts/mixins";
 
 // In this case we create a mixin that crops a media field into a nice wide banner. It's applied both for sites and blog
 // posts in other files.
