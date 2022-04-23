@@ -20,7 +20,6 @@
     <PackageLicenseFile>License.md</PackageLicenseFile>
   </PropertyGroup>
 
-
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.targets" />
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\..\Utilities\Lombiq.Gulp.Extensions\Lombiq.Gulp.Extensions.targets" />
@@ -39,11 +38,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="License.md">
-      <Pack>true</Pack>
-      <PackagePath></PackagePath>
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </None>
+    <None Include="License.md" Pack="true" PackagePath="" />
+    <None Include="Readme.md" />
+    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
+    <None Remove="node_modules\**" />
   </ItemGroup>
 
 </Project>
