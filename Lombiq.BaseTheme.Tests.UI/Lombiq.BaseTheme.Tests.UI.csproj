@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.Tests.UI" Version="$(UiTestingToolboxVersion)" />
+    <PackageReference Include="Lombiq.Tests.UI" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
