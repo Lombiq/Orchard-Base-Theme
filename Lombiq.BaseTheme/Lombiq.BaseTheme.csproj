@@ -51,4 +51,14 @@
     <PackageReference Include="Lombiq.HelpfulExtensions" Version="3.2.0-alpha.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Assets/Styles/**/*.*" copyToOutput="true">
+      <IncludeInPackage>true</IncludeInPackage>
+      <CopyToOutput>true</CopyToOutput>
+      <BuildAction>Content</BuildAction>
+      <copyToOutput>true</copyToOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
