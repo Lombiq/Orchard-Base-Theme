@@ -14,9 +14,26 @@ const staticAssets = [
     },
 ];
 
-// In a theme you typically need SCSS compiling and asset copying. You don't need scripts here, but it's simpler and
-// more future-proof to create an empty ./Assets/Scripts directory so you can use this combined function instead of
-// separately adding the style and asset tasks.
-recommendedSetup.setupRecommendedScssAndJsTasksAndCopyAssets(staticAssets);
+const includePaths = [
+    recommendedSetup.getNugetPath('Lombiq.BaseTheme', null, 'contentFiles', null, null, 'Assets', 'Styles')
+];
+
+// This method takes an object with three optional properties: assets, styles and scripts. Specifying them enables the
+// corresponding Gulp task.
+recommendedSetup.setupRecommended({
+    // Assets must be an Array to enable.
+    assets: staticAssets,
+
+    // Scripts can be a "truthy" value, either true or an object with distBasePath and assetsBasePath properties. If
+    // it's a "falsey" value like false, null or undefined (when you skip this property) then the task is not enabled.
+    // Here we have no need for scripts.
+    // scripts: true,
+
+    // Styles can be specified the same way, however is has an additional "includePaths" property that expands the Sass
+    // compiler's search path. Use this with the getNugetPath function like above if you added Lombiq.BaseTheme from a
+    // NuGet package. You don't need it if you included it via Git submodule.
+    // styles: true,
+    styles: { includePaths },
+});
 
 // NEXT STATION: ResourceManagementOptionsConfiguration.cs
