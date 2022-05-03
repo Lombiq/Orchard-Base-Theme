@@ -52,11 +52,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets/Styles/**/*.*" copyToOutput="true">
+    <Content Include="Assets/Styles/**/*.*">
       <IncludeInPackage>true</IncludeInPackage>
-      <CopyToOutput>true</CopyToOutput>
       <BuildAction>Content</BuildAction>
-      <copyToOutput>true</copyToOutput>
+      <CopyToOutput>true</CopyToOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
