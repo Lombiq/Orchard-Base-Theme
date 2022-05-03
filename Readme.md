@@ -33,8 +33,9 @@ Besides the style and layout, the theme also automatically includes a minimalist
 ## Using the NuGet package
 
 There are a couple differences when you import from NuGet instead of a Git submodule.
-- Tell Gulp to find the base theme .scss files in the NuGet package cache. ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/a63e705b3c94909d4b2411e2090275134d595760/Lombiq.BaseTheme.Samples/Gulpfile.js#L17-L37))
-- Use a special import call to the base file in the package, unfortunately your IDE won't be able to reference it. ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/a63e705b3c94909d4b2411e2090275134d595760/Lombiq.BaseTheme.Samples/Assets/Styles/site.scss#L7-L13))
+- Tell Gulp to find the base theme .scss files in the NuGet package cache. ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/f2377271063d31d700cba593917195547c1654aa/Lombiq.BaseTheme.Samples/Gulpfile.js#L17-L37))
+- Use a special import call to the base style sheet in the package. Unfortunately your IDE won't be able to reference it. ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/f2377271063d31d700cba593917195547c1654aa/Lombiq.BaseTheme.Samples/Assets/Styles/site.scss#L7-L13))
+- Include bootstrap in your theme file's dependencies as it's not included in the NuGet package. ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/f2377271063d31d700cba593917195547c1654aa/Lombiq.BaseTheme.Samples/package.json#L7-L9)) This actually lets you select the latest version if you need some new feature, any 5.x should work.
 
 ## Contributing and support
 
