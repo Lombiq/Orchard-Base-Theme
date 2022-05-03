@@ -3,5 +3,8 @@
   "scripts": {
     "dotnet-prebuild": "gulp",
     "dotnet-postclean": "gulp clean"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.3"
   }
 }

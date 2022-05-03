@@ -5,7 +5,7 @@
 @import "abstracts/variables";
 
 // It includes all the variables and mixins from the base theme.
-@import "../../../Lombiq.BaseTheme/Assets/Styles/site";
+@import "../../../Lombiq.BaseTheme/Assets/Styles/base";
 
 // If you get the Lombiq.BaseTheme through NuGet instead of a Git submodule, comment out the import above and uncomment
 // this one below. Note that this resolves the file from your NuGet package cache and your IDE won't be able to find it
