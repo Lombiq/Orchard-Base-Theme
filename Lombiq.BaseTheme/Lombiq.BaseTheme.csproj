@@ -58,6 +58,12 @@
       <CopyToOutput>true</CopyToOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="node_modules/bootstrap/**/*.*">
+      <IncludeInPackage>true</IncludeInPackage>
+      <BuildAction>Content</BuildAction>
+      <CopyToOutput>true</CopyToOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
