@@ -30,6 +30,11 @@ Besides the style and layout, the theme also automatically includes a minimalist
 - Lombiq Orchard Core Base Theme - Layers and Zones: Call this if you plan on using widgets. It sets up all the supported zones and some common layers.
 - Lombiq Orchard Core Base Theme - Styling Demo: Creates a Demo Page that can be helpful to see how your theme's stylesheet behaves on various HTML elements.
 
+## Using the NuGet package
+
+There are a couple differences when you import from NuGet instead of a Git submodule.
+- Tell Gulp to find the base theme .scss files in the NuGet package cache. ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/a63e705b3c94909d4b2411e2090275134d595760/Lombiq.BaseTheme.Samples/Gulpfile.js#L17-L37))
+- Use a special import call to the base file in the package, unfortunately your IDE won't be able to reference it. ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/a63e705b3c94909d4b2411e2090275134d595760/Lombiq.BaseTheme.Samples/Assets/Styles/site.scss#L7-L13))
 
 ## Contributing and support
 
