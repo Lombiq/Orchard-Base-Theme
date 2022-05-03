@@ -15,7 +15,7 @@ const staticAssets = [
 ];
 
 const includePaths = [
-    recommendedSetup.getNugetPath('Lombiq.BaseTheme', null, 'contentFiles', null, null, 'Assets', 'Styles')
+    recommendedSetup.getNugetPath('Lombiq.BaseTheme', null, 'content', 'Assets', 'Styles')
 ];
 
 // This method takes an object with three optional properties: assets, styles and scripts. Specifying them enables the
