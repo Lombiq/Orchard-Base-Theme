@@ -1,0 +1,36 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Application-wide Sass mixins
+// ---------------------------------------------------------------------------------------------------------------------
+
+// You can reference "Assets/Styles/abstracts/_variables.scss" here once and then you never have to again. Other .scss
+// files can import this one to have everything. Make sure to import "variables" before the Base Theme's "mixins",
+// because that imports some default Sass variable declarations and you want them to override your custom values.
+@import "variables";
+
+// Note for Visual Studio users: Sass resolves the @import "../Lombiq.BaseTheme/Assets/Styles/abstracts/mixins"; below,
+// but VS does not. Looks like Sass supports path lookup where the path root (sometimes referred to as ".") is the
+// working directory (so the project directory where the package.json file is), while VS only supports paths relative to
+// the current scss file's location. If you have trouble with it, you can replace the below line with
+// @import "../../../../Lombiq.BaseTheme/Assets/Styles/abstracts/mixins"; which both support. VS doesn't support paths
+// starting with "~" either (https://developercommunity.visualstudio.com/t/Intellisense-not-working-in-sassscss-fi/33481)
+// and you can't use IntelliSense to resolve paths outside of your current project directory using either format.
+@import "../Lombiq.BaseTheme/Assets/Styles/abstracts/mixins";
+
+// In this case we create a mixin that crops a media field into a nice wide banner. It's applied both for sites and blog
+// posts in other files.
+@mixin media-field-banner {
+    // The "mixins" file in the Lombiq.BaseTheme has several utility mixins, including many "gutter" functions that help
+    // with applying uniform spacing between controls on your web site. Unless you have a specific reason not to, we
+    // suggest always using these to set gap (for grid and flexbox), margin and padding.
+    @include margin-bottom-gutter($multiplier: 1);
+
+    img {
+        height: var(--height-header);
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .name { display: none; }
+}
+
+// NEXT STATION: Assets/Styles/general/_navigation.scss

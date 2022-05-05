@@ -1,0 +1,37 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Navigation rules regarding the MenuWidget
+// ---------------------------------------------------------------------------------------------------------------------
+
+@import "../abstracts/mixins";
+
+.layoutNavigation {
+    background: var(--color-background-menu);
+
+    .menuWidget {
+        &__dropdown, &__topLevel .nav-link {
+            // Another mixin from Lombiq.BaseTheme, for styling all states (e.g. visited) of an anchor element.
+            @include on-event($self: true) {
+                color: var(--color-foreground-menu);
+            }
+        }
+
+        &__content > .navbar-nav {
+            // Sometimes you have to override rules created by some pre-made control's Bootstrap rules that are marked
+            // as "!important" themselves so you have no choice but to use it in your own rule. Regardless, try to avoid
+            // it whenever possible.
+            margin: 0 !important; // stylelint-disable-line declaration-no-important
+            width: 100%;
+
+            & > .nav-item:last-child {
+                margin-left: auto;
+            }
+        }
+
+        &__link_label:first-child, .dropdown-divider + &__link_label {
+            // Make the first labels bold so they look like titles.
+            font-weight: bold;
+        }
+    }
+}
+
+// NEXT STATION: Assets/Styles/general/_general.scss

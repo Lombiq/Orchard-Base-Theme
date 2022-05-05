@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+// --------------------------------------------------------------------------------------------------------------------
+// Base style
+// ==========
+// This is the file you should import in your derived theme's site.scss file. You don't need to import it in any
+// additional page-specific stylesheets. Make sure to import it in your site style after your Sass variable declarations
+// but before anything else (same place the vendors are in this file). This ensures that both the Sass and the native
+// CSS variables get overridden correctly and prevents duplicate CSS variable declarations that could bloat your output.
+// --------------------------------------------------------------------------------------------------------------------
+
+// Site specific Sass variables
+@import "abstracts/variables";
+
+// Vendors
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// Configuration and helpers
+@import "abstracts/native-variables";
+@import "abstracts/mixins";
+@import "abstracts/helpers";
+
+// Rules for every page
+@import "general/general";

@@ -1,0 +1,48 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// General layout rules
+// --------------------------------------------------------------------------------------------------------------------
+
+@import "../abstracts/mixins";
+
+@for $i from 1 through 9 {
+    h#{$i} {
+        font-family: var(--font-header);
+    }
+}
+
+.layoutElement_leaf {
+    @include padding-gutter(0);
+}
+
+body {
+    color: var(--color-foreground-body);
+    background-color: var(--color-background-body);
+}
+
+body > .layoutElement {
+    @include media-breakpoint-only(xs) { padding: 0 calc(var(--page-margin-x-small) - var(--gutter-x-small)); }
+
+    @include media-breakpoint-only(sm) { padding: 0 calc(var(--page-margin-small) - var(--gutter-small)); }
+
+    @include media-breakpoint-only(md) { padding: 0 calc(var(--page-margin-medium) - var(--gutter-medium)); }
+
+    @include media-breakpoint-only(lg) { padding: 0 calc(var(--page-margin-large) - var(--gutter-large)); }
+
+    @include media-breakpoint-up(xl) { padding: 0 calc(var(--page-margin-x-large) - var(--gutter-x-large)); }
+}
+
+.menuWidget {
+    &__dropdown {
+        cursor: pointer;
+    }
+
+    &__link_label {
+        pointer-events: none;
+
+        &.disabled {
+            // Undoes the default Boostrap "disabled" effect. This class only has to be included for technical reasons,
+            // not for styling.
+            color: var(--color-foreground-body);
+        }
+    }
+}

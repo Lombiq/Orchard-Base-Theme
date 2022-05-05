@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+// Site-specific Sass variables. This has to be the very first import because in Sass the variable's first declaration
+// takes precedence. So this ensures your site specific Sass variables are not overridden by anything.
+@import "abstracts/variables";
+
+// It includes all the variables and mixins from the base theme.
+@import "../../../Lombiq.BaseTheme/Assets/Styles/base";
+
+// If you get the Lombiq.BaseTheme through NuGet instead of a Git submodule, comment out the import above and uncomment
+// this one below. Note that this resolves the file from your NuGet package cache and your IDE won't be able to find it
+// so you lose out on mixin autocompletion.
+// @import "base";
+
+// Site-specific CSS variables. Unlike Sass, CSS uses the last variable declaration. Also, your variables are globals so
+// you shouldn't import this file anywhere else; you can reference them anyway.
+@import "abstracts/native-variables";
+
+// You should always keep the above import order in your own themes too. Put your additional files below this point.
+
+// Rules for every page
+@import "general/general";
+@import "general/navigation";
+
+// NEXT STATION: Assets/Styles/abstracts/_variables.scss
