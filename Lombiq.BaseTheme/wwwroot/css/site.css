@@ -11299,4 +11299,7 @@ h9 {
 .menuWidget__dropdown {
   cursor: pointer;
 }
+.menuWidget__link_label {
+  pointer-events: none;
+}
 /*# sourceMappingURL=site.css.map */

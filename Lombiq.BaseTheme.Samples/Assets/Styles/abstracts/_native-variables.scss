@@ -21,7 +21,8 @@
     --color-basethemesample-alto: #d6d6d6;
     --color-basethemesample-tundora: #444;
 
-    // Color Features
+    // Color Features. The first two are actually defined in the base theme as well where they apply to the body so you
+    // only need to override the variables here, not the rules.
     --color-foreground-body: var(--color-basethemesample-black);
     --color-background-body: var(--color-basethemesample-white);
     --color-background-footer: var(--color-basethemesample-alto);

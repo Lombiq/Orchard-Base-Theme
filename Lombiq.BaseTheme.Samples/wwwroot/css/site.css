@@ -11156,6 +11156,8 @@ textarea.form-control-lg {
 :root {
   --font-default: var(--bs-body-font-family);
   --font-header: var(--bs-font-sans-serif);
+  --color-foreground-body: black;
+  --color-background-body: white;
   --gutter-x-small: 1rem;
   --gutter-small: 1.5rem;
   --gutter-medium: 2rem;
@@ -11270,6 +11272,11 @@ h9 {
   }
 }
 
+body {
+  color: var(--color-foreground-body);
+  background-color: var(--color-background-body);
+}
+
 @media (max-width: 575.98px) {
   body > .layoutElement {
     padding: 0 calc(var(--page-margin-x-small) - var(--gutter-x-small));
@@ -11298,6 +11305,9 @@ h9 {
 
 .menuWidget__dropdown {
   cursor: pointer;
+}
+.menuWidget__link_label.disabled {
+  color: var(--color-foreground-body);
 }
 
 :root {
@@ -11334,8 +11344,6 @@ img {
 }
 
 body {
-  color: var(--color-foreground-body);
-  background: var(--color-background-body);
   line-height: var(--font-line-height-default);
   min-height: 100vh;
   display: flex;
@@ -11448,5 +11456,8 @@ body {
 }
 .layoutNavigation .menuWidget__content > .navbar-nav > .nav-item:last-child {
   margin-left: auto;
+}
+.layoutNavigation .menuWidget__link_label:first-child, .dropdown-divider + .layoutNavigation .menuWidget__link_label {
+  font-weight: bold;
 }
 /*# sourceMappingURL=site.css.map */

@@ -26,6 +26,11 @@
                 margin-left: auto;
             }
         }
+
+        &__link_label:first-child, .dropdown-divider + &__link_label {
+            // Make the first labels bold so they look like titles.
+            font-weight: bold;
+        }
     }
 }
 
