@@ -11156,6 +11156,8 @@ textarea.form-control-lg {
 :root {
   --font-default: var(--bs-body-font-family);
   --font-header: var(--bs-font-sans-serif);
+  --color-foreground-body: black;
+  --color-background-body: white;
   --gutter-x-small: 1rem;
   --gutter-small: 1.5rem;
   --gutter-medium: 2rem;
@@ -11270,6 +11272,11 @@ h9 {
   }
 }
 
+body {
+  color: var(--color-foreground-body);
+  background-color: var(--color-background-body);
+}
+
 @media (max-width: 575.98px) {
   body > .layoutElement {
     padding: 0 calc(var(--page-margin-x-small) - var(--gutter-x-small));
@@ -11301,5 +11308,8 @@ h9 {
 }
 .menuWidget__link_label {
   pointer-events: none;
+}
+.menuWidget__link_label.disabled {
+  color: var(--color-foreground-body);
 }
 /*# sourceMappingURL=site.css.map */

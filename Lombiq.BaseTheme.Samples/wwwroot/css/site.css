@@ -11306,6 +11306,9 @@ body {
 .menuWidget__dropdown {
   cursor: pointer;
 }
+.menuWidget__link_label {
+  pointer-events: none;
+}
 .menuWidget__link_label.disabled {
   color: var(--color-foreground-body);
 }
