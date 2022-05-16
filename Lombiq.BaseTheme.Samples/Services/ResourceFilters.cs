@@ -4,7 +4,9 @@ using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 namespace Lombiq.DataTables.Samples.Navigation;
 
 // This service implements conditional configuration to direct the ResourceFilterMiddleware when and what styles need to
-// be added to the resources.
+// be added to the resources. The attribute indicates that the middleware should only invoke this provider if the
+// current admin or site theme is the provided.
+[ResourceFilterThemeRequirement(FeatureIds.BaseThemeSamples)]
 public class ResourceFilters : IResourceFilterProvider
 {
     public void AddResourceFilter(ResourceFilterBuilder builder)
