@@ -11,8 +11,9 @@ public class ResourceFilters : IResourceFilterProvider
 {
     public void AddResourceFilter(ResourceFilterBuilder builder)
     {
-        // We always want to add the site style. If you only have "Always" styles then it's easier to inject them via
-        // the Views/Widget-LayoutInjection.cshtml file and skip using a ResourceFilterMiddleware.
+        // We always want to add the site style. If you only have "Always" styles and you are going to override
+        // Views/Widget-LayoutInjection.cshtml anyway, then it's easier to inject your style there and skip using a
+        // ResourceFilterMiddleware altogether.
         builder.Always().RegisterStylesheet(ResourceNames.Site);
         builder.WhenContentType("BlogPost").RegisterStylesheet(ResourceNames.BlogPost);
     }
