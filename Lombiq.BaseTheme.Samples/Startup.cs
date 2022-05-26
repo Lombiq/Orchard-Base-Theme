@@ -7,6 +7,8 @@ using Microsoft.Extensions.Options;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
+using System;
+using System.Threading.Tasks;
 using static Lombiq.BaseTheme.Samples.Constants.FeatureIds;
 
 namespace Lombiq.BaseTheme.Samples;
