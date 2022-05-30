@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // Application-wide CSS variables
 // ==============================
 // You don't need to import this in any other Sass file except in the site.scss which renders these variables globally
@@ -10,7 +10,6 @@
     // Fonts
     --font-default: var(--bs-body-font-family);
     --font-header: var(--bs-font-sans-serif);
-
     --color-foreground-body: black;
     --color-background-body: white;
 
