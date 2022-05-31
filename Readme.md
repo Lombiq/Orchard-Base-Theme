@@ -15,6 +15,10 @@ You can find a sample module with a commented walkthrough in this repository. Ch
 Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
 
 
+## Demo video
+
+[![Watch the video](https://github.com/Lombiq/Orchard-Base-Theme/blob/27f8592f9b862cb456f93be85af1982f53943f72/docs/assets/images/demo-video-thumbnail.jpg)](https://youtu.be/9DjKxEumoRE)
+
 ## Documentation
 
 Use this as the base theme of any custom frontend themes you create. For instructions on how to import and override this theme with your own theme's Sass stylesheets, see the header comments in [site.scss](Assets/Styles/site.scss) and [_native-variables.scss](Assets/Styles/abstracts/_native-variables.scss).
@@ -36,10 +40,6 @@ There are a couple differences when you import from NuGet instead of a Git submo
 - Tell Gulp to find the base theme .scss files in the NuGet package cache ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/f2377271063d31d700cba593917195547c1654aa/Lombiq.BaseTheme.Samples/Gulpfile.js#L17-L37)).
 - Use a special import call to the base style sheet in the package ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/f2377271063d31d700cba593917195547c1654aa/Lombiq.BaseTheme.Samples/Assets/Styles/site.scss#L7-L13)). Unfortunately your IDE won't be able to reference the variables and mixins defined in the Lombiq.BaseTheme Sass files.
 - Include bootstrap in your theme file's dependencies as it's not included in the NuGet package ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/f2377271063d31d700cba593917195547c1654aa/Lombiq.BaseTheme.Samples/package.json#L7-L9)). This actually lets you select the latest version if you need some new feature. Any 5.x should work.
-
-## Demo video
-
-[![Watch the video](https://img.youtube.com/vi/9DjKxEumoRE/maxresdefault.jpg)](https://youtu.be/9DjKxEumoRE)
 
 ## Contributing and support
 
