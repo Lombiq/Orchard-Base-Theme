@@ -17,7 +17,7 @@ Do you want to quickly try out this project and see it in action? Check it out i
 
 ## Demo video
 
-[![Watch the video](https://github.com/Lombiq/Orchard-Base-Theme/blob/27f8592f9b862cb456f93be85af1982f53943f72/docs/assets/images/demo-video-thumbnail.jpg)](https://youtu.be/9DjKxEumoRE)
+[![Watch the video](Docs/Assets/Images/DemoVideoThumbnail.jpg)](https://youtu.be/9DjKxEumoRE)
 
 ## Documentation
 
