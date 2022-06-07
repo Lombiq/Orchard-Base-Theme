@@ -1,4 +1,4 @@
-﻿using Lombiq.Tests.UI.Extensions;
+using Lombiq.Tests.UI.Extensions;
 using Lombiq.Tests.UI.Services;
 using OpenQA.Selenium;
 using Shouldly;
@@ -39,6 +39,6 @@ public static class TestCaseUITestContextExtensions
         await context.ClickMainMenuPathAsync("Account", "Log Out");
 
         await context.ClickMainMenuPathAsync("Log In");
-        context.Exists(By.XPath("//form[@action = '/Login']/h4[contains(., 'Log in')]"));
+        context.Exists(By.XPath("//form[@action = '/Login']/*[starts-with(name(), 'h') and contains(., 'Log in')]"));
     }
 }
