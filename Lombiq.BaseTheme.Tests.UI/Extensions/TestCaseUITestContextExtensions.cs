@@ -39,6 +39,6 @@ public static class TestCaseUITestContextExtensions
         await context.ClickMainMenuPathAsync("Account", "Log Out");
 
         await context.ClickMainMenuPathAsync("Log In");
-        context.Exists(By.XPath("//form[@action = '/Login']/h1[contains(., 'Log in')]"));
+        context.Exists(By.XPath("//form[@action = '/Login']/*[starts-with(name(), 'H') and contains(., 'Log in')]"));
     }
 }
