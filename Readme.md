@@ -15,6 +15,10 @@ You can find a sample module with a commented walkthrough in this repository. Ch
 Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
 
 
+## Demo video
+
+[![Watch the video](Docs/Assets/Images/DemoVideoThumbnail.jpg)](https://youtu.be/9DjKxEumoRE)
+
 ## Documentation
 
 Use this as the base theme of any custom frontend themes you create. For instructions on how to import and override this theme with your own theme's Sass stylesheets, see the header comments in [site.scss](Assets/Styles/site.scss) and [_native-variables.scss](Assets/Styles/abstracts/_native-variables.scss).
