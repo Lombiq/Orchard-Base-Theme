@@ -25,5 +25,3 @@ using static Lombiq.BaseTheme.Constants.FeatureIds;
 // https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions/ repository.
 
 // NEXT STATION: Gulpfile.js
-
-
