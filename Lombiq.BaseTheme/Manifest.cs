@@ -7,5 +7,3 @@ using OrchardCore.DisplayManagement.Manifest;
     Website = "https://github.com/Lombiq/Orchard-Base-Theme",
     Description = "The base frontend theme for shared content that are not specific to a specific project's theme."
 )]
-
-
