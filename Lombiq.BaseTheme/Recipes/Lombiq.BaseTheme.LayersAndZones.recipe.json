@@ -104,7 +104,7 @@
       "name": "content",
       "data": [
         {
-          "ContentItemId": "[js:uuid()]",
+          "ContentItemId": "basethemelayoutinjection00",
           "ContentItemVersionId": "[js:uuid()]",
           "ContentType": "LayoutInjection",
           "DisplayText": "Lombiq Base Theme Layout Injection",
