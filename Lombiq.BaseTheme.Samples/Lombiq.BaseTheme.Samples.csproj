@@ -46,6 +46,7 @@
   <ItemGroup>
     <NpmDotnetPrebuildWatchedFiles Remove="Assets\Styles\fonts\_merriweather.scss" />
     <NpmDotnetPrebuildWatchedFiles Remove="Assets\Styles\fonts\_open-sans.scss" />
+    <NpmDotnetPrebuildWatchedFiles Remove="Assets\Styles\fonts\_ubuntu.scss" />
   </ItemGroup>
 
 </Project>
