@@ -5,6 +5,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -11464,13 +11465,8 @@ body {
   font-weight: bold;
 }
 
-@font-face {
-  font-family: SegoeUI;
-  src: local("Segoe UI"), url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2) format("woff2"), url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff) format("woff"), url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf) format("truetype");
-  font-weight: 400;
-}
 :root {
-  --font-default: "SegoeUI", sans-serif;
-  --font-header: "SegoeUI", sans-serif;
+  --font-default: "Open Sans", sans-serif;
+  --font-header: "Open Sans", sans-serif;
 }
 /*# sourceMappingURL=site.css.map */
