@@ -43,4 +43,8 @@
     <None Remove="node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <NpmDotnetPrebuildWatchedFiles Remove="Assets\Styles\fonts\_open-sans.scss" />
+  </ItemGroup>
+
 </Project>
