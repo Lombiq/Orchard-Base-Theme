@@ -5,7 +5,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -11466,7 +11466,7 @@ body {
 }
 
 :root {
-  --font-default: "Open Sans", sans-serif;
-  --font-header: "Open Sans", sans-serif;
+  --font-default: "Merriweather", serif;
+  --font-header: "Merriweather", serif;
 }
 /*# sourceMappingURL=site.css.map */
