@@ -14,7 +14,7 @@ Do you want to quickly try out this project and see it in action? Check it out i
 
 ## Demo video
 
-[![Watch the video](Docs/Assets/Images/DemoVideoThumbnail.jpg)](https://youtu.be/9DjKxEumoRE)
+[![Watch the video](Docs/Assets/Images/DemoVideoThumbnail.jpg)](https://www.youtube.com/watch?v=9DjKxEumoRE&feature=youtu.be)
 
 ## Documentation
 
