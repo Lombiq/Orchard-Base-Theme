@@ -1,9 +1,6 @@
 # Lombiq Base Theme for Orchard Core - UI Test Extensions
 
-
-
 ## About
-
 
 Extension methods that test various features in Lombiq Base Theme for Orchard Core.
 
