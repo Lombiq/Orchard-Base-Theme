@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.HelpfulLibraries" Version="4.5.0" />
+    <PackageReference Include="Lombiq.HelpfulLibraries" Version="4.6.0" />
     <PackageReference Include="Lombiq.HelpfulExtensions" Version="3.4.1" />
 
     <Content Include="Assets/Styles/**/*.*">
