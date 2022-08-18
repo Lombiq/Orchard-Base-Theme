@@ -1,4 +1,4 @@
-﻿using GraphQL;
+using GraphQL;
 using Lombiq.BaseTheme.Constants;
 using Lombiq.BaseTheme.Services;
 using Microsoft.AspNetCore.Html;
