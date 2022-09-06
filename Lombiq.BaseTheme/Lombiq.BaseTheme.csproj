@@ -49,7 +49,7 @@
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
     <PackageReference Include="Lombiq.HelpfulLibraries" Version="4.6.1-alpha.walma-15.1" />
-    <PackageReference Include="Lombiq.HelpfulExtensions" Version="3.5.1-alpha.walma-15.2" />
+    <PackageReference Include="Lombiq.HelpfulExtensions" Version="3.5.1-alpha.walma-15.3" />
 
     <Content Include="Assets/Styles/**/*.*">
       <IncludeInPackage>true</IncludeInPackage>
