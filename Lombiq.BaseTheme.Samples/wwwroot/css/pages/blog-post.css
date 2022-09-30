@@ -65,9 +65,11 @@
 .blog-post .field-name-blog-post-image img {
   height: var(--height-header);
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .blog-post .field-name-blog-post-image .name {
   display: none;
 }
+
 /*# sourceMappingURL=blog-post.css.map */

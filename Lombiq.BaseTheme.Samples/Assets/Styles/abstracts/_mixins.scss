@@ -14,7 +14,7 @@
 // @import "../../../../Lombiq.BaseTheme/Assets/Styles/abstracts/mixins"; which both support. VS doesn't support paths
 // starting with "~" either (https://developercommunity.visualstudio.com/t/Intellisense-not-working-in-sassscss-fi/33481)
 // and you can't use IntelliSense to resolve paths outside of your current project directory using either format.
-@import "../Lombiq.BaseTheme/Assets/Styles/abstracts/mixins";
+@import "../../../../Lombiq.BaseTheme/Assets/Styles/abstracts/mixins";
 
 // In this case we create a mixin that crops a media field into a nice wide banner. It's applied both for sites and blog
 // posts in other files.
