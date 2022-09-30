@@ -11,6 +11,11 @@
   "nodejsExtensions": {
     "assetsToCopy": [
       {
+        "sources": [ "Assets" ],
+        "pattern": "Theme.png",
+        "target": "wwwroot"
+      },
+      {
         "sources": [ "node_modules/bootstrap/dist" ],
         "target": "wwwroot/vendors/bootstrap"
       }
