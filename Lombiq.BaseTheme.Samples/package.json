@@ -1,4 +1,6 @@
 {
+  "// SUMMARY": "We use Lombiq's Node.js Extensions project to process all frontend assets.",
+
   "private": true,
   "dependencies": {
     "bootstrap": "^5.1.3"
@@ -8,7 +10,10 @@
     "clean": "npm explore nodejs-extensions -- pnpm clean",
     "watch": "npm explore nodejs-extensions -- pnpm watch"
   },
+
+  "// nodejsExtensions": "Comtains the custom configuration for asset processing with Mode.js Extensions.",
   "nodejsExtensions": {
+    "// assetsToCopy": "Comtains an array of comfiguration objects to copy specific assets to wwwroot.",
     "assetsToCopy": [
       {
         "sources": [ "Assets" ],
@@ -19,6 +24,10 @@
         "sources": [ "Assets/Icons" ],
         "target": "wwwroot/icons"
       }
-    ]
-  }
+    ],
+    "// scripts": "Absent, since this project uses the default configuration from Node.js Extensions.",
+    "// styles": "Absent, since this project uses the default configuration from Node.js Extensions."
+  },
+
+  "// NEXT STATION": "ResourceManagementOptionsConfiguration.cs"
 }
