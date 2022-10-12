@@ -12,8 +12,11 @@
   },
 
   "// nodejsExtensions": "Comtains the custom configuration for asset processing with Mode.js Extensions.",
+  "// assetsToCopy": "Comtains an array of comfiguration objects to copy specific assets to wwwroot.",
+  "// scripts": "Absent, since this project uses the default configuration from Node.js Extensions.",
+  "// styles": "Absent, since this project uses the default configuration from Node.js Extensions.",
+
   "nodejsExtensions": {
-    "// assetsToCopy": "Comtains an array of comfiguration objects to copy specific assets to wwwroot.",
     "assetsToCopy": [
       {
         "sources": [ "Assets" ],
@@ -24,9 +27,7 @@
         "sources": [ "Assets/Icons" ],
         "target": "wwwroot/icons"
       }
-    ],
-    "// scripts": "Absent, since this project uses the default configuration from Node.js Extensions.",
-    "// styles": "Absent, since this project uses the default configuration from Node.js Extensions."
+    ]
   },
 
   "// NEXT STATION": "ResourceManagementOptionsConfiguration.cs"
