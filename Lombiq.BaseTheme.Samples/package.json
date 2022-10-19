@@ -11,8 +11,8 @@
     "watch": "npm explore nodejs-extensions -- pnpm watch"
   },
 
-  "// nodejsExtensions": "Comtains the custom configuration for asset processing with Mode.js Extensions.",
-  "// assetsToCopy": "Comtains an array of comfiguration objects to copy specific assets to wwwroot.",
+  "// nodejsExtensions": "Contains the custom configuration for asset processing with Node.js Extensions.",
+  "// assetsToCopy": "Contains an array of configuration objects to copy specific assets to wwwroot.",
   "// scripts": "Absent, since this project uses the default configuration from Node.js Extensions.",
   "// styles": "Absent, since this project uses the default configuration from Node.js Extensions.",
 
