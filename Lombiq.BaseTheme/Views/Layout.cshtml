@@ -28,12 +28,12 @@
     <title><shape type="PageTitle"></shape></title>
     <link type="image/x-icon" rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />
 
-    @await RenderSectionAsync("LayoutInjection", required: false)
-
     <script asp-name="bootstrap"></script>
     <script asp-name="@ResourceNames.Helpers"></script>
 
     <resources type="Header"/>
+
+    @await RenderSectionAsync("LayoutInjection", required: false)
 </head>
 <body dir="@Orchard.CultureDir()" class="@CssClassHolder.Body.Join()">
 
