@@ -13,7 +13,7 @@ public static class ResourceManagementOptionsExtensions
         {
             foreach (var manifest in resourceManagementOptions.Value.ResourceManifests)
             {
-                if (manifest.GetResources("$" + nameof(FeatureIds.Area)).ContainsKey(FeatureIds.Area)) { continue; }
+                if (manifest.GetResources("$" + nameof(FeatureIds.Area)).ContainsKey(FeatureIds.Area)) continue;
 
                 foreach (var resourceType in new[] { "stylesheet", "script" })
                 {
