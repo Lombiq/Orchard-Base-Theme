@@ -9,18 +9,7 @@
 <head>
     @{
         // Remove all external Bootstrap 5 resources. (This way we can update Bootstrap independent of OC.)
-        foreach (var manifest in ResourceManagementOptions.Value.ResourceManifests)
-        {
-            if (manifest.GetResources("$" + nameof(FeatureIds.Area)).ContainsKey(FeatureIds.Area)) { continue; }
-
-            foreach (var resourceType in new[] { "stylesheet", "script" })
-            {
-                if (manifest.GetResources(resourceType).TryGetValue("bootstrap", out var resource))
-                {
-                    resource.Clear();
-                }
-            }
-        }
+        ResourceManagementOptions.RemoveBootstrap5();
     }
 
     <meta charset="utf-8">
