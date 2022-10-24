@@ -1,4 +1,4 @@
-﻿(function initializeHelpers(window) {
+(function initializeHelpers(window) {
     function query(selector, base) {
         return Array.from((base ?? window.document).querySelectorAll(selector));
     }
