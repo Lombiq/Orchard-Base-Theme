@@ -40,7 +40,7 @@ body > .layoutElement {
         pointer-events: none;
 
         &.disabled {
-            // Undoes the default Boostrap "disabled" effect. This class only has to be included for technical reasons,
+            // Undoes the default Bootstrap "disabled" effect. This class only has to be included for technical reasons,
             // not for styling.
             color: var(--color-foreground-body);
         }
