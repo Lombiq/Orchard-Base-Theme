@@ -19,7 +19,7 @@ public class Startup : StartupBase
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
         services.Configure<MvcOptions>(options => options.Filters.Add(typeof(MainMenuWidgetFilter)));
 
-        services.AddScoped<IDataMigration, LayoutInjectionMigrations>();
+        services.AddDataMigration<LayoutInjectionMigrations>();
 
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
     }
