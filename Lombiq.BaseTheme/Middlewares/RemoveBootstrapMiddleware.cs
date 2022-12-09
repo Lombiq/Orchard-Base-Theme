@@ -12,9 +12,11 @@ using System.Threading.Tasks;
 namespace Lombiq.BaseTheme.Middlewares;
 
 /// <summary>
-/// Removes the built-in Bootstrap resource if the currently selected theme is based on this theme. Themes using
-/// Lombiq.BaseTheme have Bootstrap coming from NPM and compiled into their site theme so this duplicate resource is not
-/// needed and can cause problems if not removed.
+/// Removes the built-in Bootstrap resource if the currently selected theme uses Lombiq.BaseTheme as its base theme.
+/// Themes derived from Lombiq.BaseTheme use Bootstrap from NPM as it's compiled into their site stylesheet. So this
+/// duplicate resource is not needed and can cause problems if not removed. This situation can arise when a module
+/// (such as Lombiq.DataTables) depends on Bootstrap and doesn't explicitly depend on Lombiq.BaseTheme so the built-in
+/// resource would injected if this middleware didn't remove it.
 /// </summary>
 public class RemoveBootstrapMiddleware
 {
