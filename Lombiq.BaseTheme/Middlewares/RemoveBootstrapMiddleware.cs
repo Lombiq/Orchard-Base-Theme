@@ -27,15 +27,22 @@ public class RemoveBootstrapMiddleware
 
     public RemoveBootstrapMiddleware(RequestDelegate next) => _next = next;
 
-    public async Task InvokeAsync(
+    public Task InvokeAsync(
         HttpContext context,
         IOptions<ResourceManagementOptions> resourceManagementOptions,
+        ISiteThemeService siteThemeService) =>
+        _done
+            ? _next(context)
+            : InvokeInnerAsync(context, resourceManagementOptions.Value, siteThemeService);
+
+    private async Task InvokeInnerAsync(
+        HttpContext context,
+        ResourceManagementOptions resourceManagementOptions,
         ISiteThemeService siteThemeService)
     {
-        if (!_done && IsCurrentTheme(await siteThemeService.GetSiteThemeAsync()))
+        if (IsCurrentTheme(await siteThemeService.GetSiteThemeAsync()))
         {
             var resourcesToClear = resourceManagementOptions
-                .Value
                 .ResourceManifests
                 .Where(manifest => !manifest.GetResources("$" + nameof(FeatureIds.Area)).ContainsKey(FeatureIds.Area))
                 .SelectMany(manifest => _resourceTypes
