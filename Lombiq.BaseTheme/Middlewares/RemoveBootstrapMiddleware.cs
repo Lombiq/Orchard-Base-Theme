@@ -16,7 +16,7 @@ namespace Lombiq.BaseTheme.Middlewares;
 /// Themes derived from Lombiq.BaseTheme use Bootstrap from NPM as it's compiled into their site stylesheet. So this
 /// duplicate resource is not needed and can cause problems if not removed. This situation can arise when a module
 /// (such as Lombiq.DataTables) depends on Bootstrap and doesn't explicitly depend on Lombiq.BaseTheme so the built-in
-/// resource would injected if this middleware didn't remove it.
+/// resource would be injected if this middleware didn't remove it.
 /// </summary>
 public class RemoveBootstrapMiddleware
 {
