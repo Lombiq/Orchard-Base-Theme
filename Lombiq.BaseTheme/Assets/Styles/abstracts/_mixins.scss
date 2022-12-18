@@ -153,7 +153,7 @@
     @each $spacing-size, $spacing-values in $spacing-sizes {
         @each $breakpoint, $size in $spacing-values { // Mapping spacing values to breakpoints.
             @include media-breakpoint-up($breakpoint) { // Applying breakpoint.
-                // Mapping directions to sides, e.g. top = top, hor(izontal) = left + right.
+                // Mapping directions to sides, e.g. top = top, hor(izontal) = left + right. #spell-check-ignore-line
                 @each $spacing-direction, $spacing-sides in $spacing-directions {
                     .u-pd-#{$spacing-direction}-#{$spacing-size} { // Padding utility class name with direction & size.
                         @each $spacing-side in $spacing-sides { // Iterating through each side in the direction map.
