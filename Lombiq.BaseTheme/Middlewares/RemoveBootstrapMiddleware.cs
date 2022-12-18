@@ -25,26 +25,17 @@ public class RemoveBootstrapMiddleware
 
     private readonly RequestDelegate _next;
 
-    private static bool _done;
-
     public RemoveBootstrapMiddleware(RequestDelegate next) => _next = next;
 
-    public Task InvokeAsync(
+    public async Task InvokeAsync(
         HttpContext context,
         IOptions<ResourceManagementOptions> resourceManagementOptions,
-        ISiteThemeService siteThemeService) =>
-        _done
-            ? _next(context)
-            : InvokeInnerAsync(context, resourceManagementOptions.Value, siteThemeService);
-
-    private async Task InvokeInnerAsync(
-        HttpContext context,
-        ResourceManagementOptions resourceManagementOptions,
         ISiteThemeService siteThemeService)
     {
         if (IsCurrentTheme(await siteThemeService.GetSiteThemeAsync()))
         {
             var resourcesToClear = resourceManagementOptions
+                .Value
                 .ResourceManifests
                 .Where(manifest => !manifest.GetResources("$" + nameof(FeatureIds.Area)).ContainsKey(FeatureIds.Area))
                 .SelectMany(manifest => _resourceTypes
@@ -52,7 +43,7 @@ public class RemoveBootstrapMiddleware
                     .SelectWhere(resources => resources.GetMaybe("bootstrap"), resource => resource?.Any() == true))
                 .ToList();
 
-            // This only happens once per process instance, so locking would be rare.
+            // This only happens once per tenant process instance, so locking is rare.
             if (resourcesToClear.Any()) ClearResources(resourcesToClear);
         }
 
@@ -71,8 +62,6 @@ public class RemoveBootstrapMiddleware
             {
                 resource.Clear();
             }
-
-            _done = true;
         }
     }
 }
