@@ -27,7 +27,8 @@ public class ResourceManagementOptionsConfiguration : IConfigureOptions<Resource
 
         _manifest
             .DefineScript("bootstrap")
-            .SetUrl(Vendors + "bootstrap/js/bootstrap.min.js", Vendors + "bootstrap/js/bootstrap.js");
+            .SetUrl(Vendors + "bootstrap/js/bootstrap.min.js", Vendors + "bootstrap/js/bootstrap.js")
+            .SetVersion("5.1.3");
     }
 
     public void Configure(ResourceManagementOptions options) => options.ResourceManifests.Add(_manifest);
