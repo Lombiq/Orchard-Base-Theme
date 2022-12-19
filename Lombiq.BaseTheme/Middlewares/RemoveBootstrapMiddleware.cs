@@ -5,6 +5,7 @@ using OrchardCore.DisplayManagement.Manifest;
 using OrchardCore.Environment.Extensions;
 using OrchardCore.ResourceManagement;
 using OrchardCore.Themes.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,7 +41,9 @@ public class RemoveBootstrapMiddleware
                 .Where(manifest => !manifest.GetResources("$" + nameof(FeatureIds.Area)).ContainsKey(FeatureIds.Area))
                 .SelectMany(manifest => _resourceTypes
                     .SelectWhere(manifest.GetResources)
-                    .SelectWhere(resources => resources.GetMaybe("bootstrap"), resource => resource?.Any() == true))
+                    .SelectWhere(
+                        resources => resources.GetMaybe("bootstrap"),
+                        resource => resource?.Any(IsVersion5) == true))
                 .ToList();
 
             // This only happens once per tenant process instance, so locking is rare.
@@ -54,13 +57,17 @@ public class RemoveBootstrapMiddleware
         currentSiteTheme?.Id == FeatureIds.BaseTheme ||
         (currentSiteTheme?.Manifest.ModuleInfo as ThemeAttribute)?.BaseTheme == FeatureIds.BaseTheme;
 
+    private static bool IsVersion5(ResourceDefinition definition) =>
+        Version.TryParse(definition.Version, out var version) &&
+        version.Major == 5;
+
     private static void ClearResources(IEnumerable<IList<ResourceDefinition>> resourcesToClear)
     {
         lock (_lock)
         {
             foreach (var resource in resourcesToClear)
             {
-                resource.Clear();
+                resource.RemoveAll(IsVersion5);
             }
         }
     }
