@@ -5,6 +5,7 @@ using OrchardCore.DisplayManagement.Manifest;
 using OrchardCore.Environment.Extensions;
 using OrchardCore.ResourceManagement;
 using OrchardCore.Themes.Services;
+using OrchardCore.Workflows.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +68,8 @@ public class RemoveBootstrapMiddleware
         {
             foreach (var resource in resourcesToClear)
             {
-                resource.RemoveAll(IsVersion5);
+                var toRemove = resource.Where(IsVersion5).ToList();
+                resource.RemoveRange(toRemove);
             }
         }
     }
