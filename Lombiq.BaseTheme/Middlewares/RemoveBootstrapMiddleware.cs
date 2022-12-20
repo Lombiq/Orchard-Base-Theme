@@ -49,10 +49,6 @@ public class RemoveBootstrapMiddleware
         currentSiteTheme?.Id == FeatureIds.BaseTheme ||
         (currentSiteTheme?.Manifest.ModuleInfo as ThemeAttribute)?.BaseTheme == FeatureIds.BaseTheme;
 
-    private static bool IsVersion5(ResourceDefinition definition) =>
-        Version.TryParse(definition.Version, out var version) &&
-        version.Major == 5;
-
     private static IEnumerable<(IList<ResourceDefinition> Resources, ResourceDefinition ResourceToDelete)> GetResourcesToClear(
         IOptions<ResourceManagementOptions> resourceManagementOptions,
         string resourceType,
@@ -63,7 +59,7 @@ public class RemoveBootstrapMiddleware
             .ResourceManifests
             .SelectWhere(manifest => manifest.GetResources(resourceType)?.GetMaybe("bootstrap"))
             .SelectMany(resources => resources
-                .Where(IsVersion5)
+                .Where(definition => Version.TryParse(definition.Version, out var version) && version.Major == 5)
                 .Select(resource => (Resources: resources, ResourceToDelete: resource)))
             .ToList();
 
