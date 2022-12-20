@@ -27,7 +27,7 @@ public class ResourceManagementOptionsConfiguration : IConfigureOptions<Resource
 
         _manifest
             .DefineScript("bootstrap")
-            .SetUrl(Vendors + "bootstrap/js/bootstrap.min.js", Vendors + "bootstrap/js/bootstrap.js")
+            .SetUrl(Vendors + "bootstrap/js/bootstrap.bundle.min.js", Vendors + "bootstrap/js/bootstrap.bundle.js")
             .SetVersion("5.2.3");
     }
 
