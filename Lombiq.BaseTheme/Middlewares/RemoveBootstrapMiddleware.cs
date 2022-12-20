@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using static Lombiq.BaseTheme.ResourceManagementOptionsConfiguration;
+
 namespace Lombiq.BaseTheme.Middlewares;
 
 /// <summary>
@@ -59,7 +61,9 @@ public class RemoveBootstrapMiddleware
             .ResourceManifests
             .SelectWhere(manifest => manifest.GetResources(resourceType)?.GetMaybe("bootstrap"))
             .SelectMany(resources => resources
-                .Where(definition => Version.TryParse(definition.Version, out var version) && version.Major == 5)
+                .Where(definition =>
+                    Version.TryParse(definition.Version, out var version) &&
+                    version.Major == NpmBootstrapVersion.Major)
                 .Select(resource => (Resources: resources, ResourceToDelete: resource)))
             .ToList();
 
