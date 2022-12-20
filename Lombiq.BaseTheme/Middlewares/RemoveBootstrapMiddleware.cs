@@ -65,6 +65,9 @@ public class RemoveBootstrapMiddleware
 
         if (keepNewest)
         {
+            // When there is only one item in the collection and we want to keep the newest entry that means not
+            // removing anything. Also if there is nothing in the list anyway we can shortcut return here to skip the
+            // steps below.
             if (resources.Count < 2)
             {
                 return Enumerable.Empty<(IList<ResourceDefinition> Resources, ResourceDefinition ResourceToDelete)>();
