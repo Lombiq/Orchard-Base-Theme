@@ -5,7 +5,6 @@ using OrchardCore.DisplayManagement.Manifest;
 using OrchardCore.Environment.Extensions;
 using OrchardCore.ResourceManagement;
 using OrchardCore.Themes.Services;
-using OrchardCore.Workflows.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +22,6 @@ namespace Lombiq.BaseTheme.Middlewares;
 public class RemoveBootstrapMiddleware
 {
     private static readonly object _lock = new();
-    private static readonly string[] _resourceTypes = { "stylesheet", "script" };
 
     private readonly RequestDelegate _next;
 
@@ -36,16 +34,9 @@ public class RemoveBootstrapMiddleware
     {
         if (IsCurrentTheme(await siteThemeService.GetSiteThemeAsync()))
         {
-            var resourcesToClear = resourceManagementOptions
-                .Value
-                .ResourceManifests
-                .Where(manifest => !manifest.GetResources("$" + nameof(FeatureIds.Area)).ContainsKey(FeatureIds.Area))
-                .SelectMany(manifest => _resourceTypes
-                    .SelectWhere(manifest.GetResources)
-                    .SelectWhere(
-                        resources => resources.GetMaybe("bootstrap"),
-                        resource => resource?.Any(IsVersion5) == true))
-                .ToList();
+            var resourcesToClear = new List<(IList<ResourceDefinition> Resources, ResourceDefinition ResourceToDelete)>();
+            resourcesToClear.AddRange(GetResourcesToClear(resourceManagementOptions, "stylesheet", keepNewest: false));
+            resourcesToClear.AddRange(GetResourcesToClear(resourceManagementOptions, "script", keepNewest: true));
 
             // This only happens once per tenant process instance, so locking is rare.
             if (resourcesToClear.Any()) ClearResources(resourcesToClear);
@@ -62,14 +53,36 @@ public class RemoveBootstrapMiddleware
         Version.TryParse(definition.Version, out var version) &&
         version.Major == 5;
 
-    private static void ClearResources(IEnumerable<IList<ResourceDefinition>> resourcesToClear)
+    private static IEnumerable<(IList<ResourceDefinition> Resources, ResourceDefinition ResourceToDelete)> GetResourcesToClear(
+        IOptions<ResourceManagementOptions> resourceManagementOptions,
+        string resourceType,
+        bool keepNewest)
+    {
+        var resources = resourceManagementOptions
+            .Value
+            .ResourceManifests
+            .SelectWhere(manifest => manifest.GetResources(resourceType)?.GetMaybe("bootstrap"))
+            .SelectMany(resources => resources
+                .Where(IsVersion5)
+                .Select(resource => (Resources: resources, ResourceToDelete: resource)))
+            .ToList();
+
+        if (keepNewest && resources.Count > 1)
+        {
+            var newest = resources.MaxBy(resource => Version.Parse(resource.ResourceToDelete.Version));
+            resources.Remove(newest);
+        }
+
+        return resources;
+    }
+
+    private static void ClearResources(IEnumerable<(IList<ResourceDefinition> Resources, ResourceDefinition ResourceToDelete)> resourcesToClear)
     {
         lock (_lock)
         {
-            foreach (var resource in resourcesToClear)
+            foreach (var (resources, toDelete) in resourcesToClear)
             {
-                var toRemove = resource.Where(IsVersion5).ToList();
-                resource.RemoveRange(toRemove);
+                resources.Remove(toDelete);
             }
         }
     }
