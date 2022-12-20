@@ -63,8 +63,13 @@ public class RemoveBootstrapMiddleware
                 .Select(resource => (Resources: resources, ResourceToDelete: resource)))
             .ToList();
 
-        if (keepNewest && resources.Count > 1)
+        if (keepNewest)
         {
+            if (resources.Count < 2)
+            {
+                return Enumerable.Empty<(IList<ResourceDefinition> Resources, ResourceDefinition ResourceToDelete)>();
+            }
+
             var newest = resources.MaxBy(resource => Version.Parse(resource.ResourceToDelete.Version));
             resources.Remove(newest);
         }
