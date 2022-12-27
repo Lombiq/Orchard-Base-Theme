@@ -1,13 +1,17 @@
+using Lombiq.BaseTheme.Middlewares;
 using Lombiq.BaseTheme.Migrations;
 using Lombiq.BaseTheme.Services;
 using Lombiq.DataTables.Navigation;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
 using OrchardCore.ResourceManagement;
+using System;
 
 namespace Lombiq.BaseTheme;
 
@@ -23,4 +27,7 @@ public class Startup : StartupBase
 
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
     }
+
+    public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
+        app.UseMiddleware<RemoveBootstrapMiddleware>();
 }
