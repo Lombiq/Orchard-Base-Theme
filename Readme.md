@@ -4,7 +4,7 @@
 
 ## About
 
-A common base theme for our Orchard Core themes using Bootstrap 5.1. It can contain any shared content that are not specific to a specific project's theme.
+A common base theme for our Orchard Core themes using Bootstrap v5.2.3. It can contain any shared content that are not specific to a specific project's theme.
 
 You can find a sample module with a commented walkthrough in this repository. Check it out [here](Lombiq.BaseTheme.Samples/Readme.md)!
 
@@ -16,11 +16,11 @@ Do you want to quickly try out this project and see it in action? Check it out i
 
 ## Documentation
 
-Use this as the base theme of any custom frontend themes you create. For instructions on how to import and override this theme with your own theme's Sass stylesheets, see the header comments in [site.scss](Assets/Styles/site.scss) and [_native-variables.scss](Assets/Styles/abstracts/_native-variables.scss).
+Use this as the base theme of any custom frontend themes you create. For instructions on how to import and override this theme with your own theme's Sass stylesheets, see the header comments in [site.scss](Lombiq.BaseTheme/Assets/Styles/site.scss) and [_native-variables.scss](Lombiq.BaseTheme/Assets/Styles/abstracts/_native-variables.scss).
 
-The theme makes use of the [ICssClassHolder](Services/ICssClassHolder.cs) service which provides a scoped container for adding class names from your own code. Use the provided zone names in the [ZoneNames](Constants/ZoneNames.cs) static class to address it.
+The theme makes use of the [`ICssClassHolder`](Lombiq.BaseTheme/Services/ICssClassHolder.cs) service which provides a scoped container for adding class names from your own code. Use the provided zone names in the [`ZoneNames`](Lombiq.BaseTheme/Constants/ZoneNames.cs) static class to address it.
 
-You may have noticed, that we mentioned Bootstrap 5.1, even though your version of Orchard Core may be still using Bootstrap 5.0. This theme automatically removes the built-in Bootstrap resource manifests on the current tenant and replaces them with the vendor's JavaScript file pulled from NPM. As the Bootstrap stylesheet is already bundled into the site stylesheet there is no need to include that in the resource manifest. If you want to switch over to a different theme that doesn't use this as its base, please reload your tenant by going to Admin → Configuration → Tenants and clicking on the current tenant's Reload button.
+You may have noticed, that we mentioned Bootstrap v5.2.3, even though your version of Orchard Core may be still using Bootstrap 5.0. This theme automatically removes the built-in Bootstrap resource manifests on the current tenant and replaces them with the vendor's JavaScript file pulled from NPM. As the Bootstrap stylesheet is already bundled into the site stylesheet there is no need to include that in the resource manifest. If you want to switch over to a different theme that doesn't use this as its base, please reload your tenant by going to Admin → Configuration → Tenants and clicking on the current tenant's Reload button.
 
 Besides the style and layout, the theme also automatically includes a minimalist helper script that eases transition away from jQuery. You don't really need full jQuery now that Internet Explorer is effectively dead (Internet Explorer 11 is going end of life on June 15, 2022 so you should not support it in any new project at this time). The script gives you the `window.helper` object. You can use `helper.ready(($) => {})` in your scripts, where `$(querySelector, baseElement)` returns a JavaScript `Array` of `Element`s.
 
