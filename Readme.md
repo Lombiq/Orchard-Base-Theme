@@ -12,7 +12,7 @@ Do you want to quickly try out this project and see it in action? Check it out i
 
 ## Demo video
 
-[![Watch the video](Docs/Assets/Images/DemoVideoThumbnail.jpg)](https://youtu.be/9DjKxEumoRE)
+[![Watch the video](Docs/Assets/Images/DemoVideoThumbnail.jpg)](https://www.youtube.com/watch?v=9DjKxEumoRE&feature=youtu.be)
 
 ## Documentation
 
@@ -28,14 +28,6 @@ Besides the style and layout, the theme also automatically includes a minimalist
 
 - Lombiq Orchard Core Base Theme - Layers and Zones: Call this if you plan on using widgets. It sets up all the supported zones and some common layers.
 - Lombiq Orchard Core Base Theme - Styling Demo: Creates a Demo Page that can be helpful to see how your theme's stylesheet behaves on various HTML elements.
-
-## Using the NuGet package
-
-There are a couple differences when you import from NuGet instead of a Git submodule.
-
-- Tell Gulp to find the base theme .scss files in the NuGet package cache ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/f2377271063d31d700cba593917195547c1654aa/Lombiq.BaseTheme.Samples/Gulpfile.js#L17-L37)).
-- Use a special import call to the base style sheet in the package ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/f2377271063d31d700cba593917195547c1654aa/Lombiq.BaseTheme.Samples/Assets/Styles/site.scss#L7-L13)). Unfortunately your IDE won't be able to reference the variables and mixins defined in the Lombiq.BaseTheme Sass files.
-- Include bootstrap in your theme file's dependencies as it's not included in the NuGet package ([see here](https://github.com/Lombiq/Orchard-Base-Theme/blob/f2377271063d31d700cba593917195547c1654aa/Lombiq.BaseTheme.Samples/package.json#L7-L9)). This actually lets you select the latest version if you need some new feature. Any 5.x should work.
 
 ## Contributing and support
 
