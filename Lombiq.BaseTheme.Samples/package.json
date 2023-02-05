@@ -1,6 +1,5 @@
 {
   "// SUMMARY": "We use Lombiq's Node.js Extensions project to process all frontend assets.",
-
   "private": true,
   "dependencies": {
     "bootstrap": "5.2.3"
@@ -10,25 +9,34 @@
     "clean": "npm explore nodejs-extensions -- pnpm clean",
     "watch": "npm explore nodejs-extensions -- pnpm watch"
   },
-
   "// nodejsExtensions": "Contains the custom configuration for asset processing with Node.js Extensions.",
   "// assetsToCopy": "Contains an array of configuration objects to copy specific assets to wwwroot.",
   "// scripts": "Absent, since this project uses the default configuration from Node.js Extensions.",
   "// styles": "Absent, since this project uses the default configuration from Node.js Extensions.",
-
   "nodejsExtensions": {
     "assetsToCopy": [
       {
-        "sources": [ "Assets" ],
+        "sources": [
+          "Assets"
+        ],
         "pattern": "Theme.png",
         "target": "wwwroot"
       },
       {
-        "sources": [ "Assets/Icons" ],
+        "sources": [
+          "Assets/Icons"
+        ],
         "target": "wwwroot/icons"
       }
     ]
   },
-
-  "// NEXT STATION": "ResourceManagementOptionsConfiguration.cs"
+  "// NEXT STATION": "ResourceManagementOptionsConfiguration.cs",
+  "devDependencies": {
+    "eslint": "8.25.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-only-warn": "1.0.3",
+    "eslint-plugin-promise": "6.1.0"
+  }
 }
