@@ -1,3 +1,4 @@
+using Lombiq.BaseTheme.Extensions;
 using Lombiq.BaseTheme.Middlewares;
 using Lombiq.BaseTheme.Migrations;
 using Lombiq.BaseTheme.Services;
@@ -8,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
 using OrchardCore.ResourceManagement;
 using System;
