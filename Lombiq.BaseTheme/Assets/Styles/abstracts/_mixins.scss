@@ -197,7 +197,9 @@
 
     @include media-breakpoint-only(lg) { padding: calc(var(--gutter-large) * #{$vertical-multiplier}) var(--gutter-large); }
 
-    @include media-breakpoint-up(xl) { padding: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large); }
+    @include media-breakpoint-only(xl) { padding: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large); }
+
+    @include media-breakpoint-up(xxl) { padding: calc(var(--gutter-xx-large) * #{$vertical-multiplier}) var(--gutter-xx-large); }
 }
 
 @mixin margin-gutter($vertical-multiplier: $default-vertical-multiplier) {
@@ -209,7 +211,9 @@
 
     @include media-breakpoint-only(lg) { margin: calc(var(--gutter-large) * #{$vertical-multiplier}) var(--gutter-large); }
 
-    @include media-breakpoint-up(xl) { margin: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large); }
+    @include media-breakpoint-only(xl) { margin: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large); }
+
+    @include media-breakpoint-up(xxl) { margin: calc(var(--gutter-xx-large) * #{$vertical-multiplier}) var(--gutter-xx-large); }
 }
 
 @mixin apply-gutter($property, $multiplier: 1) {
@@ -221,7 +225,9 @@
 
     @include media-breakpoint-only(lg) { #{$property}: calc(#{$multiplier} * var(--gutter-large)); }
 
-    @include media-breakpoint-up(xl) { #{$property}: calc(#{$multiplier} * var(--gutter-x-large)); }
+    @include media-breakpoint-only(xl) { #{$property}: calc(#{$multiplier} * var(--gutter-x-large)); }
+
+    @include media-breakpoint-up(xxl) { #{$property}: calc(#{$multiplier} * var(--gutter-xx-large)); }
 }
 
 @mixin padding-top-gutter($multiplier: 1) {
