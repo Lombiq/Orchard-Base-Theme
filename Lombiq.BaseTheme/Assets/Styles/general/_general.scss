@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // General layout rules
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -48,3 +48,27 @@ body > .layoutElement {
         }
     }
 }
+
+// This is needed for notifications
+// see: https://github.com/OrchardCMS/OrchardCore/blob/main/src/OrchardCore.Themes/TheTheme/Assets/scss/modules/_messages.scss
+// stylelint-disable
+.message {
+    @extend .alert;
+}
+
+.message-success {
+    @extend .alert-success;
+}
+
+.message-information {
+    @extend .alert-info;
+}
+
+.message-warning {
+    @extend .alert-warning;
+}
+
+.message-error {
+    @extend .alert-danger;
+}
+// stylelint-enable
