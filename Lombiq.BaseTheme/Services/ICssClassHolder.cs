@@ -32,8 +32,8 @@ public interface ICssClassHolder
     ISet<string> GetZoneClasses(string zoneName);
 
     /// <summary>
-    /// Returns the set of classes belonging to the zone called <paramref name="zoneName"/>. You can use this to
-    /// remove classes if needed.
+    /// Returns the set of classes belonging to the zone called <paramref name="zoneName"/>. If the set doesn't exists,
+    /// a new one is created. You can use this to remove classes if needed.
     /// </summary>
     ISet<string> GetOrAddZoneClasses(string zoneName);
 }
