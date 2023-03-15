@@ -44,8 +44,7 @@ public static class CssClassHolderExtensions
     /// Returns the string you can insert into the zone's template.
     /// </summary>
     public static string ConcatenateZoneClasses(this ICssClassHolder holder, string zoneName, params string[] additionalClasses) =>
-        holder
-            .GetZoneClasses(zoneName)
+        holder[zoneName]
             .Concat(additionalClasses)
             .WhereNot(string.IsNullOrEmpty)
             .Join();
