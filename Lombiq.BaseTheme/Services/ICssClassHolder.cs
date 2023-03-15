@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Lombiq.BaseTheme.Services;
@@ -14,6 +15,11 @@ public interface ICssClassHolder
     ISet<string> Body { get; }
 
     /// <summary>
+    /// Gets the set that contains the classes that will be attached to the zone called <paramref name="zoneName"/>.
+    /// </summary>
+    ISet<string> this[string zoneName] { get; }
+
+    /// <summary>
     /// Adds a <paramref name="className"/> to the zone called <paramref name="zoneName"/>.
     /// </summary>
     void AddClassToZone(string zoneName, string className);
@@ -22,7 +28,14 @@ public interface ICssClassHolder
     /// Returns the set of classes belonging to the zone called <paramref name="zoneName"/>. You can use this to
     /// remove classes if needed.
     /// </summary>
+    [Obsolete($"Use {nameof(GetOrAddZoneClasses)} instead.")]
     ISet<string> GetZoneClasses(string zoneName);
+
+    /// <summary>
+    /// Returns the set of classes belonging to the zone called <paramref name="zoneName"/>. You can use this to
+    /// remove classes if needed.
+    /// </summary>
+    ISet<string> GetOrAddZoneClasses(string zoneName);
 }
 
 public static class CssClassHolderExtensions
