@@ -14,7 +14,14 @@
     // add Bootstrap utility classes or shared classes across certain zones.
     CssClassHolder.AddClassToZone(ZoneNames.Footer, "text-center");
     CssClassHolder.AddClassToZone(ZoneNames.AsideFirst, "layoutAside");
-    CssClassHolder.AddClassToZone(ZoneNames.AsideSecond, "layoutAside");
+
+    // You can also access the zone's underlying set using this method. This can be cleaner if you want to add several
+    // classes. It can also be used to remove classes added by the backend (e.g. classes, services, filters). Or to
+    // perform any normal ISet operations.
+    var asideSecond = CssClassHolder.GetOrAddZoneClasses(ZoneNames.AsideSecond);
+    asideSecond.Add("layoutAside");
+    asideSecond.Add("layoutAside_anotherClass");
+    asideSecond.Remove("unwanted-class");
 }
 
 @* If you only need a site-wide style or just a handful of content-specific styles, you can inject them here. Otherwise
