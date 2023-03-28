@@ -18,7 +18,7 @@
     // You can also access the zone's underlying set using this method. This can be cleaner if you want to add several
     // classes. It can also be used to remove classes added by the backend (e.g. classes, services, filters). Or to
     // perform any normal ISet operations.
-    var asideSecond = CssClassHolder.GetOrAddZoneClasses(ZoneNames.AsideSecond);
+    var asideSecond = CssClassHolder.GetZoneClasses(ZoneNames.AsideSecond);
     asideSecond.Add("layoutAside");
     asideSecond.Add("layoutAside_anotherClass");
     asideSecond.Remove("unwanted-class");

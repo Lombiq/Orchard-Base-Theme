@@ -9,7 +9,7 @@ public class CssClassHolder : ICssClassHolder
 
     public ISet<string> Body { get; } = new HashSet<string>();
 
-    public ISet<string> this[string zoneName] => GetOrAddZoneClasses(zoneName);
+    public ISet<string> this[string zoneName] => GetZoneClasses(zoneName);
 
     public void AddClassToZone(string zoneName, string className)
     {
@@ -24,10 +24,7 @@ public class CssClassHolder : ICssClassHolder
         classes.Add(className);
     }
 
-    [Obsolete($"Use {nameof(GetOrAddZoneClasses)} instead.")]
-    public ISet<string> GetZoneClasses(string zoneName) => GetOrAddZoneClasses(zoneName);
-
-    public ISet<string> GetOrAddZoneClasses(string zoneName)
+    public ISet<string> GetZoneClasses(string zoneName)
     {
         if (_zones.TryGetValue(zoneName, out var zone)) return zone;
 
