@@ -4,7 +4,7 @@ namespace Lombiq.BaseTheme.Services;
 
 public class CssClassHolder : ICssClassHolder
 {
-    private readonly Dictionary<string, HashSet<string>> _zones = new();
+    private readonly Dictionary<string, HashSet<string>> _classesByZoneNames = new();
 
     public ISet<string> Body { get; } = new HashSet<string>();
 
@@ -12,12 +12,12 @@ public class CssClassHolder : ICssClassHolder
 
     public void AddClassToZone(string zoneName, string className)
     {
-        var classes = _zones.GetMaybe(zoneName);
+        var classes = _classesByZoneNames.GetMaybe(zoneName);
 
         if (classes == null)
         {
             classes = new();
-            _zones[zoneName] = classes;
+            _classesByZoneNames[zoneName] = classes;
         }
 
         classes.Add(className);
@@ -25,10 +25,10 @@ public class CssClassHolder : ICssClassHolder
 
     public ISet<string> GetZoneClasses(string zoneName)
     {
-        if (_zones.TryGetValue(zoneName, out var zone)) return zone;
+        if (_classesByZoneNames.TryGetValue(zoneName, out var classes)) return classes;
 
-        zone = new HashSet<string>();
-        _zones[zoneName] = zone;
-        return zone;
+        classes = new HashSet<string>();
+        _classesByZoneNames[zoneName] = classes;
+        return classes;
     }
 }
