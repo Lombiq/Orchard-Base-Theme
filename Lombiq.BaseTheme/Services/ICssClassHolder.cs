@@ -14,13 +14,18 @@ public interface ICssClassHolder
     ISet<string> Body { get; }
 
     /// <summary>
+    /// Gets the set that contains the classes that will be attached to the zone called <paramref name="zoneName"/>.
+    /// </summary>
+    ISet<string> this[string zoneName] { get; }
+
+    /// <summary>
     /// Adds a <paramref name="className"/> to the zone called <paramref name="zoneName"/>.
     /// </summary>
     void AddClassToZone(string zoneName, string className);
 
     /// <summary>
-    /// Returns the set of classes belonging to the zone called <paramref name="zoneName"/>. You can use this to
-    /// remove classes if needed.
+    /// Returns the set of classes belonging to the zone called <paramref name="zoneName"/>. If the set doesn't exists,
+    /// a new one is created. You can use this to remove classes if needed.
     /// </summary>
     ISet<string> GetZoneClasses(string zoneName);
 }
@@ -31,8 +36,7 @@ public static class CssClassHolderExtensions
     /// Returns the string you can insert into the zone's template.
     /// </summary>
     public static string ConcatenateZoneClasses(this ICssClassHolder holder, string zoneName, params string[] additionalClasses) =>
-        holder
-            .GetZoneClasses(zoneName)
+        holder[zoneName]
             .Concat(additionalClasses)
             .WhereNot(string.IsNullOrEmpty)
             .Join();

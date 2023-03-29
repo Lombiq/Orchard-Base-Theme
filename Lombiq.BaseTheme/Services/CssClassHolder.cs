@@ -4,22 +4,21 @@ namespace Lombiq.BaseTheme.Services;
 
 public class CssClassHolder : ICssClassHolder
 {
-    private readonly Dictionary<string, HashSet<string>> _zones = new();
+    private readonly Dictionary<string, HashSet<string>> _classesByZones = new();
 
     public ISet<string> Body { get; } = new HashSet<string>();
 
-    public void AddClassToZone(string zoneName, string className)
+    public ISet<string> this[string zoneName] => GetZoneClasses(zoneName);
+
+    public void AddClassToZone(string zoneName, string className) =>
+        GetZoneClasses(zoneName).Add(className);
+
+    public ISet<string> GetZoneClasses(string zoneName)
     {
-        var classes = _zones.GetMaybe(zoneName);
+        if (_classesByZones.TryGetValue(zoneName, out var classes)) return classes;
 
-        if (classes == null)
-        {
-            classes = new();
-            _zones[zoneName] = classes;
-        }
-
-        classes.Add(className);
+        classes = new();
+        _classesByZones[zoneName] = classes;
+        return classes;
     }
-
-    public ISet<string> GetZoneClasses(string zoneName) => _zones.GetMaybe(zoneName) ?? new();
 }
