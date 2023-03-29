@@ -10,24 +10,14 @@ public class CssClassHolder : ICssClassHolder
 
     public ISet<string> this[string zoneName] => GetZoneClasses(zoneName);
 
-    public void AddClassToZone(string zoneName, string className)
-    {
-        var classes = _classesByZones.GetMaybe(zoneName);
-
-        if (classes == null)
-        {
-            classes = new();
-            _classesByZones[zoneName] = classes;
-        }
-
-        classes.Add(className);
-    }
+    public void AddClassToZone(string zoneName, string className) =>
+        GetZoneClasses(zoneName).Add(className);
 
     public ISet<string> GetZoneClasses(string zoneName)
     {
         if (_classesByZones.TryGetValue(zoneName, out var classes)) return classes;
 
-        classes = new HashSet<string>();
+        classes = new();
         _classesByZones[zoneName] = classes;
         return classes;
     }
