@@ -24,6 +24,7 @@ public class Startup : StartupBase
         services.Configure<MvcOptions>(options => options.Filters.Add(typeof(MainMenuWidgetFilter)));
 
         services.AddDataMigration<LayoutInjectionMigrations>();
+        services.AddDataMigration<RecipeMigrations>();
 
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
     }
