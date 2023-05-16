@@ -9,11 +9,11 @@ namespace Lombiq.BaseTheme.Tests.UI.Extensions;
 
 public static class TestCaseUITestContextExtensions
 {
-    public static Task TestBaseThemeFeaturesAsync(this UITestContext context)
+    public static Task TestBaseThemeFeaturesAsync(this UITestContext context, bool skipLogin = false)
     {
         context.Get(By.Id("footer")).GetAttribute("class").Split().ShouldContain("text-center");
         context.TestZoneInsertion();
-        return context.TestMainMenuWithAuthenticationAsync();
+        return context.TestMainMenuWithAuthenticationAsync(skipLogin);
     }
 
     public static void TestZoneInsertion(this UITestContext context)
@@ -28,7 +28,7 @@ public static class TestCaseUITestContextExtensions
             .ShouldBe(2);
     }
 
-    public static async Task TestMainMenuWithAuthenticationAsync(this UITestContext context)
+    public static async Task TestMainMenuWithAuthenticationAsync(this UITestContext context, bool skipLogin = false)
     {
         await context.ClickMainMenuPathAsync("Account", "Admin");
         context.SwitchToLastWindow();
@@ -37,6 +37,8 @@ public static class TestCaseUITestContextExtensions
         context.SwitchToFirstWindow();
 
         await context.ClickMainMenuPathAsync("Account", "Log Out");
+
+        if (skipLogin) return;
 
         await context.ClickMainMenuPathAsync("Log In");
         context.Exists(By.XPath("//form[@action = '/Login']/*[starts-with(name(), 'h') and contains(., 'Log in')]"));
