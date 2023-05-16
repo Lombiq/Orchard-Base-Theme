@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OrchardCore.Modules;
+using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
 using System;
 
@@ -27,6 +28,8 @@ public class Startup : StartupBase
         services.AddDataMigration<RecipeMigrations>();
 
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
+
+        services.AddScoped<INavigationProvider, MainMenuNavigationProvider>();
     }
 
     public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
