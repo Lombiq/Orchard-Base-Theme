@@ -1,4 +1,4 @@
-﻿using Lombiq.BaseTheme.Constants;
+using Lombiq.BaseTheme.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using OrchardCore.DisplayManagement.Manifest;
@@ -49,7 +49,7 @@ public class RemoveBootstrapMiddleware
 
     private static bool IsCurrentTheme(IExtensionInfo currentSiteTheme) =>
         currentSiteTheme?.Id == FeatureIds.BaseTheme ||
-        (currentSiteTheme?.Manifest.ModuleInfo as ThemeAttribute)?.BaseTheme == FeatureIds.BaseTheme;
+        currentSiteTheme?.Manifest.ModuleInfo is ThemeAttribute { BaseTheme: FeatureIds.BaseTheme };
 
     private static IEnumerable<(IList<ResourceDefinition> Resources, ResourceDefinition ResourceToDelete)> GetResourcesToClear(
         IOptions<ResourceManagementOptions> resourceManagementOptions,
