@@ -4,8 +4,8 @@ using Lombiq.BaseTheme.Services;
 using Microsoft.AspNetCore.Html;
 using OrchardCore.DisplayManagement.Razor;
 using OrchardCore.DisplayManagement.Zones;
-using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -47,7 +47,7 @@ public class ZoneDescriptor
         var id = ZoneName.ToCamelCase();
         var layoutClassName = string.IsNullOrEmpty(parent)
             ? "layout" + ZoneName
-            : FormattableString.Invariant($"layout{parent}__{id}");
+            : string.Create(CultureInfo.InvariantCulture, $"layout{parent}__{id}");
 
         var classNames = classHolder.ConcatenateZoneClasses(
             ZoneName,
@@ -69,17 +69,17 @@ public class ZoneDescriptor
             var elementName = ZoneName == ZoneNames.Content ? "main" : "div";
 
             body = new HtmlContentBuilder()
-                .AppendHtml(FormattableString.Invariant($"<{elementName} class=\"{bodyWrapperClass} {LeafClassName}\">"))
+                .AppendHtml(string.Create(CultureInfo.InvariantCulture, $"<{elementName} class=\"{bodyWrapperClass} {LeafClassName}\">"))
                 .AppendHtml(body)
-                .AppendHtml(FormattableString.Invariant($"</{elementName}>"));
+                .AppendHtml(string.Create(CultureInfo.InvariantCulture, $"</{elementName}>"));
         }
 
         return new HtmlContentBuilder()
-            .AppendHtml(FormattableString.Invariant($"<{ElementName} id=\"{id}\" class=\"{classNames}\">"))
+            .AppendHtml(string.Create(CultureInfo.InvariantCulture, $"<{ElementName} id=\"{id}\" class=\"{classNames}\">"))
             .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenBefore, parent))
             .AppendHtml(body)
             .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenAfter, parent))
-            .AppendHtml(FormattableString.Invariant($"</{ElementName}>"));
+            .AppendHtml(string.Create(CultureInfo.InvariantCulture, $"</{ElementName}>"));
     }
 
     private Task<IHtmlContent> ConcatenateAsync<TModel>(
@@ -102,7 +102,7 @@ public class ZoneDescriptor
 
         var newParent = string.IsNullOrEmpty(parent)
             ? zoneName
-            : FormattableString.Invariant($"{parent}__{zoneName}");
+            : string.Create(CultureInfo.InvariantCulture, $"{parent}__{zoneName}");
 
         foreach (var zoneDescriptor in zoneDescriptors)
         {
