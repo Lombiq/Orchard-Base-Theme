@@ -4,6 +4,7 @@ using Lombiq.BaseTheme.Migrations;
 using Lombiq.BaseTheme.Services;
 using Lombiq.DataTables.Navigation;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
+using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -27,6 +28,8 @@ public class Startup : StartupBase
         services.AddDataMigration<RecipeMigrations>();
 
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
+
+        PerTenantShapeTableManager.ReplaceDefaultShapeTableManager(services);
     }
 
     public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
