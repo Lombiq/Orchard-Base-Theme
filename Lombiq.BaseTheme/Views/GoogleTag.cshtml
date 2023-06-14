@@ -1,0 +1,30 @@
+@model Lombiq.BaseTheme.ViewModels.GoogleTagViewModel
+
+@using Microsoft.AspNetCore.Http.Features;
+@using Microsoft.Extensions.Hosting;
+@using OrchardCore.Environment.Shell
+
+@inject IHostEnvironment HostEnvironment
+
+@{
+    var trackingConsentFeature = ViewContext.HttpContext.Features.Get<ITrackingConsentFeature>();
+    var cookieDomain = string.Empty;
+
+    if(!string.IsNullOrEmpty(Model.CookieDomain))
+    {
+        cookieDomain =$", {{'cookie_domain': '{ Model.CookieDomain }' }}";
+    }
+}
+
+@if ((trackingConsentFeature is null || trackingConsentFeature.CanTrack))
+{
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@Model.GoogleTagPropertyId"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', '@Model.GoogleTagPropertyId'@Html.Raw(cookieDomain))
+    </script>
+}
