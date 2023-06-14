@@ -4,6 +4,7 @@ using Lombiq.BaseTheme.Migrations;
 using Lombiq.BaseTheme.Services;
 using Lombiq.DataTables.Navigation;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
+using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -29,6 +30,7 @@ public class Startup : StartupBase
 
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
 
+        PerTenantShapeTableManager.ReplaceDefaultShapeTableManager(services);
         services.AddScoped<INavigationProvider, MainMenuNavigationProvider>();
     }
 
