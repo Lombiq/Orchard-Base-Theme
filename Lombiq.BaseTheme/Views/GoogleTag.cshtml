@@ -10,17 +10,16 @@
     var trackingConsentFeature = ViewContext.HttpContext.Features.Get<ITrackingConsentFeature>();
     var cookieDomain = string.Empty;
 
-    if(!string.IsNullOrEmpty(Model.CookieDomain))
+    if (!string.IsNullOrEmpty(Model.CookieDomain))
     {
-        cookieDomain =$", {{'cookie_domain': '{ Model.CookieDomain }' }}";
+        cookieDomain = $", {{'cookie_domain': '{Model.CookieDomain}' }}";
     }
 }
 
 @if (HostEnvironment.IsProduction() && (trackingConsentFeature is null || trackingConsentFeature.CanTrack))
 {
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=@Model.GoogleTagPropertyId"></script>
-    <script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@Model.GoogleTagPropertyId" at="Head"></script>
+    <script at="Head">
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
