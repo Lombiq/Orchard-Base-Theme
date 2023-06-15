@@ -7,5 +7,6 @@ using OrchardCore.DisplayManagement.Manifest;
     Website = "https://github.com/Lombiq/Orchard-Base-Theme",
     Description = "The base frontend theme for shared code that is not specific to a specific project's theme." +
       "Warning: themes using this as the base remove the stock Bootstrap resource. If you switch to a different " +
-      "theme, please reload the tenant from Configuration → Tenants in the admin menu."
+      "theme, please reload the tenant from Configuration → Tenants in the admin menu.",
+    Dependencies = new[] { Lombiq.HelpfulExtensions.FeatureIds.Widgets }
 )]
