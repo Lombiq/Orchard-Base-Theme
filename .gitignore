@@ -8,3 +8,4 @@ wwwroot
 node_modules
 .pnpm-debug.log
 /Lombiq.BaseTheme/Migrations/Lombiq.BaseTheme.LayersAndZones.recipe.json
+*.orig
