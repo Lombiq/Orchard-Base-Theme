@@ -21,6 +21,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
     private readonly IContentManager _contentManager;
     private readonly IUrlHelperFactory _urlHelperFactory;
     private readonly IActionContextAccessor _actionContextAccessor;
+
     public MainMenuNavigationProvider(
         IHttpContextAccessor hca,
         IStringLocalizer<MainMenuNavigationProvider> stringLocalizer,
