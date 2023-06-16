@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <PackageReference Include="OrchardCore.Theme.Targets" Version="1.6.0" />
+    <PackageReference Include="OrchardCore.Menu" Version="1.5.0" />
     <PackageReference Include="OrchardCore.ContentManagement" Version="1.6.0" />
     <PackageReference Include="OrchardCore.DisplayManagement" Version="1.6.0" />
     <PackageReference Include="OrchardCore.ResourceManagement" Version="1.6.0" />
@@ -58,5 +59,13 @@
   </ItemGroup>
 
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\..\Utilities\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions.targets" />
+
+  <!-- This is necessary, because if we try to invoke the recipe from the migration file using the "recipe" step it will
+       load forever and eventually cause a timeout. -->
+  <Target Name="Copy LayersAndZones to Migrations" AfterTargets="AfterResolveReferences">
+    <Copy SourceFiles="$(ProjectDir)Recipes\Lombiq.BaseTheme.LayersAndZones.recipe.json"
+          DestinationFiles="$(ProjectDir)Migrations\Lombiq.BaseTheme.LayersAndZones.recipe.json"
+          SkipUnchangedFiles="true" />
+  </Target>
 
 </Project>
