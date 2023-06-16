@@ -2,6 +2,7 @@
 using AngleSharp.Html.Parser;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Localization;
@@ -9,6 +10,7 @@ using Newtonsoft.Json.Linq;
 using OrchardCore.ContentManagement;
 using OrchardCore.Menu.Models;
 using OrchardCore.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,8 +21,8 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 {
     private readonly IContentHandleManager _contentHandleManager;
     private readonly IContentManager _contentManager;
-    private readonly IUrlHelperFactory _urlHelperFactory;
-    private readonly IActionContextAccessor _actionContextAccessor;
+
+    private readonly Lazy<IUrlHelper> _urlHelperLazy;
 
     public MainMenuNavigationProvider(
         IHttpContextAccessor hca,
@@ -33,8 +35,8 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
     {
         _contentHandleManager = contentHandleManager;
         _contentManager = contentManager;
-        _urlHelperFactory = urlHelperFactory;
-        _actionContextAccessor = actionContextAccessor;
+
+        _urlHelperLazy = new(() => urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext!));
     }
 
     protected override async Task BuildAsync(NavigationBuilder builder)
@@ -58,9 +60,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 
         if (menuItem.As<LinkMenuItemPart>() is { } linkMenuItemPart)
         {
-            var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext!);
-            var absoluteUri = urlHelper.Content(linkMenuItemPart.Url);
-            builder.Add(text, menu => menu.Url(absoluteUri));
+            builder.Add(text, menu => menu.Url(GetUrl(linkMenuItemPart.Url)));
         }
         else if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
         {
@@ -75,7 +75,9 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
         {
             var nodeList = new HtmlParser().ParseFragment($"<div>{htmlMenuItemPart.Html}</div>", contextElement: null!);
             var textContent = string.Concat(nodeList.Select(x => x.Text()));
-            builder.Add(new LocalizedString(textContent, textContent), menu => menu.Url("#").LocalNav());
+            var url = string.IsNullOrEmpty(htmlMenuItemPart.Url) ? "#" : GetUrl(htmlMenuItemPart.Url);
+
+            builder.Add(new LocalizedString(textContent, textContent), menu => menu.Url(url).LocalNav());
         }
         else if (menuItem.As<MenuItemsListPart>() is { } menuItemsListPart)
         {
@@ -87,13 +89,11 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
     private async Task AddContentMenuItemPartAsync(NavigationBuilder builder, LocalizedString text, IEnumerable<string> ids)
     {
         var contentItems = (await _contentManager.GetAsync(ids)).AsList();
-        var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext!);
-
         if (contentItems.Count == 1)
         {
             var contentItem = contentItems.Single();
             if (string.IsNullOrEmpty(text.Value)) text = GetTitle(contentItem);
-            builder.Add(text, menu => menu.Url(urlHelper.DisplayContentItem(contentItem)));
+            builder.Add(text, menu => UseDisplayUrl(menu, contentItem));
         }
         else
         {
@@ -101,11 +101,16 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
             {
                 foreach (var contentItem in contentItems)
                 {
-                    menu.Add(GetTitle(contentItem), child => child.Url(urlHelper.DisplayContentItem(contentItem)));
+                    menu.Add(GetTitle(contentItem), child => UseDisplayUrl(child, contentItem));
                 }
             });
         }
     }
+
+    private string GetUrl(string contentPath) => _urlHelperLazy.Value.Content(contentPath);
+
+    private void UseDisplayUrl(NavigationItemBuilder menu, IContent content) =>
+        menu.Url(_urlHelperLazy.Value.DisplayContentItem(content));
 
     private static LocalizedString GetTitle(ContentItem contentItem) =>
         new(contentItem.DisplayText, contentItem.DisplayText);
