@@ -58,7 +58,9 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 
         if (menuItem.As<LinkMenuItemPart>() is { } linkMenuItemPart)
         {
-            builder.Add(text, menu => menu.Url(linkMenuItemPart.Url));
+            var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext!);
+            var absoluteUri = urlHelper.Content(linkMenuItemPart.Url);
+            builder.Add(text, menu => menu.Url(absoluteUri));
         }
         else if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
         {
