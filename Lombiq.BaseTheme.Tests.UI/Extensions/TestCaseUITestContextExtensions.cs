@@ -44,7 +44,7 @@ public static class TestCaseUITestContextExtensions
         context.Exists(By.XPath("//form[@action = '/Login']/*[starts-with(name(), 'h') and contains(., 'Log in')]"));
     }
 
-    public static async Task BaseThemeDependencyShouldBeEnabled(this UITestContext context)
+    public static async Task BaseThemeDependencyShouldBeEnabledAsync(this UITestContext context)
     {
         await context.GoToAdminRelativeUrlAsync("/Features");
         await context.ClickAndFillInWithRetriesAsync(By.Id("search-box"), "Helpful Widgets");
