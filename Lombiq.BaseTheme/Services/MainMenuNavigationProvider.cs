@@ -77,7 +77,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
             var textContent = string.Concat(nodeList.Select(x => x.Text()));
             var url = string.IsNullOrEmpty(htmlMenuItemPart.Url) ? "#" : GetUrl(htmlMenuItemPart.Url);
 
-            builder.Add(new LocalizedString(textContent, textContent), menu => menu.Url(url).LocalNav());
+            builder.Add(T[textContent], menu => menu.Url(url).LocalNav());
         }
         else if (menuItem.As<MenuItemsListPart>() is { } menuItemsListPart)
         {
