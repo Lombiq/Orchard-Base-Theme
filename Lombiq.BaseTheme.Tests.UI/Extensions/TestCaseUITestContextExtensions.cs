@@ -43,4 +43,11 @@ public static class TestCaseUITestContextExtensions
         await context.ClickMainMenuPathAsync("Log In");
         context.Exists(By.XPath("//form[@action = '/Login']/*[starts-with(name(), 'h') and contains(., 'Log in')]"));
     }
+
+    public static async Task BaseThemeDependencyShouldBeEnabled(this UITestContext context)
+    {
+        await context.GoToAdminRelativeUrlAsync("/Features");
+        await context.ClickAndFillInWithRetriesAsync(By.Id("search-box"), "Helpful Widgets");
+        context.Exists(By.Id("btn-disable-Lombiq_HelpfulExtensions_Widgets"));
+    }
 }
