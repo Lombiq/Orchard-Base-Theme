@@ -56,7 +56,7 @@ public static class TestCaseUITestContextExtensions
         context.Get(By.CssSelector(".menuWidget__content .nav-link[href='/about']")).Text.Trim().ShouldBe("About");
     }
 
-    public static async Task TestAddingMenuItemToBlogMainMenu(this UITestContext context)
+    public static async Task TestAddingMenuItemToBlogMainMenuAsync(this UITestContext context)
     {
         await context.GoToAdminRelativeUrlAsync("/Contents/ContentItems/Menu");
         await context.ClickReliablyOnAsync(By.ClassName("edit"));
