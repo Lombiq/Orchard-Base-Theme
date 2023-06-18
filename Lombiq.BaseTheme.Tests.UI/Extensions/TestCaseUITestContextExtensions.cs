@@ -62,6 +62,7 @@ public static class TestCaseUITestContextExtensions
         // through a recipe. The setup recipe in OSOCE executes the Blog recipe which already creates a menu with the
         // "main-menu" alias. As it uses a random UUID for Content Item ID, it can't be updated from another recipe (if
         // attempted the setup will throw "ValidationException: Your alias is already in use." exception).
+        // See https://github.com/Lombiq/Helpful-Libraries/issues/199 for a possible solution.
         await context.GoToAdminRelativeUrlAsync("/Contents/ContentItems/Menu");
         await context.ClickReliablyOnAsync(By.ClassName("edit"));
 
