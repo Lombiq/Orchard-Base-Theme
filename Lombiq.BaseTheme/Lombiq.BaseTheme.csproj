@@ -32,11 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Menu" Version="1.5.0" />
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.5.0" />
-    <PackageReference Include="OrchardCore.ContentManagement" Version="1.5.0" />
-    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.5.0" />
-    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.5.0" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.6.0" />
+    <PackageReference Include="OrchardCore.Menu" Version="1.6.0" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="1.6.0" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.6.0" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.6.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
@@ -46,9 +46,9 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.HelpfulLibraries" Version="5.2.0" />
-    <PackageReference Include="Lombiq.HelpfulExtensions" Version="5.0.0" />
-    <PackageReference Include="Lombiq.NodeJs.Extensions" Version="1.2.3" />
+    <PackageReference Include="Lombiq.HelpfulLibraries" Version="6.0.0" />
+    <PackageReference Include="Lombiq.HelpfulExtensions" Version="6.0.0" />
+    <PackageReference Include="Lombiq.NodeJs.Extensions" Version="1.2.4" />
 
     <Content Include="Assets/Styles/**/*.*">
       <IncludeInPackage>true</IncludeInPackage>
@@ -63,9 +63,7 @@
   <!-- This is necessary, because if we try to invoke the recipe from the migration file using the "recipe" step it will
        load forever and eventually cause a timeout. -->
   <Target Name="Copy LayersAndZones to Migrations" AfterTargets="AfterResolveReferences">
-    <Copy SourceFiles="$(ProjectDir)Recipes\Lombiq.BaseTheme.LayersAndZones.recipe.json"
-          DestinationFiles="$(ProjectDir)Migrations\Lombiq.BaseTheme.LayersAndZones.recipe.json"
-          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(ProjectDir)Recipes\Lombiq.BaseTheme.LayersAndZones.recipe.json" DestinationFiles="$(ProjectDir)Migrations\Lombiq.BaseTheme.LayersAndZones.recipe.json" SkipUnchangedFiles="true" />
   </Target>
 
 </Project>
