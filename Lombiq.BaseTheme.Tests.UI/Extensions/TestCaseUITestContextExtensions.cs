@@ -58,9 +58,10 @@ public static class TestCaseUITestContextExtensions
 
     public static async Task TestAddingMenuItemToBlogMainMenuAsync(this UITestContext context)
     {
-        // The menu item has to be added through the admin by editing the menu like this because it can't be added through a recipe. The setup recipe
-        // in OSOCE executes the Blog recipe which already creates a menu with the "main-menu" alias. As it uses a random UUID for Content Item ID, it
-        // can't be updated from another recipe (if attempted the setup will throw "ValidationException: Your alias is already in use." exception).
+        // The menu item has to be added through the admin by editing the menu like this because it can't be added
+        // through a recipe. The setup recipe in OSOCE executes the Blog recipe which already creates a menu with the
+        // "main-menu" alias. As it uses a random UUID for Content Item ID, it can't be updated from another recipe (if
+        // attempted the setup will throw "ValidationException: Your alias is already in use." exception).
         await context.GoToAdminRelativeUrlAsync("/Contents/ContentItems/Menu");
         await context.ClickReliablyOnAsync(By.ClassName("edit"));
 
