@@ -26,7 +26,7 @@ Besides the style and layout, the theme also automatically includes a minimalist
 
 ## Recipes
 
-- Lombiq Orchard Core Base Theme - Layers and Zones: Call this if you plan on using widgets. It sets up all the supported zones and some common layers.
+- Lombiq Orchard Core Base Theme - Layers and Zones: Sets up all the supported zones and some common layers. Automatically executed when you first enable the theme.
 - Lombiq Orchard Core Base Theme - Styling Demo: Creates a Demo Page that can be helpful to see how your theme's stylesheet behaves on various HTML elements.
 
 ## Contributing and support
