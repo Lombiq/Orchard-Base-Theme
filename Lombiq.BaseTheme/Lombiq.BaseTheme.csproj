@@ -60,10 +60,4 @@
 
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\..\Utilities\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions.targets" />
 
-  <!-- This is necessary, because if we try to invoke the recipe from the migration file using the "recipe" step it will
-       load forever and eventually cause a timeout. -->
-  <Target Name="Copy LayersAndZones to Migrations" AfterTargets="AfterResolveReferences">
-    <Copy SourceFiles="$(ProjectDir)Recipes\Lombiq.BaseTheme.LayersAndZones.recipe.json" DestinationFiles="$(ProjectDir)Migrations\Lombiq.BaseTheme.LayersAndZones.recipe.json" SkipUnchangedFiles="true" />
-  </Target>
-
 </Project>
