@@ -23,28 +23,31 @@
     page: this,
     new[]
     {
-        new ZoneDescriptor(Header, wrapBody: true)
+        new ZoneDescriptor(Header, wrapBody: true, elementName: "header")
         {
-            ChildrenBefore = new [] { new ZoneDescriptor("Banner") },
+            ChildrenBefore = new [] { new ZoneDescriptor("Banner", elementName: "section") },
+            ChildrenAfter = new []
+            {
+                new ZoneDescriptor(Navigation, elementName: "nav"),
+            },
         },
-        new ZoneDescriptor(Navigation, "nav"),
-        new ZoneDescriptor(BeforeMain),
-        new ZoneDescriptor(Featured),
-        new ZoneDescriptor(Content, wrapBody: true)
+        new ZoneDescriptor(BeforeMain, elementName: "section"),
+        new ZoneDescriptor(Featured, elementName: "section"),
+        new ZoneDescriptor(Content, wrapBody: true, elementName: "section")
         {
             ChildrenBefore = new []
             {
-                new ZoneDescriptor(AsideFirst),
-                new ZoneDescriptor(Messages),
-                new ZoneDescriptor(BeforeContent),
+                new ZoneDescriptor(AsideFirst, elementName: "aside"),
+                new ZoneDescriptor(Messages, elementName: "section"),
+                new ZoneDescriptor(BeforeContent, elementName: "section"),
             },
             ChildrenAfter = new []
             {
-                new ZoneDescriptor(AfterContent),
-                new ZoneDescriptor(AsideSecond),
+                new ZoneDescriptor(AfterContent, elementName: "section"),
+                new ZoneDescriptor(AsideSecond, elementName: "aside"),
             },
         },
-        new ZoneDescriptor(AfterMain),
+        new ZoneDescriptor(AfterMain, elementName: "section"),
         new ZoneDescriptor(Footer, "footer"),
     })
 
