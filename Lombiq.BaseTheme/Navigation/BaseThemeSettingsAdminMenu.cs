@@ -1,4 +1,4 @@
-﻿using Lombiq.BaseTheme.Drivers;
+﻿using Lombiq.BaseTheme.Controllers;
 using Lombiq.BaseTheme.Permissions;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Http;
@@ -9,7 +9,9 @@ namespace Lombiq.BaseTheme.Navigation;
 
 public class BaseThemeSettingsAdminMenu : AdminMenuNavigationProviderBase
 {
-    protected BaseThemeSettingsAdminMenu(IHttpContextAccessor hca, IStringLocalizer stringLocalizer)
+    public BaseThemeSettingsAdminMenu(
+        IHttpContextAccessor hca,
+        IStringLocalizer<BaseThemeSettingsAdminMenu> stringLocalizer)
         : base(hca, stringLocalizer)
     {
     }
@@ -18,7 +20,7 @@ public class BaseThemeSettingsAdminMenu : AdminMenuNavigationProviderBase
         builder.Add(T["Configuration"], configuration => configuration
             .Add(T["Settings"], settings => settings
                 .Add(T["Base Theme"], T["Base Theme"], baseTheme => baseTheme
-                    .SiteSettings(BaseThemeSettingsDisplayDriver.EditorGroupId)
+                    .ActionTask<AdminController>(_hca.HttpContext, controller => controller.Index())
                     .Permission(BaseThemeSettingsPermissions.ManageBaseThemeSettings)
                     .LocalNav()
                 )));

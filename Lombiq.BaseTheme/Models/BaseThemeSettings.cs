@@ -1,8 +1,7 @@
-﻿using OrchardCore.Media.Fields;
-
-namespace Lombiq.BaseTheme.Models;
+﻿namespace Lombiq.BaseTheme.Models;
 
 public class BaseThemeSettings
 {
-    public MediaField Thumbnail { get; set; } = new();
+    public string Icon { get; set; }
+    public bool ShowMenu { get; set; }
 }

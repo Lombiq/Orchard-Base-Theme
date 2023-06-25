@@ -1,8 +1,13 @@
-﻿using OrchardCore.Media.Fields;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using OrchardCore.DisplayManagement;
 
 namespace Lombiq.BaseTheme.ViewModels;
 
 public class BaseThemeSettingsViewModel
 {
-    public MediaField Thumbnail { get; set; }
+    public string Icon { get; set; }
+    public bool ShowMenu { get; set; }
+
+    [BindNever]
+    public IShape Editor { get; set; }
 }
