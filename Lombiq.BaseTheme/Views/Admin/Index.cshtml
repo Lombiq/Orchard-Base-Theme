@@ -1,9 +1,0 @@
-﻿@model Lombiq.BaseTheme.ViewModels.BaseThemeSettingsViewModel
-
-<h2>@RenderTitleSegments(T["Lombiq Base Theme Settings"])</h2>
-
-@await DisplayAsync(Model.Editor)
-
-<fieldset asp-for="ShowMenu" label="@T["Show Main Menu"]" type="checkbox"></fieldset>
-
-<button type="submit" class="save">@T["Save"]</button>

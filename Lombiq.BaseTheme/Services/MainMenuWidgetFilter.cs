@@ -1,5 +1,4 @@
-﻿using Lombiq.BaseTheme.Constants;
-using Lombiq.HelpfulExtensions.Extensions.Widgets;
+﻿using Lombiq.HelpfulExtensions.Extensions.Widgets;
 using Lombiq.HelpfulExtensions.Extensions.Widgets.ViewModels;
 using Lombiq.HelpfulLibraries.OrchardCore.Mvc;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
@@ -9,6 +8,7 @@ using OrchardCore.DisplayManagement;
 using OrchardCore.DisplayManagement.Layout;
 using OrchardCore.Navigation;
 using System.Threading.Tasks;
+using static Lombiq.BaseTheme.Constants.ZoneNames;
 
 namespace Lombiq.BaseTheme.Services;
 
@@ -18,7 +18,7 @@ public class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
     private readonly IActionContextAccessor _actionContextAccessor;
     private readonly ICssClassHolder _cssClassHolder;
 
-    protected override string ZoneName => ZoneNames.Navigation;
+    protected override string ZoneName => Navigation;
     protected override string ViewName => WidgetTypes.MenuWidget;
     protected override bool FrontEndOnly => true;
 
@@ -39,8 +39,8 @@ public class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
     protected override async Task<MenuWidgetViewModel> GetViewModelAsync()
     {
         // Add the <nav> classes to the zone holder <nav>.
-        _cssClassHolder.AddClassToZone(ZoneNames.Navigation, "navbar-expand-md");
-        _cssClassHolder.AddClassToZone(ZoneNames.Navigation, "navbar");
+        _cssClassHolder.AddClassToZone(Navigation, "navbar-expand-md");
+        _cssClassHolder.AddClassToZone(Navigation, "navbar");
 
         return new()
         {
