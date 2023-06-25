@@ -1,0 +1,79 @@
+﻿using Lombiq.BaseTheme.Models;
+using Lombiq.BaseTheme.ViewModels;
+using Lombiq.HelpfulExtensions.Extensions.ContentTypes;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using OrchardCore.ContentManagement;
+using OrchardCore.ContentManagement.Metadata.Models;
+using OrchardCore.DisplayManagement;
+using OrchardCore.Entities;
+using OrchardCore.Media.Fields;
+using OrchardCore.Media.Settings;
+using OrchardCore.Media.ViewModels;
+using OrchardCore.Settings;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Lombiq.BaseTheme.Controllers;
+
+public class AdminController : Controller
+{
+    private readonly ISiteService _siteService;
+    private readonly IShapeFactory _shapeFactory;
+    public AdminController(ISiteService siteService, IShapeFactory shapeFactory)
+    {
+        _siteService = siteService;
+        _shapeFactory = shapeFactory;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var section = (await _siteService.GetSiteSettingsAsync()).As<BaseThemeSettings>();
+
+        return View(new BaseThemeSettingsViewModel
+        {
+            ShowMenu = section.ShowMenu,
+            Icon = section.Icon,
+            Editor = await _shapeFactory.CreateAsync<EditMediaFieldViewModel>("MediaField_Edit", editor =>
+            {
+                var part = CreatePart(section);
+                var icon = part.Icon;
+
+                editor.Paths = JsonConvert.SerializeObject(new[] { section.Icon });
+                editor.Field = icon;
+                editor.Part = part;
+                editor.PartFieldDefinition = new ContentPartFieldDefinition(
+                    new ContentFieldDefinition(nameof(BaseThemeSettingsPart.Icon)),
+                    nameof(BaseThemeSettingsPart.Icon),
+                    JObject.FromObject(new Dictionary<string, object> { [nameof(MediaFieldSettings)] = new MediaFieldSettings() }))
+                {
+                    PartDefinition = new ContentPartDefinition(nameof(BaseThemeSettingsPart)),
+                };
+            }),
+        });
+    }
+
+    private static BaseThemeSettingsPart CreatePart(BaseThemeSettings section)
+    {
+        var content = new ContentItem { ContentType = ContentTypes.Empty };
+
+        content.Weld(new BaseThemeSettingsPart
+        {
+            ContentItem = content,
+            Icon = new MediaField
+            {
+                ContentItem = content,
+                MediaTexts = new[] { section.Icon },
+                Paths = new[] { section.Icon },
+            },
+        });
+
+        return content.As<BaseThemeSettingsPart>();
+    }
+
+    public class BaseThemeSettingsPart : ContentPart
+    {
+        public MediaField Icon { get; set; } = new();
+    }
+}
