@@ -7,3 +7,4 @@ bin/
 wwwroot
 node_modules
 .pnpm-debug.log
+*.orig

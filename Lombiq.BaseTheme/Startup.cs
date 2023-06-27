@@ -1,4 +1,3 @@
-using Lombiq.BaseTheme.Extensions;
 using Lombiq.BaseTheme.Middlewares;
 using Lombiq.BaseTheme.Migrations;
 using Lombiq.BaseTheme.Services;
@@ -10,7 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
+using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
 using System;
 
@@ -30,6 +31,7 @@ public class Startup : StartupBase
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
 
         PerTenantShapeTableManager.ReplaceDefaultShapeTableManager(services);
+        services.AddScoped<INavigationProvider, MainMenuNavigationProvider>();
     }
 
     public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
