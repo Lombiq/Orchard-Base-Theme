@@ -8,6 +8,10 @@ A common base theme for our Orchard Core themes using Bootstrap v5.2.3. It can c
 
 You can find a sample module with a commented walkthrough in this repository. Check it out [here](Lombiq.BaseTheme.Samples/Readme.md)!
 
+We at [Lombiq](https://lombiq.com/) also used this theme for the new [Lombiq website](https://lombiq.com/) when migrating it from Orchard 1 to Orchard Core ([see case study](https://lombiq.com/blog/how-we-renewed-and-migrated-lombiq-com-from-orchard-1-to-orchard-core)).
+
+This theme is also available on all sites of [DotNest, the Orchard SaaS](https://dotnest.com/).
+
 Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
 
 ## Demo video
