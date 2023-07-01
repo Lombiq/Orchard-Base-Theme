@@ -2,8 +2,13 @@
 
 <h2>@RenderTitleSegments(T["Lombiq Base Theme Settings"])</h2>
 
-@await DisplayAsync(Model.Editor)
+<form method="post" asp-action="Update">
+    @await DisplayAsync(Model.Editor)
 
-<fieldset asp-for="ShowMenu" label="@T["Show Main Menu"]" type="checkbox"></fieldset>
+    <fieldset asp-for="HideMenu"
+              label="@T["Hide Main Menu"]"
+              hint="@T["Check this if you don't use the main menu widget and want to hide it."]"
+              type="checkbox"></fieldset>
 
-<button type="submit" class="save">@T["Save"]</button>
+    <button type="submit" class="save btn btn-primary">@T["Save"]</button>
+</form>

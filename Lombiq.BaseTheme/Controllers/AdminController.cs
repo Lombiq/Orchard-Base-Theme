@@ -17,10 +17,13 @@ using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Controllers;
 
+// This controller is there for editing the BaseThemeSettings. We can't use a site settings driver for this, because you
+// can't declare admin-accessible shapes in a site theme.
 public class AdminController : Controller
 {
     private readonly ISiteService _siteService;
     private readonly IShapeFactory _shapeFactory;
+
     public AdminController(ISiteService siteService, IShapeFactory shapeFactory)
     {
         _siteService = siteService;
@@ -29,11 +32,11 @@ public class AdminController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var section = (await _siteService.GetSiteSettingsAsync()).As<BaseThemeSettings>();
+        var section = (await _siteService.LoadSiteSettingsAsync()).As<BaseThemeSettings>();
 
         return View(new BaseThemeSettingsViewModel
         {
-            ShowMenu = section.ShowMenu,
+            HideMenu = section.HideMenu,
             Icon = section.Icon,
             Editor = await _shapeFactory.CreateAsync<EditMediaFieldViewModel>("MediaField_Edit", editor =>
             {
@@ -52,6 +55,19 @@ public class AdminController : Controller
                 };
             }),
         });
+    }
+
+    public async Task<IActionResult> Update([FromBody] BaseThemeSettingsViewModel viewModel)
+    {
+        var siteSettings = await _siteService.LoadSiteSettingsAsync();
+        siteSettings.Alter<BaseThemeSettings>(nameof(BaseThemeSettings), settings =>
+        {
+            settings.Icon = viewModel.Icon;
+            settings.HideMenu = viewModel.HideMenu;
+        });
+
+        await _siteService.UpdateSiteSettingsAsync(siteSettings);
+        return RedirectToAction(nameof(Index));
     }
 
     private static BaseThemeSettingsPart CreatePart(BaseThemeSettings section)

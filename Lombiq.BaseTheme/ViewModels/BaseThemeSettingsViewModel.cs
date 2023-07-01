@@ -6,7 +6,7 @@ namespace Lombiq.BaseTheme.ViewModels;
 public class BaseThemeSettingsViewModel
 {
     public string Icon { get; set; }
-    public bool ShowMenu { get; set; }
+    public bool HideMenu { get; set; }
 
     [BindNever]
     public IShape Editor { get; set; }
