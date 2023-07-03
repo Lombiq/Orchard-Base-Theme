@@ -11,6 +11,7 @@ using OrchardCore.Entities;
 using OrchardCore.Media.Fields;
 using OrchardCore.Media.Settings;
 using OrchardCore.Media.ViewModels;
+using OrchardCore.Modules;
 using OrchardCore.Settings;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -21,11 +22,16 @@ namespace Lombiq.BaseTheme.Controllers;
 // can't declare admin-accessible shapes in a site theme.
 public class AdminController : Controller
 {
+    private readonly IClock _clock;
     private readonly ISiteService _siteService;
     private readonly IShapeFactory _shapeFactory;
 
-    public AdminController(ISiteService siteService, IShapeFactory shapeFactory)
+    public AdminController(
+        IClock clock,
+        ISiteService siteService,
+        IShapeFactory shapeFactory)
     {
+        _clock = clock;
         _siteService = siteService;
         _shapeFactory = shapeFactory;
     }
@@ -72,6 +78,7 @@ public class AdminController : Controller
         var siteSettings = await _siteService.LoadSiteSettingsAsync();
         siteSettings.Alter<BaseThemeSettings>(nameof(BaseThemeSettings), settings =>
         {
+            settings.TimeStamp = _clock.UtcNow.Ticks;
             settings.Icon = viewModel.Icon;
             settings.HideMenu = viewModel.HideMenu;
         });
