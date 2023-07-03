@@ -12,11 +12,9 @@
         T["An error has occurred while handing the icon media editor. Please reload the page and try again!"].Json();
 }
 
-<div id="baseThemeSettings_error" class="col-md-6 col-sm message-error">&nbsp;</div>
+<h2 class="baseThemeSettings_title">@RenderTitleSegments(T["Lombiq Base Theme Settings"])</h2>
 
-<h2>@RenderTitleSegments(T["Lombiq Base Theme Settings"])</h2>
-
-<form id="baseThemeSettings_form" method="post" asp-action="Update">
+<form class="baseThemeSettings_form" method="post" asp-action="Update">
     @await DisplayAsync(Model.Editor)
     
     <input asp-for="Icon" type="hidden"/>
@@ -31,10 +29,12 @@
 
 <script at="Foot" depends-on="jQuery">
     jQuery(($) => {
-        const $errorBox = $('#baseThemeSettings_error').hide();
         const iconInput = document.getElementById(@Html.IdFor(model => model.Icon).JsonHtmlContent());
+        const $errorBox = $('<div class="col-md-6 col-sm message-error">&nbsp;</div>')
+            .before('.baseThemeSettings_title')
+            .hide();
 
-        $('#baseThemeSettings_form').submit(() => {
+        $('.baseThemeSettings_form').submit(() => {
             try {
                 $errorBox.hide()
                 iconInput.value = null;
