@@ -34,17 +34,16 @@ public class AdminController : Controller
     {
         var section = (await _siteService.LoadSiteSettingsAsync()).As<BaseThemeSettings>();
 
-        return View(new BaseThemeSettingsViewModel
+        var model = new BaseThemeSettingsViewModel
         {
             HideMenu = section.HideMenu,
             Icon = section.Icon,
             Editor = await _shapeFactory.CreateAsync<EditMediaFieldViewModel>("MediaField_Edit", editor =>
             {
                 var part = CreatePart(section);
-                var icon = part.Icon;
 
-                editor.Paths = JsonConvert.SerializeObject(new[] { section.Icon });
-                editor.Field = icon;
+                editor.Paths = JsonConvert.SerializeObject(new[] { section.Icon }.WhereNot(string.IsNullOrEmpty));
+                editor.Field = part.Icon;
                 editor.Part = part;
                 editor.PartFieldDefinition = new ContentPartFieldDefinition(
                     new ContentFieldDefinition(nameof(BaseThemeSettingsPart.Icon)),
@@ -54,7 +53,11 @@ public class AdminController : Controller
                     PartDefinition = new ContentPartDefinition(nameof(BaseThemeSettingsPart)),
                 };
             }),
-        });
+        };
+
+        model.Editor.Metadata.OnDisplaying(context => context.DisplayContext.HtmlFieldPrefix = nameof(model.Editor));
+
+        return View(model);
     }
 
     public async Task<IActionResult> Update([FromBody] BaseThemeSettingsViewModel viewModel)
