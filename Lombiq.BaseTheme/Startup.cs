@@ -32,6 +32,7 @@ public class Startup : StartupBase
         services.AddDataMigration<RecipeMigrations>();
 
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
+        services.AddScoped<IResourceFilterProvider, IconResourceFilter>();
 
         PerTenantShapeTableManager.ReplaceDefaultShapeTableManager(services);
         services.AddScoped<INavigationProvider, MainMenuNavigationProvider>();

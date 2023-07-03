@@ -1,27 +1,12 @@
-@using OrchardCore.Media
-@using OrchardCore.Settings
-@using OrchardCore.Entities
 <!DOCTYPE html>
 
 @inject ICssClassHolder CssClassHolder
-@inject IMediaFileStore MediaFileStore
-@inject ISiteService SiteService
-
-@{
-    var settings = (await SiteService.GetSiteSettingsAsync()).As<BaseThemeSettings>() ?? new BaseThemeSettings();
-}
 
 <html lang="@Orchard.CultureName()">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><shape type="PageTitle"></shape></title>
-    
-    @if (!string.IsNullOrEmpty(settings.Icon))
-    {
-        var icon = $"{MediaFileStore.MapPathToPublicUrl(settings.Icon)}?at={settings.TimeStamp.ToTechnicalString()}";
-        <link type="image/x-icon" rel="shortcut icon" href="@icon"/>
-    }
 
     <script asp-name="bootstrap"></script>
     <script asp-name="@ResourceNames.Helpers"></script>
