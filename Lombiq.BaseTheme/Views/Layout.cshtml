@@ -8,7 +8,7 @@
 @inject ISiteService SiteService
 
 @{
-    var icon = (await SiteService.GetSiteSettingsAsync()).As<BaseThemeSettings>()?.Icon;
+    var settings = (await SiteService.GetSiteSettingsAsync()).As<BaseThemeSettings>() ?? new BaseThemeSettings();
 }
 
 <html lang="@Orchard.CultureName()">
@@ -17,9 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><shape type="PageTitle"></shape></title>
     
-    @if (!string.IsNullOrEmpty(icon))
+    @if (!string.IsNullOrEmpty(settings.Icon))
     {
-        <link type="image/x-icon" rel="shortcut icon" href="@MediaFileStore.MapPathToPublicUrl(icon)"/>
+        var icon = $"{MediaFileStore.MapPathToPublicUrl(settings.Icon)}?at={settings.TimeStamp.ToTechnicalString()}";
+        <link type="image/x-icon" rel="shortcut icon" href="@icon"/>
     }
 
     <script asp-name="bootstrap"></script>
