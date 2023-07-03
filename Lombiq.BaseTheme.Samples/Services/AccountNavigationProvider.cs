@@ -55,3 +55,5 @@ public class AccountNavigationProvider : MainMenuNavigationProviderBase
 }
 
 // END OF TRAINING SECTION: Front-end navigation via the "main" menu
+
+// NEXT STATION: Migrations/RecipeMigrations.cs

@@ -1,5 +1,7 @@
 {
   "steps": [
+    // You can add an icon as a regular media file and then pick it from the editor, or just have media and settings 
+    // steps in your recipe like below.
     {
       "name": "media",
       "Files": [
@@ -16,10 +18,16 @@
     {
       "name": "settings",
       "BaseThemeSettings": {
+        // The HideMenu can be used if you don't want to use the Boostrap main menu widget injected by the base theme.
         "HideMenu": false,
+        // You can set a single icon using a media path, so the same as the TargetPath in the recipe's media step.
         "Icon": "Icons/favicon.ico",
+        // The time stamp is a UTC DateTime.Ticks value, you can make it any random long number in the recipe because 
+        // the chance that the next save will have the exact same ticks is vanishingly low.
         "TimeStamp": 638240128517358149
       }
     }
   ]
 }
+
+// END OF TRAINING SECTION: Set up favicon using recipe migrations
