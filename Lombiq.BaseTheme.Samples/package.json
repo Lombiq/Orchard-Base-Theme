@@ -22,10 +22,6 @@
         "sources": [ "Assets" ],
         "pattern": "Theme.png",
         "target": "wwwroot"
-      },
-      {
-        "sources": [ "Assets/Icons" ],
-        "target": "wwwroot/icons"
       }
     ]
   },
