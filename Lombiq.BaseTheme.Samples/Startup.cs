@@ -1,9 +1,11 @@
+using Lombiq.BaseTheme.Samples.Migrations;
 using Lombiq.DataTables.Samples.Navigation;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
@@ -22,6 +24,9 @@ public class Startup : StartupBase
 
         // This service provides configuration to the ResourceFilterMiddleware.
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
+
+        // The recipe migration is used to add the media items and Base Theme settings required for the correct favicon. 
+        services.AddDataMigration<RecipeMigrations>();
     }
 
     public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>

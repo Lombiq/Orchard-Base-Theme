@@ -1,0 +1,17 @@
+{
+  "steps": [
+    {
+      "name": "media",
+      "Files": [
+        {
+          "SourcePath": "Icons/favicon.ico",
+          "TargetPath": "Icons/favicon.ico"
+        },
+        {
+          "SourcePath": "Icons/oc-favicon.ico",
+          "TargetPath": "Icons/oc-favicon.ico"
+        }
+      ]
+    }
+  ]
+}
