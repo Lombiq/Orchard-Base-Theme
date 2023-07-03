@@ -12,6 +12,14 @@
           "TargetPath": "Icons/oc-favicon.ico"
         }
       ]
+    },
+    {
+      "name": "settings",
+      "BaseThemeSettings": {
+        "HideMenu": false,
+        "Icon": "Icons/favicon.ico",
+        "TimeStamp": 638240128517358149
+      }
     }
   ]
 }
