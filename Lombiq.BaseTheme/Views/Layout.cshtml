@@ -1,13 +1,26 @@
+@using OrchardCore.Media
+@using OrchardCore.Settings
+@using OrchardCore.Entities
 <!DOCTYPE html>
 
 @inject ICssClassHolder CssClassHolder
+@inject IMediaFileStore MediaFileStore
+@inject ISiteService SiteService
+
+@{
+    var icon = (await SiteService.GetSiteSettingsAsync()).As<BaseThemeSettings>()?.Icon;
+}
 
 <html lang="@Orchard.CultureName()">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><shape type="PageTitle"></shape></title>
-    <link type="image/x-icon" rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />
+    
+    @if (!string.IsNullOrEmpty(icon))
+    {
+        <link type="image/x-icon" rel="shortcut icon" href="@MediaFileStore.MapPathToPublicUrl(icon)"/>
+    }
 
     <script asp-name="bootstrap"></script>
     <script asp-name="@ResourceNames.Helpers"></script>

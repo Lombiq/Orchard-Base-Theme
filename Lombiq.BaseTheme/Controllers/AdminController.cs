@@ -42,13 +42,18 @@ public class AdminController : Controller
             {
                 var part = CreatePart(section);
 
-                editor.Paths = JsonConvert.SerializeObject(new[] { section.Icon }.WhereNot(string.IsNullOrEmpty));
+                editor.Paths = string.IsNullOrWhiteSpace(section.Icon)
+                    ? "[]"
+                    : JsonConvert.SerializeObject(new[] { new { path = section.Icon } });
                 editor.Field = part.Icon;
                 editor.Part = part;
                 editor.PartFieldDefinition = new ContentPartFieldDefinition(
                     new ContentFieldDefinition(nameof(BaseThemeSettingsPart.Icon)),
                     nameof(BaseThemeSettingsPart.Icon),
-                    JObject.FromObject(new Dictionary<string, object> { [nameof(MediaFieldSettings)] = new MediaFieldSettings() }))
+                    JObject.FromObject(new Dictionary<string, object>
+                    {
+                        [nameof(MediaFieldSettings)] = new MediaFieldSettings { Multiple = false },
+                    }))
                 {
                     PartDefinition = new ContentPartDefinition(nameof(BaseThemeSettingsPart)),
                 };
@@ -60,7 +65,9 @@ public class AdminController : Controller
         return View(model);
     }
 
-    public async Task<IActionResult> Update([FromBody] BaseThemeSettingsViewModel viewModel)
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Update([FromForm] BaseThemeSettingsViewModel viewModel)
     {
         var siteSettings = await _siteService.LoadSiteSettingsAsync();
         siteSettings.Alter<BaseThemeSettings>(nameof(BaseThemeSettings), settings =>
