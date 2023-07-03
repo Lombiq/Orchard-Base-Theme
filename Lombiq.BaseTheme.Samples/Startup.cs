@@ -25,7 +25,7 @@ public class Startup : StartupBase
         // This service provides configuration to the ResourceFilterMiddleware.
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();
 
-        // The recipe migration is used to add the media items and Base Theme settings required for the correct favicon. 
+        // The recipe migration is used to add the media items and Base Theme settings required for the correct favicon.
         services.AddDataMigration<RecipeMigrations>();
     }
 
