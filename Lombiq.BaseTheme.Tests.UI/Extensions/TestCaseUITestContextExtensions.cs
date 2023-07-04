@@ -107,7 +107,7 @@ public static class TestCaseUITestContextExtensions
 
         selectFromMediaLibraryAsync ??= async () =>
         {
-            await context.ClickReliablyOnAsync(By.XPath("//div[contains(@class, 'folder-name') and contains(., 'Icons')]"));
+            await context.ClickReliablyOnAsync(By.XPath("//div[contains(@class, 'folder-name') and contains(., 'Icons')]").OfAnyVisibility());
             await context.ClickReliablyOnAsync(By.XPath(
                 "//tr[contains(@class, 'media-item') and .//div[contains(@class, 'media-name-cell') and contains(., ' oc-favicon.ico ')]]"));
             await context.ClickReliablyOnAsync(By.ClassName("mediaFieldSelectButton"));
