@@ -8,6 +8,7 @@ namespace Lombiq.BaseTheme.Samples.Migrations;
 // create an UpdateFrom1Async, UpdateFrom2Async, etc as usual, but all you have to put in it is ExecuteAsync(N) to
 // invoke the corresponding "{module-or-theme-id}.UpdateFromN.recipe.json" recipe and return the incremented version
 // number.
+// If you just want a static default icon, check out the DerivedTheme.Favicon in Manifest.cs!
 public class RecipeMigrations : RecipeMigrationsBase
 {
     public RecipeMigrations(IRecipeMigrator recipeMigrator)
