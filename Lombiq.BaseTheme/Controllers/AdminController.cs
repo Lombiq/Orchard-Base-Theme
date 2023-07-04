@@ -2,11 +2,13 @@
 using Lombiq.BaseTheme.ViewModels;
 using Lombiq.HelpfulExtensions.Extensions.ContentTypes;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.DisplayManagement;
+using OrchardCore.DisplayManagement.Notify;
 using OrchardCore.Entities;
 using OrchardCore.Media.Fields;
 using OrchardCore.Media.Settings;
@@ -23,17 +25,24 @@ namespace Lombiq.BaseTheme.Controllers;
 public class AdminController : Controller
 {
     private readonly IClock _clock;
+    private readonly INotifier _notifier;
     private readonly ISiteService _siteService;
     private readonly IShapeFactory _shapeFactory;
+    private readonly IHtmlLocalizer<AdminController> H;
 
     public AdminController(
         IClock clock,
+        INotifier notifier,
         ISiteService siteService,
-        IShapeFactory shapeFactory)
+        IShapeFactory shapeFactory,
+        IHtmlLocalizer<AdminController> htmlLocalizer)
     {
         _clock = clock;
+        _notifier = notifier;
         _siteService = siteService;
         _shapeFactory = shapeFactory;
+
+        H = htmlLocalizer;
     }
 
     public async Task<IActionResult> Index()
@@ -84,6 +93,8 @@ public class AdminController : Controller
         });
 
         await _siteService.UpdateSiteSettingsAsync(siteSettings);
+        await _notifier.SuccessAsync(H["Site settings updated successfully."]);
+
         return RedirectToAction(nameof(Index));
     }
 
