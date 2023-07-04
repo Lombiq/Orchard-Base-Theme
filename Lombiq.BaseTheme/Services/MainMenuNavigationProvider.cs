@@ -1,4 +1,4 @@
-﻿using AngleSharp.Dom;
+using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Http;
@@ -107,6 +107,9 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
         }
     }
 
+    // This and UseDisplayUrl(), and the other changes to this class under
+    // https://github.com/Lombiq/Orchard-Base-Theme/pull/74/files#diff-6dca81c4abae780b06f901d2ab84eb1e6d369e8d842da264a89199dfbaf11071
+    // may be reverted once https://github.com/OrchardCMS/OrchardCore/issues/13943 is fixed by an Orchard Core upgrade.
     private string GetUrl(string contentPath) => _urlHelperLazy.Value.Content(contentPath);
 
     private void UseDisplayUrl(NavigationItemBuilder menu, IContent content) =>
