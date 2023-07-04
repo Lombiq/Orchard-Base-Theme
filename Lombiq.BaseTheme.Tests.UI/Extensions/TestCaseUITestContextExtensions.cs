@@ -97,17 +97,12 @@ public static class TestCaseUITestContextExtensions
         await context.GoToAdminRelativeUrlAsync("/Lombiq.BaseTheme/Admin/Index");
         await context.SetCheckboxValueAsync(By.Id("HideMenu"), isChecked: true);
 
-        var byDeleteButton = By.CssSelector(".inline-media-button.delete-button").OfAnyVisibility();
-        if (context.Exists(byDeleteButton))
-        {
-            // We have to click on two different delete buttons in a sequence.
-            await context.ClickReliablyOnAsync(byDeleteButton);
-            await context.ClickReliablyOnAsync(byDeleteButton);
-        }
+        var byDeleteButton = By.CssSelector("#Editor .delete-button").OfAnyVisibility();
+        while (context.Exists(byDeleteButton.Safely())) await context.ClickReliablyOnAsync(byDeleteButton);
 
         selectFromMediaLibraryAsync ??= async () =>
         {
-            await context.ClickReliablyOnAsync(By.XPath("//div[contains(@class, 'folder-name') and contains(., 'Icons')]").OfAnyVisibility());
+            await context.ClickReliablyOnAsync(By.XPath("//div[contains(@class, 'folder-name') and contains(., 'Icons')]"));
             await context.ClickReliablyOnAsync(By.XPath(
                 "//tr[contains(@class, 'media-item') and .//div[contains(@class, 'media-name-cell') and contains(., ' oc-favicon.ico ')]]"));
             await context.ClickReliablyOnAsync(By.ClassName("mediaFieldSelectButton"));
