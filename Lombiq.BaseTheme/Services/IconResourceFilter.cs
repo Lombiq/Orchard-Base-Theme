@@ -52,7 +52,7 @@ public class IconResourceFilter : IResourceFilterProvider
                 }
 
                 // If the site setting icon is set, that should take priority.
-                if ((await _siteService.GetSiteSettingsAsync()).As<BaseThemeSettings>() is { } settings && 
+                if ((await _siteService.GetSiteSettingsAsync()).As<BaseThemeSettings>() is { } settings &&
                     !string.IsNullOrEmpty(settings.Icon))
                 {
                     var path = _mediaFileStore.MapPathToPublicUrl(settings.Icon);
