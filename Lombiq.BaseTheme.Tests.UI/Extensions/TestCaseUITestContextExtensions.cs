@@ -1,3 +1,4 @@
+using Atata;
 using Lombiq.Tests.UI.Extensions;
 using Lombiq.Tests.UI.Services;
 using OpenQA.Selenium;
@@ -86,5 +87,36 @@ public static class TestCaseUITestContextExtensions
             .Text
             .Trim()
             .ShouldBe("My Content");
+    }
+
+    public static async Task TestBaseThemeSiteSettingsAsync(
+        this UITestContext context,
+        Func<Task> selectFromMediaLibraryAsync = null,
+        By byIcon = null)
+    {
+        await context.GoToAdminRelativeUrlAsync("/Lombiq.BaseTheme/Admin/Index");
+        await context.SetCheckboxValueAsync(By.Id("HideMenu"), isChecked: true);
+
+        var byDeleteButton = By.CssSelector("#Editor .delete-button").OfAnyVisibility();
+        while (context.Exists(byDeleteButton.Safely())) await context.ClickReliablyOnAsync(byDeleteButton);
+
+        selectFromMediaLibraryAsync ??= async () =>
+        {
+            await context.ClickReliablyOnAsync(By.XPath("//div[contains(@class, 'folder-name') and contains(., 'Icons')]"));
+            await context.ClickReliablyOnAsync(By.XPath(
+                "//tr[contains(@class, 'media-item') and .//div[contains(@class, 'media-name-cell') and contains(., ' oc-favicon.ico ')]]"));
+            await context.ClickReliablyOnAsync(By.ClassName("mediaFieldSelectButton"));
+        };
+        byIcon ??= By.CssSelector("head link[href*='/media/Icons/oc-favicon.ico'][rel='shortcut icon'][type='image/x-icon']");
+
+        await context.ClickReliablyOnAsync(By.CssSelector("#Editor .btn-group .btn-secondary:not([disabled]):not(.disabled)"));
+        await selectFromMediaLibraryAsync();
+
+        await context.ClickReliablyOnAsync(By.ClassName("save"));
+        context.ShouldBeSuccess("Site settings updated successfully.");
+
+        await context.GoToHomePageAsync();
+        context.Exists(byIcon.OfAnyVisibility());
+        context.Missing(By.CssSelector("#navigation .menuWidget__content"));
     }
 }

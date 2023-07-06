@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Lombiq.HelpfulLibraries.OrchardCore.TagHelpers
+@using Microsoft.AspNetCore.Mvc.Localization
+@using OrchardCore.Media.ViewModels
+
+@model Lombiq.BaseTheme.ViewModels.BaseThemeSettingsViewModel
+
+@{
+    const string editorId = $"{nameof(Model.Editor)}_{nameof(EditMediaFieldViewModel.Paths)}";
+
+    var errorMessage = 
+        T["An error has occurred while handing the icon media editor. Please reload the page and try again!"].Json();
+}
+
+<h2 class="baseThemeSettings_title">@RenderTitleSegments(T["Lombiq Base Theme Settings"])</h2>
+
+<form class="baseThemeSettings_form" method="post" asp-action="Update">
+    @await DisplayAsync(Model.Editor)
+    
+    <input asp-for="Icon" type="hidden"/>
+
+    <fieldset asp-for="HideMenu"
+              label="@T["Hide Main Menu"]"
+              hint="@T["Check this if you don't use the main menu widget and want to hide it."]"
+              type="checkbox"></fieldset>
+
+    <button type="submit" class="save btn btn-primary">@T["Save"]</button>
+</form>
+
+<script at="Foot" depends-on="jQuery">
+    jQuery(($) => {
+        const iconInput = document.getElementById(@Html.IdFor(model => model.Icon).JsonHtmlContent());
+        const $errorBox = $('<div class="col-md-6 col-sm message-error">&nbsp;</div>')
+            .before('.baseThemeSettings_title')
+            .hide();
+
+        $('.baseThemeSettings_form').submit(() => {
+            try {
+                $errorBox.hide()
+                iconInput.value = null;
+                
+                const editorValue = document.getElementById(@editorId.JsonHtmlContent())?.value;
+                if (!editorValue) return true;
+                
+                const mediaPath = JSON.parse(editorValue)[0]?.path;
+                if (mediaPath) iconInput.value = mediaPath;
+            }
+            catch (error) {
+                $errorBox.text(@errorMessage).show();
+                return false;
+            }
+        });
+    });
+</script>

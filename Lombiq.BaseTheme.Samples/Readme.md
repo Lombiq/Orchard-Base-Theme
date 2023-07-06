@@ -21,3 +21,4 @@ You can start with any of the top-level sections, but the indented sections shou
   - [Layout injection](Views/Widget-LayoutInjection.cshtml)
   - [Sass styling and structure](Assets/Styles/site.scss)
 - [Front-end navigation via the `"main"` menu](Services/AccountNavigationProvider.cs)
+- [Set up favicon using recipe migrations](Migrations/RecipeMigrations.cs)
