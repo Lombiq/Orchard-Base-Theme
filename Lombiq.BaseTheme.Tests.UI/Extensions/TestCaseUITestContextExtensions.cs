@@ -100,7 +100,11 @@ public static class TestCaseUITestContextExtensions
         var byDeleteButton = By.CssSelector("#Editor .delete-button").OfAnyVisibility();
         while (context.Exists(byDeleteButton.Safely()))
         {
+            await context.GoToAdminRelativeUrlAsync("/Lombiq.BaseTheme/Admin/Index");
+            context.WaitForPageLoad();
+            await Task.Delay(1000);
             await context.ClickReliablyOnAsync(byDeleteButton.Safely());
+            await Task.Delay(1000);
             await context.GoToAdminRelativeUrlAsync("/Lombiq.BaseTheme/Admin/Index");
             context.WaitForPageLoad();
         }
