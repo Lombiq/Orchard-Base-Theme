@@ -98,7 +98,12 @@ public static class TestCaseUITestContextExtensions
         await context.SetCheckboxValueAsync(By.Id("HideMenu"), isChecked: true);
 
         var byDeleteButton = By.CssSelector("#Editor .delete-button").OfAnyVisibility();
-        while (context.Exists(byDeleteButton.Safely())) await context.ClickReliablyOnAsync(byDeleteButton);
+        while (context.Exists(byDeleteButton.Safely()))
+        {
+            await context.GoToAdminRelativeUrlAsync("/Lombiq.BaseTheme/Admin/Index");
+            context.WaitForPageLoad();
+            await context.ClickReliablyOnAsync(byDeleteButton);
+        }
 
         selectFromMediaLibraryAsync ??= async () =>
         {
