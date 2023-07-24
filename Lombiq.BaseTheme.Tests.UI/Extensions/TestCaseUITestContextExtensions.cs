@@ -97,12 +97,12 @@ public static class TestCaseUITestContextExtensions
         await context.GoToAdminRelativeUrlAsync("/Lombiq.BaseTheme/Admin/Index");
         await context.SetCheckboxValueAsync(By.Id("HideMenu"), isChecked: true);
 
-        var byDeleteButton = By.CssSelector("#Editor .delete-button").OfAnyVisibility();
-        while (context.Exists(byDeleteButton.Safely()))
-        {
-            await context.ClickReliablyOnAsync(byDeleteButton.Safely());
-            await Task.Delay(1000);
-        }
+        var deletButtonCssClasses = "#Editor .delete-button";
+        context.Exists(By.CssSelector(deletButtonCssClasses).OfAnyVisibility());
+
+        // We need to click on this button with JavaScirpt, since it appears and moves when the UI test tries to click
+        // it with "await context.ClickReliablyOnAsync", causing flakiness.
+        context.ExecuteScript("document.querySelector('" + deletButtonCssClasses + "').click();");
 
         selectFromMediaLibraryAsync ??= async () =>
         {
