@@ -98,7 +98,11 @@ public static class TestCaseUITestContextExtensions
         await context.SetCheckboxValueAsync(By.Id("HideMenu"), isChecked: true);
 
         var byDeleteButton = By.CssSelector("#Editor .delete-button").OfAnyVisibility();
-        while (context.Exists(byDeleteButton.Safely())) await context.Get(byDeleteButton).ClickReliablyAsync(context);
+        while (context.Exists(byDeleteButton.Safely()))
+        {
+            await context.ClickReliablyOnAsync(byDeleteButton.Safely());
+            await Task.Delay(1000);
+        }
 
         selectFromMediaLibraryAsync ??= async () =>
         {
