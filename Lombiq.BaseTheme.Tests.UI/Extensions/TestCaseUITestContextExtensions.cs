@@ -97,12 +97,8 @@ public static class TestCaseUITestContextExtensions
         await context.GoToAdminRelativeUrlAsync("/Lombiq.BaseTheme/Admin/Index");
         await context.SetCheckboxValueAsync(By.Id("HideMenu"), isChecked: true);
 
-        var deleteButtonCssClasses = "#Editor .delete-button";
-        context.Exists(By.CssSelector(deleteButtonCssClasses).OfAnyVisibility());
-
-        // We need to click on this button with JS, since it appears and moves when the UI test tries to click
-        // it with "await context.ClickReliablyOnAsync", causing flakiness.
-        context.ExecuteScript("document.querySelector('" + deleteButtonCssClasses + "').click();");
+        await context.ClickReliablyOnAsync(By.XPath("//div[contains(@class, 'thumb-container')]"));
+        await context.ClickReliablyOnAsync(By.CssSelector("#Editor .delete-button").OfAnyVisibility());
 
         selectFromMediaLibraryAsync ??= async () =>
         {
@@ -113,6 +109,9 @@ public static class TestCaseUITestContextExtensions
         };
         byIcon ??= By.CssSelector("head link[href*='/media/Icons/oc-favicon.ico'][rel='shortcut icon'][type='image/x-icon']");
 
+        // We are saving the settings, so we leave some time for the editor button to appear, without using
+        // Task.Delay().
+        await context.ClickReliablyOnSubmitAsync();
         await context.ClickReliablyOnAsync(By.CssSelector("#Editor .btn-group .btn-secondary:not([disabled]):not(.disabled)"));
         await selectFromMediaLibraryAsync();
 
