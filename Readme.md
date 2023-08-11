@@ -2,6 +2,8 @@
 
 [![Lombiq.BaseTheme NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme)](https://www.nuget.org/packages/Lombiq.BaseTheme/) [![Lombiq.BaseTheme.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Samples)](https://www.nuget.org/packages/Lombiq.BaseTheme.Samples/) [![Lombiq.BaseTheme.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Tests.UI)](https://www.nuget.org/packages/Lombiq.BaseTheme.Tests.UI/)
 
+> ℹ This branch is a there for projects that mostly use Lombiq projects as NuGet packages, with the exception of Base Theme due to [this issue](https://github.com/Lombiq/NodeJs-Extensions/issues/16).
+
 ## About
 
 A common base theme for our Orchard Core themes using Bootstrap v5.2.3. It can contain any shared content that are not specific to a specific project's theme.
