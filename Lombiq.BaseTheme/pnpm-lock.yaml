@@ -1,15 +1,24 @@
-lockfileVersion: 5.4
+lockfileVersion: '6.0'
 
-specifiers:
-  bootstrap: 5.2.3
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 dependencies:
-  bootstrap: 5.2.3
+  bootstrap:
+    specifier: 5.2.3
+    version: 5.2.3(@popperjs/core@2.11.8)
 
 packages:
 
-  /bootstrap/5.2.3:
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: false
+
+  /bootstrap@5.2.3(@popperjs/core@2.11.8):
     resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
     peerDependencies:
       '@popperjs/core': ^2.11.6
+    dependencies:
+      '@popperjs/core': 2.11.8
     dev: false
