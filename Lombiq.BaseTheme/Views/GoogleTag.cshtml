@@ -7,22 +7,23 @@
 @inject IHostEnvironment HostEnvironment
 
 @{
+    var trackingConsentFeature = ViewContext.HttpContext.Features.Get<ITrackingConsentFeature>();
+}
+
+@if (HostEnvironment.IsProduction() && (trackingConsentFeature is null || trackingConsentFeature.CanTrack))
+{
     var viewModel = Model as GoogleTagViewModel ?? new GoogleTagViewModel 
     {
         GoogleTagPropertyId = Model.GoogleTagPropertyId,
         CookieDomain = Model.CookieDomain,
     };
-    var trackingConsentFeature = ViewContext.HttpContext.Features.Get<ITrackingConsentFeature>();
     var cookieDomain = string.Empty;
 
     if (!string.IsNullOrEmpty(viewModel.CookieDomain))
     {
         cookieDomain = $", {{'cookie_domain': '{viewModel.CookieDomain}' }}";
     }
-}
 
-@if (HostEnvironment.IsProduction() && (trackingConsentFeature is null || trackingConsentFeature.CanTrack))
-{
     <script async src="https://www.googletagmanager.com/gtag/js?id=@viewModel.GoogleTagPropertyId" at="Head"></script>
     <script at="Head">
         window.dataLayer = window.dataLayer || [];
