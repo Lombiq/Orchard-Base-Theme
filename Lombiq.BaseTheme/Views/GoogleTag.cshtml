@@ -1,29 +1,35 @@
-@model Lombiq.BaseTheme.ViewModels.GoogleTagViewModel
+@model dynamic
 
 @using Microsoft.AspNetCore.Http.Features;
 @using Microsoft.Extensions.Hosting;
-@using OrchardCore.Environment.Shell
+@using Lombiq.BaseTheme.ViewModels
 
 @inject IHostEnvironment HostEnvironment
 
 @{
     var trackingConsentFeature = ViewContext.HttpContext.Features.Get<ITrackingConsentFeature>();
-    var cookieDomain = string.Empty;
-
-    if (!string.IsNullOrEmpty(Model.CookieDomain))
-    {
-        cookieDomain = $", {{'cookie_domain': '{Model.CookieDomain}' }}";
-    }
 }
 
 @if (HostEnvironment.IsProduction() && (trackingConsentFeature is null || trackingConsentFeature.CanTrack))
 {
-    <script async src="https://www.googletagmanager.com/gtag/js?id=@Model.GoogleTagPropertyId" at="Head"></script>
+    var viewModel = Model as GoogleTagViewModel ?? new GoogleTagViewModel 
+    {
+        GoogleTagPropertyId = Model.GoogleTagPropertyId,
+        CookieDomain = Model.CookieDomain,
+    };
+    var cookieDomain = string.Empty;
+
+    if (!string.IsNullOrEmpty(viewModel.CookieDomain))
+    {
+        cookieDomain = $", {{'cookie_domain': '{viewModel.CookieDomain}' }}";
+    }
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@viewModel.GoogleTagPropertyId" at="Head"></script>
     <script at="Head">
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', '@Model.GoogleTagPropertyId'@Html.Raw(cookieDomain))
+        gtag('config', '@viewModel.GoogleTagPropertyId'@Html.Raw(cookieDomain))
     </script>
 }
