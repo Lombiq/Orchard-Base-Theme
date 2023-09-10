@@ -8,10 +8,9 @@
 @import "variables";
 
 :root {
-    // Fonts. We override some defaults to use Roboto everywhere because we need the same font for both Windows and
-    // Linux for the sake of platform independent visual verification testing and Roboto is distributed with a
-    // permissive license (Apache 2.0).
-    --bs-font-sans-serif: Roboto, sans-serif;
+    // Fonts. We override some defaults to use the same font everywhere so visual verification looks the same on both
+    // Windows and Linux. The font is picked for its common availability and permissive license (Apache 2.0).
+    --bs-font-sans-serif: Roboto, sans-serif; // #spell-check-ignore-line
     --font-default: var(--bs-font-sans-serif);
     --font-header: var(--bs-font-sans-serif);
     --font-size-default: 16px;
