@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+// All @font-face declarations.
+// -----------------------------------------------------------------------------
+
+@import "../abstracts/variables";
+
+@function font($path) {
+    @return url("/Lombiq.BaseTheme.Samples/fonts/" + $path);
+}
+
+@font-face {
+    font-family: $font-sans-serif;
+    src: font("Roboto-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

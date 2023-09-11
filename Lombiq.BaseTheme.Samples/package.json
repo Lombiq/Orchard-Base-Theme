@@ -24,6 +24,10 @@
         "target": "wwwroot"
       },
       {
+        "sources": [ "Assets/Fonts" ],
+        "target": "wwwroot/fonts"
+      },
+      {
         "sources": [ "Assets/Icons" ],
         "target": "wwwroot/icons"
       }
