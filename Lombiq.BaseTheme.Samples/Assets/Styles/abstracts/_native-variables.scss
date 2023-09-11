@@ -8,11 +8,8 @@
 @import "variables";
 
 :root {
-    // Fonts. We override some defaults to use the same font everywhere so visual verification looks the same on both
-    // Windows and Linux.
-    --bs-font-sans-serif: "#{$font-sans-serif}", sans-serif;
-    --font-default: var(--bs-font-sans-serif);
-    --font-header: var(--bs-font-sans-serif);
+    // Fonts
+    --font-default: "Arial", sans-serif;
     --font-size-default: 16px;
     --font-line-height-default: 18px;
     --font-header-size: 24px;
