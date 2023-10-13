@@ -11,7 +11,7 @@ You can find a sample module with a commented walkthrough in this repository. Ch
 We at [Lombiq](https://lombiq.com/) also used this theme for the following projects:
 
 - The new [Lombiq website](https://lombiq.com/) when migrating it from Orchard 1 to Orchard Core ([see case study](https://lombiq.com/blog/how-we-renewed-and-migrated-lombiq-com-from-orchard-1-to-orchard-core)).
-- The new [Show Orchard website](https://showorchard.com/) when migrating it from Orchard 1 DotNest to DotNest Core ([see case study](https://dotnest.com/blog/showorchard-case-study-migrating-an-orchard-1-dotnest-site-to-dotnest-core)).<!-- #spell-check-ignore-line -->
+- The new [Show Orchard website](https://showorchard.com/) when migrating it from Orchard 1 DotNest to DotNest Core ([see case study](https://dotnest.com/blog/show-orchard-case-study-migrating-an-orchard-1-dotnest-site-to-dotnest-core)).<!-- #spell-check-ignore-line -->
 
 This theme is also available on all sites of [DotNest, the Orchard SaaS](https://dotnest.com/).
 
