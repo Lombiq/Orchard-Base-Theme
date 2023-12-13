@@ -105,6 +105,9 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
         }
     }
 
-    private static LocalizedString GetTitle(ContentItem contentItem) =>
-        new(contentItem.DisplayText, contentItem.DisplayText);
+    private static LocalizedString GetTitle(ContentItem contentItem)
+    {
+        var displayText = contentItem.DisplayText ?? string.Empty;
+        return new LocalizedString(displayText, displayText);
+    }
 }
