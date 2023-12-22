@@ -4,7 +4,7 @@ using Lombiq.BaseTheme.Navigation;
 using Lombiq.BaseTheme.Permissions;
 using Lombiq.BaseTheme.Services;
 using Lombiq.DataTables.Navigation;
-using Lombiq.HelpfulLibraries.OrchardCore.DependencyInjection;
+using Lombiq.HelpfulLibraries.AspNetCore.Extensions;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
 using Microsoft.AspNetCore.Builder;
