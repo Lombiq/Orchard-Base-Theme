@@ -4,10 +4,10 @@ using Lombiq.BaseTheme.Navigation;
 using Lombiq.BaseTheme.Permissions;
 using Lombiq.BaseTheme.Services;
 using Lombiq.DataTables.Navigation;
+using Lombiq.HelpfulLibraries.AspNetCore.Extensions;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -26,7 +26,7 @@ public class Startup : StartupBase
     {
         services.AddScoped<ICssClassHolder, CssClassHolder>();
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
-        services.Configure<MvcOptions>(options => options.Filters.Add(typeof(MainMenuWidgetFilter)));
+        services.AddAsyncResultFilter<MainMenuWidgetFilter>();
 
         services.AddDataMigration<LayoutInjectionMigrations>();
         services.AddDataMigration<RecipeMigrations>();
