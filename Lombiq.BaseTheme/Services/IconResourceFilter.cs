@@ -1,8 +1,7 @@
-﻿using Lombiq.BaseTheme.Attributes;
+using Lombiq.BaseTheme.Attributes;
 using Lombiq.BaseTheme.Models;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 using OrchardCore;
-using OrchardCore.Entities;
 using OrchardCore.Media;
 using OrchardCore.ResourceManagement;
 using OrchardCore.Settings;

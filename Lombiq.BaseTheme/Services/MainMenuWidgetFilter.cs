@@ -1,4 +1,4 @@
-﻿using Lombiq.BaseTheme.Constants;
+using Lombiq.BaseTheme.Constants;
 using Lombiq.BaseTheme.Models;
 using Lombiq.HelpfulExtensions.Extensions.Widgets;
 using Lombiq.HelpfulExtensions.Extensions.Widgets.ViewModels;
@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using OrchardCore.DisplayManagement;
 using OrchardCore.DisplayManagement.Layout;
-using OrchardCore.Entities;
 using OrchardCore.Navigation;
 using OrchardCore.Settings;
 using System.Threading.Tasks;

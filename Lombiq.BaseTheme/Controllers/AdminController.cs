@@ -1,4 +1,4 @@
-﻿using Lombiq.BaseTheme.Models;
+using Lombiq.BaseTheme.Models;
 using Lombiq.BaseTheme.ViewModels;
 using Lombiq.HelpfulExtensions.Extensions.ContentTypes;
 using Microsoft.AspNetCore.Mvc;
@@ -108,8 +108,8 @@ public class AdminController : Controller
             Icon = new MediaField
             {
                 ContentItem = content,
-                MediaTexts = new[] { section.Icon },
-                Paths = new[] { section.Icon },
+                MediaTexts = [section.Icon],
+                Paths = [section.Icon],
             },
         });
 
