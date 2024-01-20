@@ -22,38 +22,22 @@ namespace Lombiq.BaseTheme.Controllers;
 
 // This controller is there for editing the BaseThemeSettings. We can't use a site settings driver for this, because you
 // can't declare admin-accessible shapes in a site theme.
-public class AdminController : Controller
+public class AdminController(
+    IClock clock,
+    INotifier notifier,
+    ISiteService siteService,
+    IShapeFactory shapeFactory,
+    IHtmlLocalizer<AdminController> htmlLocalizer) : Controller
 {
-    private readonly IClock _clock;
-    private readonly INotifier _notifier;
-    private readonly ISiteService _siteService;
-    private readonly IShapeFactory _shapeFactory;
-    private readonly IHtmlLocalizer<AdminController> H;
-
-    public AdminController(
-        IClock clock,
-        INotifier notifier,
-        ISiteService siteService,
-        IShapeFactory shapeFactory,
-        IHtmlLocalizer<AdminController> htmlLocalizer)
-    {
-        _clock = clock;
-        _notifier = notifier;
-        _siteService = siteService;
-        _shapeFactory = shapeFactory;
-
-        H = htmlLocalizer;
-    }
-
     public async Task<IActionResult> Index()
     {
-        var section = (await _siteService.LoadSiteSettingsAsync()).As<BaseThemeSettings>();
+        var section = (await siteService.LoadSiteSettingsAsync()).As<BaseThemeSettings>();
 
         var model = new BaseThemeSettingsViewModel
         {
             HideMenu = section.HideMenu,
             Icon = section.Icon,
-            Editor = await _shapeFactory.CreateAsync<EditMediaFieldViewModel>("MediaField_Edit", editor =>
+            Editor = await shapeFactory.CreateAsync<EditMediaFieldViewModel>("MediaField_Edit", editor =>
             {
                 var part = CreatePart(section);
 
@@ -84,16 +68,16 @@ public class AdminController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Update([FromForm] BaseThemeSettingsViewModel viewModel)
     {
-        var siteSettings = await _siteService.LoadSiteSettingsAsync();
+        var siteSettings = await siteService.LoadSiteSettingsAsync();
         siteSettings.Alter<BaseThemeSettings>(nameof(BaseThemeSettings), settings =>
         {
-            settings.TimeStamp = _clock.UtcNow.Ticks;
+            settings.TimeStamp = clock.UtcNow.Ticks;
             settings.Icon = viewModel.Icon;
             settings.HideMenu = viewModel.HideMenu;
         });
 
-        await _siteService.UpdateSiteSettingsAsync(siteSettings);
-        await _notifier.SuccessAsync(H["Site settings updated successfully."]);
+        await siteService.UpdateSiteSettingsAsync(siteSettings);
+        await notifier.SuccessAsync(htmlLocalizer["Site settings updated successfully."]);
 
         return RedirectToAction(nameof(Index));
     }

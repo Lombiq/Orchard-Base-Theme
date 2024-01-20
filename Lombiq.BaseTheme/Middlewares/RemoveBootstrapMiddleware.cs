@@ -21,13 +21,9 @@ namespace Lombiq.BaseTheme.Middlewares;
 /// (such as Lombiq.DataTables) depends on Bootstrap and doesn't explicitly depend on Lombiq.BaseTheme so the built-in
 /// resource would be injected if this middleware didn't remove it.
 /// </summary>
-public class RemoveBootstrapMiddleware
+public class RemoveBootstrapMiddleware(RequestDelegate next)
 {
     private static readonly object _lock = new();
-
-    private readonly RequestDelegate _next;
-
-    public RemoveBootstrapMiddleware(RequestDelegate next) => _next = next;
 
     public async Task InvokeAsync(
         HttpContext context,
@@ -44,7 +40,7 @@ public class RemoveBootstrapMiddleware
             if (resourcesToClear.Any()) ClearResources(resourcesToClear);
         }
 
-        await _next(context);
+        await next(context);
     }
 
     private static bool IsCurrentTheme(IExtensionInfo currentSiteTheme) =>

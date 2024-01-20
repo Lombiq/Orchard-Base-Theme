@@ -1,4 +1,4 @@
-﻿using Lombiq.HelpfulLibraries.OrchardCore.Data;
+using Lombiq.HelpfulLibraries.OrchardCore.Data;
 using OrchardCore.Recipes.Services;
 
 namespace Lombiq.BaseTheme.Samples.Migrations;
@@ -9,12 +9,8 @@ namespace Lombiq.BaseTheme.Samples.Migrations;
 // invoke the corresponding "{module-or-theme-id}.UpdateFromN.recipe.json" recipe and return the incremented version
 // number.
 // If you just want a static default icon, check out the DerivedTheme.Favicon in Manifest.cs!
-public class RecipeMigrations : RecipeMigrationsBase
+public class RecipeMigrations(IRecipeMigrator recipeMigrator) : RecipeMigrationsBase(recipeMigrator)
 {
-    public RecipeMigrations(IRecipeMigrator recipeMigrator)
-        : base(recipeMigrator)
-    {
-    }
 }
 
 // NEXT STATION: Migrations/Lombiq.BaseTheme.Samples.UpdateFrom0.recipe.json

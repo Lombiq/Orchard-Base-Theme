@@ -11,24 +11,17 @@ using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Models;
 
-public class ZoneDescriptor
+public class ZoneDescriptor(string zoneName = null, string elementName = null, bool wrapBody = false)
 {
     public const string LayoutElementClassName = "layoutElement";
     public const string LeafClassName = LayoutElementClassName + "_leaf";
 
-    public string ZoneName { get; set; }
-    public string ElementName { get; set; }
-    public bool WrapBody { get; set; }
+    public string ZoneName { get; set; } = zoneName;
+    public string ElementName { get; set; } = elementName;
+    public bool WrapBody { get; set; } = wrapBody;
 
     public IEnumerable<ZoneDescriptor> ChildrenBefore { get; set; }
     public IEnumerable<ZoneDescriptor> ChildrenAfter { get; set; }
-
-    public ZoneDescriptor(string zoneName = null, string elementName = null, bool wrapBody = false)
-    {
-        ZoneName = zoneName;
-        ElementName = elementName;
-        WrapBody = wrapBody;
-    }
 
     public async Task<IHtmlContent> DisplayZoneAsync<TModel>(
         ICssClassHolder classHolder,
