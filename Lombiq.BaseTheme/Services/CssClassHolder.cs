@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace Lombiq.BaseTheme.Services;
 
 public class CssClassHolder : ICssClassHolder
 {
-    private readonly Dictionary<string, HashSet<string>> _classesByZones = new();
+    private readonly Dictionary<string, HashSet<string>> _classesByZones = [];
 
     public ISet<string> Body { get; } = new HashSet<string>();
 
@@ -17,7 +17,7 @@ public class CssClassHolder : ICssClassHolder
     {
         if (_classesByZones.TryGetValue(zoneName, out var classes)) return classes;
 
-        classes = new();
+        classes = [];
         _classesByZones[zoneName] = classes;
         return classes;
     }

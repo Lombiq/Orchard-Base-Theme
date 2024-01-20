@@ -37,7 +37,7 @@ public class RemoveBootstrapMiddleware(RequestDelegate next)
             resourcesToClear.AddRange(GetResourcesToClear(resourceManagementOptions, "script", keepNewest: true));
 
             // This only happens once per tenant process instance, so locking is rare.
-            if (resourcesToClear.Any()) ClearResources(resourcesToClear);
+            if (resourcesToClear.Count != 0) ClearResources(resourcesToClear);
         }
 
         await next(context);
