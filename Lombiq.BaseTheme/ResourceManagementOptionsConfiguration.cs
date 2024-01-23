@@ -13,7 +13,7 @@ public class ResourceManagementOptionsConfiguration : IConfigureOptions<Resource
     private const string Vendors = WwwRoot + "vendors/";
 
     // Make sure to keep this exactly the same version as the "bootstrap" dependency in the package.json file.
-    public static readonly Version NpmBootstrapVersion = new(5, 2, 3);
+    public static readonly Version NpmBootstrapVersion = new(5, 3, 2);
 
     private static readonly ResourceManifest _manifest = new();
 

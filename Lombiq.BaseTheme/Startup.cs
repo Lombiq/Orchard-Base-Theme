@@ -41,6 +41,8 @@ public class Startup : StartupBase
         services.AddScoped<INavigationProvider, BaseThemeSettingsAdminMenu>();
     }
 
-    public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
-        app.UseMiddleware<RemoveBootstrapMiddleware>();
+#pragma warning disable S125 // Sections of code should not be commented out
+    // public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
+    //    app.UseMiddleware<RemoveBootstrapMiddleware>();
 }
+#pragma warning restore S125 // Sections of code should not be commented out
