@@ -1,5 +1,4 @@
 using OrchardCore.DisplayManagement.Manifest;
-using OrchardCore.Modules.Manifest;
 using static Lombiq.HelpfulExtensions.FeatureIds;
 
 [assembly: Theme(
