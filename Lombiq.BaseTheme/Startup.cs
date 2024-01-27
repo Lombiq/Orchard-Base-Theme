@@ -1,4 +1,3 @@
-using Lombiq.BaseTheme.Middlewares;
 using Lombiq.BaseTheme.Migrations;
 using Lombiq.BaseTheme.Navigation;
 using Lombiq.BaseTheme.Permissions;
@@ -7,8 +6,6 @@ using Lombiq.DataTables.Navigation;
 using Lombiq.HelpfulLibraries.AspNetCore.Extensions;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OrchardCore.Data.Migration;
@@ -16,7 +13,6 @@ using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
 using OrchardCore.Security.Permissions;
-using System;
 
 namespace Lombiq.BaseTheme;
 
@@ -40,9 +36,4 @@ public class Startup : StartupBase
         services.AddScoped<IPermissionProvider, BaseThemeSettingsPermissions>();
         services.AddScoped<INavigationProvider, BaseThemeSettingsAdminMenu>();
     }
-
-#pragma warning disable S125 // Sections of code should not be commented out
-    // public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
-    //    app.UseMiddleware<RemoveBootstrapMiddleware>();
 }
-#pragma warning restore S125 // Sections of code should not be commented out
