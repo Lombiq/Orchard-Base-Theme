@@ -1,4 +1,6 @@
 using OrchardCore.DisplayManagement.Manifest;
+using OrchardCore.Modules.Manifest;
+using static Lombiq.HelpfulExtensions.FeatureIds;
 
 [assembly: Theme(
     Name = "Lombiq Base Theme",
@@ -10,7 +12,7 @@ using OrchardCore.DisplayManagement.Manifest;
       "theme, please reload the tenant from Configuration → Tenants in the admin menu.",
     Dependencies =
     [
-        Lombiq.HelpfulExtensions.FeatureIds.ContentTypes,
-        Lombiq.HelpfulExtensions.FeatureIds.Widgets,
+        ContentTypes,
+        Widgets,
     ]
 )]
