@@ -29,6 +29,8 @@ public class AdminController(
     IShapeFactory shapeFactory,
     IHtmlLocalizer<AdminController> htmlLocalizer) : Controller
 {
+    private readonly IHtmlLocalizer H = htmlLocalizer;
+
     public async Task<IActionResult> Index()
     {
         var section = (await siteService.LoadSiteSettingsAsync()).As<BaseThemeSettings>();
@@ -77,7 +79,7 @@ public class AdminController(
         });
 
         await siteService.UpdateSiteSettingsAsync(siteSettings);
-        await notifier.SuccessAsync(htmlLocalizer["Site settings updated successfully."]);
+        await notifier.SuccessAsync(H["Site settings updated successfully."]);
 
         return RedirectToAction(nameof(Index));
     }
