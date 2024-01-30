@@ -1,4 +1,4 @@
-using Lombiq.HelpfulExtensions.Extensions.Widgets.Constants;
+﻿using Lombiq.HelpfulExtensions.Extensions.Widgets.Constants;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -14,10 +14,15 @@ namespace Lombiq.DataTables.Samples.Navigation;
 // This service adds a Login/Account menu to the website's main menu. The base class implements INavigationProvider, and
 // wraps it so you don't have to do the menu name checking, because the name is always "main" which is the menu that the
 // Lombiq Base Theme handles out of the box.
-public class AccountNavigationProvider(
-    IHttpContextAccessor hca,
-    IStringLocalizer<AccountNavigationProvider> stringLocalizer) : MainMenuNavigationProviderBase(hca, stringLocalizer)
+public class AccountNavigationProvider : MainMenuNavigationProviderBase
 {
+    public AccountNavigationProvider(
+        IHttpContextAccessor hca,
+        IStringLocalizer<AccountNavigationProvider> stringLocalizer)
+        : base(hca, stringLocalizer)
+    {
+    }
+
     // The menu itself is built the same way as the Admin menus that Orchard already handles. Except due to limitations
     // of Bootstrap's navigation features you can't nest menus, you can only have two layers.
     // To learn more about navigation, see the Lombiq Training Demo for Orchard Core, specifically the "Admin menus"

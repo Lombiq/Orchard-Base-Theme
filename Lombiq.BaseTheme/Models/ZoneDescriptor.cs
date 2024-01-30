@@ -66,12 +66,12 @@ public class ZoneDescriptor
 
             // This improves accessibility by providing a main landmark, see:
             // https://dequeuniversity.com/rules/axe/4.2/bypass?application=axeAPI
-            var htmlElementName = ZoneName == ZoneNames.Content ? "main" : "div";
+            var elementName = ZoneName == ZoneNames.Content ? "main" : "div";
 
             body = new HtmlContentBuilder()
-                .AppendHtml(StringHelper.CreateInvariant($"<{htmlElementName} class=\"{bodyWrapperClass} {LeafClassName}\">"))
+                .AppendHtml(StringHelper.CreateInvariant($"<{elementName} class=\"{bodyWrapperClass} {LeafClassName}\">"))
                 .AppendHtml(body)
-                .AppendHtml(StringHelper.CreateInvariant($"</{htmlElementName}>"));
+                .AppendHtml(StringHelper.CreateInvariant($"</{elementName}>"));
         }
 
         return new HtmlContentBuilder()
