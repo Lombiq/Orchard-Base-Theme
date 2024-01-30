@@ -7,11 +7,16 @@ using static Lombiq.BaseTheme.Constants.ContentTypes;
 
 namespace Lombiq.BaseTheme.Migrations;
 
-public class LayoutInjectionMigrations(IContentDefinitionManager contentDefinitionManager) : DataMigration
+public class LayoutInjectionMigrations : DataMigration
 {
+    private readonly IContentDefinitionManager _contentDefinitionManager;
+
+    public LayoutInjectionMigrations(IContentDefinitionManager contentDefinitionManager) =>
+        _contentDefinitionManager = contentDefinitionManager;
+
     public async Task<int> CreateAsync()
     {
-        await contentDefinitionManager.AlterTypeDefinitionAsync(LayoutInjection, builder => builder
+        await _contentDefinitionManager.AlterTypeDefinitionAsync(LayoutInjection, builder => builder
             .SetAbilities(creatable: true)
             .Stereotype("Widget"));
 

@@ -1,4 +1,4 @@
-using Lombiq.BaseTheme.Controllers;
+﻿using Lombiq.BaseTheme.Controllers;
 using Lombiq.BaseTheme.Permissions;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Http;
@@ -7,10 +7,15 @@ using OrchardCore.Navigation;
 
 namespace Lombiq.BaseTheme.Navigation;
 
-public class BaseThemeSettingsAdminMenu(
-    IHttpContextAccessor hca,
-    IStringLocalizer<BaseThemeSettingsAdminMenu> stringLocalizer) : AdminMenuNavigationProviderBase(hca, stringLocalizer)
+public class BaseThemeSettingsAdminMenu : AdminMenuNavigationProviderBase
 {
+    public BaseThemeSettingsAdminMenu(
+        IHttpContextAccessor hca,
+        IStringLocalizer<BaseThemeSettingsAdminMenu> stringLocalizer)
+        : base(hca, stringLocalizer)
+    {
+    }
+
     protected override void Build(NavigationBuilder builder) =>
         builder.Add(T["Configuration"], configuration => configuration
             .Add(T["Settings"], settings => settings

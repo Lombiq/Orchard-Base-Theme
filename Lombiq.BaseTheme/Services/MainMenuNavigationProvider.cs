@@ -15,18 +15,32 @@ using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Services;
 
-public class MainMenuNavigationProvider(
-    IHttpContextAccessor hca,
-    IStringLocalizer<MainMenuNavigationProvider> stringLocalizer,
-    IContentHandleManager contentHandleManager,
-    IContentManager contentManager,
-    IUrlHelperFactory urlHelperFactory,
-    IActionContextAccessor actionContextAccessor) : MainMenuNavigationProviderBase(hca, stringLocalizer)
+public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 {
+    private readonly IContentHandleManager _contentHandleManager;
+    private readonly IContentManager _contentManager;
+    private readonly IUrlHelperFactory _urlHelperFactory;
+    private readonly IActionContextAccessor _actionContextAccessor;
+
+    public MainMenuNavigationProvider(
+        IHttpContextAccessor hca,
+        IStringLocalizer<MainMenuNavigationProvider> stringLocalizer,
+        IContentHandleManager contentHandleManager,
+        IContentManager contentManager,
+        IUrlHelperFactory urlHelperFactory,
+        IActionContextAccessor actionContextAccessor)
+        : base(hca, stringLocalizer)
+    {
+        _contentHandleManager = contentHandleManager;
+        _contentManager = contentManager;
+        _urlHelperFactory = urlHelperFactory;
+        _actionContextAccessor = actionContextAccessor;
+    }
+
     protected override async Task BuildAsync(NavigationBuilder builder)
     {
-        if (await contentHandleManager.GetContentItemIdAsync("alias:main-menu") is not { } id ||
-            await contentManager.GetAsync(id) is not { } contentItem ||
+        if (await _contentHandleManager.GetContentItemIdAsync("alias:main-menu") is not { } id ||
+            await _contentManager.GetAsync(id) is not { } contentItem ||
             contentItem.As<MenuItemsListPart>() is not { } menuItemsListPart)
         {
             return;
@@ -70,8 +84,8 @@ public class MainMenuNavigationProvider(
 
     private async Task AddContentMenuItemPartAsync(NavigationBuilder builder, LocalizedString text, IEnumerable<string> ids)
     {
-        var contentItems = (await contentManager.GetAsync(ids)).AsList();
-        var urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext!);
+        var contentItems = (await _contentManager.GetAsync(ids)).AsList();
+        var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext!);
 
         if (contentItems.Count == 1)
         {
