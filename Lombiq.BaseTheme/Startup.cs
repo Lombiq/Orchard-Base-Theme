@@ -35,5 +35,7 @@ public class Startup : StartupBase
 
         services.AddScoped<IPermissionProvider, BaseThemeSettingsPermissions>();
         services.AddScoped<INavigationProvider, BaseThemeSettingsAdminMenu>();
+
+        services.Decorate<IResourceManager, ResourceManagerDecorator>();
     }
 }
