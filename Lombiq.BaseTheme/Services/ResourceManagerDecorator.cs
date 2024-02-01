@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
 using OrchardCore.DisplayManagement.Manifest;
 using OrchardCore.DisplayManagement.Theming;
-using OrchardCore.Modules;
 using OrchardCore.ResourceManagement;
 using System;
 using System.Collections.Generic;
