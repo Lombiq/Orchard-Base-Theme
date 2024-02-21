@@ -1,7 +1,8 @@
-﻿using OrchardCore.ContentManagement.Metadata;
+using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.ContentManagement.Metadata.Builders;
 using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.Data.Migration;
+using System.Threading.Tasks;
 using static Lombiq.BaseTheme.Constants.ContentTypes;
 
 namespace Lombiq.BaseTheme.Migrations;
@@ -13,9 +14,9 @@ public class LayoutInjectionMigrations : DataMigration
     public LayoutInjectionMigrations(IContentDefinitionManager contentDefinitionManager) =>
         _contentDefinitionManager = contentDefinitionManager;
 
-    public int Create()
+    public async Task<int> CreateAsync()
     {
-        _contentDefinitionManager.AlterTypeDefinition(LayoutInjection, builder => builder
+        await _contentDefinitionManager.AlterTypeDefinitionAsync(LayoutInjection, builder => builder
             .SetAbilities(creatable: true)
             .Stereotype("Widget"));
 
