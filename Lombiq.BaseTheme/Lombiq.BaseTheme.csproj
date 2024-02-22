@@ -32,12 +32,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.Menu" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.Media" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.ContentManagement" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.8.2" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.9.0-preview-18056" />
+    <PackageReference Include="OrchardCore.Menu" Version="1.9.0-preview-18056" />
+    <PackageReference Include="OrchardCore.Media" Version="1.9.0-preview-18056" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="1.9.0-preview-18056" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.9.0-preview-18056" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.9.0-preview-18056" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
