@@ -32,12 +32,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.Menu" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.Media" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.ContentManagement" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.8.2" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.9.0-preview-18096" />
+    <PackageReference Include="OrchardCore.Menu" Version="1.9.0-preview-18096" />
+    <PackageReference Include="OrchardCore.Media" Version="1.9.0-preview-18096" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="1.9.0-preview-18096" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.9.0-preview-18096" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.9.0-preview-18096" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
@@ -59,6 +59,13 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.SourceGenerators\Lombiq.HelpfulLibraries.SourceGenerators\Lombiq.HelpfulLibraries.SourceGenerators.csproj" OutputItemType="Analyzer" />
+  </ItemGroup>
+
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\..\Utilities\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions.targets" />
 
+  <ItemGroup>
+    <AdditionalFiles Include="package.json"/>
+  </ItemGroup>
 </Project>

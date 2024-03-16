@@ -3,8 +3,6 @@ using Lombiq.BaseTheme.ViewModels;
 using Lombiq.HelpfulExtensions.Extensions.ContentTypes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.DisplayManagement;
@@ -16,6 +14,8 @@ using OrchardCore.Media.ViewModels;
 using OrchardCore.Modules;
 using OrchardCore.Settings;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Controllers;
@@ -59,13 +59,13 @@ public class AdminController : Controller
 
                 editor.Paths = string.IsNullOrWhiteSpace(section.Icon)
                     ? "[]"
-                    : JsonConvert.SerializeObject(new[] { new { path = section.Icon } });
+                    : JsonSerializer.Serialize(new[] { new { path = section.Icon } });
                 editor.Field = part.Icon;
                 editor.Part = part;
                 editor.PartFieldDefinition = new ContentPartFieldDefinition(
                     new ContentFieldDefinition(nameof(BaseThemeSettingsPart.Icon)),
                     nameof(BaseThemeSettingsPart.Icon),
-                    JObject.FromObject(new Dictionary<string, object>
+                    (JsonObject)JsonSerializer.SerializeToNode(new Dictionary<string, object>
                     {
                         [nameof(MediaFieldSettings)] = new MediaFieldSettings { Multiple = false },
                     }))
