@@ -59,6 +59,13 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.SourceGenerators\Lombiq.HelpfulLibraries.SourceGenerators\Lombiq.HelpfulLibraries.SourceGenerators.csproj" OutputItemType="Analyzer" />
+  </ItemGroup>
+
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\..\Utilities\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions.targets" />
 
+  <ItemGroup>
+    <AdditionalFiles Include="package.json"/>
+  </ItemGroup>
 </Project>
