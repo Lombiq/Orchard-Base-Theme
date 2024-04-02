@@ -65,7 +65,7 @@ public class AdminController : Controller
                 editor.PartFieldDefinition = new ContentPartFieldDefinition(
                     new ContentFieldDefinition(nameof(BaseThemeSettingsPart.Icon)),
                     nameof(BaseThemeSettingsPart.Icon),
-                    (JsonObject)JsonSerializer.SerializeToNode(new Dictionary<string, object>
+                    JObject.FromObject(new Dictionary<string, object>
                     {
                         [nameof(MediaFieldSettings)] = new MediaFieldSettings { Multiple = false },
                     }))
