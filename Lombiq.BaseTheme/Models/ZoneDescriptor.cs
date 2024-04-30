@@ -13,11 +13,11 @@ namespace Lombiq.BaseTheme.Models;
 
 public class ZoneDescriptor
 {
-    // Elements that may be zones and are landmarks, see https://html-validate.org/rules/unique-landmark.html.
-    private static string[] _landmarkElements = ["aside", "footer", "form", "header", "main", "nav", "section"];
-
     public const string LayoutElementClassName = "layoutElement";
     public const string LeafClassName = LayoutElementClassName + "_leaf";
+
+    // Elements that may be zones and are landmarks, see https://html-validate.org/rules/unique-landmark.html.
+    private static readonly string[] _landmarkElements = ["aside", "footer", "form", "header", "main", "nav", "section"];
 
     public string ZoneName { get; set; }
     public string ElementName { get; set; }
