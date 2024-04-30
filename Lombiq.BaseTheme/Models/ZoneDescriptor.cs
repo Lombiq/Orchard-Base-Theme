@@ -69,7 +69,7 @@ public class ZoneDescriptor
 
         var body = await page.DisplayAsync(zone);
 
-        var attributesFlattened = Attributes.Select(kvp => $"{kvp.Key}=\"{kvp.Value}\"").Join();
+        var attributesFlattened = Attributes.Select(attribute => $"{attribute.Key}=\"{attribute.Value}\"").Join();
 
         if (WrapBody)
         {
