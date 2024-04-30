@@ -13,21 +13,33 @@ namespace Lombiq.BaseTheme.Models;
 
 public class ZoneDescriptor
 {
+    // Elements that may be zones and are landmarks, see https://html-validate.org/rules/unique-landmark.html.
+    private static string[] _landmarkElements = ["aside", "footer", "form", "header", "main", "nav", "section"];
+
     public const string LayoutElementClassName = "layoutElement";
     public const string LeafClassName = LayoutElementClassName + "_leaf";
 
     public string ZoneName { get; set; }
     public string ElementName { get; set; }
     public bool WrapBody { get; set; }
+    public string AriaLabel { get; set; }
+    public IDictionary<string, string> Attributes { get; private set; }
 
     public IEnumerable<ZoneDescriptor> ChildrenBefore { get; set; }
     public IEnumerable<ZoneDescriptor> ChildrenAfter { get; set; }
 
-    public ZoneDescriptor(string zoneName = null, string elementName = null, bool wrapBody = false)
+    public ZoneDescriptor(
+        string zoneName,
+        string elementName = null,
+        bool wrapBody = false,
+        string ariaLabel = null,
+        IReadOnlyDictionary<string, string> attributes = null)
     {
         ZoneName = zoneName;
         ElementName = elementName;
         WrapBody = wrapBody;
+        AriaLabel = ariaLabel;
+        Attributes = attributes?.ToDictionary() ?? [];
     }
 
     public async Task<IHtmlContent> DisplayZoneAsync<TModel>(
@@ -56,6 +68,9 @@ public class ZoneDescriptor
             ChildrenBefore?.Any() != true || ChildrenAfter?.Any() != true ? LeafClassName : null);
 
         var body = await page.DisplayAsync(zone);
+
+        var attributesFlattened = Attributes.Select(kvp => $"{kvp.Key}=\"{kvp.Value}\"").Join();
+
         if (WrapBody)
         {
             // If there is no parent then "body" becomes the BEM element, otherwise there already is an element so
@@ -64,18 +79,29 @@ public class ZoneDescriptor
                 ? layoutClassName + "__body"
                 : layoutClassName + "Body";
 
-            // This improves accessibility by providing a main landmark, see:
-            // https://dequeuniversity.com/rules/axe/4.2/bypass?application=axeAPI
-            var elementName = ZoneName == ZoneNames.Content ? "main" : "div";
+            var bodyAttributes = $"class=\"{bodyWrapperClass} {LeafClassName}\" " + attributesFlattened;
+
+            var elementName = "div";
+
+            if (ZoneName == ZoneNames.Content)
+            {
+                // This improves accessibility by providing a main landmark, see:
+                // https://dequeuniversity.com/rules/axe/4.2/bypass?application=axeAPI
+                elementName = "main";
+
+                bodyAttributes += GetAriaLabelAttribute(elementName);
+            }
 
             body = new HtmlContentBuilder()
-                .AppendHtml(StringHelper.CreateInvariant($"<{elementName} class=\"{bodyWrapperClass} {LeafClassName}\">"))
+                .AppendHtml(StringHelper.CreateInvariant($"<{elementName} {bodyAttributes}>"))
                 .AppendHtml(body)
                 .AppendHtml(StringHelper.CreateInvariant($"</{elementName}>"));
         }
 
+        attributesFlattened += GetAriaLabelAttribute(ElementName);
+
         return new HtmlContentBuilder()
-            .AppendHtml(StringHelper.CreateInvariant($"<{ElementName} id=\"{id}\" class=\"{classNames}\">"))
+            .AppendHtml(StringHelper.CreateInvariant($"<{ElementName} id=\"{id}\" class=\"{classNames}\" {attributesFlattened}>"))
             .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenBefore, parent))
             .AppendHtml(body)
             .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenAfter, parent))
@@ -90,6 +116,19 @@ public class ZoneDescriptor
         zoneDescriptors == null
             ? Task.FromResult<IHtmlContent>(new HtmlString(string.Empty))
             : ConcatenateInnerAsync(classHolder, page, zoneDescriptors, ZoneName, parent);
+
+    private string GetAriaLabelAttribute(string elementName)
+    {
+        // Intentionally no CamelCase word-splitting the ZoneName by default, since that would involve regex for every
+        // single page view, for values that one only ever sets once.
+        if (!string.IsNullOrEmpty(AriaLabel) || _landmarkElements.Contains(elementName))
+        {
+            var ariaLabel = string.IsNullOrEmpty(AriaLabel) ? ZoneName : AriaLabel;
+            return $"aria-label=\"{ariaLabel}\" ";
+        }
+
+        return string.Empty;
+    }
 
     private static async Task<IHtmlContent> ConcatenateInnerAsync<TModel>(
         ICssClassHolder classHolder,
