@@ -20,6 +20,17 @@
     <PackageLicenseFile>License.md</PackageLicenseFile>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SourceGeneratorLocation>$(SolutionDir)src\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.SourceGenerators\bin\Debug\netstandard2.0\Lombiq.HelpfulLibraries.SourceGenerators.dll</SourceGeneratorLocation>
+    <SourceGeneratorLocation Condition=" '$(Configuration)' != 'Debug' ">
+      $(SolutionDir)src\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.SourceGenerators\bin\Release\netstandard2.0\Lombiq.HelpfulLibraries.SourceGenerators.dll
+    </SourceGeneratorLocation>
+  </PropertyGroup> 
+
+  <Target Name="CustomBeforeCompile" BeforeTargets="Compile">
+    <MSBuild Condition="!Exists('$(SourceGeneratorLocation)')" Projects="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.SourceGenerators\Lombiq.HelpfulLibraries.SourceGenerators.csproj" />
+  </Target>
+
   <ItemGroup>
     <None Include="License.md" Pack="true" PackagePath="" />
     <None Include="..\Readme.md" />
@@ -38,6 +49,11 @@
     <PackageReference Include="OrchardCore.ContentManagement" Version="1.8.2" />
     <PackageReference Include="OrchardCore.DisplayManagement" Version="1.8.2" />
     <PackageReference Include="OrchardCore.ResourceManagement" Version="1.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.Attributes\Lombiq.HelpfulLibraries.Attributes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+    <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.SourceGenerators\Lombiq.HelpfulLibraries.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
@@ -61,4 +77,7 @@
 
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\..\Utilities\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions.targets" />
 
+  <ItemGroup>
+    <AdditionalFiles Include="package.json"/>
+  </ItemGroup>
 </Project>
