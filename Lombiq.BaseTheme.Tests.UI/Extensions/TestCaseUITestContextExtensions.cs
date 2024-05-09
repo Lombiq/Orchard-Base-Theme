@@ -95,7 +95,7 @@ public static class TestCaseUITestContextExtensions
         By byIcon = null)
     {
         await context.GoToAdminRelativeUrlAsync("/Lombiq.BaseTheme/Admin/Index");
-        await context.SetCheckboxValueAsync(By.Id("HideMenu"), isChecked: true);
+        await context.SetCheckboxValueAsync(By.Id("HideMenu"));
 
         await context.ClickReliablyOnAsync(By.XPath("//div[contains(@class, 'thumb-container')]"));
         await context.ClickReliablyOnAsync(By.CssSelector("#Editor .delete-button").OfAnyVisibility());
