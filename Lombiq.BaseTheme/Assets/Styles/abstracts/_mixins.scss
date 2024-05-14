@@ -262,32 +262,6 @@
     }
 }
 
-@mixin gap-gutter($multiplier: 1) {
-    @include media-breakpoint-only(xs) {
-        gap: calc(var(--gutter-x-small) * #{$multiplier});
-    }
-
-    @include media-breakpoint-only(sm) {
-        gap: calc(var(--gutter-small) * #{$multiplier});
-    }
-
-    @include media-breakpoint-only(md) {
-        gap: calc(var(--gutter-medium) * #{$multiplier});
-    }
-
-    @include media-breakpoint-only(lg) {
-        gap: calc(var(--gutter-large) * #{$multiplier});
-    }
-
-    @include media-breakpoint-only(xl) {
-        gap: calc(var(--gutter-x-large) * #{$multiplier});
-    }
-
-    @include media-breakpoint-up(xxl) {
-        gap: calc(var(--gutter-xx-large) * #{$multiplier});
-    }
-}
-
 @mixin apply-gutter($property, $multiplier: 1) {
     @include media-breakpoint-only(xs) {
         #{$property}: calc(#{$multiplier} * var(--gutter-x-small));
