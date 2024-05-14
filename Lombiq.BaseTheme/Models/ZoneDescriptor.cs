@@ -125,7 +125,7 @@ public class ZoneDescriptor
         // single page view, for values that one only ever set once.
         if (AriaLabel != null || _landmarkElements.Contains(elementName))
         {
-            return $"aria-label=\"{AriaLabel ?? new LocalizedHtmlString(ZoneName, ZoneName)}\" ";
+            return $"aria-label=\"{(AriaLabel ?? new LocalizedHtmlString(ZoneName, ZoneName)).Value}\" ";
         }
 
         return string.Empty;
