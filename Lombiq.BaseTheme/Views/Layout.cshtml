@@ -1,3 +1,5 @@
+@using TagNames = AngleSharp.Dom.TagNames;
+
 <!DOCTYPE html>
 
 @inject ICssClassHolder CssClassHolder
@@ -22,32 +24,32 @@
     page: this,
     new[]
     {
-        new ZoneDescriptor(Header, wrapBody: true, elementName: "header", ariaLabel: T["Site"])
+        new ZoneDescriptor(Header, wrapBody: true, elementName: TagNames.Header, ariaLabel: T["Site"])
         {
-            ChildrenBefore = new [] { new ZoneDescriptor("Banner", elementName: "section") },
+            ChildrenBefore = new [] { new ZoneDescriptor("Banner", elementName: TagNames.Section) },
             ChildrenAfter = new []
             {
-                new ZoneDescriptor(Navigation, elementName: "nav", ariaLabel: T["Main"]),
+                new ZoneDescriptor(Navigation, elementName: TagNames.Nav, ariaLabel: T["Main"]),
             },
         },
-        new ZoneDescriptor(BeforeMain, elementName: "section", ariaLabel: T["Before Main"]),
-        new ZoneDescriptor(Featured, elementName: "section"),
-        new ZoneDescriptor(Content, wrapBody: true, elementName: "section")
+        new ZoneDescriptor(BeforeMain, elementName: TagNames.Section, ariaLabel: T["Before Main"]),
+        new ZoneDescriptor(Featured, elementName: TagNames.Section),
+        new ZoneDescriptor(Content, wrapBody: true, elementName: TagNames.Section)
         {
             ChildrenBefore = new []
             {
-                new ZoneDescriptor(AsideFirst, elementName: "aside", ariaLabel: T["Aside First"]),
-                new ZoneDescriptor(Messages, elementName: "section"),
-                new ZoneDescriptor(BeforeContent, elementName: "section", ariaLabel: T["Before Content"]),
+                new ZoneDescriptor(AsideFirst, elementName: TagNames.Aside, ariaLabel: T["Aside First"]),
+                new ZoneDescriptor(Messages, elementName: TagNames.Section),
+                new ZoneDescriptor(BeforeContent, elementName: TagNames.Section, ariaLabel: T["Before Content"]),
             },
             ChildrenAfter = new []
             {
-                new ZoneDescriptor(AfterContent, elementName: "section", ariaLabel: T["After Content"]),
-                new ZoneDescriptor(AsideSecond, elementName: "aside", ariaLabel: T["Aside Second"]),
+                new ZoneDescriptor(AfterContent, elementName: TagNames.Section, ariaLabel: T["After Content"]),
+                new ZoneDescriptor(AsideSecond, elementName: TagNames.Aside, ariaLabel: T["Aside Second"]),
             },
         },
-        new ZoneDescriptor(AfterMain, elementName: "section", ariaLabel: T["After Main"]),
-        new ZoneDescriptor(Footer, elementName: "footer", ariaLabel: T["Site"]),
+        new ZoneDescriptor(AfterMain, elementName: TagNames.Section, ariaLabel: T["After Main"]),
+        new ZoneDescriptor(Footer, elementName: TagNames.Footer, ariaLabel: T["Site"]),
     })
 
 <script>
