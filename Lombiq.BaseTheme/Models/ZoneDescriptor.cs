@@ -8,6 +8,7 @@ using OrchardCore.DisplayManagement.Zones;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static AngleSharp.Dom.TagNames;
 
 namespace Lombiq.BaseTheme.Models;
 
@@ -17,7 +18,7 @@ public class ZoneDescriptor
     public const string LeafClassName = LayoutElementClassName + "_leaf";
 
     // Elements that may be zones and are landmarks, see https://html-validate.org/rules/unique-landmark.html.
-    private static readonly string[] _landmarkElements = ["aside", "footer", "form", "header", "main", "nav", "section"];
+    private static readonly string[] _landmarkElements = [Aside, Footer, Form, Header, Main, Nav, Section];
 
     public string ZoneName { get; set; }
     public string ElementName { get; set; }
@@ -53,7 +54,7 @@ public class ZoneDescriptor
             return new HtmlString(string.Empty);
         }
 
-        ElementName ??= "div";
+        ElementName ??= Div;
 
         // The zone name should already be PascalCase.
         var id = ZoneName.ToCamelCase();
@@ -81,13 +82,13 @@ public class ZoneDescriptor
 
             var bodyAttributes = $"class=\"{bodyWrapperClass} {LeafClassName}\" " + attributesFlattened;
 
-            var elementName = "div";
+            var elementName = Div;
 
             if (ZoneName == ZoneNames.Content)
             {
                 // This improves accessibility by providing a main landmark, see:
                 // https://dequeuniversity.com/rules/axe/4.2/bypass?application=axeAPI
-                elementName = "main";
+                elementName = Main;
 
                 bodyAttributes += GetAriaLabelAttribute(elementName);
             }
