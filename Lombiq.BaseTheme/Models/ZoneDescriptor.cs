@@ -3,6 +3,7 @@ using Lombiq.BaseTheme.Constants;
 using Lombiq.BaseTheme.Services;
 using Lombiq.HelpfulLibraries.Common.Utilities;
 using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Localization;
 using OrchardCore.DisplayManagement.Razor;
 using OrchardCore.DisplayManagement.Zones;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ public class ZoneDescriptor
     public string ZoneName { get; set; }
     public string ElementName { get; set; }
     public bool WrapBody { get; set; }
-    public string AriaLabel { get; set; }
+    public LocalizedHtmlString AriaLabel { get; set; }
     public IDictionary<string, string> Attributes { get; private set; }
 
     public IEnumerable<ZoneDescriptor> ChildrenBefore { get; set; }
@@ -33,7 +34,7 @@ public class ZoneDescriptor
         string zoneName,
         string elementName = null,
         bool wrapBody = false,
-        string ariaLabel = null,
+        LocalizedHtmlString ariaLabel = null,
         IReadOnlyDictionary<string, string> attributes = null)
     {
         ZoneName = zoneName;
@@ -121,11 +122,10 @@ public class ZoneDescriptor
     private string GetAriaLabelAttribute(string elementName)
     {
         // Intentionally no CamelCase word-splitting the ZoneName by default, since that would involve regex for every
-        // single page view, for values that one only ever sets once.
-        if (!string.IsNullOrEmpty(AriaLabel) || _landmarkElements.Contains(elementName))
+        // single page view, for values that one only ever set once.
+        if (AriaLabel != null || _landmarkElements.Contains(elementName))
         {
-            var ariaLabel = string.IsNullOrEmpty(AriaLabel) ? ZoneName : AriaLabel;
-            return $"aria-label=\"{ariaLabel}\" ";
+            return $"aria-label=\"{AriaLabel ?? new LocalizedHtmlString(ZoneName, ZoneName)}\" ";
         }
 
         return string.Empty;

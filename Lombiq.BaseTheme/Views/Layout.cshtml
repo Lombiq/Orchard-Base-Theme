@@ -22,32 +22,32 @@
     page: this,
     new[]
     {
-        new ZoneDescriptor(Header, wrapBody: true, elementName: "header", ariaLabel: "Site")
+        new ZoneDescriptor(Header, wrapBody: true, elementName: "header", ariaLabel: T["Site"])
         {
             ChildrenBefore = new [] { new ZoneDescriptor("Banner", elementName: "section") },
             ChildrenAfter = new []
             {
-                new ZoneDescriptor(Navigation, elementName: "nav", ariaLabel: "Main"),
+                new ZoneDescriptor(Navigation, elementName: "nav", ariaLabel: T["Main"]),
             },
         },
-        new ZoneDescriptor(BeforeMain, elementName: "section", ariaLabel: "Before Main"),
+        new ZoneDescriptor(BeforeMain, elementName: "section", ariaLabel: T["Before Main"]),
         new ZoneDescriptor(Featured, elementName: "section"),
         new ZoneDescriptor(Content, wrapBody: true, elementName: "section")
         {
             ChildrenBefore = new []
             {
-                new ZoneDescriptor(AsideFirst, elementName: "aside", ariaLabel: "Aside First"),
+                new ZoneDescriptor(AsideFirst, elementName: "aside", ariaLabel: T["Aside First"]),
                 new ZoneDescriptor(Messages, elementName: "section"),
-                new ZoneDescriptor(BeforeContent, elementName: "section", ariaLabel: "Before Content"),
+                new ZoneDescriptor(BeforeContent, elementName: "section", ariaLabel: T["Before Content"]),
             },
             ChildrenAfter = new []
             {
-                new ZoneDescriptor(AfterContent, elementName: "section", ariaLabel: "After Content"),
-                new ZoneDescriptor(AsideSecond, elementName: "aside", ariaLabel: "Aside Second"),
+                new ZoneDescriptor(AfterContent, elementName: "section", ariaLabel: T["After Content"]),
+                new ZoneDescriptor(AsideSecond, elementName: "aside", ariaLabel: T["Aside Second"]),
             },
         },
-        new ZoneDescriptor(AfterMain, elementName: "section", ariaLabel: "After Main"),
-        new ZoneDescriptor(Footer, elementName: "footer", ariaLabel: "Site"),
+        new ZoneDescriptor(AfterMain, elementName: "section", ariaLabel: T["After Main"]),
+        new ZoneDescriptor(Footer, elementName: "footer", ariaLabel: T["Site"]),
     })
 
 <script>
