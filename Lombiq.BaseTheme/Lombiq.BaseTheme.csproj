@@ -25,7 +25,7 @@
     <SourceGeneratorLocation Condition=" '$(Configuration)' != 'Debug' ">
       $(SolutionDir)src\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.SourceGenerators\bin\Release\netstandard2.0\Lombiq.HelpfulLibraries.SourceGenerators.dll
     </SourceGeneratorLocation>
-  </PropertyGroup> 
+  </PropertyGroup>
 
   <Target Name="CustomBeforeCompile" BeforeTargets="Compile">
     <MSBuild Condition="!Exists('$(SourceGeneratorLocation)')" Projects="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.SourceGenerators\Lombiq.HelpfulLibraries.SourceGenerators.csproj" />
@@ -43,12 +43,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.Menu" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.Media" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.ContentManagement" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.8.2" />
-    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.8.2" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.0.0-preview-18200" />
+    <PackageReference Include="OrchardCore.Menu" Version="2.0.0-preview-18200" />
+    <PackageReference Include="OrchardCore.Media" Version="2.0.0-preview-18200" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="2.0.0-preview-18200" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="2.0.0-preview-18200" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="2.0.0-preview-18200" />
   </ItemGroup>
 
   <ItemGroup>

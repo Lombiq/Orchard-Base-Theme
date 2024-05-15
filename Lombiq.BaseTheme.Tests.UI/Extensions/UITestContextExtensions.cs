@@ -1,7 +1,7 @@
 ﻿using Lombiq.Tests.UI.Extensions;
 using Lombiq.Tests.UI.Services;
-using Newtonsoft.Json;
 using OpenQA.Selenium;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Tests.UI.Extensions;
@@ -12,7 +12,7 @@ public static class UITestContextExtensions
     {
         var byFirst = By.XPath(
             $"//div[contains(@class, \"menuWidget__content\")]/ul/li/a" +
-            $"[contains(@class, \"nav-link\") and contains(., {JsonConvert.SerializeObject(topMenuLabel)})]");
+            $"[contains(@class, \"nav-link\") and contains(., {JsonSerializer.Serialize(topMenuLabel)})]");
 
         if (string.IsNullOrWhiteSpace(subMenuLabel))
         {
@@ -22,7 +22,7 @@ public static class UITestContextExtensions
         {
             await context.SelectFromBootstrapDropdownReliablyAsync(
                 context.Get(byFirst),
-                By.XPath($".//*[contains(@class, 'dropdown-item') and contains(., {JsonConvert.SerializeObject(subMenuLabel)})]"));
+                By.XPath($".//*[contains(@class, 'dropdown-item') and contains(., {JsonSerializer.Serialize(subMenuLabel)})]"));
         }
     }
 }
