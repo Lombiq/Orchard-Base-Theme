@@ -323,3 +323,9 @@
 @mixin gap-gutter($multiplier: 1) {
     @include apply-gutter("gap", $multiplier);
 }
+
+@mixin font-awesome-icon-free($unicode) {
+    font-family: "Font Awesome 6 Free", serif;
+    font-weight: 900;
+    content: $unicode;
+}
