@@ -51,7 +51,7 @@
 
 @* You can even include shapes conditionally. In this case we want a link to the admin dashboard but only for users who
    are able to access it. Using this approach can be much easier than implementing a custom layer condition. *@
-@if (await AuthorizationService.AuthorizeAsync(User, Permissions.AccessAdminPanel))
+@if (await AuthorizationService.AuthorizeAsync(User, AdminPermissions.AccessAdminPanel))
 {
     <zone name="@ZoneNames.Footer" position="1">
         <div class="zoneInsertionExample_footer">
