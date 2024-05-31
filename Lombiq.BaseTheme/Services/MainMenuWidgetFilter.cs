@@ -50,12 +50,10 @@ public class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
         _cssClassHolder.AddClassToZone(ZoneNames.Navigation, "navbar-expand-md");
         _cssClassHolder.AddClassToZone(ZoneNames.Navigation, "navbar");
 
-        return new()
-        {
-            MenuItems = await _navigationManager.BuildMenuAsync(
+        return new(
+            noWrapper: true, // The navigation zone is already the wrapper.
+            menuItems: await _navigationManager.BuildMenuAsync(
                 MainMenuNavigationProviderBase.MainNavigationName,
-                _actionContextAccessor.ActionContext),
-            NoWrapper = true, // The navigation zone is already the wrapper.
-        };
+                _actionContextAccessor.ActionContext));
     }
 }
