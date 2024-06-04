@@ -1,8 +1,10 @@
-﻿using Lombiq.BaseTheme.Constants;
+using Lombiq.BaseTheme.Constants;
 using OrchardCore.DisplayManagement.Manifest;
 using OrchardCore.ResourceManagement;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 
 namespace Lombiq.BaseTheme.Attributes;
 
@@ -12,8 +14,12 @@ namespace Lombiq.BaseTheme.Attributes;
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
 public sealed class DerivedThemeAttribute : ThemeAttribute
 {
-    public IEnumerable<LinkEntry> Links { get; set; }
+    public string LinksJson { get; set; }
     public string Favicon { get; set; }
+
+    public IEnumerable<LinkEntry> Links => LinksJson == null
+        ? Enumerable.Empty<LinkEntry>()
+        : JsonSerializer.Deserialize<IEnumerable<LinkEntry>>(LinksJson);
 
     public DerivedThemeAttribute() =>
         BaseTheme = FeatureIds.BaseTheme;
