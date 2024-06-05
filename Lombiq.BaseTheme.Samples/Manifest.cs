@@ -12,7 +12,7 @@ using Lombiq.BaseTheme.Attributes;
     Description = "A sample theme that builds on Lombiq Base Theme.",
     // This is a new property in DerivedTheme. By setting it to a static resource you can define a default icon for this
     // theme. You can define other "link" resources too, using the LinkJson property. They should be valid Json strings.
-    // For exmaple:
+    // For example:
     // LinksJson = "[{\"Href\": \"~/example/style.css\", \"Rel\": \"stylesheet\"}]"
     Favicon = "~/Lombiq.BaseTheme.Samples/icons/favicon.ico"
 )]
