@@ -210,6 +210,13 @@
     }
 }
 
+/// Apply it to <button> or <input type="button"> elements to eliminate the browser default styles.
+@mixin reset-button {
+    all: initial;
+    font: inherit;
+    color: inherit;
+}
+
 @mixin padding-gutter($vertical-multiplier: $default-vertical-multiplier) {
     @include media-breakpoint-only(xs) {
         padding: calc(var(--gutter-x-small) * #{$vertical-multiplier}) var(--gutter-x-small);
