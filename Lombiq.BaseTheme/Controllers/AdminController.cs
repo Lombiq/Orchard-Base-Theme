@@ -84,6 +84,8 @@ public class AdminController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Update([FromForm] BaseThemeSettingsViewModel viewModel)
     {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
         var siteSettings = await _siteService.LoadSiteSettingsAsync();
         siteSettings.Alter<BaseThemeSettings>(nameof(BaseThemeSettings), settings =>
         {
