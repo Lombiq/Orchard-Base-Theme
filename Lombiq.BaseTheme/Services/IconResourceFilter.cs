@@ -8,6 +8,7 @@ using OrchardCore.Settings;
 using OrchardCore.Themes.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Lombiq.BaseTheme.Services;
 
@@ -47,7 +48,13 @@ public class IconResourceFilter : IResourceFilterProvider
                         AddIcon(resourceManager, icon);
                     }
 
-                    theme.Links?.ForEach(resourceManager.RegisterLink);
+                    var themeLinks = theme.Links;
+
+                    if (themeLinks?.Any() == true)
+                    {
+                        themeLinks.ForEach(linkEntry => linkEntry.Href = _orchardHelper.ResourceUrl(linkEntry.Href));
+                        themeLinks.ForEach(resourceManager.RegisterLink);
+                    }
                 }
 
                 // If the site setting icon is set, that should take priority.
