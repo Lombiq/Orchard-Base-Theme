@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
 
 namespace Lombiq.BaseTheme.Services;
 
@@ -93,9 +92,7 @@ public class ResourceManagerDecorator(
 
         var first = true;
 
-        var styleSheets = GetRequiredResources("stylesheet").ToList();
-
-        foreach (var context in styleSheets)
+        foreach (var context in GetRequiredResources("stylesheet"))
         {
             if (context.Settings.Location == ResourceLocation.Inline)
             {
@@ -119,10 +116,8 @@ public class ResourceManagerDecorator(
             context.WriteTo(writer, _options.ContentBasePath);
         }
 
-        var registeredStyles = GetRegisteredStyles().ToArray();
-        for (var i = 0; i < registeredStyles.Length; i++)
+        foreach (var context in GetRegisteredStyles())
         {
-            var context = registeredStyles[i];
             if (!first)
             {
                 writer.Write(Environment.NewLine);
