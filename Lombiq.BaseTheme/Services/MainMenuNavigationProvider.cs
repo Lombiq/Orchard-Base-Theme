@@ -57,7 +57,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 
         if (menuItem.As<LinkMenuItemPart>() is { } linkMenuItemPart)
         {
-            builder.Add(text, menu => menu.Url(linkMenuItemPart.Url));
+            builder.Add(text, menu => menu.Url(linkMenuItemPart.Url).LocalNav());
         }
         else if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
         {
