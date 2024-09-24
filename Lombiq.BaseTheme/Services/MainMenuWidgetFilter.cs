@@ -43,8 +43,7 @@ public sealed class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
 
     protected override async Task<MenuWidgetViewModel> GetViewModelAsync()
     {
-        var siteSettings = await _siteService.GetSiteSettingsAsync();
-        if (siteSettings.As<BaseThemeSettings>()?.HideMenu == true) return null;
+        if (await _siteService.GetSettingsAsync<BaseThemeSettings>() is { HideMenu: true }) return null;
 
         // Add the <nav> classes to the zone holder <nav>.
         _cssClassHolder.AddClassToZone(ZoneNames.Navigation, "navbar-expand-md");

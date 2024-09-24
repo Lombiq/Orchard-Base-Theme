@@ -58,8 +58,7 @@ public class IconResourceFilter : IResourceFilterProvider
                 }
 
                 // If the site setting icon is set, that should take priority.
-                if ((await _siteService.GetSiteSettingsAsync()).As<BaseThemeSettings>() is { } settings &&
-                    !string.IsNullOrEmpty(settings.Icon))
+                if (await _siteService.GetSettingsAsync<BaseThemeSettings>() is { Icon.Length: > 0 } settings)
                 {
                     var path = _mediaFileStore.MapPathToPublicUrl(settings.Icon);
                     AddIcon(resourceManager, $"{path}?at={settings.TimeStamp.ToTechnicalString()}");
