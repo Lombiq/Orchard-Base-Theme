@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Migrations;
 
-public class RecipeMigrations : DataMigration
+public sealed class RecipeMigrations : DataMigration
 {
     private readonly IRecipeMigrator _recipeMigrator;
 
