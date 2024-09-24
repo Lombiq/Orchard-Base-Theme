@@ -33,7 +33,7 @@ public sealed class Startup : StartupBase
         PerTenantShapeTableManager.ReplaceDefaultShapeTableManager(services);
         services.AddNavigationProvider<MainMenuNavigationProvider>();
 
-        services.AddScoped<IPermissionProvider, BaseThemeSettingsPermissions>();
+        services.AddPermissionProvider<BaseThemeSettingsPermissions>();
         services.AddNavigationProvider<BaseThemeSettingsAdminMenu>();
 
         services.Decorate<IResourceManager, ResourceManagerDecorator>();
