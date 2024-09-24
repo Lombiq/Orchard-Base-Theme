@@ -20,7 +20,7 @@ public class Startup : StartupBase
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
 
         // This is a sample main menu item. See the "Front-end navigation via the "main" menu" section.
-        services.AddScoped<INavigationProvider, AccountNavigationProvider>();
+        services.AddNavigationProvider<AccountNavigationProvider>();
 
         // This service provides configuration to the ResourceFilterMiddleware.
         services.AddScoped<IResourceFilterProvider, ResourceFilters>();

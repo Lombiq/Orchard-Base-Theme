@@ -31,10 +31,10 @@ public class Startup : StartupBase
         services.AddScoped<IResourceFilterProvider, IconResourceFilter>();
 
         PerTenantShapeTableManager.ReplaceDefaultShapeTableManager(services);
-        services.AddScoped<INavigationProvider, MainMenuNavigationProvider>();
+        services.AddNavigationProvider<MainMenuNavigationProvider>();
 
         services.AddScoped<IPermissionProvider, BaseThemeSettingsPermissions>();
-        services.AddScoped<INavigationProvider, BaseThemeSettingsAdminMenu>();
+        services.AddNavigationProvider<BaseThemeSettingsAdminMenu>();
 
         services.Decorate<IResourceManager, ResourceManagerDecorator>();
     }
