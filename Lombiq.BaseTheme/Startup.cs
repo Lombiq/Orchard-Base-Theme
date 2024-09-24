@@ -16,7 +16,7 @@ using OrchardCore.Security.Permissions;
 
 namespace Lombiq.BaseTheme;
 
-public class Startup : StartupBase
+public sealed class Startup : StartupBase
 {
     public override void ConfigureServices(IServiceCollection services)
     {

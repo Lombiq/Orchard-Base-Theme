@@ -22,7 +22,7 @@ namespace Lombiq.BaseTheme.Controllers;
 
 // This controller is there for editing the BaseThemeSettings. We can't use a site settings driver for this, because you
 // can't declare admin-accessible shapes in a site theme.
-public class AdminController : Controller
+public sealed class AdminController : Controller
 {
     private readonly IClock _clock;
     private readonly INotifier _notifier;

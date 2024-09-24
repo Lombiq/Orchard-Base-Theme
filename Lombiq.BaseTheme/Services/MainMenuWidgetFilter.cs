@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Services;
 
-public class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
+public sealed class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
 {
     private readonly INavigationManager _navigationManager;
     private readonly IActionContextAccessor _actionContextAccessor;

@@ -13,7 +13,7 @@ using System;
 
 namespace Lombiq.BaseTheme.Samples;
 
-public class Startup : StartupBase
+public sealed class Startup : StartupBase
 {
     public override void ConfigureServices(IServiceCollection services)
     {
