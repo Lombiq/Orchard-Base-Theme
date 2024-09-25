@@ -3,8 +3,6 @@ using Lombiq.BaseTheme.ViewModels;
 using Lombiq.HelpfulExtensions.Extensions.ContentTypes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.DisplayManagement;
@@ -16,13 +14,15 @@ using OrchardCore.Media.ViewModels;
 using OrchardCore.Modules;
 using OrchardCore.Settings;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Controllers;
 
 // This controller is there for editing the BaseThemeSettings. We can't use a site settings driver for this, because you
 // can't declare admin-accessible shapes in a site theme.
-public class AdminController : Controller
+public sealed class AdminController : Controller
 {
     private readonly IClock _clock;
     private readonly INotifier _notifier;
@@ -59,7 +59,7 @@ public class AdminController : Controller
 
                 editor.Paths = string.IsNullOrWhiteSpace(section.Icon)
                     ? "[]"
-                    : JsonConvert.SerializeObject(new[] { new { path = section.Icon } });
+                    : JsonSerializer.Serialize(new[] { new { path = section.Icon } });
                 editor.Field = part.Icon;
                 editor.Part = part;
                 editor.PartFieldDefinition = new ContentPartFieldDefinition(

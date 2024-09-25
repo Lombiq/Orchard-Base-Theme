@@ -42,12 +42,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.8.0" />
-    <PackageReference Include="OrchardCore.Menu" Version="1.8.0" />
-    <PackageReference Include="OrchardCore.Media" Version="1.8.0" />
-    <PackageReference Include="OrchardCore.ContentManagement" Version="1.8.0" />
-    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.8.0" />
-    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.8.0" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.0.0" />
+    <PackageReference Include="OrchardCore.Menu" Version="2.0.0" />
+    <PackageReference Include="OrchardCore.Media" Version="2.0.0" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="2.0.0" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="2.0.0" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
@@ -59,11 +59,11 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.HelpfulLibraries" Version="10.0.0" />
-    <PackageReference Include="Lombiq.HelpfulExtensions" Version="8.0.1" />
+    <PackageReference Include="Lombiq.HelpfulLibraries" Version="11.0.0" />
+    <PackageReference Include="Lombiq.HelpfulExtensions" Version="9.0.0" />
     <PackageReference Include="Lombiq.NodeJs.Extensions" Version="2.1.0" />
-    <PackageReference Include="Lombiq.HelpfulLibraries.SourceGenerators" Version="10.0.0" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <PackageReference Include="Lombiq.HelpfulLibraries.Attributes" Version="10.0.0" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+    <PackageReference Include="Lombiq.HelpfulLibraries.SourceGenerators" Version="11.0.0" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <PackageReference Include="Lombiq.HelpfulLibraries.Attributes" Version="11.0.0" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 
     <Content Include="Assets/Styles/**/*.*">
       <IncludeInPackage>true</IncludeInPackage>

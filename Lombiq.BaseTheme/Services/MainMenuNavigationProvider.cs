@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Localization;
-using Newtonsoft.Json.Linq;
 using OrchardCore.ContentManagement;
 using OrchardCore.Menu.Models;
 using OrchardCore.Navigation;
@@ -58,14 +57,12 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 
         if (menuItem.As<LinkMenuItemPart>() is { } linkMenuItemPart)
         {
-            builder.Add(text, menu => menu.Url(linkMenuItemPart.Url).LocalNav());
+            builder.Add(text, menu => menu.Url(linkMenuItemPart.Url).Local(linkMenuItemPart.Target != "_blank"));
         }
         else if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
         {
-            if (contentMenuItemPart.Content.SelectedContentItem is JObject &&
-                contentMenuItemPart.Content.SelectedContentItem.ContentItemIds is JArray contentItemIds)
+            if (contentMenuItemPart.GetProperty<IEnumerable<string>>("SelectedContentItem.ContentItemIds") is { } ids)
             {
-                var ids = contentItemIds.ToObject<IEnumerable<string>>();
                 await AddContentMenuItemPartAsync(builder, text, ids);
             }
         }

@@ -7,7 +7,7 @@ using static Lombiq.BaseTheme.Constants.ContentTypes;
 
 namespace Lombiq.BaseTheme.Migrations;
 
-public class LayoutInjectionMigrations : DataMigration
+public sealed class LayoutInjectionMigrations : DataMigration
 {
     private readonly IContentDefinitionManager _contentDefinitionManager;
 

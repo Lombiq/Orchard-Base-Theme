@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Lombiq.BaseTheme.Permissions;
 
-public class BaseThemeSettingsPermissions : AdminPermissionBase
+public sealed class BaseThemeSettingsPermissions : AdminPermissionBase
 {
     public static readonly Permission ManageBaseThemeSettings =
         new(nameof(ManageBaseThemeSettings), "Manage Lombiq.BaseTheme Settings.");

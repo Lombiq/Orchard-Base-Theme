@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.BaseTheme.Services;
 
-public class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
+public sealed class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
 {
     private readonly INavigationManager _navigationManager;
     private readonly IActionContextAccessor _actionContextAccessor;
@@ -43,19 +43,16 @@ public class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
 
     protected override async Task<MenuWidgetViewModel> GetViewModelAsync()
     {
-        var siteSettings = await _siteService.GetSiteSettingsAsync();
-        if (siteSettings.As<BaseThemeSettings>()?.HideMenu == true) return null;
+        if (await _siteService.GetSettingsAsync<BaseThemeSettings>() is { HideMenu: true }) return null;
 
         // Add the <nav> classes to the zone holder <nav>.
         _cssClassHolder.AddClassToZone(ZoneNames.Navigation, "navbar-expand-md");
         _cssClassHolder.AddClassToZone(ZoneNames.Navigation, "navbar");
 
-        return new()
-        {
-            MenuItems = await _navigationManager.BuildMenuAsync(
+        return new(
+            noWrapper: true, // The navigation zone is already the wrapper.
+            menuItems: await _navigationManager.BuildMenuAsync(
                 MainMenuNavigationProviderBase.MainNavigationName,
-                _actionContextAccessor.ActionContext),
-            NoWrapper = true, // The navigation zone is already the wrapper.
-        };
+                _actionContextAccessor.ActionContext));
     }
 }
