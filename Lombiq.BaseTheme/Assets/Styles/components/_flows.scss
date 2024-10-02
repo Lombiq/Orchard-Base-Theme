@@ -5,49 +5,53 @@
     @include make-row;
 }
 
-.widget-container {
-    @include make-container;
+.widget {
+    &-align {
+        &-left {
+            text-align: left;
+        }
 
-    padding-left: 0;
-    padding-right: 0;
-}
+        &-center {
+            text-align: center;
+        }
 
-.widget-image-widget img {
-    width: 100%;
-}
+        &-right {
+            text-align: right;
+        }
 
-.widget-align-left {
-    text-align: left;
-}
+        &-justify {
+            text-align: justify;
+        }
+    }
 
-.widget-align-center {
-    text-align: center;
-}
+    &-size {
+        &-100 {
+            @include make-col-ready;
+            @include make-col(12);
+        }
+    }
 
-.widget-align-right {
-    text-align: right;
-}
-
-.widget-align-justify {
-    text-align: justify;
-}
-
-.widget-size-100 {
-    @include make-col-ready;
-    @include make-col(12);
+    &-image-widget img {
+        width: 100%;
+    }
 }
 
 @each $wsize in (25, 33, 50, 66, 75) {
-    .widget-size-#{$wsize} {
-        @extend .widget-size-100;
+    %widget-size-#{$wsize} {
+        @include make-col-ready;
+        @include make-col(12);
 
         @include media-breakpoint-up(sm) {
             @include make-col(round(math.div($wsize * 12, 100)));
         }
     }
 
+    .widget-size-#{$wsize} {
+        @extend %widget-size-#{$wsize};
+    }
+
     .widget .widget-size-#{$wsize} {
-        @extend .widget-size-#{$wsize};
+        @extend %widget-size-#{$wsize};
 
         @include media-breakpoint-up(md) {
             @include make-col(round(math.div($wsize * 12, 100)));
