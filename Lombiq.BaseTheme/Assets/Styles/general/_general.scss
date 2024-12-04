@@ -61,8 +61,7 @@ body > .layoutElement {
     }
 }
 
-// This is needed for notifications
-// see: https://github.com/OrchardCMS/OrchardCore/blob/main/src/OrchardCore.Themes/TheTheme/Assets/scss/modules/_messages.scss
+// This is needed for notifications.
 // stylelint-disable
 .message {
     @extend .alert;
