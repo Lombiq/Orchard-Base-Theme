@@ -59,8 +59,8 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.HelpfulLibraries" Version="11.0.0" />
-    <PackageReference Include="Lombiq.HelpfulExtensions" Version="9.0.0" />
+    <PackageReference Include="Lombiq.HelpfulLibraries" Version="11.0.1-alpha.1.osoe-903" />
+    <PackageReference Include="Lombiq.HelpfulExtensions" Version="9.0.1-alpha.0.osoe-903" />
     <PackageReference Include="Lombiq.NodeJs.Extensions" Version="2.1.0" />
     <PackageReference Include="Lombiq.HelpfulLibraries.SourceGenerators" Version="11.0.1-alpha.1.osoe-903" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <PackageReference Include="Lombiq.HelpfulLibraries.Attributes" Version="11.0.1-alpha.1.osoe-903" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
