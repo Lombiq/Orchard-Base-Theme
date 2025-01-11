@@ -206,7 +206,7 @@
                             "Owner": null,
                             "Author": "admin",
                             "HtmlBodyPart": {
-                              "Html": "<h3>Headings</h3>\r\n<div class=\"u-dsc1\">h1 to h6</div>\r\n\r\n<ul class=\"u-dsc2\">\r\n    <li><div>First 3 levels have dark blue color, the rest are grey.</div></li>\r\n    <li><div>First 3 levels scale down (font-size and line-height) one level lower below large screen size.</div></li>\r\n</ul>"
+                              "Html": "<h3>Headings</h3>\r\n<div class=\"u-dsc1\">h1 to h6</div>\r\n\r\n<ul class=\"u-dsc2\">\r\n    <li><div>First 3 levels have dark blue color, the rest are gray.</div></li>\r\n    <li><div>First 3 levels scale down (font-size and line-height) one level lower below large screen size.</div></li>\r\n</ul>"
                             },
                             "AdditionalStylingPart": {
                               "CustomClasses": " u-oln",
@@ -315,7 +315,7 @@
                             "Owner": null,
                             "Author": "admin",
                             "HtmlBodyPart": {
-                              "Html": "<div class=\"u-dsc\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque suscipit a quam ut hendrerit. Nullam dapibus non ipsum et ullamcorper. Aenean quis efficitur nisi. Suspendisse tempor lorem ex, non faucibus metus tincidunt sed. Duis nec sollicitudin nunc. Quisque non bibendum libero. Nam faucibus leo eget diam pellentesque, ut pulvinar dui accumsan.</div>"
+                              "Html": "<div class=\"u-dsc\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque suscipit a quam ut hendrerit. Nullam dapibus non ipsum et ullamcorper. Aenean quis efficitur nisi. Suspendisse tempor lorem ex, non faucibus metus tincidunt sed. Duis nec sollicitudin nunc. Quisque non bibendum libero. Sic faucibus leo eget diam pellentesque, ut pulvinar dui accumsan.</div>"
                             },
                             "AdditionalStylingPart": {
                               "CustomClasses": "u-oln",
