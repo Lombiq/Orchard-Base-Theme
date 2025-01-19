@@ -18,7 +18,7 @@
     {
       "name": "settings",
       "BaseThemeSettings": {
-        // The HideMenu can be used if you don't want to use the Boostrap main menu widget injected by the base theme.
+        // The HideMenu can be used if you don't want to use the Bootstrap main menu widget injected by the base theme.
         "HideMenu": false,
         // You can set a single icon using a media path, so the same as the TargetPath in the recipe's media step.
         "Icon": "Icons/favicon.ico",
