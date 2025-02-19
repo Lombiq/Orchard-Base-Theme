@@ -172,7 +172,7 @@
             // Mapping spacing values to breakpoints.
             @include media-breakpoint-up($breakpoint) {
                 // Applying breakpoint.
-                // Mapping directions to sides, e.g. top = top, hor(izontal) = left + right. #spell-check-ignore-line
+                // Mapping directions to sides, e.g. top = top, hor(izontal) = left + right.
                 @each $spacing-direction, $spacing-sides in $spacing-directions {
                     .u-pd-#{$spacing-direction}-#{$spacing-size} {
                         // Padding utility class name with direction & size.
