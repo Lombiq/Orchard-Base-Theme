@@ -77,7 +77,7 @@ public static class TestCaseUITestContextExtensions
             "SelectedContentItem",
             "Man must explore, and this is exploration at its greatest");
 
-        await context.ClickPublishAsync();
+        await context.ClickPublishUntilNavigationHasOccurredAsync();
         await context.ClickPublishAsync();
         context.ShouldBeSuccess();
 
