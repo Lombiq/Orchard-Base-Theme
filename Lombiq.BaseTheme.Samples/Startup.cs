@@ -23,7 +23,7 @@ public sealed class Startup : StartupBase
         services.AddNavigationProvider<AccountNavigationProvider>();
 
         // This service provides configuration to the ResourceFilterMiddleware.
-        services.AddScoped<IResourceFilterProvider, ResourceFilters>();
+        services.AddResourceFilter<ResourceFilters>();
 
         // The recipe migration is used to add the media items and Base Theme settings required for the correct favicon.
         services.AddDataMigration<RecipeMigrations>();
