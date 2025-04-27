@@ -1,8 +1,8 @@
+using Lombiq.BaseTheme.Constants;
 using Lombiq.BaseTheme.Migrations;
 using Lombiq.BaseTheme.Navigation;
 using Lombiq.BaseTheme.Permissions;
 using Lombiq.BaseTheme.Services;
-using Lombiq.DataTables.Navigation;
 using Lombiq.HelpfulLibraries.AspNetCore.Extensions;
 using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,7 +26,9 @@ public sealed class Startup : StartupBase
         services.AddDataMigration<LayoutInjectionMigrations>();
         services.AddDataMigration<RecipeMigrations>();
 
-        services.AddResourceFilter<ResourceFilters>();
+        services.AddResourceFilter(
+            builder => builder.Always().RegisterStylesheet(ResourceNames.Site),
+            FeatureIds.BaseTheme);
         services.AddResourceFilter<IconResourceFilter>();
 
         PerTenantShapeTableManager.ReplaceDefaultShapeTableManager(services);
