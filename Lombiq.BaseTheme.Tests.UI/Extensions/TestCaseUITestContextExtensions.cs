@@ -1,10 +1,12 @@
 using Atata;
+using Lombiq.HelpfulLibraries.OrchardCore.Mvc;
 using Lombiq.Tests.UI.Extensions;
 using Lombiq.Tests.UI.Services;
 using OpenQA.Selenium;
 using Shouldly;
 using System;
 using System.Threading.Tasks;
+using BaseThemeCoreAdminController = Lombiq.BaseTheme.Core.Controllers.AdminController;
 
 namespace Lombiq.BaseTheme.Tests.UI.Extensions;
 
@@ -12,7 +14,8 @@ public static class TestCaseUITestContextExtensions
 {
     public static Task TestBaseThemeFeaturesAsync(this UITestContext context, bool skipLogin = false)
     {
-        context.Get(By.Id("footer")).GetAttribute("class").Split().ShouldContain("text-center");
+        var classes = context.Get(By.Id("footer")).GetAttribute("class") ?? string.Empty;
+        classes.Split().ShouldContain("text-center");
         context.TestZoneInsertion();
         return context.TestMainMenuWithAuthenticationAsync(skipLogin);
     }
@@ -94,7 +97,7 @@ public static class TestCaseUITestContextExtensions
         Func<Task> selectFromMediaLibraryAsync = null,
         By byIcon = null)
     {
-        await context.GoToAdminRelativeUrlAsync("/Lombiq.BaseTheme/Admin/Index");
+        await context.GoToAsync<BaseThemeCoreAdminController>(controller => controller.Index());
         await context.SetCheckboxValueAsync(By.Id("HideMenu"));
 
         await context.ClickReliablyOnAsync(By.XPath("//div[contains(@class, 'thumb-container')]"));

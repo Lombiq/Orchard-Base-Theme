@@ -3,6 +3,7 @@ using Lombiq.BaseTheme.Core.ViewModels;
 using Lombiq.HelpfulExtensions.Extensions.ContentTypes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
+using OrchardCore.Admin;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.DisplayManagement;
@@ -22,6 +23,7 @@ namespace Lombiq.BaseTheme.Core.Controllers;
 
 // This controller is there for editing the BaseThemeSettings. We can't use a site settings driver for this, because you
 // can't declare admin-accessible shapes in a site theme.
+[Admin]
 public sealed class AdminController : Controller
 {
     private readonly IClock _clock;
