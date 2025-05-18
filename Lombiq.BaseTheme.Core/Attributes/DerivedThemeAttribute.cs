@@ -3,6 +3,7 @@ using OrchardCore.DisplayManagement.Manifest;
 using OrchardCore.ResourceManagement;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace Lombiq.BaseTheme.Attributes;
@@ -11,7 +12,8 @@ namespace Lombiq.BaseTheme.Attributes;
 /// Indicates a theme derived from <c>Lombiq.BaseTheme</c>.
 /// </summary>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
-public sealed class DerivedThemeAttribute : ThemeAttribute
+[SuppressMessage("Performance", "CA1813:Avoid unsealed attributes", Justification = "Needed to support Sass and CSS base themes.")]
+public class DerivedThemeAttribute : ThemeAttribute
 {
     public string LinksJson { get; set; }
     public string Favicon { get; set; }
@@ -20,6 +22,6 @@ public sealed class DerivedThemeAttribute : ThemeAttribute
         ? []
         : JsonSerializer.Deserialize<IEnumerable<LinkEntry>>(LinksJson);
 
-    public DerivedThemeAttribute() =>
-        BaseTheme = FeatureIds.BaseTheme;
+    public DerivedThemeAttribute(string baseTheme = "Lombiq.BaseTheme") =>
+        BaseTheme = baseTheme;
 }

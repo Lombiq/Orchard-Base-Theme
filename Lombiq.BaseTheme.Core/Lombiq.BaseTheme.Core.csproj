@@ -49,4 +49,10 @@
     <PackageReference Include="Lombiq.NodeJs.Extensions" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Migrations\Lombiq.BaseTheme.LayersAndZones.recipe.json">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
