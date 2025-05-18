@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Lombiq.BaseTheme.Services;
+namespace Lombiq.BaseTheme.Core.Services;
 
 /// <summary>
 /// Service for managing CSS classes to be rendered in the template.

@@ -1,5 +1,5 @@
-using Lombiq.BaseTheme.Models;
-using Lombiq.BaseTheme.ViewModels;
+using Lombiq.BaseTheme.Core.Models;
+using Lombiq.BaseTheme.Core.ViewModels;
 using Lombiq.HelpfulExtensions.Extensions.ContentTypes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
@@ -18,7 +18,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
-namespace Lombiq.BaseTheme.Controllers;
+namespace Lombiq.BaseTheme.Core.Controllers;
 
 // This controller is there for editing the BaseThemeSettings. We can't use a site settings driver for this, because you
 // can't declare admin-accessible shapes in a site theme.

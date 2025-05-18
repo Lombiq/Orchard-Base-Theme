@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lombiq.BaseTheme.Services;
+namespace Lombiq.BaseTheme.Core.Services;
 
 public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 {

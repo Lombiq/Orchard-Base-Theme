@@ -1,5 +1,5 @@
-using Lombiq.BaseTheme.Attributes;
-using Lombiq.BaseTheme.Models;
+using Lombiq.BaseTheme.Core.Attributes;
+using Lombiq.BaseTheme.Core.Models;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 using OrchardCore;
 using OrchardCore.Media;
@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Lombiq.BaseTheme.Services;
+namespace Lombiq.BaseTheme.Core.Services;
 
 public class IconResourceFilter : IResourceFilterProvider
 {

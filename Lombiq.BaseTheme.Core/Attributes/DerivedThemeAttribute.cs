@@ -1,4 +1,3 @@
-using Lombiq.BaseTheme.Constants;
 using OrchardCore.DisplayManagement.Manifest;
 using OrchardCore.ResourceManagement;
 using System;
@@ -6,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
-namespace Lombiq.BaseTheme.Attributes;
+namespace Lombiq.BaseTheme.Core.Attributes;
 
 /// <summary>
 /// Indicates a theme derived from <c>Lombiq.BaseTheme</c>.

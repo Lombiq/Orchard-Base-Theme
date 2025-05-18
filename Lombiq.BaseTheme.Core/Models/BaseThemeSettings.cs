@@ -1,4 +1,4 @@
-﻿namespace Lombiq.BaseTheme.Models;
+﻿namespace Lombiq.BaseTheme.Core.Models;
 
 public class BaseThemeSettings
 {

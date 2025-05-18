@@ -2,7 +2,7 @@ using Lombiq.HelpfulLibraries.OrchardCore.Users;
 using OrchardCore.Security.Permissions;
 using System.Collections.Generic;
 
-namespace Lombiq.BaseTheme.Permissions;
+namespace Lombiq.BaseTheme.Core.Permissions;
 
 public sealed class BaseThemeSettingsPermissions : AdminPermissionBase
 {

@@ -1,5 +1,5 @@
-using Lombiq.BaseTheme.Constants;
-using Lombiq.BaseTheme.Models;
+using Lombiq.BaseTheme.Core.Constants;
+using Lombiq.BaseTheme.Core.Models;
 using Lombiq.HelpfulExtensions.Extensions.Widgets;
 using Lombiq.HelpfulExtensions.Extensions.Widgets.ViewModels;
 using Lombiq.HelpfulLibraries.OrchardCore.Mvc;
@@ -12,7 +12,7 @@ using OrchardCore.Navigation;
 using OrchardCore.Settings;
 using System.Threading.Tasks;
 
-namespace Lombiq.BaseTheme.Services;
+namespace Lombiq.BaseTheme.Core.Services;
 
 public sealed class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
 {

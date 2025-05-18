@@ -1,6 +1,6 @@
 using GraphQL;
-using Lombiq.BaseTheme.Constants;
-using Lombiq.BaseTheme.Services;
+using Lombiq.BaseTheme.Core.Constants;
+using Lombiq.BaseTheme.Core.Services;
 using Lombiq.HelpfulLibraries.Common.Utilities;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Localization;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using static AngleSharp.Dom.TagNames;
 
-namespace Lombiq.BaseTheme.Models;
+namespace Lombiq.BaseTheme.Core.Models;
 
 public class ZoneDescriptor
 {

@@ -1,14 +1,12 @@
-﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
-@using Lombiq.HelpfulLibraries.OrchardCore.TagHelpers
-@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Mvc.Localization
 @using OrchardCore.Media.ViewModels
 
-@model Lombiq.BaseTheme.ViewModels.BaseThemeSettingsViewModel
+@model Lombiq.BaseTheme.Core.ViewModels.BaseThemeSettingsViewModel
 
 @{
     const string editorId = $"{nameof(Model.Editor)}_{nameof(EditMediaFieldViewModel.Paths)}";
 
-    var errorMessage = 
+    var errorMessage =
         T["An error has occurred while handing the icon media editor. Please reload the page and try again!"].Json();
 }
 
@@ -16,7 +14,7 @@
 
 <form class="baseThemeSettings_form" method="post" asp-action="Update">
     @await DisplayAsync(Model.Editor)
-    
+
     <input asp-for="Icon" type="hidden"/>
 
     <fieldset asp-for="HideMenu"
@@ -38,10 +36,10 @@
             try {
                 $errorBox.hide()
                 iconInput.value = null;
-                
+
                 const editorValue = document.getElementById(@editorId.JsonHtmlContent())?.value;
                 if (!editorValue) return true;
-                
+
                 const mediaPath = JSON.parse(editorValue)[0]?.path;
                 if (mediaPath) iconInput.value = mediaPath;
             }

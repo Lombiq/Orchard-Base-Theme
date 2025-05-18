@@ -1,7 +1,7 @@
-using Lombiq.BaseTheme.Migrations;
-using Lombiq.BaseTheme.Navigation;
-using Lombiq.BaseTheme.Permissions;
-using Lombiq.BaseTheme.Services;
+using Lombiq.BaseTheme.Core.Migrations;
+using Lombiq.BaseTheme.Core.Navigation;
+using Lombiq.BaseTheme.Core.Permissions;
+using Lombiq.BaseTheme.Core.Services;
 using Lombiq.HelpfulLibraries.AspNetCore.Extensions;
 using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
 using Microsoft.Extensions.DependencyInjection;

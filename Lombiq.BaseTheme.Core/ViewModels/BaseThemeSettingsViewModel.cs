@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OrchardCore.DisplayManagement;
 
-namespace Lombiq.BaseTheme.ViewModels;
+namespace Lombiq.BaseTheme.Core.ViewModels;
 
 public class BaseThemeSettingsViewModel
 {

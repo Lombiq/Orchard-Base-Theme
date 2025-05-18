@@ -2,7 +2,7 @@
 using OrchardCore.Recipes.Services;
 using System.Threading.Tasks;
 
-namespace Lombiq.BaseTheme.Migrations;
+namespace Lombiq.BaseTheme.Core.Migrations;
 
 public sealed class RecipeMigrations : DataMigration
 {

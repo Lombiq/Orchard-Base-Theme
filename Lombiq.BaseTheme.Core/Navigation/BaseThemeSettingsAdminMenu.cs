@@ -1,11 +1,11 @@
-﻿using Lombiq.BaseTheme.Controllers;
-using Lombiq.BaseTheme.Permissions;
+﻿using Lombiq.BaseTheme.Core.Controllers;
+using Lombiq.BaseTheme.Core.Permissions;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using OrchardCore.Navigation;
 
-namespace Lombiq.BaseTheme.Navigation;
+namespace Lombiq.BaseTheme.Core.Navigation;
 
 public class BaseThemeSettingsAdminMenu : AdminMenuNavigationProviderBase
 {

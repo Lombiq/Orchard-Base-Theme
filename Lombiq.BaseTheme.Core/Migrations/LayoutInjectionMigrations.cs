@@ -3,9 +3,9 @@ using OrchardCore.ContentManagement.Metadata.Builders;
 using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.Data.Migration;
 using System.Threading.Tasks;
-using static Lombiq.BaseTheme.Constants.ContentTypes;
+using static Lombiq.BaseTheme.Core.Constants.ContentTypes;
 
-namespace Lombiq.BaseTheme.Migrations;
+namespace Lombiq.BaseTheme.Core.Migrations;
 
 public sealed class LayoutInjectionMigrations : DataMigration
 {

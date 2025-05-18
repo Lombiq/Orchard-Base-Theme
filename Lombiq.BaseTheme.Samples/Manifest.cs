@@ -1,4 +1,4 @@
-using Lombiq.BaseTheme.Attributes;
+using Lombiq.BaseTheme.Core.Attributes;
 
 // Theme manifests in Orchard Core are similar to module manifests (see "Module manifest" section in the Training Demo),
 // except you have to use the Theme attribute. DerivedTheme is a specific variant of Theme where the BaseTheme property

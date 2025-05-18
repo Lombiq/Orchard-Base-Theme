@@ -1,4 +1,4 @@
-﻿namespace Lombiq.BaseTheme.Constants;
+﻿namespace Lombiq.BaseTheme.Core.Constants;
 
 public static class ContentTypes
 {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Lombiq.BaseTheme.Services;
+namespace Lombiq.BaseTheme.Core.Services;
 
 public class CssClassHolder : ICssClassHolder
 {
