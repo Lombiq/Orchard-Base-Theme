@@ -43,24 +43,19 @@
 
   <ItemGroup>
     <PackageReference Include="OrchardCore.Theme.Targets" Version="2.1.0" />
-    <PackageReference Include="OrchardCore.Menu" Version="2.1.0" />
-    <PackageReference Include="OrchardCore.Media" Version="2.1.0" />
-    <PackageReference Include="OrchardCore.ContentManagement" Version="2.1.0" />
-    <PackageReference Include="OrchardCore.DisplayManagement" Version="2.1.0" />
-    <PackageReference Include="OrchardCore.ResourceManagement" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lombiq.BaseTheme.Core\Lombiq.BaseTheme.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
-    <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.csproj" />
-    <ProjectReference Include="..\..\..\Modules\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions.csproj" />
     <ProjectReference Include="..\..\..\Utilities\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions.csproj" />
     <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.Attributes\Lombiq.HelpfulLibraries.Attributes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
     <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.SourceGenerators\Lombiq.HelpfulLibraries.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.HelpfulLibraries" Version="12.2.1-alpha.0.occ-314" />
-    <PackageReference Include="Lombiq.HelpfulExtensions" Version="10.0.1-alpha.9.occ-314" />
     <PackageReference Include="Lombiq.NodeJs.Extensions" Version="2.2.0" />
     <PackageReference Include="Lombiq.HelpfulLibraries.SourceGenerators" Version="12.2.1-alpha.0.occ-314" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <PackageReference Include="Lombiq.HelpfulLibraries.Attributes" Version="12.2.1-alpha.0.occ-314" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
@@ -77,9 +72,5 @@
 
   <ItemGroup>
     <AdditionalFiles Include="package.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Lombiq.BaseTheme.Core\Lombiq.BaseTheme.Core.csproj" />
   </ItemGroup>
 </Project>

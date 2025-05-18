@@ -1,8 +1,8 @@
 using OrchardCore.DisplayManagement.Manifest;
-using static Lombiq.BaseTheme.Constants.FeatureIds;
+using static Lombiq.BaseTheme.Core.Constants.FeatureIds;
 
 [assembly: Theme(
-    Name = "Lombiq Base Theme",
+    Name = "Lombiq Base Theme - Sass",
     Author = "Lombiq Technologies",
     Version = "0.0.1",
     Website = "https://github.com/Lombiq/Orchard-Base-Theme",

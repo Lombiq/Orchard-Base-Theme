@@ -4,5 +4,4 @@ public static class FeatureIds
 {
     public const string Area = "Lombiq.BaseTheme";
     public const string BaseTheme = Area;
-    public const string Core = Lombiq.BaseTheme.Core.Constants.FeatureIds.Area;
 }

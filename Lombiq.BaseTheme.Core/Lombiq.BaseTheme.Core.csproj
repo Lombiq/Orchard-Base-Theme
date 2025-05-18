@@ -40,13 +40,11 @@
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
     <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.csproj" />
     <ProjectReference Include="..\..\..\Modules\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions.csproj" />
-    <ProjectReference Include="..\..\..\Utilities\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
     <PackageReference Include="Lombiq.HelpfulLibraries" Version="12.2.1-alpha.0.occ-314" />
     <PackageReference Include="Lombiq.HelpfulExtensions" Version="10.0.1-alpha.9.occ-314" />
-    <PackageReference Include="Lombiq.NodeJs.Extensions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
