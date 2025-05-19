@@ -2,6 +2,7 @@ using Lombiq.BaseTheme.Constants;
 using Lombiq.HelpfulLibraries.Attributes;
 using Microsoft.Extensions.Options;
 using OrchardCore.ResourceManagement;
+using CoreResourceNames = Lombiq.BaseTheme.Core.Constants.ResourceNames;
 
 namespace Lombiq.BaseTheme;
 
@@ -12,6 +13,7 @@ public partial class ResourceManagementOptionsConfiguration : IConfigureOptions<
     private const string Css = WwwRoot + "css/";
     private const string Js = WwwRoot + "js/";
     private const string Vendors = WwwRoot + "vendors/";
+
     private static readonly ResourceManifest _manifest = new();
 
     static ResourceManagementOptionsConfiguration()
@@ -20,7 +22,8 @@ public partial class ResourceManagementOptionsConfiguration : IConfigureOptions<
 
         _manifest
             .DefineStyle(ResourceNames.Site)
-            .SetUrl(Css + "site.min.css", Css + "site.css");
+            .SetUrl(Css + "site.min.css", Css + "site.css")
+            .SetDependencies(CoreResourceNames.Helpers);
 
         _manifest
             .DefineScript(ResourceNames.Helpers)

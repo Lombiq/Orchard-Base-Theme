@@ -5,9 +5,11 @@ using Lombiq.BaseTheme.Core.Services;
 using Lombiq.HelpfulLibraries.AspNetCore.Extensions;
 using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
+using OrchardCore.ResourceManagement;
 using OrchardCore.Security.Permissions;
 
 namespace Lombiq.BaseTheme.Core;
@@ -29,5 +31,7 @@ public sealed class Startup : StartupBase
 
         services.AddPermissionProvider<BaseThemeSettingsPermissions>();
         services.AddNavigationProvider<BaseThemeSettingsAdminMenu>();
+
+        services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
     }
 }
