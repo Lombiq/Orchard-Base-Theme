@@ -11,10 +11,15 @@ public class ResourceManagementOptionsConfiguration : IConfigureOptions<Resource
 
     private static readonly ResourceManifest _manifest = new();
 
-    static ResourceManagementOptionsConfiguration() =>
+    static ResourceManagementOptionsConfiguration()
+    {
         _manifest
             .DefineStyle(ResourceNames.Helpers)
             .SetUrl(Css + "helpers.css");
+        _manifest
+            .DefineStyle(ResourceNames.NativeVariables)
+            .SetUrl(Css + "native-variables.css");
+    }
 
     public void Configure(ResourceManagementOptions options) => options.ResourceManifests.Add(_manifest);
 }

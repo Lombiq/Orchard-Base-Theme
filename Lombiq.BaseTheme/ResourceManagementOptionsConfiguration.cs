@@ -23,7 +23,7 @@ public partial class ResourceManagementOptionsConfiguration : IConfigureOptions<
         _manifest
             .DefineStyle(ResourceNames.Site)
             .SetUrl(Css + "site.min.css", Css + "site.css")
-            .SetDependencies(CoreResourceNames.Helpers);
+            .SetDependencies(CoreResourceNames.Helpers, CoreResourceNames.NativeVariables);
 
         _manifest
             .DefineScript(ResourceNames.Helpers)
