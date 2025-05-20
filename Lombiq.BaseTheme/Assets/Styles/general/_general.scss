@@ -4,10 +4,13 @@
 
 @import "../abstracts/mixins";
 
-@for $i from 1 through 9 {
-    h#{$i} {
-        font-family: var(--font-header);
-    }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-header), sans-serif;
 }
 
 .layoutElement_leaf {
