@@ -1,5 +1,6 @@
 using Lombiq.BaseTheme.Constants;
 using Lombiq.BaseTheme.Services;
+using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OrchardCore.Modules;
@@ -13,7 +14,11 @@ public sealed class Startup : StartupBase
     {
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
         services.AddResourceFilter(
-            builder => builder.Always().RegisterStylesheet(ResourceNames.Site),
+            builder => builder
+                .Always()
+                .RegisterBaseThemeCoreResources()
+                .RegisterStylesheet(ResourceNames.Site)
+                .RegisterHeadScript(ResourceNames.Helpers),
             FeatureIds.BaseTheme);
         services.Decorate<IResourceManager, ResourceManagerDecorator>();
     }
