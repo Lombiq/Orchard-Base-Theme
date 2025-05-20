@@ -1,0 +1,60 @@
+@using Lombiq.BaseTheme.Core.Models
+@using Lombiq.BaseTheme.Core.Services
+@using TagNames = AngleSharp.Dom.TagNames;
+
+<!DOCTYPE html>
+
+@inject ICssClassHolder CssClassHolder
+
+<html lang="@Orchard.CultureName()">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><shape type="PageTitle"></shape></title>
+
+    <resources type="Header"/>
+
+    @await RenderSectionAsync("LayoutInjection", required: false)
+</head>
+<body dir="@Orchard.CultureDir()" class="@CssClassHolder.Body.Join()">
+
+@await ZoneDescriptor.DisplayZonesAsync(
+    CssClassHolder,
+    page: this,
+    [
+        new(Header, wrapBody: true, elementName: TagNames.Header, ariaLabel: T["Site"])
+        {
+            ChildrenBefore = [new("Banner", elementName: TagNames.Section)],
+            ChildrenAfter =
+            [
+                new(Navigation, elementName: TagNames.Nav, ariaLabel: T["Main"])
+            ],
+        },
+        new(BeforeMain, elementName: TagNames.Section, ariaLabel: T["Before Main"]),
+        new(Featured, elementName: TagNames.Section),
+        new(Content, wrapBody: true, elementName: TagNames.Section)
+        {
+            ChildrenBefore =
+            [
+                new(AsideFirst, elementName: TagNames.Aside, ariaLabel: T["Aside First"]),
+                new(Messages, elementName: TagNames.Section),
+                new(BeforeContent, elementName: TagNames.Section, ariaLabel: T["Before Content"])
+            ],
+            ChildrenAfter =
+            [
+                new(AfterContent, elementName: TagNames.Section, ariaLabel: T["After Content"]),
+                new(AsideSecond, elementName: TagNames.Aside, ariaLabel: T["Aside Second"])
+            ],
+        },
+        new(AfterMain, elementName: TagNames.Section, ariaLabel: T["After Main"]),
+        new(Footer, elementName: TagNames.Footer, ariaLabel: T["Site"])
+    ])
+
+<script>
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.id = 'navbar';
+</script>
+<resources type="FootScript"/>
+
+</body>
+</html>
