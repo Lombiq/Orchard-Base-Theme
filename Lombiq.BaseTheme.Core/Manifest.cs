@@ -2,7 +2,7 @@ using OrchardCore.DisplayManagement.Manifest;
 using static Lombiq.HelpfulExtensions.FeatureIds;
 
 [assembly: Theme(
-    Name = "Lombiq Base Theme for Orchard Core (Core Features)",
+    Name = "Lombiq Base Theme - Core Features",
     Author = "Lombiq Technologies",
     Version = "0.0.1",
     Website = "https://github.com/Lombiq/Orchard-Base-Theme",

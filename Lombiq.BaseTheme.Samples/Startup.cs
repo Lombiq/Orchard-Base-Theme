@@ -28,11 +28,6 @@ public sealed class Startup : StartupBase
         // The recipe migration is used to add the media items and Base Theme settings required for the correct favicon.
         services.AddDataMigration<RecipeMigrations>();
     }
-
-    public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
-        // In this theme we inject the style resources using the ResourceFilterMiddleware which needs to be enabled with
-        // this extension. See: https://github.com/Lombiq/Helpful-Libraries/blob/dev/Lombiq.HelpfulLibraries.OrchardCore/Docs/ResourceManagement.md
-        app.UseResourceFilters();
 }
 
 // NEXT STATION: Services/ResourceFilters.cs
