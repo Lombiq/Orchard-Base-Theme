@@ -63,26 +63,3 @@ body > .layoutElement {
         }
     }
 }
-
-// This is needed for notifications.
-// stylelint-disable
-.message {
-    @extend .alert;
-}
-
-.message-success {
-    @extend .alert-success;
-}
-
-.message-information {
-    @extend .alert-info;
-}
-
-.message-warning {
-    @extend .alert-warning;
-}
-
-.message-error {
-    @extend .alert-danger;
-}
-// stylelint-enable
