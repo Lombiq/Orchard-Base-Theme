@@ -1,0 +1,14 @@
+@using Lombiq.BaseTheme.Core.Models
+
+@{
+    var type = Enum.TryParse<BootstrapNotifyType>($"{Model.Type}", ignoreCase: true, out var typeEnum)
+        ? typeEnum
+        : (BootstrapNotifyType?)null;
+}
+
+<div class="alert @(type?.GetAlertClass()) alert-dismissible fade show message @(type?.GetMessageClass())" role="alert">
+    @Model.Message
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@T["Close"]">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

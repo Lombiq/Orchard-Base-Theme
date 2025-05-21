@@ -1,8 +1,8 @@
-@using OrchardCore.DisplayManagement.Notify
+@using Lombiq.BaseTheme.Core.Models
 
 @* This sample overrides the matching shape from Lombiq.TrainingDemo. *@
 <div class="mt-3">
     <shape type="Message"
-           prop-Type="@NotifyType.Success"
-           prop-Message="@T["I'm injected!<div><small>(Not a notification.)</small></div>"]"></shape>
+           prop-Type="@BootstrapNotifyType.Primary"
+           prop-Message="@T["I'm injected!"]"></shape>
 </div>
