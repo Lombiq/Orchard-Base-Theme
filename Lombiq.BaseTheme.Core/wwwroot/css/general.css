@@ -1,0 +1,31 @@
+/* --------------------------------------------------------------------------------------------------------------------
+ * General layout rules
+ * ------------------------------------------------------------------------------------------------------------------*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-header), sans-serif;
+}
+
+body {
+    color: var(--color-foreground-body);
+    background-color: var(--color-background-body);
+}
+
+.menuWidget__dropdown {
+    cursor: pointer;
+}
+
+.menuWidget__link_label {
+    pointer-events: none;
+
+    &.disabled {
+        /* Undoes the default Bootstrap "disabled" effect. This class only has to be included for technical reasons,
+           not for styling. */
+        color: var(--color-foreground-body);
+    }
+}

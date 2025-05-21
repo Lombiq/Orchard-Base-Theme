@@ -11,6 +11,7 @@ public static class ResourceFilterBuilderExtensions
         builder
             .RegisterStylesheet(ResourceNames.Bootstrap)
             .RegisterHeadScript(ResourceNames.Bootstrap)
+            .RegisterStylesheet(ResourceNames.General)
             .RegisterStylesheet(ResourceNames.Helpers)
             .RegisterStylesheet(ResourceNames.NativeVariables);
 }

@@ -14,6 +14,9 @@ public class ResourceManagementOptionsConfiguration : IConfigureOptions<Resource
     static ResourceManagementOptionsConfiguration()
     {
         _manifest
+            .DefineStyle(ResourceNames.General)
+            .SetUrl(Css + "general.css");
+        _manifest
             .DefineStyle(ResourceNames.Helpers)
             .SetUrl(Css + "helpers.css");
         _manifest

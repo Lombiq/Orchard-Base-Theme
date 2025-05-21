@@ -4,6 +4,7 @@ public static class ResourceNames
 {
     private const string Prefix = FeatureIds.Area + ".";
 
+    public const string General = Prefix + nameof(General);
     public const string Helpers = Prefix + nameof(Helpers);
     public const string NativeVariables = Prefix + nameof(NativeVariables);
 
