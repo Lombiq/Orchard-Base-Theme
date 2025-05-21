@@ -1,28 +1,16 @@
 using Lombiq.BaseTheme.Core.Constants;
-using Microsoft.Extensions.Options;
-using OrchardCore.ResourceManagement;
+using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 
 namespace Lombiq.BaseTheme.Core;
 
-public class ResourceManagementOptionsConfiguration : IConfigureOptions<ResourceManagementOptions>
+public class ResourceManagementOptionsConfiguration : ResourceManagementOptionsConfiguratorBase
 {
-    private const string WwwRoot = "~/" + FeatureIds.Area + "/";
-    private const string Css = WwwRoot + "css/";
+    protected override string Area => FeatureIds.Area;
 
-    private static readonly ResourceManifest _manifest = new();
-
-    static ResourceManagementOptionsConfiguration()
+    protected override void Configure(ResourceManagementContext context)
     {
-        _manifest
-            .DefineStyle(ResourceNames.General)
-            .SetUrl(Css + "general.css");
-        _manifest
-            .DefineStyle(ResourceNames.Helpers)
-            .SetUrl(Css + "helpers.css");
-        _manifest
-            .DefineStyle(ResourceNames.NativeVariables)
-            .SetUrl(Css + "native-variables.css");
+        context.DefineStyle(ResourceNames.General, "general.css");
+        context.DefineStyle(ResourceNames.Helpers, "helpers.css");
+        context.DefineStyle(ResourceNames.NativeVariables, "native-variables.css");
     }
-
-    public void Configure(ResourceManagementOptions options) => options.ResourceManifests.Add(_manifest);
 }
