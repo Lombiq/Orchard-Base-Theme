@@ -21,6 +21,9 @@ public class DerivedThemeAttribute : ThemeAttribute
         ? []
         : JsonSerializer.Deserialize<IEnumerable<LinkEntry>>(LinksJson);
 
+    // The default value is hard coded, because we moved this attribute to the "Core" project so it can be reused by
+    // Lombiq.BaseTheme.Native, but that also means the constant for "Lombiq.BaseTheme" is not available (and it
+    // shouldn't be used anywhere else anyway).
     public DerivedThemeAttribute(string baseTheme = "Lombiq.BaseTheme") =>
         BaseTheme = baseTheme;
 }

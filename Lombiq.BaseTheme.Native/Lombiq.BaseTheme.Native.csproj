@@ -14,7 +14,7 @@
     <PackageIcon>NuGetIcon.png</PackageIcon>
     <PackageTags>OrchardCore;Lombiq;AspNetCore;Css;Theming</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Base-Theme</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/Lombiq/Orchard-Base-Theme</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lombiq/Orchard-Base-Theme/blob/dev/Lombiq.BaseTheme.Native/Readme.md</PackageProjectUrl>
     <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
   </PropertyGroup>
 

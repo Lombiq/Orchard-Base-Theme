@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>Lombiq Base Theme for Orchard Core - Native CSS - Samples</Title>
+    <Authors>Lombiq Technologies</Authors>
+    <Copyright>Copyright © 2021, Lombiq Technologies Ltd.</Copyright>
+    <Description>Lombiq Base Theme for Orchard Core - Native CSS - Samples: Sample project that demonstrates the features of Lombiq Base Theme for Orchard Core. See the project website for detailed documentation.</Description>
+    <PackageIcon>NuGetIcon.png</PackageIcon>
+    <PackageTags>OrchardCore;Lombiq;AspNetCore;Css;Theming</PackageTags>
+    <RepositoryUrl>https://github.com/Lombiq/Orchard-Base-Theme</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Lombiq/Orchard-Base-Theme/blob/dev/Lombiq.BaseTheme.Native.Samples/Readme.md</PackageProjectUrl>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OrchardCore.Admin" Version="2.1.0" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.1.4"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lombiq.BaseTheme.Native\Lombiq.BaseTheme.Native.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Readme.md" />
+    <Content Include="wwwroot\css\general\general.css" />
+    <Content Include="wwwroot\css\site.css" />
+    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
+    <EmbeddedResource Include="wwwroot\css\abstracts\native-variables.css">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wwwroot\css\general\navigation.css">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wwwroot\css\pages\blog-post.css">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="wwwroot\icons\favicon.ico">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="wwwroot\Theme.png">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

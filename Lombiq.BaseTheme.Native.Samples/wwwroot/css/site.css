@@ -1,0 +1,8 @@
+/* If you want to structure your stylesheet into multiple files, you can do it either using Orchard Core's resource
+   manager or using @import directives in a central CSS file. If you choose the latter, you have to version the imports
+   manually using an arbitrary query string at the end of the URL. This is necessary to ensure the cached version of the
+   imported file is up-to-date. */
+@import "abstracts/native-variables.css?v=1";
+@import "abstracts/helpers.css?v=1";
+
+@import "general/general.css?v=1";

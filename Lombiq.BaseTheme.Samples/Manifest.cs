@@ -5,11 +5,11 @@ using Lombiq.BaseTheme.Core.Attributes;
 // is automatically set to the constant at Lombiq.BaseTheme.Constants.FeatureIds.BaseTheme from the Lombiq.BaseTheme
 // project and it has some additional properties.
 [assembly: DerivedTheme(
-    Name = "Lombiq Base Theme - Samples",
+    Name = "Lombiq Base Theme - Sass - Samples",
     Author = "Lombiq Technologies",
     Version = "0.0.1",
     Website = "https://github.com/Lombiq/Orchard-Base-Theme",
-    Description = "A sample theme that builds on Lombiq Base Theme.",
+    Description = "A sample theme that builds on Lombiq Base Theme (Sass version).",
     // This is a new property in DerivedTheme. By setting it to a static resource you can define a default icon for this
     // theme. You can define other "link" resources too, using the LinkJson property. They should be valid Json strings.
     // For example:
