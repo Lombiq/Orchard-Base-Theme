@@ -33,19 +33,3 @@ body > .layoutElement {
         padding: 0 calc(var(--page-margin-xx-large) - var(--gutter-xx-large));
     }
 }
-
-.menuWidget {
-    &__dropdown {
-        cursor: pointer;
-    }
-
-    &__link_label {
-        pointer-events: none;
-
-        &.disabled {
-            // Undoes the default Bootstrap "disabled" effect. This class only has to be included for technical reasons,
-            // not for styling.
-            color: var(--color-foreground-body);
-        }
-    }
-}
