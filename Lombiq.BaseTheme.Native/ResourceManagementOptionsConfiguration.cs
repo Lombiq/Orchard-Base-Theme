@@ -12,7 +12,7 @@ public class ResourceManagementOptionsConfiguration : ResourceManagementOptionsC
     {
         context.DefineStyle(
             ResourceNames.General,
-            "general.css",
+            "general/general.css",
             CoreResourceNames.General,
             CoreResourceNames.Helpers,
             CoreResourceNames.NativeVariables);
