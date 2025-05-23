@@ -36,24 +36,6 @@
     <Content Include="wwwroot\css\general\general.css" />
     <Content Include="wwwroot\css\site.css" />
     <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
-    <EmbeddedResource Include="wwwroot\css\abstracts\native-variables.css">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wwwroot\css\general\navigation.css">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wwwroot\css\pages\blog-post.css">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="wwwroot\icons\favicon.ico">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Update="wwwroot\Theme.png">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
