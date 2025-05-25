@@ -81,7 +81,7 @@ public class ZoneDescriptor
                 ? layoutClassName + "__body"
                 : layoutClassName + "Body";
 
-            var bodyAttributes = $"class=\"{bodyWrapperClass} {LeafClassName}\" " + attributesFlattened;
+            var bodyAttributes = $"class=\"{bodyWrapperClass} {LayoutElementClassName} {LeafClassName}\" " + attributesFlattened;
 
             var elementName = Div;
 
