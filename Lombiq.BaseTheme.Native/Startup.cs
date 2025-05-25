@@ -1,9 +1,7 @@
 using Lombiq.BaseTheme.Native.Constants;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using OrchardCore.Modules;
-using OrchardCore.ResourceManagement;
 
 namespace Lombiq.BaseTheme.Native;
 
@@ -19,6 +17,6 @@ public class Startup : StartupBase
                 .RegisterHeadScript(ResourceNames.GridBreakpoints),
             FeatureIds.Native);
 
-        services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
+        services.AddResourceManagementConfiguration<ResourceManagementOptionsConfiguration>();
     }
 }

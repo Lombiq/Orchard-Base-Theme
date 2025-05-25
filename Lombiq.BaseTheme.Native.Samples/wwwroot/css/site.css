@@ -2,8 +2,15 @@
    manager or using @import directives in a central CSS file. If you choose the latter, you have to version the imports
    manually using an arbitrary query string at the end of the URL. This is necessary to ensure the cached version of the
    imported file is up-to-date. */
+
+/* Site-specific CSS variables. CSS uses the last variable declaration, so this should always be the first import of
+   your theme. */
 @import "abstracts/native-variables.css?v=1";
+/* Utility classes that can be reused in HTML across he site. */
 @import "abstracts/helpers.css?v=1";
 
+/* Rules for every page. */
 @import "general/general.css?v=1";
 @import "general/navigation.css?v=1";
+
+/* NEXT STATION: wwwroot/css/abstracts/native-variables.css */

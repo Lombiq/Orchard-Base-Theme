@@ -9,12 +9,10 @@ using Lombiq.HelpfulLibraries.OrchardCore.Shapes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using OrchardCore.Data.Migration;
 using OrchardCore.Liquid;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
-using OrchardCore.ResourceManagement;
 using OrchardCore.Security.Permissions;
 using System;
 
@@ -38,7 +36,7 @@ public sealed class Startup : StartupBase
         services.AddPermissionProvider<BaseThemeSettingsPermissions>();
         services.AddNavigationProvider<BaseThemeSettingsAdminMenu>();
 
-        services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
+        services.AddResourceManagementConfiguration<ResourceManagementOptionsConfiguration>();
 
         services.AddLiquidFilter<ZoneClassesLiquidFilter>("zone-classes");
         services.AddDisplayChildrenLiquidFilter();

@@ -10,3 +10,12 @@ using Lombiq.BaseTheme.Native.Attributes;
     Description = "A sample theme that builds on Lombiq Base Theme (native CSS version).",
     Favicon = "~/Lombiq.BaseTheme.Native.Samples/icons/favicon.ico"
 )]
+
+// Steps you need to do outside of this project:
+// - Reference the project in your web app.
+// - Enable the "Lombiq.BaseTheme.Native.Samples" feature in your setup recipe.
+// - Set the site theme to "Lombiq.BaseTheme.Native.Samples" in your setup recipe.
+
+// END OF TRAINING SECTION: Configuration
+
+// NEXT STATION: package.json

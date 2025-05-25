@@ -16,11 +16,13 @@ public class ResourceManagementOptionsConfiguration : ResourceManagementOptionsC
         // Here we define these styles (under the hood: using the context.Manifest.DefineStyle() method) in the
         // ~/Lombiq.BaseTheme.Native.Samples/css/site.css and ~/Lombiq.BaseTheme.Native.Samples/css/pages/blog-posts.css
         // paths. We use dependencies to ensure that BlogPost is loaded after Site, and Site is loaded after the CSS
-        // base theme's main stylesheet (which has its own dependencies). These resources are loaded in using the
-        // resource filter middleware from Lombiq.HelpfulLibraries.OrchardCore, in the Startup class.
+        // base theme's main stylesheet (which has its own dependencies).
         context.DefineStyle(ResourceNames.Site, "site.css", NativeResourceNames.General);
         context.DefineStyle(ResourceNames.BlogPost, "pages/blog-post.css", ResourceNames.Site);
     }
 }
+
+// These resources have to be loaded in. One convenient was is using the resource filter middleware from
+// Lombiq.HelpfulLibraries.OrchardCore, in the Startup class.
 
 // NEXT STATION: Startup.cs
