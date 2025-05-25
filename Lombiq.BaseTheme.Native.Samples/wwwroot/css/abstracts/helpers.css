@@ -17,3 +17,30 @@
         display: none;
     }
 }
+
+.margin-bottom-gutter-1 {
+
+    .breakpoint-xs & {
+        margin-bottom: calc(var(--gutter-x-small));
+    }
+
+    .breakpoint-sm & {
+        margin-bottom: calc(var(--gutter-small));
+    }
+
+    .breakpoint-md & {
+        margin-bottom: calc(var(--gutter-medium));
+    }
+
+    .breakpoint-lg & {
+        margin-bottom: calc(var(--gutter-large));
+    }
+
+    .breakpoint-xl & {
+        margin-bottom: calc(var(--gutter-x-large));
+    }
+
+    .breakpoint-xxl & {
+        margin-bottom: calc(var(--gutter-xx-large));
+    }
+}

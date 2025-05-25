@@ -14,14 +14,9 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: var(--font-default) sans-serif;
+    font-family: var(--font-default), sans-serif;
     font-size: var(--font-size-default);
 }
-
-/* This is one example of using our custom mixin.
-.field-name-blog-image {
-   @include media-field-banner;
-} */
 
 .layoutContent {
     flex-grow: 1;
