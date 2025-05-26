@@ -1,15 +1,20 @@
+using AngleSharp.Dom;
 using GraphQL;
 using Lombiq.BaseTheme.Core.Constants;
 using Lombiq.BaseTheme.Core.Services;
 using Lombiq.HelpfulLibraries.Common.Utilities;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.Extensions.DependencyInjection;
+using OrchardCore.DisplayManagement;
+using OrchardCore.DisplayManagement.Layout;
 using OrchardCore.DisplayManagement.Razor;
-using OrchardCore.DisplayManagement.Zones;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using static AngleSharp.Dom.TagNames;
+using static Lombiq.BaseTheme.Core.Constants.ZoneNames;
 
 namespace Lombiq.BaseTheme.Core.Models;
 
@@ -19,7 +24,8 @@ public class ZoneDescriptor
     public const string LeafClassName = LayoutElementClassName + "_leaf";
 
     // Elements that may be zones and are landmarks, see https://html-validate.org/rules/unique-landmark.html.
-    private static readonly string[] _landmarkElements = [Aside, Footer, Form, Header, Main, Nav, Section];
+    private static readonly string[] _landmarkElements =
+        [TagNames.Aside, TagNames.Footer, TagNames.Form, TagNames.Header, TagNames.Main, TagNames.Nav, TagNames.Section];
 
     public string ZoneName { get; set; }
     public string ElementName { get; set; }
@@ -44,18 +50,23 @@ public class ZoneDescriptor
         Attributes = attributes?.ToDictionary() ?? [];
     }
 
-    public async Task<IHtmlContent> DisplayZoneAsync<TModel>(
+    [Obsolete("Use the other overload.")]
+    public Task<IHtmlContent> DisplayZoneAsync<TModel>(
         ICssClassHolder classHolder,
         RazorPage<TModel> page,
-        string parent)
+        string parent) =>
+        DisplayZoneAsync(page.Context.RequestServices, parent);
+
+    public async Task<IHtmlContent> DisplayZoneAsync(IServiceProvider serviceProvider, string parent)
     {
-        if (page.Model is not IZoneHolding model ||
-            model.Zones[ZoneName] is not { } zone)
+        if (serviceProvider.GetService<ILayoutAccessor>() is not { } layourAccessor ||
+            await layourAccessor.GetLayoutAsync() is not { } zoneHolding ||
+            zoneHolding.Zones[ZoneName] is not { } zone)
         {
             return new HtmlString(string.Empty);
         }
 
-        ElementName ??= Div;
+        ElementName ??= TagNames.Div;
 
         // The zone name should already be PascalCase.
         var id = ZoneName.ToCamelCase();
@@ -63,13 +74,15 @@ public class ZoneDescriptor
             ? "layout" + ZoneName
             : StringHelper.CreateInvariant($"layout{parent}__{id}");
 
+        var classHolder = serviceProvider.GetRequiredService<ICssClassHolder>();
         var classNames = classHolder.ConcatenateZoneClasses(
             ZoneName,
             layoutClassName,
             LayoutElementClassName,
             ChildrenBefore?.Any() != true || ChildrenAfter?.Any() != true ? LeafClassName : null);
 
-        var body = await page.DisplayAsync(zone);
+        var displayHelper = serviceProvider.GetRequiredService<IDisplayHelper>();
+        var body = await displayHelper.ShapeExecuteAsync(zone);
 
         var attributesFlattened = Attributes.Select(attribute => $"{attribute.Key}=\"{attribute.Value}\"").Join();
 
@@ -83,13 +96,13 @@ public class ZoneDescriptor
 
             var bodyAttributes = $"class=\"{bodyWrapperClass} {LayoutElementClassName} {LeafClassName}\" " + attributesFlattened;
 
-            var elementName = Div;
+            var elementName = TagNames.Div;
 
-            if (ZoneName == ZoneNames.Content)
+            if (ZoneName == Content)
             {
                 // This improves accessibility by providing a main landmark, see:
                 // https://dequeuniversity.com/rules/axe/4.2/bypass?application=axeAPI
-                elementName = Main;
+                elementName = TagNames.Main;
 
                 bodyAttributes += GetAriaLabelAttribute(elementName);
             }
@@ -102,22 +115,18 @@ public class ZoneDescriptor
 
         attributesFlattened += GetAriaLabelAttribute(ElementName);
 
+        Task<IHtmlContent> ConcatenateChildrenAsync(IEnumerable<ZoneDescriptor> zoneDescriptors, string parent) =>
+            zoneDescriptors == null
+                ? Task.FromResult<IHtmlContent>(new HtmlString(string.Empty))
+                : ConcatenateInnerAsync(serviceProvider, zoneDescriptors, ZoneName, parent);
+
         return new HtmlContentBuilder()
             .AppendHtml(StringHelper.CreateInvariant($"<{ElementName} id=\"{id}\" class=\"{classNames}\" {attributesFlattened}>"))
-            .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenBefore, parent))
+            .AppendHtml(await ConcatenateChildrenAsync(ChildrenBefore, parent))
             .AppendHtml(body)
-            .AppendHtml(await ConcatenateAsync(classHolder, page, ChildrenAfter, parent))
+            .AppendHtml(await ConcatenateChildrenAsync(ChildrenAfter, parent))
             .AppendHtml(StringHelper.CreateInvariant($"</{ElementName}>"));
     }
-
-    private Task<IHtmlContent> ConcatenateAsync<TModel>(
-        ICssClassHolder classHolder,
-        RazorPage<TModel> page,
-        IEnumerable<ZoneDescriptor> zoneDescriptors,
-        string parent) =>
-        zoneDescriptors == null
-            ? Task.FromResult<IHtmlContent>(new HtmlString(string.Empty))
-            : ConcatenateInnerAsync(classHolder, page, zoneDescriptors, ZoneName, parent);
 
     private string GetAriaLabelAttribute(string elementName)
     {
@@ -131,9 +140,12 @@ public class ZoneDescriptor
         return string.Empty;
     }
 
-    private static async Task<IHtmlContent> ConcatenateInnerAsync<TModel>(
-        ICssClassHolder classHolder,
-        RazorPage<TModel> page,
+    private static Task<IHtmlContent> ConcatenateFromRootAsync(
+        IServiceProvider serviceProvider, IEnumerable<ZoneDescriptor> zoneDescriptors) =>
+        ConcatenateInnerAsync(serviceProvider, zoneDescriptors, zoneName: null, parent: null);
+
+    private static async Task<IHtmlContent> ConcatenateInnerAsync(
+        IServiceProvider serviceProvider,
         IEnumerable<ZoneDescriptor> zoneDescriptors,
         string zoneName,
         string parent)
@@ -146,15 +158,60 @@ public class ZoneDescriptor
 
         foreach (var zoneDescriptor in zoneDescriptors)
         {
-            _ = builder.AppendHtml(await zoneDescriptor.DisplayZoneAsync(classHolder, page, newParent));
+            _ = builder.AppendHtml(await zoneDescriptor.DisplayZoneAsync(serviceProvider, newParent));
         }
 
         return builder;
     }
 
+    internal static Task<IHtmlContent> RenderZonesAsync(
+        IServiceProvider serviceProvider,
+        IEnumerable<ZoneDescriptor> zoneDescriptors = null)
+    {
+        zoneDescriptors ??= GetDefaultZoneDescriptors(
+            serviceProvider.GetRequiredService<IHtmlLocalizer<ZoneDescriptor>>());
+
+        return ConcatenateFromRootAsync(serviceProvider, zoneDescriptors);
+    }
+
+    [Obsolete($"Use the {nameof(RenderZonesAsync)} method instead.")]
     public static Task<IHtmlContent> DisplayZonesAsync<TModel>(
         ICssClassHolder classHolder,
         RazorPage<TModel> page,
         IEnumerable<ZoneDescriptor> zoneDescriptors) =>
-        ConcatenateInnerAsync(classHolder, page, zoneDescriptors, zoneName: null, parent: null);
+        ConcatenateFromRootAsync(page.Context.RequestServices, zoneDescriptors);
+
+    [SuppressMessage(
+        "StyleCop.CSharp.NamingRules",
+        "SA1313:Parameter names should begin with lower-case letter",
+        Justification = "The localizer is conventionally named T.")]
+    public static IList<ZoneDescriptor> GetDefaultZoneDescriptors(IHtmlLocalizer<ZoneDescriptor> T) =>
+    [
+        new(Header, wrapBody: true, elementName: TagNames.Header, ariaLabel: T["Site"])
+        {
+            ChildrenBefore = [new(Banner, elementName: TagNames.Section)],
+            ChildrenAfter =
+            [
+                new(ZoneNames.Navigation, elementName: TagNames.Nav, ariaLabel: T["Main"])
+            ],
+        },
+        new(BeforeMain, elementName: TagNames.Section, ariaLabel: T["Before Main"]),
+        new(Featured, elementName: TagNames.Section),
+        new(Content, wrapBody: true, elementName: TagNames.Section)
+        {
+            ChildrenBefore =
+            [
+                new(AsideFirst, elementName: TagNames.Aside, ariaLabel: T["Aside First"]),
+                new(Messages, elementName: TagNames.Section),
+                new(BeforeContent, elementName: TagNames.Section, ariaLabel: T["Before Content"])
+            ],
+            ChildrenAfter =
+            [
+                new(AfterContent, elementName: TagNames.Section, ariaLabel: T["After Content"]),
+                new(AsideSecond, elementName: TagNames.Aside, ariaLabel: T["Aside Second"])
+            ],
+        },
+        new(AfterMain, elementName: TagNames.Section, ariaLabel: T["After Main"]),
+        new(Footer, elementName: TagNames.Footer, ariaLabel: T["Site"])
+    ];
 }

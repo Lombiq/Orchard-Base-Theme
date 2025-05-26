@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ Culture.Name }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ "PageTitle" | shape_new | shape_stringify }}</title>
+
+    {% resources type: "Header" %}
+
+    {% render_section "HeadMeta", required: false %}
+    {% render_section "LayoutInjection", required: false %}
+</head>
+<body dir="{{ Culture.Dir }}" class="{{ Theme.ZoneCss["Body"] | join: " " }}">
+    {% display-zones "default" %}
+    {% resources type: "FootScript" %}
+</body>
+</html>

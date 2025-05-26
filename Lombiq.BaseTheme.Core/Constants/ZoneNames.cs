@@ -3,6 +3,7 @@
 public static class ZoneNames
 {
     public const string Header = nameof(Header);
+    public const string Banner = nameof(Banner);
     public const string Navigation = nameof(Navigation);
     public const string BeforeMain = nameof(BeforeMain);
     public const string Featured = nameof(Featured);
