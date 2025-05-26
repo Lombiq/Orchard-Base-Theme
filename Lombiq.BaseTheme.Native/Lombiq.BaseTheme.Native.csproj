@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.1.4"/>
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.1.0"/>
   </ItemGroup>
 
   <ItemGroup>
