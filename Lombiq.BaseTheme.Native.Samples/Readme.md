@@ -18,7 +18,7 @@ This module doesn't cover Orchard Core basics. Instead, sometimes we reference t
 The indented sections should be followed in sequence.
 
 - Make a custom theme
-    - [Configuration](Manifest.cs)
-    - [Layout injection](Views/Widget-LayoutInjection.liquid)
-    - [CSS styling and structure](wwwroot/css/site.css)
-    - [Resource management](ResourceManagementOptionsConfiguration.cs)
+  - [Configuration](Manifest.cs)
+  - [Layout injection](Views/Widget-LayoutInjection.liquid)
+  - [CSS styling and structure](wwwroot/css/site.css)
+  - [Resource management](ResourceManagementOptionsConfiguration.cs)

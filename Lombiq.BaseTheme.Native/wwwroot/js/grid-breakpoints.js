@@ -1,4 +1,4 @@
-if (typeof window.lombiqBaseThemeGridBreakpoints != 'object') {
+if (typeof window.lombiqBaseThemeGridBreakpoints !== 'object') {
     window.lombiqBaseThemeGridBreakpoints = {
         xs: 0,
         sm: 576,
@@ -17,18 +17,17 @@ function addResizeObserver() {
         const width = target.clientWidth;
         const breakpointsDescending = Object
             .entries(window.lombiqBaseThemeGridBreakpoints)
-            .sort(([_, a], [__, b]) => b - a);
-        const size = breakpointsDescending.filter(([_, size]) => size < width)[0][0];
+            .sort(([, value1], [, value2]) => value2 - value1);
+        const size = breakpointsDescending.filter(([, startingWidth]) => startingWidth < width)[0][0];
 
         if (window.lombiqBaseThemeGridBreakpointsCurrentSize === size) return;
 
         window.lombiqBaseThemeGridBreakpointsCurrentSize = size;
-        console.log(`Size changed: ${width}(${size})`);
 
-        target.classList.remove(...Array.from(target.classList).filter(name => name.startsWith('breakpoint-')));
+        target.classList.remove(...Array.from(target.classList).filter((name) => name.startsWith('breakpoint-')));
         target.classList.add('breakpoint-' + size);
 
-        const names = breakpointsDescending.map(([name, _]) => name);
+        const names = breakpointsDescending.map(([name]) => name);
         const index = names.indexOf(size);
         const smaller = names.slice(index);
         const larger = names.slice(0, index + 1);
