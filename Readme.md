@@ -4,7 +4,7 @@
 
 ## About
 
-A common base theme for our Orchard Core themes using Bootstrap v5.2.3. It can contain any shared content that are not specific to a specific project's theme.
+A common base theme for our Orchard Core themes using Bootstrap v5.3.6. It can contain any shared content that are not specific to a specific project's theme.
 
 You can find a sample module with a commented walkthrough in this repository. Check it out [here](Lombiq.BaseTheme.Samples/Readme.md)!
 
@@ -26,13 +26,15 @@ Do you want to quickly try out this project and see it in action? Check it out i
 
 ## Documentation
 
-Use this as the base theme of any custom frontend themes you create. For instructions on how to import and override this theme with your own theme's Sass stylesheets, see the header comments in [site.scss](Lombiq.BaseTheme/Assets/Styles/site.scss) and [_native-variables.scss](Lombiq.BaseTheme/Assets/Styles/abstracts/_native-variables.scss).
+Use this as the base theme of any custom frontend themes you create. There are two versions, `Lombiq.BaseTheme` that uses Sass as a styling pre-processor, and `Lombiq.BaseTheme.Native` that uses pure CSS. For information on how to use either in your custom theme, check out their respective sample projects ([`Lombiq.BaseTheme.Samples` for Sass](Lombiq.BaseTheme.Samples/Readme.md) or [`Lombiq.BaseTheme.Native.Samples` for CSS](Lombiq.BaseTheme.Native.Samples/Readme.md)).
 
-The theme makes use of the [`ICssClassHolder`](Lombiq.BaseTheme/Services/ICssClassHolder.cs) service which provides a scoped container for adding class names from your own code. Use the provided zone names in the [`ZoneNames`](Lombiq.BaseTheme/Constants/ZoneNames.cs) static class to address it.
+Both themes make use of the [`ICssClassHolder`](Lombiq.BaseTheme/Services/ICssClassHolder.cs) service which provides a scoped container for adding class names from your own code. Use the provided zone names in the [`ZoneNames`](Lombiq.BaseTheme/Constants/ZoneNames.cs) static class to address it.
 
-You may have noticed, that we mentioned Bootstrap v5.2.3, even though your version of Orchard Core may be still using Bootstrap 5.0. This theme automatically removes the built-in Bootstrap resource manifests on the current tenant and replaces them with the vendor's JavaScript file pulled from NPM. As the Bootstrap stylesheet is already bundled into the site stylesheet there is no need to include that in the resource manifest. If you want to switch over to a different theme that doesn't use this as its base, please reload your tenant by going to Admin → Configuration → Tenants and clicking on the current tenant's Reload button.
+The version of Bootstrap used by Orchard Core is not necessarily the same as the one in this project. The Sass-based theme automatically removes the built-in Bootstrap resource manifests on the current tenant and replaces them with the vendor's JavaScript file pulled from NPM. As the Bootstrap stylesheet is already bundled into the site stylesheet there is no need to include that in the resource manifest. If you want to switch over to a different theme that doesn't use this as its base, please reload your tenant by going to Admin → Configuration → Tenants and clicking on the current tenant's Reload button.
 
-Besides the style and layout, the theme also automatically includes a minimalist helper script that eases transition away from jQuery. You don't really need full jQuery now that Internet Explorer is effectively dead (Internet Explorer 11 is going end of life on June 15, 2022 so you should not support it in any new project at this time). The script gives you the `window.helper` object. You can use `helper.ready(($) => {})` in your scripts, where `$(querySelector, baseElement)` returns a JavaScript `Array` of `Element`s.
+Besides the style and layout, the Sass-based theme also automatically includes a minimalist helper script that eases transition away from jQuery, which hasn't really been necessary since Internet Explorer died back in 2022. The script gives you the `window.helper` object. You can use `helper.ready(($) => {})` in your scripts, where `$(querySelector, baseElement)` returns a JavaScript `Array` of `Element`s. We opted to not include it in the native CSS version of the theme, and should be considered a legacy feature.
+
+If you use Sass, your styles will be automatically linted during compilation. If you use CSS, there is no linting by default. We suggest using our GitHub workflow to enable linting for unprocessed CSS and JS. You can learn more about either approach in the documentation of [Lombiq Node.js Extensions](https://github.com/Lombiq/NodeJs-Extensions/).
 
 ## Liquid
 
