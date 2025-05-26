@@ -1,6 +1,6 @@
 namespace Lombiq.BaseTheme.Native.Samples.Constants;
 
-public class ResourceNames
+public static class ResourceNames
 {
     private const string Prefix = $"{FeatureIds.Area}.";
 

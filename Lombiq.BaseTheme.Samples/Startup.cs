@@ -1,15 +1,11 @@
 using Lombiq.BaseTheme.Samples.Migrations;
 using Lombiq.DataTables.Samples.Navigation;
-using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
-using System;
 
 namespace Lombiq.BaseTheme.Samples;
 

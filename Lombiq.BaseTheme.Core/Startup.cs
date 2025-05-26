@@ -42,7 +42,6 @@ public sealed class Startup : StartupBase
         services.AddDisplayChildrenLiquidFilter();
     }
 
-
     public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
         app.UseResourceFilters();
 }
