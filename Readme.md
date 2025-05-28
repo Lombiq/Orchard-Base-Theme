@@ -43,7 +43,7 @@ The following Liquid features are made available:
 - `{% display-zones "default" %}`: The `display-zones` tag renders the default zone structure (see `ZoneDescriptor.GetDefaultZoneDescriptors()`) to the page. Useful if you want to override the `Layout` shape.
 - `{{ "JSON object or array" | display-zones }}`: The same, but in filter form. You can specify the zone descriptor list or tree in a JSON serialized form, if you need different zones from the default. Use this if you have added custom zones in the admin settings!
 - `{{ 'layoutAside, layoutAside_anotherClass' | zone-classes: zone: 'AsideSecond' }}`: The `zone-classes` filter adds the items of the input list to the indicated zone.
-    - `{{ 'unwanted-class' | zone-classes: zone: 'AsideSecond', remove: true }}`: The above filter can also remove classes from a zone, if the `remove: true` argument is used.
+  - `{{ 'unwanted-class' | zone-classes: zone: 'AsideSecond', remove: true }}`: The above filter can also remove classes from a zone, if the `remove: true` argument is used.
 - `{{ Theme.ZoneCss["zoneName"] }}`: The `Theme.ZoneCss` accessor returns the class list for the zone called "zoneName". We use it for the special "Body" pseudo-zone (like this: `class="{{ Theme.ZoneCss["Body"] | join: " " }}"`) to display any classes you may have added to it using the above `zone-classes` filter.
 
 ## Recipes
