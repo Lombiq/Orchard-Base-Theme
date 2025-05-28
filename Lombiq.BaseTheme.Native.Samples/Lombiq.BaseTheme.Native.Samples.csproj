@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <DefaultItemExcludes>$(DefaultItemExcludes);.git*</DefaultItemExcludes>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -19,12 +20,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="OrchardCore.Admin" Version="2.1.0" />
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.1.0"/>
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,9 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Readme.md" />
-    <Content Include="wwwroot\css\general\general.css" />
-    <Content Include="wwwroot\css\site.css" />
+    <None Include="Readme.md" />
     <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
