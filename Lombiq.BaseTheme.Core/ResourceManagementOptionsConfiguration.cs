@@ -9,8 +9,8 @@ public class ResourceManagementOptionsConfiguration : ResourceManagementOptionsC
 
     protected override void Configure(ResourceManagementContext context)
     {
-        context.DefineStyle(ResourceNames.General, "general.css");
-        context.DefineStyle(ResourceNames.Helpers, "helpers.css");
         context.DefineStyle(ResourceNames.NativeVariables, "native-variables.css");
+        context.DefineStyle(ResourceNames.Helpers, "helpers.css");
+        context.DefineStyle(ResourceNames.General, "general.css", ResourceNames.NativeVariables, ResourceNames.Helpers);
     }
 }
