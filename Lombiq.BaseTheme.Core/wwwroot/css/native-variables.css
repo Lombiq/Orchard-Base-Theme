@@ -3,9 +3,11 @@
  * ------------------------------------------------------------------------------------------------------------------ */
 
 :root {
-    /* Fonts */
+    /* Fonts (needed for backwards compatibility, override the Bootstrap variables instead of these) */
     --font-default: var(--bs-body-font-family);
     --font-header: var(--bs-font-sans-serif);
+
+    /* Colors */
     --color-foreground-body: black;
     --color-background-body: white;
 
