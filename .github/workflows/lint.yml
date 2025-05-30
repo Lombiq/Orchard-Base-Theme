@@ -1,0 +1,19 @@
+name: Lint Assets
+
+# Runs for PRs opened for any branch, and pushes to the main branch.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint Assets
+    uses: Lombiq/NodeJs-Extensions/.github/workflows/lint.yml@dev
+    with:
+      scripts: Lombiq.BaseTheme.Native
+      styles-css: >-
+        Lombiq.BaseTheme.Core,
+        Lombiq.BaseTheme.Native,
+        Lombiq.BaseTheme.Native.Samples

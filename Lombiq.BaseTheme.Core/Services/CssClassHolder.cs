@@ -1,0 +1,24 @@
+using System.Collections.Generic;
+
+namespace Lombiq.BaseTheme.Core.Services;
+
+public class CssClassHolder : ICssClassHolder
+{
+    private readonly Dictionary<string, HashSet<string>> _classesByZones = [];
+
+    public ISet<string> Body { get; } = new HashSet<string>();
+
+    public ISet<string> this[string zoneName] => GetZoneClasses(zoneName);
+
+    public void AddClassToZone(string zoneName, string className) =>
+        GetZoneClasses(zoneName).Add(className);
+
+    public ISet<string> GetZoneClasses(string zoneName)
+    {
+        if (_classesByZones.TryGetValue(zoneName, out var classes)) return classes;
+
+        classes = [];
+        _classesByZones[zoneName] = classes;
+        return classes;
+    }
+}

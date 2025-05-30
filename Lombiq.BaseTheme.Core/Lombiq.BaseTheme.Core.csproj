@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <DefaultItemExcludes>$(DefaultItemExcludes);.git*;node_modules\**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>Lombiq Base Theme for Orchard Core (Core Features)</Title>
+    <Authors>Lombiq Technologies</Authors>
+    <Copyright>Copyright © 2021, Lombiq Technologies Ltd.</Copyright>
+    <Description>Lombiq Base Theme for Orchard Core (Core Features): All the shared content between the Sass and native CSS versions of the base theme.</Description>
+    <PackageIcon>NuGetIcon.png</PackageIcon>
+    <PackageTags>OrchardCore;Lombiq;AspNetCore;Theming</PackageTags>
+    <RepositoryUrl>https://github.com/Lombiq/Orchard-Base-Theme</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Lombiq/Orchard-Base-Theme</PackageProjectUrl>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Readme.md" />
+    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
+    <None Remove="node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.1.0" />
+    <PackageReference Include="OrchardCore.Menu" Version="2.1.0" />
+    <PackageReference Include="OrchardCore.Media" Version="2.1.0" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="2.1.0" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="2.1.0" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
+    <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
+    <PackageReference Include="Lombiq.HelpfulLibraries" Version="12.2.1-alpha.4.olys-3" />
+    <PackageReference Include="Lombiq.HelpfulExtensions" Version="10.0.1-alpha.9.occ-314" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,5 @@
+@* This shape is overridden to not contain the `<div class="widget-container">` element normally used to wrap widgets,
+   because you aren't supposed to place elements inside the `<head>` section where the `LayoutInjection` widget is
+   rendered. *@
+
+@await DisplayAsync(Model.Content)

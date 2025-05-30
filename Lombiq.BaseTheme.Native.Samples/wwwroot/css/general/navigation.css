@@ -1,0 +1,39 @@
+/* ---------------------------------------------------------------------------------------------------------------------
+// Navigation rules regarding the MenuWidget
+// ------------------------------------------------------------------------------------------------------------------ */
+
+.layoutHeader__navigation {
+    background: var(--color-background-menu);
+
+    .menuWidget__dropdown,
+    .menuWidget__topLevel .nav-link {
+        /* In Lombiq.BaseTheme.Samples this is another example of a mixin, but not one that's very long so we can just
+           inline it here. */
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            color: var(--color-foreground-menu);
+        }
+    }
+
+    .menuWidget__content > .navbar-nav {
+        /* Sometimes you have to override rules created by some pre-made control's Bootstrap rules that are marked
+           as "!important" themselves. so you have no choice but to use it in your own rule. Regardless, try to avoid
+           it whenever possible. */
+        margin: 0 !important; /* stylelint-disable-line declaration-no-important */
+        width: 100%;
+
+        & > .nav-item:last-child {
+            margin-left: auto;
+        }
+    }
+
+    .menuWidget__link_label:first-child,
+    .dropdown-divider + .menuWidget__link_label {
+        /* Make the first labels bold so they look like titles. */
+        font-weight: bold;
+    }
+}
+
+/* NEXT STATION: wwwroot/css/pages/blog-post.css */

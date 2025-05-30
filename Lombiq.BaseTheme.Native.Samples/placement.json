@@ -1,0 +1,10 @@
+{
+  "MediaField": [
+    {
+      "differentiator": "Blog-Image",
+      "wrappers": [
+        "Wrapper__BlogImage"
+      ]
+    }
+  ]
+}

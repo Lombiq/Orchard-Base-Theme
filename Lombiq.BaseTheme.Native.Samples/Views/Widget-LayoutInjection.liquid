@@ -1,0 +1,25 @@
+<!-- We use Liquid files here, but you could do the same using the Admin Templates feature as well. A sample using Razor
+     and a more complete presentation of the LayoutInjection widget can be found in the Sass sample project's
+     implementation of this shape at Lombiq.BaseTheme.Samples/Views/Widget-LayoutInjection.cshtml. -->
+
+<!-- By default, the zone-classes filter takes any comma or space separated list and adds its items to the indicated
+     BaseTheme zone. If you provide the additional optional parameter "remove: true" then it removes the listed classes
+     from the zone instead. -->
+{{ 'text-center' | zone-classes: zone: 'Footer' }}
+{{ 'layoutAside' | zone-classes: zone: 'AsideFirst' }}
+{{ 'layoutAside, layoutAside_anotherClass' | zone-classes: zone: 'AsideSecond' }}
+{{ 'unwanted-class' | zone-classes: zone: 'AsideSecond', remove: true }}
+
+<!-- You can add contents to any zone, inject assets, and do anything else you can with a shape. -->
+{% zone "Header" %}
+    <div class="navbar" id="navbar">
+        <div class="navbar-brand">{{ Site.SiteName }}</div>
+    </div>
+    <p class="zoneInsertionExample_header">
+        {{ 'Here you can easily inject shapes into the zones, kind of like always enabled widgets.' | t }}
+    </p>
+{% endzone %}
+
+<!-- END OF TRAINING SECTION: Layout injection -->
+
+<!-- NEXT STATION: wwwroot/css/site.css -->
