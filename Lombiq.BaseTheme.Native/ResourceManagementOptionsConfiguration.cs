@@ -11,11 +11,17 @@ public class ResourceManagementOptionsConfiguration : ResourceManagementOptionsC
     protected override void Configure(ResourceManagementContext context)
     {
         context.DefineStyle(
+            ResourceNames.NativeVariables,
+            "abstract/native-variables.css",
+            CoreResourceNames.NativeVariables);
+
+        context.DefineStyle(
             ResourceNames.General,
             "general/general.css",
             CoreResourceNames.General,
             CoreResourceNames.Helpers,
-            CoreResourceNames.NativeVariables);
+            CoreResourceNames.NativeVariables,
+            ResourceNames.NativeVariables);
 
         context.DefineScript(ResourceNames.GridBreakpoints, "grid-breakpoints.js");
     }
