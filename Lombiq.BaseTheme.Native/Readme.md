@@ -21,4 +21,4 @@ This project includes JavaScript code that observes the document's width and app
 - breakpoint-xl
 - breakpoint-xxl
 
-Additionally, range classes are added too. For example `breakpoint-xs-sm` and `breakpoint-md-xxl`. These are helpful if you only want to differentiate between phone and desktop styles.
+Additionally, range classes are added too. For example `breakpoint-xs-sm` and `breakpoint-md-xxl`. These are helpful if you only want to differentiate between phone and desktop styles. For convenience, these two specific ranges are also available as `breakpoint-small` and `breakpoint-big` to improve readability and reduce the risk of accidental typos.
