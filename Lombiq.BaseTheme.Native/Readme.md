@@ -22,3 +22,26 @@ This project includes JavaScript code that observes the document's width and app
 - breakpoint-xxl
 
 Additionally, range classes are added too. For example `breakpoint-xs-sm` and `breakpoint-md-xxl`. These are helpful if you only want to differentiate between phone and desktop styles. For convenience, these two specific ranges are also available as `breakpoint-small` and `breakpoint-big` to improve readability and reduce the risk of accidental typos.
+
+### Gutters and Margins
+
+The `Lombiq.BaseTheme.Core` project defines some breakpoint-based variables for margins and gutters on the page. You should use that for layout spacing whenever possible, for example `--gutter-x-small` or `--page-margin-large`. To make it easier, this project also defines the `--gutter` and `--page-margin` variables that fit . These are defined inside the matching breakpoint class on `<body>` (e.g. `.breakpoint-sm`) instead of the `:root` pseudo-class, but that won't matter as long as you are trying to style something inside the `<body>`. This way, instead of
+
+```css
+.my-class {
+    .breakpoint-xs & { margin-bottom: var(--gutter-x-small); }
+    .breakpoint-sm & { margin-bottom: var(--gutter-small); }
+    .breakpoint-md & { margin-bottom: var(--gutter-medium); }
+    .breakpoint-lg & { margin-bottom: var(--gutter-large); }
+    .breakpoint-xl & { margin-bottom: var(--gutter-x-large); }
+    .breakpoint-xxl & { margin-bottom: var(--gutter-xx-large); }
+}
+```
+
+you can simply write
+
+```css
+.my-class {
+    margin-bottom: var(--gutter);
+}
+```
