@@ -1,5 +1,4 @@
-using AngleSharp.Dom;
-using AngleSharp.Html.Parser;
+using Lombiq.HelpfulLibraries.Common.Utilities;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -53,58 +52,59 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
         }
     }
 
-    private async Task AddAsync(NavigationBuilder builder, ContentItem menuItem)
+    private Task AddAsync(NavigationBuilder builder, ContentItem menuItem)
     {
-        var text = GetTitle(menuItem);
-
-        if (menuItem.As<LinkMenuItemPart>() is { } linkMenuItemPart)
+        if (menuItem.As<HtmlMenuItemPart>() is { } htmlMenuItemPart)
         {
-            builder.Add(text, menu => menu
-                .Url(linkMenuItemPart.Url)
-                .Local(linkMenuItemPart.Target != "_blank")
-                .AddClass(PascalCaseClassify("menuItem__Text_", text.Name)));
-        }
-        else if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
-        {
-            if (contentMenuItemPart.GetProperty<IEnumerable<string>>("SelectedContentItem.ContentItemIds") is { } ids)
-            {
-                await AddContentMenuItemPartAsync(builder, text, ids);
-            }
-        }
-        else if (menuItem.As<HtmlMenuItemPart>() is { } htmlMenuItemPart)
-        {
-            var nodeList = new HtmlParser().ParseFragment($"<div>{htmlMenuItemPart.Html}</div>", contextElement: null!);
-            var textContent = string.Concat(nodeList.Select(x => x.Text()));
+            var textContent = HtmlHelper.ConvertToPlainText(htmlMenuItemPart.Html);
             builder.Add(new(textContent, textContent), menu => menu
                 .Url("#")
                 .LocalNav()
                 .AddClass(PascalCaseClassify("menuItem__Html_", textContent)));
+            return Task.CompletedTask;
+        }
+
+        var text = GetTitle(menuItem);
+
+        return menuItem.As<LinkMenuItemPart>() is { } linkMenuItemPart
+            ? Task.FromResult(
+                builder.Add(text, menu => menu
+                    .Url(linkMenuItemPart.Url)
+                    .Local(linkMenuItemPart.Target != "_blank")
+                    .AddClass(PascalCaseClassify("menuItem__Text_", text.Name))))
+            : AddInnerAsync(builder, menuItem, text);
+    }
+
+    private async Task AddInnerAsync(NavigationBuilder builder, ContentItem menuItem, LocalizedString text)
+    {
+        if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
+        {
+            if (contentMenuItemPart.GetProperty<IEnumerable<string>>("SelectedContentItem.ContentItemIds") is not { } ids ||
+                (await _contentManager.GetAsync(ids))?.AsList() is not { Count: > 0 } contentItems)
+            {
+                return;
+            }
+
+            var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext!);
+            if (contentItems.Count == 1)
+            {
+                AddContentItem(builder, urlHelper, contentItems.Single(), text);
+                return;
+            }
+
+            builder.Add(text, menu =>
+            {
+                foreach (var contentItem in contentItems)
+                {
+                    AddContentItem(menu, urlHelper, contentItem, text: null);
+                }
+            });
         }
         else if (menuItem.As<MenuItemsListPart>() is { } menuItemsListPart)
         {
             await builder.AddAsync(text, menu =>
                 menuItemsListPart.MenuItems.AwaitEachAsync(child => AddAsync(menu, child)));
         }
-    }
-
-    private async Task AddContentMenuItemPartAsync(NavigationBuilder builder, LocalizedString text, IEnumerable<string> ids)
-    {
-        var contentItems = (await _contentManager.GetAsync(ids)).AsList();
-        var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext!);
-
-        if (contentItems.Count == 1)
-        {
-            AddContentItem(builder, urlHelper, contentItems.Single(), text);
-            return;
-        }
-
-        builder.Add(text, menu =>
-        {
-            foreach (var contentItem in contentItems)
-            {
-                AddContentItem(menu, urlHelper, contentItem, text: null);
-            }
-        });
     }
 
     private static void AddContentItem(NavigationBuilder builder, IUrlHelper urlHelper, ContentItem contentItem, LocalizedString text)
