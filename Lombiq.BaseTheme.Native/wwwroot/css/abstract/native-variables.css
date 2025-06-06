@@ -6,7 +6,7 @@
    dynamically applied using JavaScript. You can use these in places where you'd use one of the gutter or margin mixins
    in our Sass base theme, see more info about this in the docs. */
 
-.breakpoint-xs {
+.breakpoint-xs, :root {
     --gutter: var(--gutter-x-small);
     --page-margin: var(--page-margin-x-small);
 }
