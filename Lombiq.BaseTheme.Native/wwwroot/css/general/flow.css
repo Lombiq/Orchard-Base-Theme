@@ -8,7 +8,7 @@
         box-sizing: content-box;
         width: 100%;
         margin: 0 calc(-1 * var(--page-margin));
-        padding: 0 var(--page-margin);
+        padding: var(--gutter) var(--page-margin);
     }
 
     .breakpoint-big & {
