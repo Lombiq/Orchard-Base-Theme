@@ -16,12 +16,18 @@ public class ResourceManagementOptionsConfiguration : ResourceManagementOptionsC
             CoreResourceNames.NativeVariables);
 
         context.DefineStyle(
+            ResourceNames.Flow,
+            "general/flow.css",
+            ResourceNames.NativeVariables);
+
+        context.DefineStyle(
             ResourceNames.General,
             "general/general.css",
             CoreResourceNames.General,
             CoreResourceNames.Helpers,
             CoreResourceNames.NativeVariables,
-            ResourceNames.NativeVariables);
+            ResourceNames.NativeVariables,
+            ResourceNames.Flow);
 
         context.DefineScript(ResourceNames.GridBreakpoints, "grid-breakpoints.js");
     }

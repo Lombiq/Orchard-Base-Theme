@@ -6,5 +6,6 @@ public static class ResourceNames
 
     public const string General = Prefix + nameof(General);
     public const string GridBreakpoints = Prefix + nameof(GridBreakpoints);
+    public const string Flow = Prefix + nameof(Flow);
     public const string NativeVariables = Prefix + nameof(NativeVariables);
 }

@@ -1,0 +1,43 @@
+/* --------------------------------------------------------------------------------------------------------------------
+ * Flow widget rules
+ * ------------------------------------------------------------------------------------------------------------------ */
+
+
+.flow {
+    & > .sectionWidget {
+        box-sizing: content-box;
+        width: 100%;
+        margin: 0 calc(-1 * var(--page-margin));
+        padding: 0 var(--page-margin);
+    }
+
+    .breakpoint-big & {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+
+        .widget-size-25 {
+            width: 25%;
+        }
+
+        .widget-size-33 {
+            width: 33%;
+        }
+
+        .widget-size-50 {
+            width: 50%;
+        }
+
+        .widget-size-66 {
+            width: 66%;
+        }
+
+        .widget-size-75 {
+            width: 75%;
+        }
+
+        .widget-size-100 {
+            width: 100%;
+        }
+    }
+}
