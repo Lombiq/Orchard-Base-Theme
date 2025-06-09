@@ -2,7 +2,6 @@
  * Flow widget rules
  * ------------------------------------------------------------------------------------------------------------------ */
 
-
 .flow {
     & > .sectionWidget {
         box-sizing: content-box;
@@ -13,8 +12,7 @@
 
     .breakpoint-big & {
         display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
+        flex-flow: row wrap;
 
         .widget-size-25 {
             width: 25%;
