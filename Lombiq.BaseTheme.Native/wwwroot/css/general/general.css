@@ -2,6 +2,10 @@
  * General layout rules
  * ------------------------------------------------------------------------------------------------------------------ */
 
+img {
+    max-width: 100%;
+}
+
 .layoutElement {
     .breakpoint-xs & {
         padding: 0 calc(var(--page-margin-x-small) - var(--gutter-x-small));
