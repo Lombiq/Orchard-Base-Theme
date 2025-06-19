@@ -18,7 +18,7 @@ function addResizeObserver() {
         const breakpointsDescending = Object
             .entries(window.lombiqBaseThemeGridBreakpoints)
             .sort(([, value1], [, value2]) => value2 - value1);
-        const size = breakpointsDescending.filter(([, startingWidth]) => startingWidth < width)[0][0];
+        const size = breakpointsDescending.filter(([, startingWidth]) => startingWidth <= width)[0][0];
 
         if (window.lombiqBaseThemeGridBreakpointsCurrentSize === size) return;
 
