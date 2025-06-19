@@ -19,6 +19,7 @@ function addResizeObserver() {
             .entries(window.lombiqBaseThemeGridBreakpoints)
             .sort(([, value1], [, value2]) => value2 - value1);
         const size = breakpointsDescending.filter(([, startingWidth]) => startingWidth <= width)[0][0];
+        const isSmall = size === 'xs' || size === 'sm';
 
         if (window.lombiqBaseThemeGridBreakpointsCurrentSize === size) return;
 
@@ -26,6 +27,7 @@ function addResizeObserver() {
 
         target.classList.remove(...Array.from(target.classList).filter((name) => name.startsWith('breakpoint-')));
         target.classList.add('breakpoint-' + size);
+        target.classList.add('breakpoint-' + (isSmall ? 'small' : 'big'));
 
         const names = breakpointsDescending.map(([name]) => name);
         const index = names.indexOf(size);

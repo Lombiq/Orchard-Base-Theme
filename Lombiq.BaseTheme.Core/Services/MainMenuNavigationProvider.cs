@@ -1,12 +1,13 @@
-using AngleSharp.Dom;
-using AngleSharp.Html.Parser;
+using Lombiq.HelpfulLibraries.Common.Utilities;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Localization;
 using OrchardCore.ContentManagement;
 using OrchardCore.Menu.Models;
+using OrchardCore.Mvc.Utilities;
 using OrchardCore.Navigation;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,26 +52,53 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
         }
     }
 
-    private async Task AddAsync(NavigationBuilder builder, ContentItem menuItem)
+    private Task AddAsync(NavigationBuilder builder, ContentItem menuItem)
     {
+        if (menuItem.As<HtmlMenuItemPart>() is { } htmlMenuItemPart)
+        {
+            var textContent = HtmlHelper.ConvertToPlainText(htmlMenuItemPart.Html);
+            builder.Add(new(textContent, textContent), menu => menu
+                .Url("#")
+                .LocalNav()
+                .AddClass(PascalCaseClassify("menuItem__Html_", textContent)));
+            return Task.CompletedTask;
+        }
+
         var text = GetTitle(menuItem);
 
-        if (menuItem.As<LinkMenuItemPart>() is { } linkMenuItemPart)
+        return menuItem.As<LinkMenuItemPart>() is { } linkMenuItemPart
+            ? Task.FromResult(
+                builder.Add(text, menu => menu
+                    .Url(linkMenuItemPart.Url)
+                    .Local(linkMenuItemPart.Target != "_blank")
+                    .AddClass(PascalCaseClassify("menuItem__Text_", text.Name))))
+            : AddInnerAsync(builder, menuItem, text);
+    }
+
+    private async Task AddInnerAsync(NavigationBuilder builder, ContentItem menuItem, LocalizedString text)
+    {
+        if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
         {
-            builder.Add(text, menu => menu.Url(linkMenuItemPart.Url).Local(linkMenuItemPart.Target != "_blank"));
-        }
-        else if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
-        {
-            if (contentMenuItemPart.GetProperty<IEnumerable<string>>("SelectedContentItem.ContentItemIds") is { } ids)
+            if (contentMenuItemPart.GetProperty<IEnumerable<string>>("SelectedContentItem.ContentItemIds") is not { } ids ||
+                (await _contentManager.GetAsync(ids))?.AsList() is not { Count: > 0 } contentItems)
             {
-                await AddContentMenuItemPartAsync(builder, text, ids);
+                return;
             }
-        }
-        else if (menuItem.As<HtmlMenuItemPart>() is { } htmlMenuItemPart)
-        {
-            var nodeList = new HtmlParser().ParseFragment($"<div>{htmlMenuItemPart.Html}</div>", contextElement: null!);
-            var textContent = string.Concat(nodeList.Select(x => x.Text()));
-            builder.Add(new LocalizedString(textContent, textContent), menu => menu.Url("#").LocalNav());
+
+            var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext!);
+            if (contentItems.Count == 1)
+            {
+                AddContentItem(builder, urlHelper, contentItems.Single(), text);
+                return;
+            }
+
+            builder.Add(text, menu =>
+            {
+                foreach (var contentItem in contentItems)
+                {
+                    AddContentItem(menu, urlHelper, contentItem, text: null);
+                }
+            });
         }
         else if (menuItem.As<MenuItemsListPart>() is { } menuItemsListPart)
         {
@@ -79,27 +107,13 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
         }
     }
 
-    private async Task AddContentMenuItemPartAsync(NavigationBuilder builder, LocalizedString text, IEnumerable<string> ids)
+    private static void AddContentItem(NavigationBuilder builder, IUrlHelper urlHelper, ContentItem contentItem, LocalizedString text)
     {
-        var contentItems = (await _contentManager.GetAsync(ids)).AsList();
-        var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext!);
+        if (string.IsNullOrEmpty(text?.Value)) text = GetTitle(contentItem);
 
-        if (contentItems.Count == 1)
-        {
-            var contentItem = contentItems.Single();
-            if (string.IsNullOrEmpty(text.Value)) text = GetTitle(contentItem);
-            builder.Add(text, menu => menu.Url(urlHelper.DisplayContentItem(contentItem)));
-        }
-        else
-        {
-            builder.Add(text, menu =>
-            {
-                foreach (var contentItem in contentItems)
-                {
-                    menu.Add(GetTitle(contentItem), child => child.Url(urlHelper.DisplayContentItem(contentItem)));
-                }
-            });
-        }
+        builder.Add(text, menu => menu
+            .Url(urlHelper.DisplayContentItem(contentItem))
+            .AddClass(PascalCaseClassify("menuItem__ContentText_", text.Name)));
     }
 
     private static LocalizedString GetTitle(ContentItem contentItem)
@@ -107,4 +121,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
         var displayText = contentItem.DisplayText ?? string.Empty;
         return new LocalizedString(displayText, displayText);
     }
+
+    private static string PascalCaseClassify(string prefix, string text) =>
+        prefix + text.Trim().HtmlClassify().ToPascalCase('-');
 }
