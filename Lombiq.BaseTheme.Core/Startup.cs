@@ -16,6 +16,7 @@ using OrchardCore.Data.Migration;
 using OrchardCore.Liquid;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
+using OrchardCore.ResourceManagement;
 using OrchardCore.Security.Permissions;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,7 @@ public sealed class Startup : StartupBase
         services.AddLiquidFilter<ZoneClassesLiquidFilter>("zone-classes");
         services.AddLiquidFilter<DisplayZonesLiquidParserTag>("display-zones");
         services.AddLiquidParserTag<DisplayZonesLiquidParserTag>("display-zones");
+        services.AddLiquidParserTag<AssignResourceToLayerParserTag>("assign-resource");
 
         services.Configure<TemplateOptions>(options =>
         {
@@ -60,6 +62,9 @@ public sealed class Startup : StartupBase
                 return Task.FromResult(classHolder.GetZoneClasses(zone).AsEnumerable());
             });
         });
+
+        services.Decorate<IResourceManager, LayerAwareResourceManager>();
+        services.AddScoped<IStyleToLayerMappingAccessor, StyleToLayerMappingAccessor>();
     }
 
     public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
