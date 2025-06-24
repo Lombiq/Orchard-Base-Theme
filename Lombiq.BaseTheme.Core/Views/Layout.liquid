@@ -10,7 +10,7 @@
     {% render_section "HeadMeta", required: false %}
     {% render_section "LayoutInjection", required: false %}
 </head>
-<body dir="{{ Culture.Dir }}" class="breakpoint-xs breakpoint-small {{ Theme.ZoneCss["Body"] | join: " " }}">
+<body dir="{{ Culture.Dir }}" class="{{ Theme.BodyClasses[""] }} {{ Theme.ZoneCss["Body"] | join: " " }}">
     {% display-zones "default" %}
     {% resources type: "FootScript" %}
 </body>

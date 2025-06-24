@@ -59,6 +59,16 @@ public sealed class Startup : StartupBase
                 var classHolder = context.Services.GetRequiredService<ICssClassHolder>();
                 return Task.FromResult(classHolder.GetZoneClasses(zone).AsEnumerable());
             });
+
+            options.RegisterLiquidPropertyAccessor<LiquidBaseThemeAccessor, string>("BodyClasses", async (_, context) =>
+            {
+                var providers = context.Services.GetServices<IBodyClassProvider>();
+                var classes = (await providers.AwaitEachAsync(provider => provider.GetClassesAsync(context)))
+                    .SelectMany(results => results)
+                    .Distinct();
+
+                return string.Join(' ', classes);
+            });
         });
     }
 

@@ -1,4 +1,6 @@
+using Lombiq.BaseTheme.Core.Services;
 using Lombiq.BaseTheme.Native.Constants;
+using Lombiq.BaseTheme.Native.Services;
 using Lombiq.HelpfulLibraries.OrchardCore.ResourceManagement;
 using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.Modules;
@@ -18,5 +20,7 @@ public class Startup : StartupBase
             FeatureIds.Native);
 
         services.AddResourceManagementConfiguration<ResourceManagementOptionsConfiguration>();
+
+        services.AddScoped<IBodyClassProvider, BreakpointBodyClassProvider>();
     }
 }

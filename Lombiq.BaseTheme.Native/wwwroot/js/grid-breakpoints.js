@@ -21,6 +21,8 @@ function addResizeObserver() {
         const size = breakpointsDescending.filter(([, startingWidth]) => startingWidth <= width)[0][0];
         const isSmall = size === 'xs' || size === 'sm';
 
+        document.cookie = `BaseThemeSize=${size}; Secure`;
+
         if (window.lombiqBaseThemeGridBreakpointsCurrentSize === size) return;
 
         window.lombiqBaseThemeGridBreakpointsCurrentSize = size;
