@@ -9,8 +9,7 @@ if (typeof window.lombiqBaseThemeGridBreakpoints !== 'object') {
     };
 }
 
-function addResizeObserver()
-{
+function addResizeObserver() {
     if (window.lombiqBaseThemeGridBreakpointsObserver) return;
 
     window.lombiqBaseThemeGridBreakpointsObserver = new ResizeObserver((entries) => {
