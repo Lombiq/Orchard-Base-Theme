@@ -1,6 +1,7 @@
 (function initializeHelpers(window) {
     function query(selector, base) {
-        return Array.from((base ?? window.document).querySelectorAll(selector));
+        const node = base ? base : window.document;
+        return Array.from(node.querySelectorAll(selector));
     }
 
     function ready(callback) {
