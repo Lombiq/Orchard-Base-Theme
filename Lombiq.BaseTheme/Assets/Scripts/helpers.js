@@ -1,6 +1,6 @@
 (function initializeHelpers(window) {
     function query(selector, base) {
-        const node = base ? base : window.document;
+        const node = base ?? window.document;
         return Array.from(node.querySelectorAll(selector));
     }
 
