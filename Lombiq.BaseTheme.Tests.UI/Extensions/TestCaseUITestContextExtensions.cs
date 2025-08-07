@@ -50,7 +50,7 @@ public static class TestCaseUITestContextExtensions
 
     public static async Task TestBaseThemeDependencyIsEnabledAsync(this UITestContext context)
     {
-        await context.GoToAdminRelativeUrlAsync("/Features");
+        await context.GoToFeaturesAsync();
         context.Exists(By.Id("btn-disable-Lombiq_HelpfulExtensions_Widgets"));
     }
 
