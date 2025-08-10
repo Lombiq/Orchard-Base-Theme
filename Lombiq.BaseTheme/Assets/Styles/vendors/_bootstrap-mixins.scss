@@ -1,3 +1,4 @@
+// Bootstrap can't be imported via @use or @forward. See https://github.com/twbs/bootstrap/issues/29853.
 @import "../../../node_modules/bootstrap/scss/functions";
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/mixins";

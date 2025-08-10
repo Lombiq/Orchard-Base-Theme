@@ -2,9 +2,10 @@
 // CSS helper classes
 // --------------------------------------------------------------------------------------------------------------------
 
-@import "mixins";
+@use "sass:meta";
+@use "mixins";
 
-@if variable-exists(debug-mode) and $debug-mode {
+@if meta.variable-exists(debug-mode) and $debug-mode {
     * {
         // Required to override existing styles for debugging.
         // stylelint-disable declaration-no-important
@@ -23,7 +24,7 @@
     height: 15px;
     margin-top: 15px;
 
-    @include media-breakpoint-up(md) {
+    @include mixins.media-breakpoint-up(md) {
         height: 45px;
         margin-top: -45px;
     }

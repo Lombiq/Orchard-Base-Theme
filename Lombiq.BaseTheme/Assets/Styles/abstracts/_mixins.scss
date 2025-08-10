@@ -3,7 +3,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 @use "sass:map";
-@import "../vendors/bootstrap-mixins";
+@use "../vendors/bootstrap-mixins";
+@forward "../vendors/bootstrap-mixins";
 
 @function image($path, $base: $images-path) {
     @return url($base + $path);
@@ -47,11 +48,11 @@
 @mixin breakpoint-property-value($property, $breakpoint-values, $down: false) {
     @each $breakpoint, $value in $breakpoint-values {
         @if $down {
-            @include media-breakpoint-down($breakpoint) {
+            @include bootstrap-mixins.media-breakpoint-down($breakpoint) {
                 #{$property}: $value;
             }
         } @else {
-            @include media-breakpoint-up($breakpoint) {
+            @include bootstrap-mixins.media-breakpoint-up($breakpoint) {
                 #{$property}: $value;
             }
         }
@@ -71,7 +72,7 @@
     @each $breakpoint, $values in $breakpoint-values {
         $value: if($negative, -$values, $values);
 
-        @include media-breakpoint-up($breakpoint) {
+        @include bootstrap-mixins.media-breakpoint-up($breakpoint) {
             @if $horizontal == true {
                 #{$property}: {
                     left: $value;
@@ -129,7 +130,7 @@
     @if $text-size-level < 5 {
         font-size: map.get($font-sizes, $text-size-level + 1);
 
-        @include media-breakpoint-up(md) {
+        @include bootstrap-mixins.media-breakpoint-up(md) {
             font-size: map.get($font-sizes, $text-size-level);
         }
     } @else {
@@ -170,7 +171,7 @@
     @each $spacing-size, $spacing-values in $spacing-sizes {
         @each $breakpoint, $size in $spacing-values {
             // Mapping spacing values to breakpoints.
-            @include media-breakpoint-up($breakpoint) {
+            @include bootstrap-mixins.media-breakpoint-up($breakpoint) {
                 // Applying breakpoint.
                 // Mapping directions to sides, e.g. top = top, hor(izontal) = left + right.
                 @each $spacing-direction, $spacing-sides in $spacing-directions {
@@ -179,7 +180,8 @@
                         @each $spacing-side in $spacing-sides {
                             // Iterating through each side in the direction map.
                             padding-#{$spacing-side}: $size; // Applying spacing value to the current side.
-                            word-break: break-word;
+                            word-break: normal;
+                            overflow-wrap: anywhere;
                         }
                     }
 
@@ -218,79 +220,79 @@
 }
 
 @mixin padding-gutter($vertical-multiplier: $default-vertical-multiplier) {
-    @include media-breakpoint-only(xs) {
+    @include bootstrap-mixins.media-breakpoint-only(xs) {
         padding: calc(var(--gutter-x-small) * #{$vertical-multiplier}) var(--gutter-x-small);
     }
 
-    @include media-breakpoint-only(sm) {
+    @include bootstrap-mixins.media-breakpoint-only(sm) {
         padding: calc(var(--gutter-small) * #{$vertical-multiplier}) var(--gutter-small);
     }
 
-    @include media-breakpoint-only(md) {
+    @include bootstrap-mixins.media-breakpoint-only(md) {
         padding: calc(var(--gutter-medium) * #{$vertical-multiplier}) var(--gutter-medium);
     }
 
-    @include media-breakpoint-only(lg) {
+    @include bootstrap-mixins.media-breakpoint-only(lg) {
         padding: calc(var(--gutter-large) * #{$vertical-multiplier}) var(--gutter-large);
     }
 
-    @include media-breakpoint-only(xl) {
+    @include bootstrap-mixins.media-breakpoint-only(xl) {
         padding: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large);
     }
 
-    @include media-breakpoint-up(xxl) {
+    @include bootstrap-mixins.media-breakpoint-up(xxl) {
         padding: calc(var(--gutter-xx-large) * #{$vertical-multiplier}) var(--gutter-xx-large);
     }
 }
 
 @mixin margin-gutter($vertical-multiplier: $default-vertical-multiplier) {
-    @include media-breakpoint-only(xs) {
+    @include bootstrap-mixins.media-breakpoint-only(xs) {
         margin: calc(var(--gutter-x-small) * #{$vertical-multiplier}) var(--gutter-x-small);
     }
 
-    @include media-breakpoint-only(sm) {
+    @include bootstrap-mixins.media-breakpoint-only(sm) {
         margin: calc(var(--gutter-small) * #{$vertical-multiplier}) var(--gutter-small);
     }
 
-    @include media-breakpoint-only(md) {
+    @include bootstrap-mixins.media-breakpoint-only(md) {
         margin: calc(var(--gutter-medium) * #{$vertical-multiplier}) var(--gutter-medium);
     }
 
-    @include media-breakpoint-only(lg) {
+    @include bootstrap-mixins.media-breakpoint-only(lg) {
         margin: calc(var(--gutter-large) * #{$vertical-multiplier}) var(--gutter-large);
     }
 
-    @include media-breakpoint-only(xl) {
+    @include bootstrap-mixins.media-breakpoint-only(xl) {
         margin: calc(var(--gutter-x-large) * #{$vertical-multiplier}) var(--gutter-x-large);
     }
 
-    @include media-breakpoint-up(xxl) {
+    @include bootstrap-mixins.media-breakpoint-up(xxl) {
         margin: calc(var(--gutter-xx-large) * #{$vertical-multiplier}) var(--gutter-xx-large);
     }
 }
 
 @mixin apply-gutter($property, $multiplier: 1) {
-    @include media-breakpoint-only(xs) {
+    @include bootstrap-mixins.media-breakpoint-only(xs) {
         #{$property}: calc(#{$multiplier} * var(--gutter-x-small));
     }
 
-    @include media-breakpoint-only(sm) {
+    @include bootstrap-mixins.media-breakpoint-only(sm) {
         #{$property}: calc(#{$multiplier} * var(--gutter-small));
     }
 
-    @include media-breakpoint-only(md) {
+    @include bootstrap-mixins.media-breakpoint-only(md) {
         #{$property}: calc(#{$multiplier} * var(--gutter-medium));
     }
 
-    @include media-breakpoint-only(lg) {
+    @include bootstrap-mixins.media-breakpoint-only(lg) {
         #{$property}: calc(#{$multiplier} * var(--gutter-large));
     }
 
-    @include media-breakpoint-only(xl) {
+    @include bootstrap-mixins.media-breakpoint-only(xl) {
         #{$property}: calc(#{$multiplier} * var(--gutter-x-large));
     }
 
-    @include media-breakpoint-up(xxl) {
+    @include bootstrap-mixins.media-breakpoint-up(xxl) {
         #{$property}: calc(#{$multiplier} * var(--gutter-xx-large));
     }
 }

@@ -5,4 +5,4 @@
 // should import the _base.scss in their own site.scss files instead.
 // --------------------------------------------------------------------------------------------------------------------
 
-@import "base";
+@use "base";

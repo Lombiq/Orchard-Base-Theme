@@ -2,34 +2,34 @@
 // General layout rules
 // --------------------------------------------------------------------------------------------------------------------
 
-@import "../abstracts/mixins";
+@use "../abstracts/mixins";
 
 .layoutElement_leaf {
-    @include padding-gutter(0);
+    @include mixins.padding-gutter(0);
 }
 
 body > .layoutElement {
-    @include media-breakpoint-only(xs) {
+    @include mixins.media-breakpoint-only(xs) {
         padding: 0 calc(var(--page-margin-x-small) - var(--gutter-x-small));
     }
 
-    @include media-breakpoint-only(sm) {
+    @include mixins.media-breakpoint-only(sm) {
         padding: 0 calc(var(--page-margin-small) - var(--gutter-small));
     }
 
-    @include media-breakpoint-only(md) {
+    @include mixins.media-breakpoint-only(md) {
         padding: 0 calc(var(--page-margin-medium) - var(--gutter-medium));
     }
 
-    @include media-breakpoint-only(lg) {
+    @include mixins.media-breakpoint-only(lg) {
         padding: 0 calc(var(--page-margin-large) - var(--gutter-large));
     }
 
-    @include media-breakpoint-only(xl) {
+    @include mixins.media-breakpoint-only(xl) {
         padding: 0 calc(var(--page-margin-x-large) - var(--gutter-x-large));
     }
 
-    @include media-breakpoint-up(xxl) {
+    @include mixins.media-breakpoint-up(xxl) {
         padding: 0 calc(var(--page-margin-xx-large) - var(--gutter-xx-large));
     }
 }

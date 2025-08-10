@@ -8,12 +8,17 @@
 // but before anything else (same place the vendors are in this file). This ensures that both the Sass and the native
 // CSS variables get overridden correctly and prevents duplicate CSS variable declarations that could bloat your output.
 // --------------------------------------------------------------------------------------------------------------------
+// Note: We still use @import in this file, because Bootstrap can't be imported via @use or @forward (and you can't mix
+//       @use with @import in the same file). See https://github.com/twbs/bootstrap/issues/29853.
+// --------------------------------------------------------------------------------------------------------------------
 
 // Site specific Sass variables
 @import "abstracts/variables";
 
-// Vendors
-@import "../../node_modules/bootstrap/scss/bootstrap";
+// Vendors - This order is necessary to avoid "Undefined mixin" error.
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
 
 // Configuration and helpers
 @import "abstracts/mixins";
