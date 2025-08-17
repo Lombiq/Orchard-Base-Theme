@@ -11,3 +11,4 @@ node_modules
 !Lombiq.BaseTheme.Core/wwwroot
 !Lombiq.BaseTheme.Native/wwwroot
 !Lombiq.BaseTheme.Native.Samples/wwwroot
+.editorconfig
