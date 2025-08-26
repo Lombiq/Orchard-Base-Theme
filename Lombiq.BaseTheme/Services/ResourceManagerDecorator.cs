@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 
 namespace Lombiq.BaseTheme.Services;
 
@@ -76,8 +77,10 @@ public class ResourceManagerDecorator(
 
     public void RenderMeta(TextWriter writer) => resourceManager.RenderMeta(writer);
 
-    // Apart from the marked sections, this does the same as the method in OC's ResourceManager. This needs to be kept
-    // up-to-date with Orchard upgrades.
+    // Apart from the marked sections, and calling GetRequiredResources("stylesheet") instead of
+    // DoGetRequiredResources("stylesheet"), as well as calling GetRegisteredStyles() instead of DoGetRegisteredStyles()
+    // (since the latters ones are private, but the public ones only trivially proxy to them), this does the same as the
+    // method in OC's ResourceManager. This needs to be kept up-to-date with Orchard upgrades.
     [SuppressMessage(
         "StyleCop.CSharp.ReadabilityRules",
         "SA1123:Do not place regions within elements",
@@ -92,7 +95,9 @@ public class ResourceManagerDecorator(
 
         var first = true;
 
-        foreach (var context in GetRequiredResources("stylesheet"))
+        var styleSheets = GetRequiredResources("stylesheet");
+
+        foreach (var context in styleSheets)
         {
             if (context.Settings.Location == ResourceLocation.Inline)
             {
@@ -116,8 +121,10 @@ public class ResourceManagerDecorator(
             context.WriteTo(writer, _options.ContentBasePath);
         }
 
-        foreach (var context in GetRegisteredStyles())
+        var registeredStyles = GetRegisteredStyles().ToList();
+        for (var i = 0; i < registeredStyles.Count; i++)
         {
+            var context = registeredStyles[i];
             if (!first)
             {
                 writer.Write(Environment.NewLine);
