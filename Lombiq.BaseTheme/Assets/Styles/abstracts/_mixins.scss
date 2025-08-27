@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @import "../vendors/bootstrap-mixins";
+@import "variables";
 
 @function image($path, $base: $images-path) {
     @return url($base + $path);
