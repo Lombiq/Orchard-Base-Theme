@@ -1,0 +1,38 @@
+// --------------------------------------------------------------------------------------------------------------------
+// Application-wide native CSS variables
+// --------------------------------------------------------------------------------------------------------------------
+// Only those variables should be placed here, that can't be added to the matching native-variables.css file in
+// Lombiq.BaseTheme.Core, because they have a Sass feature dependency.
+// --------------------------------------------------------------------------------------------------------------------
+
+@import "mixins";
+
+:root {
+    --gutter: var(--gutter-x-small);
+    --page-margin: var(--page-margin-x-small);
+
+    @include media-breakpoint-only(sm) {
+        --gutter: var(--gutter-small);
+        --page-margin: var(--page-margin-small);
+    }
+
+    @include media-breakpoint-only(md) {
+        --gutter: var(--gutter-medium);
+        --page-margin: var(--page-margin-medium);
+    }
+
+    @include media-breakpoint-only(lg) {
+        --gutter: var(--gutter-large);
+        --page-margin: var(--page-margin-large);
+    }
+
+    @include media-breakpoint-only(xl) {
+        --gutter: var(--gutter-x-large);
+        --page-margin: var(--page-margin-x-large);
+    }
+
+    @include media-breakpoint-up(xxl) {
+        --gutter: var(--gutter-xx-large);
+        --page-margin: var(--page-margin-xx-large);
+    }
+}
