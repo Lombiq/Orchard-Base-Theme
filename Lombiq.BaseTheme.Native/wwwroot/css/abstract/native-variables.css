@@ -6,43 +6,33 @@
    dynamically applied using JavaScript. You can use these in places where you'd use one of the gutter or margin mixins
    in our Sass base theme, see more info about this in the docs. */
 
-:root {
+.breakpoint-xs, :root {
     --gutter: var(--gutter-x-small);
     --page-margin: var(--page-margin-x-small);
 }
 
-@media (576px <= width < 768px) {
-    :root {
-        --gutter: var(--gutter-small);
-        --page-margin: var(--page-margin-small);
-    }
+.breakpoint-sm {
+    --gutter: var(--gutter-small);
+    --page-margin: var(--page-margin-small);
 }
 
-@media (768px <= width < 992px) {
-    :root {
-        --gutter: var(--gutter-medium);
-        --page-margin: var(--page-margin-medium);
-    }
+.breakpoint-md {
+    --gutter: var(--gutter-medium);
+    --page-margin: var(--page-margin-medium);
 }
 
-@media (992px <= width < 1200px) {
-    :root {
-        --gutter: var(--gutter-large);
-        --page-margin: var(--page-margin-large);
-    }
+.breakpoint-lg {
+    --gutter: var(--gutter-large);
+    --page-margin: var(--page-margin-large);
 }
 
-@media (1200px <= width < 1400px) {
-    :root {
-        --gutter: var(--gutter-x-large);
-        --page-margin: var(--page-margin-x-large);
-    }
+.breakpoint-xl {
+    --gutter: var(--gutter-x-large);
+    --page-margin: var(--page-margin-x-large);
 }
 
-@media (1400px <= width) {
-    :root {
-        --gutter: var(--gutter-xx-large);
-        --page-margin: var(--page-margin-xx-large);
-    }
+.breakpoint-xxl {
+    --gutter: var(--gutter-xx-large);
+    --page-margin: var(--page-margin-xx-large);
 }
 
