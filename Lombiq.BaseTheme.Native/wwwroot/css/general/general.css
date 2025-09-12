@@ -7,51 +7,9 @@ img {
 }
 
 .layoutElement {
-    .breakpoint-xs & {
-        padding: 0 calc(var(--page-margin-x-small) - var(--gutter-x-small));
+    padding: 0 calc(var(--page-margin) - var(--gutter));
 
-        &.layoutElement_leaf {
-            padding: 0 calc(var(--gutter-x-small));
-        }
-    }
-
-    .breakpoint-sm & {
-        padding: 0 calc(var(--page-margin-small) - var(--gutter-small));
-
-        &.layoutElement_leaf {
-            padding: 0 calc(var(--gutter-small));
-        }
-    }
-
-    .breakpoint-md & {
-        padding: 0 calc(var(--page-margin-medium) - var(--gutter-medium));
-
-        &.layoutElement_leaf {
-            padding: 0 calc(var(--gutter-medium));
-        }
-    }
-
-    .breakpoint-lg & {
-        padding: 0 calc(var(--page-margin-large) - var(--gutter-large));
-
-        &.layoutElement_leaf {
-            padding: 0 calc(var(--gutter-large));
-        }
-    }
-
-    .breakpoint-xl & {
-        padding: 0 calc(var(--page-margin-x-large) - var(--gutter-x-large));
-
-        &.layoutElement_leaf {
-            padding: 0 calc(var(--gutter-x-large));
-        }
-    }
-
-    .breakpoint-xxl & {
-        padding: 0 calc(var(--page-margin-xx-large) - var(--gutter-xx-large));
-
-        &.layoutElement_leaf {
-            padding: 0 calc(var(--gutter-xx-large));
-        }
+    &.layoutElement_leaf {
+        padding: 0 calc(var(--gutter));
     }
 }
