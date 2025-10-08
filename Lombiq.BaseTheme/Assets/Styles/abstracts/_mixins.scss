@@ -4,6 +4,7 @@
 
 @use "sass:map";
 @use "../vendors/bootstrap-mixins";
+@import "variables";
 @forward "../vendors/bootstrap-mixins";
 
 @function image($path, $base: $images-path) {
