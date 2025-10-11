@@ -11,7 +11,7 @@
 // Note: We still use @import and the Sass deprecation warning for @import is suppressed in Lombiq.NodeJs.Extensions,
 //       because Bootstrap can't be imported via @use or @forward (see
 //       https://github.com/twbs/bootstrap/issues/29853#issuecomment-1765651273). It's best to keep fully using @imports
-//       instead of mixing it with @use/@forward while the theme is heavily dependant on Bootstrap 5.
+//       instead of mixing it with @use/@forward while the theme is heavily dependent on Bootstrap 5.
 // --------------------------------------------------------------------------------------------------------------------
 
 // Site specific Sass variables
