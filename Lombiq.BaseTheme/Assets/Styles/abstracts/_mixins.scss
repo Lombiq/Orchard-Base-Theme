@@ -180,7 +180,8 @@
                         @each $spacing-side in $spacing-sides {
                             // Iterating through each side in the direction map.
                             padding-#{$spacing-side}: $size; // Applying spacing value to the current side.
-                            word-break: break-word;
+                            word-break: normal;
+                            overflow-wrap: anywhere;
                         }
                     }
 

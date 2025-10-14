@@ -1,3 +1,5 @@
+// Bootstrap can't be imported via @use or @forward, this won't change until v6 is released.
+// See https://github.com/twbs/bootstrap/issues/29853#issuecomment-1765651273.
 @import "../../../node_modules/bootstrap/scss/functions";
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/mixins";

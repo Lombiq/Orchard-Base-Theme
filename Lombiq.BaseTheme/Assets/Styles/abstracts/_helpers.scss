@@ -2,9 +2,10 @@
 // CSS helper classes
 // --------------------------------------------------------------------------------------------------------------------
 
+@use "sass:meta";
 @import "mixins";
 
-@if variable-exists(debug-mode) and $debug-mode {
+@if meta.variable-exists(debug-mode) and $debug-mode {
     * {
         // Required to override existing styles for debugging.
         // stylelint-disable declaration-no-important
