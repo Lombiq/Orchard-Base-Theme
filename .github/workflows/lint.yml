@@ -10,7 +10,7 @@ on:
 jobs:
   lint:
     name: Lint Assets
-    uses: Lombiq/NodeJs-Extensions/.github/workflows/lint.yml@issue/OSOE-954-alt
+    uses: Lombiq/NodeJs-Extensions/.github/workflows/lint.yml@dev
     with:
       scripts: Lombiq.BaseTheme.Native
       styles-css: >-
