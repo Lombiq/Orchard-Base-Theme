@@ -24,5 +24,6 @@
         "target": "wwwroot/vendors/bootstrap"
       }
     ]
-  }
+  },
+  "packageManager": "pnpm@9.15.9"
 }
