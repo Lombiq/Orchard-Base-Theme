@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lombiq.BaseTheme.Samples\Lombiq.BaseTheme.Samples.csproj" />
+    <ProjectReference Include="..\Lombiq.BaseTheme.Native.Samples\Lombiq.BaseTheme.Native.Samples.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
