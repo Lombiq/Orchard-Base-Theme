@@ -2,6 +2,9 @@
 
 [![Lombiq.BaseTheme NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme)](https://www.nuget.org/packages/Lombiq.BaseTheme/) [![Lombiq.BaseTheme.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Samples)](https://www.nuget.org/packages/Lombiq.BaseTheme.Samples/) [![Lombiq.BaseTheme.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Tests.UI)](https://www.nuget.org/packages/Lombiq.BaseTheme.Tests.UI/)
 
+> [!WARNING]
+> The current latest version of `Lombiq.BaseTheme` is deprecated. It will keep working for the foreseeable future, but won't receive any updates besides security fixes.
+
 ## About
 
 A common base theme for our Orchard Core themes using Bootstrap v5.3.6. It can contain any shared content that are not specific to a specific project's theme.
