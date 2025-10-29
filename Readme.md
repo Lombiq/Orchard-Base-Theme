@@ -1,4 +1,9 @@
-# Lombiq Base Theme for Orchard Core - Native CSS
+# Lombiq Base Theme for Orchard Core
+
+[![Lombiq.BaseTheme.Native NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme.Native?label=Lombiq.BaseTheme.Native)](https://www.nuget.org/packages/Lombiq.BaseTheme.Native/)
+[![Lombiq.BaseTheme.Native.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme.Native.Samples?label=Lombiq.BaseTheme.Native.Samples)](https://www.nuget.org/packages/Lombiq.BaseTheme.Native.Samples/)
+[![Lombiq.BaseTheme.Core NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme.Core?label=Lombiq.BaseTheme.Core)](https://www.nuget.org/packages/Lombiq.BaseTheme.Core/)
+[![Lombiq.BaseTheme.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme.Tests.UI?label=Lombiq.BaseTheme.Tests.UI)](https://www.nuget.org/packages/Lombiq.BaseTheme.Tests.UI/)
 
 ## About
 
