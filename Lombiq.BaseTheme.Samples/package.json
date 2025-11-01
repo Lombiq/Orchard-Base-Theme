@@ -2,6 +2,7 @@
   "// SUMMARY": "We use Lombiq's Node.js Extensions project to process all frontend assets.",
 
   "private": true,
+  "packageManager": "pnpm@9.15.9",
   "dependencies": {
     "bootstrap": "5.3.8"
   },
