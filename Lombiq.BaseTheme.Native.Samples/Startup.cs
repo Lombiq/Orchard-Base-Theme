@@ -21,7 +21,8 @@ public sealed class Startup : StartupBase
         services.AddResourceFilter(
             builder =>
             {
-                builder.Always().RegisterStylesheet(ResourceNames.Site);
+                builder.Always().RegisterStylesheet(ResourceNames.General);
+                builder.Always().RegisterStylesheet(ResourceNames.Navigation);
                 builder.WhenContentType("BlogPost").RegisterStylesheet(ResourceNames.BlogPost);
             },
             FeatureIds.NativeSamples);

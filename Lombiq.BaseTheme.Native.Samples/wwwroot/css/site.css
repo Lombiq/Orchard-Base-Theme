@@ -1,17 +1,20 @@
 /* If you want to structure your stylesheet into multiple files, you can do it either using Orchard Core's resource
    manager or using @import directives in a central CSS file. If you choose the latter, you have to version the imports
    manually using an arbitrary query string at the end of the URL. This is necessary to ensure the cached version of the
-   imported file is up-to-date. */
+   imported file is up-to-date.
+   For this reason, we suggest avoiding the approach demonstrated here and using Orchard Core's resource manager to
+   establish a dependency structure between individual stylesheet files. We will shortly return to
+   ResourceManagementOptionsConfiguration.cs where you will see the recommended way to define the CSS file structure. */
 
 /* Site-specific CSS variables. CSS uses the last variable declaration, so this should always be the first import of
    your theme. */
-@import "abstracts/native-variables.css?v=1";
+@import "abstract/native-variables.css?v=1";
 
 /* Utility classes that can be reused in HTML across he site. */
-@import "abstracts/helpers.css?v=1";
+@import "abstract/helpers.css?v=1";
 
 /* Rules for every page. */
-@import "general/general.css?v=1";
+@import "general/general.css?v=2";
 @import "general/navigation.css?v=1";
 
 /* NEXT STATION: wwwroot/css/abstracts/native-variables.css */

@@ -13,12 +13,18 @@ public class ResourceManagementOptionsConfiguration : ResourceManagementOptionsC
 
     protected override void Configure(ResourceManagementContext context)
     {
-        // Here we define these styles (under the hood: using the context.Manifest.DefineStyle() method) in the
-        // ~/Lombiq.BaseTheme.Native.Samples/css/site.css and ~/Lombiq.BaseTheme.Native.Samples/css/pages/blog-posts.css
-        // paths. We use dependencies to ensure that BlogPost is loaded after Site, and Site is loaded after the CSS
-        // base theme's main stylesheet (which has its own dependencies).
+        // Here we define these styles (under the hood: using the context.Manifest.DefineStyle() method) e.g. in the
+        // ~/Lombiq.BaseTheme.Native.Samples/css/general/general.css and
+        // ~/Lombiq.BaseTheme.Native.Samples/css/pages/blog-posts.css paths. We use dependencies to ensure that BlogPost
+        // is loaded after General, and General is loaded after its dependencies, and all are loaded after the Native
+        // Base Theme's main stylesheet (which has its own dependencies).
+        context.DefineStyle(ResourceNames.NativeVariables, "abstract/native-variables.css", NativeResourceNames.General);
+        context.DefineStyle(ResourceNames.Helpers, "abstract/helpers.css", ResourceNames.NativeVariables);
+        context.DefineStyle(ResourceNames.General, "general/general.css", ResourceNames.NativeVariables, ResourceNames.Helpers);
+        context.DefineStyle(ResourceNames.Navigation, "general/navigation.css", NativeResourceNames.General);
+        context.DefineStyle(ResourceNames.BlogPost, "pages/blog-post.css", ResourceNames.General);
+
         context.DefineStyle(ResourceNames.Site, "site.css", NativeResourceNames.General);
-        context.DefineStyle(ResourceNames.BlogPost, "pages/blog-post.css", ResourceNames.Site);
     }
 }
 
