@@ -1,0 +1,45 @@
+{
+  "name": "Lombiq.BaseTheme.Native.Samples",
+  "displayName": "Lombiq Base Theme - Native CSS - Samples",
+  "description": "Sample configuration for the Lombiq JSON Editor module.",
+  "author": "Lombiq Technologies",
+  "website": "https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions",
+  "version": "1.0",
+  "issetuprecipe": false,
+  "categories": [
+    "training"
+  ],
+  "tags": [
+    "developer",
+    "training",
+    "sample"
+  ],
+  "steps": [
+    // You can add an icon as a regular media file and then pick it from the editor, or just have media and settings
+    // steps in your recipe like below.
+    {
+      "name": "media",
+      "Files": [
+        {
+          "SourcePath": "Icons/favicon.ico",
+          "TargetPath": "Icons/favicon.ico"
+        },
+        {
+          "SourcePath": "Icons/oc-favicon.ico",
+          "TargetPath": "Icons/oc-favicon.ico"
+        }
+      ]
+    },
+    {
+      "name": "settings",
+      "BaseThemeSettings": {
+        // The HideMenu can be used if you don't want to use the Bootstrap main menu widget injected by the base theme.
+        "HideMenu": false,
+        // You can set a single icon using a media path, so the same as the TargetPath in the recipe's media step.
+        "Icon": "Icons/favicon.ico",
+        // The time stamp is a UTC DateTime.Ticks value, you can make it any random long number.
+        "TimeStamp": 638240128517358149
+      }
+    }
+  ]
+}
