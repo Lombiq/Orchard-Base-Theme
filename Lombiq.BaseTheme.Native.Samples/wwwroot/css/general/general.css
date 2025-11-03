@@ -28,9 +28,12 @@ body {
 
     /* TODO: The Sass version uses some mixins here. Update this sample when a reasonable alternative has been devised
              only using native CSS. Note that at the time of writing CSS does not support mixins, but there are already
-             experimental implementations so this should be considered "coming soon™".
+             experimental implementations so this should be considered "coming soon™". For this specific example, we can
+             use the responsive variables (--gutter, --page-margin) but this is far from a universal solution.
        @include padding-gutter($vertical-multiplier: 1);
        @include margin-top-gutter; */
+    padding: var(--gutter) var(--gutter);
+    margin-top: var(--gutter);
 }
 
 /* NEXT STATION: wwwroot/css/general/navigation.css */

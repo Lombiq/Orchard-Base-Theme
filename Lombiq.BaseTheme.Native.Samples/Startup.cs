@@ -1,6 +1,8 @@
 using Lombiq.BaseTheme.Native.Samples.Constants;
+using Lombiq.BaseTheme.Native.Samples.Services;
 using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.Modules;
+using OrchardCore.Navigation;
 
 namespace Lombiq.BaseTheme.Native.Samples;
 
@@ -10,6 +12,9 @@ public sealed class Startup : StartupBase
     {
         // This shortcut is added by Lombiq.HelpfulLibraries.OrchardCore.
         services.AddResourceManagementConfiguration<ResourceManagementOptionsConfiguration>();
+
+        // This is a sample main menu item.
+        services.AddNavigationProvider<AccountNavigationProvider>();
 
         // This creates an anonymous service that provides configuration to the ResourceFilterMiddleware (which is added
         // by Lombiq.BaseTheme.Core).
