@@ -103,7 +103,7 @@ public static class TestCaseUITestContextExtensions
         await context.GoToAsync<BaseThemeCoreAdminController>(controller => controller.Index());
         await context.SetCheckboxValueAsync(By.Id("HideMenu"));
 
-        while (context.Exists(By.XPath("//div[contains(@class, 'thumb-container')]").Safely()))
+        if (context.Exists(By.XPath("//div[contains(@class, 'thumb-container')]").Safely()))
         {
             await context.ClickReliablyOnAsync(By.XPath("//div[contains(@class, 'thumb-container')]"));
             await context.ClickReliablyOnAsync(By.CssSelector("#Editor .delete-button").OfAnyVisibility());
