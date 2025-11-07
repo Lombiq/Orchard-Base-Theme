@@ -8,13 +8,13 @@
 
 /* Site-specific CSS variables. CSS uses the last variable declaration, so this should always be the first import of
    your theme. */
-@import "abstract/native-variables.css?v=1";
+@import url("abstract/native-variables.css?v=1");
 
 /* Utility classes that can be reused in HTML across he site. */
-@import "abstract/helpers.css?v=1";
+@import url("abstract/helpers.css?v=1");
 
 /* Rules for every page. */
-@import "general/general.css?v=2";
-@import "general/navigation.css?v=1";
+@import url("general/general.css?v=2");
+@import url("general/navigation.css?v=1");
 
 /* NEXT STATION: wwwroot/css/abstracts/native-variables.css */
