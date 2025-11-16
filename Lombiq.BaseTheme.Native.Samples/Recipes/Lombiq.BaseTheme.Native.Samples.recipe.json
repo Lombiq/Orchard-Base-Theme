@@ -1,7 +1,7 @@
 {
   "name": "Lombiq.BaseTheme.Native.Samples",
   "displayName": "Lombiq Base Theme - Native CSS - Samples",
-  "description": "Sample configuration for the Lombiq JSON Editor module.",
+  "description": "Sample consumer project for the Lombiq Base Theme - Native CSS theme.",
   "author": "Lombiq Technologies",
   "website": "https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions",
   "version": "1.0",
