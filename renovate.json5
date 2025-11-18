@@ -3,4 +3,14 @@
     extends: [
         'github>Lombiq/Open-Source-Orchard-Core-Extensions:renovate-osoce-orchard-core-submodule.json5',
     ],
+    packageRules: [
+        {
+            groupName: 'Disable Renovate for deprecated projects',
+            matchFileNames: [
+                'Lombiq.BaseTheme/**',
+                'Lombiq.BaseTheme.Samples"/**',
+            ],
+            enabled: false,
+        },
+    ]
 }
