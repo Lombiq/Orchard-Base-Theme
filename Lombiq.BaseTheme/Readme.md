@@ -3,7 +3,7 @@
 [![Lombiq.BaseTheme NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme)](https://www.nuget.org/packages/Lombiq.BaseTheme/) [![Lombiq.BaseTheme.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Samples)](https://www.nuget.org/packages/Lombiq.BaseTheme.Samples/) [![Lombiq.BaseTheme.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Tests.UI)](https://www.nuget.org/packages/Lombiq.BaseTheme.Tests.UI/)
 
 > [!WARNING]
-> The current latest version of `Lombiq.BaseTheme` is deprecated. It will keep working for the foreseeable future, but won't receive any updates besides security fixes.
+> The current latest version of `Lombiq.BaseTheme` is deprecated. It will keep working for the foreseeable future, but won't receive any updates besides security fixes. On why we moved away from Node.js-using builds and how, see [our "Step away from that Node.js" blog post](https://orcharddojo.net/blog/step-away-from-that-node-js).
 
 ## About
 
