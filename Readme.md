@@ -1,55 +1,53 @@
 # Lombiq Base Theme for Orchard Core
 
-[![Lombiq.BaseTheme NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme)](https://www.nuget.org/packages/Lombiq.BaseTheme/) [![Lombiq.BaseTheme.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Samples)](https://www.nuget.org/packages/Lombiq.BaseTheme.Samples/) [![Lombiq.BaseTheme.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme?label=Lombiq.BaseTheme.Tests.UI)](https://www.nuget.org/packages/Lombiq.BaseTheme.Tests.UI/)
+[![Lombiq.BaseTheme.Native NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme.Native?label=Lombiq.BaseTheme.Native)](https://www.nuget.org/packages/Lombiq.BaseTheme.Native/)
+[![Lombiq.BaseTheme.Native.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme.Native.Samples?label=Lombiq.BaseTheme.Native.Samples)](https://www.nuget.org/packages/Lombiq.BaseTheme.Native.Samples/)
+[![Lombiq.BaseTheme.Core NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme.Core?label=Lombiq.BaseTheme.Core)](https://www.nuget.org/packages/Lombiq.BaseTheme.Core/)
+[![Lombiq.BaseTheme.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.BaseTheme.Tests.UI?label=Lombiq.BaseTheme.Tests.UI)](https://www.nuget.org/packages/Lombiq.BaseTheme.Tests.UI/)
 
 ## About
 
-A common base theme for our Orchard Core themes using Bootstrap v5.3.6. It can contain any shared content that are not specific to a specific project's theme.
-
-You can find a sample module with a commented walkthrough in this repository. Check it out [here](Lombiq.BaseTheme.Samples/Readme.md)!
-
-We at [Lombiq](https://lombiq.com/) also used this theme for the following projects:
-
-- The new [Lombiq website](https://lombiq.com/) when migrating it from Orchard 1 to Orchard Core ([see case study](https://lombiq.com/blog/how-we-renewed-and-migrated-lombiq-com-from-orchard-1-to-orchard-core)).
-- The new [Show Orchard website](https://showorchard.com/) when migrating it from Orchard 1 DotNest to DotNest Core ([see case study](https://dotnest.com/blog/show-orchard-case-study-migrating-an-orchard-1-dotnest-site-to-orchard-core)).
-- The new [Git-hg Mirror website](https://githgmirror.com/) when migrating it from Orchard 1 to Orchard Core ([see case study](https://lombiq.com/blog/git-hg-mirror-is-running-on-orchard-core)).
-- The new [Hastlayer website](https://hastlayer.com/) when migrating it from Orchard 1 to Orchard Core ([see case study](https://lombiq.com/blog/modernization-and-orchard-core-migration-of-hastlayer-com)).
-- The new [Orchard Dojo website](https://orcharddojo.net/) when migrating it from Orchard 1 to Orchard Core ([see case study](https://orcharddojo.net/blog/another-lombiq-site-was-improved-orchard-dojo)).
-
-This theme is also available on all sites of [DotNest, the Orchard Core SaaS](https://dotnest.com/).
+Orchard Core theme that contains a layout, zones and Bootstrap CSS base for your stylesheets. Set it as your theme's BaseTheme.
 
 Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
 
-## Demo video
+## Features
 
-[![Watch the video](Docs/Assets/Images/DemoVideoThumbnail.jpg)](https://www.youtube.com/watch?v=9DjKxEumoRE&feature=youtu.be)
+### Breakpoint classes
 
-## Documentation
+This project includes JavaScript code that observes the document's width and applies several indicator classes to the `<body>` element as needed. At any point it will have one of these classes, using [Bootstrap's breakpoint sizes and identifiers](https://getbootstrap.com/docs/5.0/layout/breakpoints/):
 
-Use this as the base theme of any custom frontend themes you create. There are two versions, `Lombiq.BaseTheme` that uses Sass as a styling pre-processor, and `Lombiq.BaseTheme.Native` that uses pure CSS. For information on how to use either in your custom theme, check out their respective sample projects ([`Lombiq.BaseTheme.Samples` for Sass](Lombiq.BaseTheme.Samples/Readme.md) or [`Lombiq.BaseTheme.Native.Samples` for CSS](Lombiq.BaseTheme.Native.Samples/Readme.md)).
+- breakpoint-xs
+- breakpoint-sm
+- breakpoint-md
+- breakpoint-lg
+- breakpoint-xl
+- breakpoint-xxl
 
-Both themes make use of the [`ICssClassHolder`](Lombiq.BaseTheme/Services/ICssClassHolder.cs) service which provides a scoped container for adding class names from your own code. Use the provided zone names in the [`ZoneNames`](Lombiq.BaseTheme/Constants/ZoneNames.cs) static class to address it.
+Additionally, range classes are added too. For example `breakpoint-xs-sm` and `breakpoint-md-xxl`. These are helpful if you only want to differentiate between phone and desktop styles. For convenience, these two specific ranges are also available as `breakpoint-small` and `breakpoint-big` to improve readability and reduce the risk of accidental typos.
 
-The version of Bootstrap used by Orchard Core is not necessarily the same as the one in this project. The Sass-based theme automatically removes the built-in Bootstrap resource manifests on the current tenant and replaces them with the vendor's JavaScript file pulled from NPM. As the Bootstrap stylesheet is already bundled into the site stylesheet there is no need to include that in the resource manifest. If you want to switch over to a different theme that doesn't use this as its base, please reload your tenant by going to Admin → Configuration → Tenants and clicking on the current tenant's Reload button.
+### Gutters and Margins
 
-Besides the style and layout, the Sass-based theme also automatically includes a minimalist helper script that eases transition away from jQuery, which hasn't really been necessary since Internet Explorer died back in 2022. The script gives you the `window.helper` object. You can use `helper.ready(($) => {})` in your scripts, where `$(querySelector, baseElement)` returns a JavaScript `Array` of `Element`s. We opted to not include it in the native CSS version of the theme, and should be considered a legacy feature.
+The `Lombiq.BaseTheme.Core` project defines some breakpoint-based variables for margins and gutters on the page. You should use that for layout spacing whenever possible, for example `--gutter-x-small` or `--page-margin-large`. To make it easier, this project also defines the `--gutter` and `--page-margin` variables that fit . These are defined inside the matching breakpoint class on `<body>` (e.g. `.breakpoint-sm`) instead of the `:root` pseudo-class, but that won't matter as long as you are trying to style something inside the `<body>`. This way, instead of
 
-If you use Sass, your styles will be automatically linted during compilation. If you use CSS, there is no linting by default. We suggest using our GitHub workflow to enable linting for unprocessed CSS and JS. You can learn more about either approach in the documentation of [Lombiq Node.js Extensions](https://github.com/Lombiq/NodeJs-Extensions/).
+```css
+.my-class {
+    .breakpoint-xs & { margin-bottom: var(--gutter-x-small); }
+    .breakpoint-sm & { margin-bottom: var(--gutter-small); }
+    .breakpoint-md & { margin-bottom: var(--gutter-medium); }
+    .breakpoint-lg & { margin-bottom: var(--gutter-large); }
+    .breakpoint-xl & { margin-bottom: var(--gutter-x-large); }
+    .breakpoint-xxl & { margin-bottom: var(--gutter-xx-large); }
+}
+```
 
-## Liquid
+you can simply write
 
-The following Liquid features are made available:
-
-- `{% display-zones "default" %}`: The `display-zones` tag renders the default zone structure (see `ZoneDescriptor.GetDefaultZoneDescriptors()`) to the page. Useful if you want to override the `Layout` shape.
-- `{{ "JSON object or array" | display-zones }}`: The same, but in filter form. You can specify the zone descriptor list or tree in a JSON serialized form, if you need different zones from the default. Use this if you have added custom zones in the admin settings!
-- `{{ 'layoutAside, layoutAside_anotherClass' | zone-classes: zone: 'AsideSecond' }}`: The `zone-classes` filter adds the items of the input list to the indicated zone.
-  - `{{ 'unwanted-class' | zone-classes: zone: 'AsideSecond', remove: true }}`: The above filter can also remove classes from a zone, if the `remove: true` argument is used.
-- `{{ Theme.ZoneCss["zoneName"] }}`: The `Theme.ZoneCss` accessor returns the class list for the zone called "zoneName". We use it for the special "Body" pseudo-zone (like this: `class="{{ Theme.ZoneCss["Body"] | join: " " }}"`) to display any classes you may have added to it using the above `zone-classes` filter.
-
-## Recipes
-
-- Lombiq Orchard Core Base Theme - Layers and Zones: Sets up all the supported zones and some common layers. Automatically executed when you first enable the theme.
-- Lombiq Orchard Core Base Theme - Styling Demo: Creates a Demo Page that can be helpful to see how your theme's stylesheet behaves on various HTML elements.
+```css
+.my-class {
+    margin-bottom: var(--gutter);
+}
+```
 
 ## Contributing and support
 

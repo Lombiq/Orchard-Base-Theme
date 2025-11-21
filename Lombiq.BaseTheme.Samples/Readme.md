@@ -1,5 +1,8 @@
 # Lombiq Base Theme for Orchard Core - Samples
 
+> [!WARNING]
+> The current latest version of `Lombiq.BaseTheme.Samples` is deprecated. It will keep working for the foreseeable future, but won't receive any updates besides security fixes.
+
 ## About
 
 Example Orchard Core theme that makes use of Lombiq Base Theme for Orchard Core.

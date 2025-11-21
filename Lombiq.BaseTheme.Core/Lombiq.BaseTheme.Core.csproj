@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <DefaultItemExcludes>$(DefaultItemExcludes);.git*;node_modules\**</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);.git*</DefaultItemExcludes>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -21,7 +21,6 @@
   <ItemGroup>
     <None Include="Readme.md" />
     <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
-    <None Remove="node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,8 +42,8 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.HelpfulLibraries" Version="12.3.0" />
-    <PackageReference Include="Lombiq.HelpfulExtensions" Version="11.0.0" />
+    <PackageReference Include="Lombiq.HelpfulLibraries" Version="12.4.1-alpha.2.osoe-1185" />
+    <PackageReference Include="Lombiq.HelpfulExtensions" Version="11.0.1-alpha.6.osoe-1185" />
   </ItemGroup>
 
 </Project>

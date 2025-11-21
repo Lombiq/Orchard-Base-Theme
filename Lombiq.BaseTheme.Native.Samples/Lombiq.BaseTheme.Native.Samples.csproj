@@ -37,4 +37,10 @@
     <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Recipes\Lombiq.BaseTheme.Native.Samples.recipe.json">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
