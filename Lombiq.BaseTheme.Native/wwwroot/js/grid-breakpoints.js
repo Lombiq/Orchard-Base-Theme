@@ -28,7 +28,7 @@ function addResizeObserver() {
         window.lombiqBaseThemeGridBreakpointsCurrentSize = size;
 
         target.classList.remove(...Array.from(target.classList).filter((name) => name.startsWith('breakpoint-')));
-        target.classList.add('breakpoint-' + size);
+        target.classList.add("breakpoint-" + size);
         target.classList.add('breakpoint-' + (isSmall ? 'small' : 'big'));
 
         const names = breakpointsDescending.map(([name]) => name);
