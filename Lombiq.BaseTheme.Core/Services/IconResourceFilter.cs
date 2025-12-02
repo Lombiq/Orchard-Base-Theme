@@ -38,7 +38,7 @@ public class IconResourceFilter : IResourceFilterProvider
             {
                 // Use static link resources as a fallback.
                 var currentTheme = await _siteThemeService.GetSiteThemeAsync();
-                if (currentTheme.Manifest.ModuleInfo is DerivedThemeAttribute theme)
+                if (currentTheme?.Manifest.ModuleInfo is DerivedThemeAttribute theme)
                 {
                     if (!string.IsNullOrEmpty(theme.Favicon))
                     {
