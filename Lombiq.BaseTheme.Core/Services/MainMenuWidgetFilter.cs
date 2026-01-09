@@ -5,8 +5,9 @@ using Lombiq.HelpfulExtensions.Extensions.Widgets.ViewModels;
 using Lombiq.HelpfulLibraries.OrchardCore.Mvc;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Http;
 using OrchardCore.DisplayManagement;
+using OrchardCore.DisplayManagement.Extensions;
 using OrchardCore.DisplayManagement.Layout;
 using OrchardCore.Navigation;
 using OrchardCore.Settings;
@@ -16,8 +17,8 @@ namespace Lombiq.BaseTheme.Core.Services;
 
 public sealed class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
 {
+    private readonly IHttpContextAccessor _hca;
     private readonly INavigationManager _navigationManager;
-    private readonly IActionContextAccessor _actionContextAccessor;
     private readonly ICssClassHolder _cssClassHolder;
     private readonly ISiteService _siteService;
 
@@ -27,23 +28,27 @@ public sealed class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
 
     public MainMenuWidgetFilter(
         IAuthorizationService authorizationService,
+        IHttpContextAccessor hca,
         ILayoutAccessor layoutAccessor,
         IShapeFactory shapeFactory,
         INavigationManager navigationManager,
-        IActionContextAccessor actionContextAccessor,
         ICssClassHolder cssClassHolder,
         ISiteService siteService)
         : base(requiredPermission: null, authorizationService, layoutAccessor, shapeFactory)
     {
+        _hca = hca;
         _navigationManager = navigationManager;
-        _actionContextAccessor = actionContextAccessor;
         _cssClassHolder = cssClassHolder;
         _siteService = siteService;
     }
 
     protected override async Task<MenuWidgetViewModel> GetViewModelAsync()
     {
-        if (await _siteService.GetSettingsAsync<BaseThemeSettings>() is { HideMenu: true }) return null;
+        if (_hca.HttpContext is not { } httpContext ||
+            await _siteService.GetSettingsAsync<BaseThemeSettings>() is { HideMenu: true })
+        {
+            return null;
+        }
 
         // Add the <nav> classes to the zone holder <nav>.
         _cssClassHolder.AddClassToZone(ZoneNames.Navigation, "navbar-expand-md");
@@ -53,6 +58,6 @@ public sealed class MainMenuWidgetFilter : WidgetFilterBase<MenuWidgetViewModel>
             noWrapper: true, // The navigation zone is already the wrapper.
             menuItems: await _navigationManager.BuildMenuAsync(
                 MainMenuNavigationProviderBase.MainNavigationName,
-                _actionContextAccessor.ActionContext));
+                await httpContext.GetActionContextAsync()));
     }
 }

@@ -2,10 +2,10 @@ using Lombiq.HelpfulLibraries.Common.Utilities;
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Localization;
 using OrchardCore.ContentManagement;
+using OrchardCore.DisplayManagement.Extensions;
 using OrchardCore.Menu.Models;
 using OrchardCore.Mvc.Utilities;
 using OrchardCore.Navigation;
@@ -20,21 +20,18 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
     private readonly IContentHandleManager _contentHandleManager;
     private readonly IContentManager _contentManager;
     private readonly IUrlHelperFactory _urlHelperFactory;
-    private readonly IActionContextAccessor _actionContextAccessor;
 
     public MainMenuNavigationProvider(
         IHttpContextAccessor hca,
         IStringLocalizer<MainMenuNavigationProvider> stringLocalizer,
         IContentHandleManager contentHandleManager,
         IContentManager contentManager,
-        IUrlHelperFactory urlHelperFactory,
-        IActionContextAccessor actionContextAccessor)
+        IUrlHelperFactory urlHelperFactory)
         : base(hca, stringLocalizer)
     {
         _contentHandleManager = contentHandleManager;
         _contentManager = contentManager;
         _urlHelperFactory = urlHelperFactory;
-        _actionContextAccessor = actionContextAccessor;
     }
 
     protected override async Task BuildAsync(NavigationBuilder builder)
@@ -79,13 +76,14 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
     {
         if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
         {
-            if (contentMenuItemPart.GetProperty<IEnumerable<string>>("SelectedContentItem.ContentItemIds") is not { } ids ||
+            if (_hca.HttpContext is not { } httpContext ||
+                contentMenuItemPart.GetProperty<IEnumerable<string>>("SelectedContentItem.ContentItemIds") is not { } ids ||
                 (await _contentManager.GetAsync(ids))?.AsList() is not { Count: > 0 } contentItems)
             {
                 return;
             }
 
-            var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext!);
+            var urlHelper = _urlHelperFactory.GetUrlHelper(await httpContext.GetActionContextAsync());
             if (contentItems.Count == 1)
             {
                 AddContentItem(builder, urlHelper, contentItems.Single(), text);
