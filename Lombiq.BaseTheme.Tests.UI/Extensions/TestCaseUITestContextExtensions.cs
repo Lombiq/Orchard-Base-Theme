@@ -48,7 +48,7 @@ public static class TestCaseUITestContextExtensions
         if (skipLogin) return;
 
         await context.ClickMainMenuPathAsync("Log In");
-        context.Exists(By.XPath("//form[@action = '/Login']/*[starts-with(name(), 'h') and contains(., 'Log in')]"));
+        context.Exists(By.XPath("//form[@action = '/Login']/../*[starts-with(name(), 'h') and contains(., 'Log in')]"));
     }
 
     public static async Task TestBaseThemeDependencyIsEnabledAsync(this UITestContext context)
