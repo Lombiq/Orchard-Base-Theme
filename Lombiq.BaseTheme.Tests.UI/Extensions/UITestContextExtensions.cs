@@ -1,4 +1,4 @@
-﻿using Lombiq.Tests.UI.Extensions;
+using Lombiq.Tests.UI.Extensions;
 using Lombiq.Tests.UI.Services;
 using OpenQA.Selenium;
 using System.Text.Json;
@@ -8,7 +8,7 @@ namespace Lombiq.BaseTheme.Tests.UI.Extensions;
 
 public static class UITestContextExtensions
 {
-    public static async Task ClickMainMenuPathAsync(this UITestContext context, string topMenuLabel, string subMenuLabel = null)
+    public static Task ClickMainMenuPathAsync(this UITestContext context, string topMenuLabel, string subMenuLabel = null)
     {
         var byFirst = By.XPath(
             $"//div[contains(@class, \"menuWidget__content\")]/ul/li/a" +
@@ -16,13 +16,11 @@ public static class UITestContextExtensions
 
         if (string.IsNullOrWhiteSpace(subMenuLabel))
         {
-            await context.ClickReliablyOnAsync(byFirst);
+            return context.ClickReliablyOnAsync(byFirst);
         }
-        else
-        {
-            await context.SelectFromBootstrapDropdownReliablyAsync(
-                context.Get(byFirst),
-                By.XPath($".//*[contains(@class, 'dropdown-item') and contains(., {JsonSerializer.Serialize(subMenuLabel)})]"));
-        }
+
+        return context.SelectFromBootstrapDropdownReliablyAsync(
+            context.Get(byFirst),
+            By.XPath($".//*[contains(@class, 'dropdown-item') and contains(., {JsonSerializer.Serialize(subMenuLabel)})]"));
     }
 }
