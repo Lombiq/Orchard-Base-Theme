@@ -333,8 +333,14 @@
     @include apply-gutter("gap", $multiplier);
 }
 
-@mixin font-awesome-icon-free($unicode) {
+@mixin font-awesome-icon-free($unicode, $font-weight: 900) {
     font-family: "Font Awesome 6 Free", serif;
-    font-weight: 900;
+    font-weight: $font-weight;
     content: $unicode;
+}
+
+@mixin font-awesome-icon-brands($unicode, $font-weight: 900) {
+  font-family: "Font Awesome 6 Brands", serif;
+  font-weight: $font-weight;
+  content: $unicode;
 }
