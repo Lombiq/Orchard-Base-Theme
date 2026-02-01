@@ -334,13 +334,13 @@
 }
 
 @mixin font-awesome-icon-free($unicode, $font-weight: 900) {
-    font-family: "Font Awesome 6 Free", serif;
+    font-family: "Font Awesome 7 Free", serif;
     font-weight: $font-weight;
     content: $unicode;
 }
 
 @mixin font-awesome-icon-brands($unicode, $font-weight: 900) {
-  font-family: "Font Awesome 6 Brands", serif;
-  font-weight: $font-weight;
-  content: $unicode;
+    font-family: "Font Awesome 7 Brands", serif;
+    font-weight: $font-weight;
+    content: $unicode;
 }
