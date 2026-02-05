@@ -11,7 +11,7 @@ public static class UITestContextExtensions
     public static Task ClickMainMenuPathAsync(this UITestContext context, string topMenuLabel, string subMenuLabel = null)
     {
         var byFirst = By.XPath(
-            $"//div[contains(@class, \"menuWidget__content\")]/ul/li/a" +
+            "//div[contains(@class, \"menuWidget__content\")]/ul/li/a" +
             $"[contains(@class, \"nav-link\") and contains(., {JsonSerializer.Serialize(topMenuLabel)})]");
 
         if (string.IsNullOrWhiteSpace(subMenuLabel))
