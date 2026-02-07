@@ -17,11 +17,10 @@ public class BaseThemeSettingsAdminMenu : AdminMenuNavigationProviderBase
     }
 
     protected override void Build(NavigationBuilder builder) =>
-        builder.Add(T["Configuration"], configuration => configuration
-            .Add(T["Settings"], settings => settings
-                .Add(T["Base Theme"], T["Base Theme"], baseTheme => baseTheme
-                    .ActionTask<AdminController>(_hca.HttpContext, controller => controller.Index())
-                    .Permission(BaseThemeSettingsPermissions.ManageBaseThemeSettings)
-                    .LocalNav()
-                )));
+        builder.Add(T["Settings"], settings => settings
+            .Add(T["Base Theme"], T["Base Theme"], baseTheme => baseTheme
+                .ActionTask<AdminController>(_hca.HttpContext, controller => controller.Index())
+                .Permission(BaseThemeSettingsPermissions.ManageBaseThemeSettings)
+                .LocalNav()
+            ));
 }
