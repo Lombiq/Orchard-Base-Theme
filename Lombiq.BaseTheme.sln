@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lombiq.BaseTheme.Native", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lombiq.BaseTheme.Native.Samples", "Lombiq.BaseTheme.Native.Samples\Lombiq.BaseTheme.Native.Samples.csproj", "{25A116A2-30FD-4BBC-BEDC-AF6F0E5C5D2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lombiq.BaseTheme", "Lombiq.BaseTheme\Lombiq.BaseTheme.csproj", "{21857FC8-E624-4922-9813-7F8D92D3AEEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{25A116A2-30FD-4BBC-BEDC-AF6F0E5C5D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25A116A2-30FD-4BBC-BEDC-AF6F0E5C5D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25A116A2-30FD-4BBC-BEDC-AF6F0E5C5D2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21857FC8-E624-4922-9813-7F8D92D3AEEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21857FC8-E624-4922-9813-7F8D92D3AEEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21857FC8-E624-4922-9813-7F8D92D3AEEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21857FC8-E624-4922-9813-7F8D92D3AEEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
