@@ -32,6 +32,10 @@
     }
 }
 
+div {
+    margin: 0px;
+}
+
 /* END OF TRAINING SECTION: CSS styling and structure */
 
 /* The main site.css and any individual styles in the pages directory have to be registered via Orchard Core's resource
