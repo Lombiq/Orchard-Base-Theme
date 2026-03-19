@@ -1,46 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
+  <Import Condition="'$(NuGetBuild)' != 'true'" Project="../../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.OrchardCore.Module.Sdk/Sdk/Import.props" />
+  <Import Condition="'$(NuGetBuild)' == 'true'" Project="Sdk.props" Sdk="Lombiq.MSBuild.OrchardCore.Module.Sdk" Version="1.0.1-alpha.0.osoe-1208" />
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <DefaultItemExcludes>$(DefaultItemExcludes);.git*</DefaultItemExcludes>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
+    <IsLombiqProject>true</IsLombiqProject>
     <Title>Lombiq Base Theme for Orchard Core - Native CSS - Samples</Title>
-    <Authors>Lombiq Technologies</Authors>
-    <Copyright>Copyright © 2021, Lombiq Technologies Ltd.</Copyright>
-    <Description>Lombiq Base Theme for Orchard Core - Native CSS - Samples: Sample project that demonstrates the features of Lombiq Base Theme for Orchard Core. See the project website for detailed documentation.</Description>
-    <PackageIcon>NuGetIcon.png</PackageIcon>
+    <CopyrightYear>2021</CopyrightYear>
+    <DescriptionBody>Sample project that demonstrates the features of Lombiq Base Theme for Orchard Core. See the project website for detailed documentation.</DescriptionBody>
     <PackageTags>OrchardCore;Lombiq;AspNetCore;Css;Theming</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Base-Theme</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Lombiq/Orchard-Base-Theme/blob/dev/Lombiq.BaseTheme.Native.Samples/Readme.md</PackageProjectUrl>
-    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="OrchardCore.Admin" Version="3.0.0-preview-18937" />
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="3.0.0-preview-18937" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Lombiq.BaseTheme.Native\Lombiq.BaseTheme.Native.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="Readme.md" />
-    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Recipes\Lombiq.BaseTheme.Native.Samples.recipe.json">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
+  <Import Condition="'$(NuGetBuild)' != 'true'" Project="../../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.OrchardCore.Module.Sdk/Sdk/Import.targets" />
+  <Import Condition="'$(NuGetBuild)' == 'true'" Project="Sdk.targets" Sdk="Lombiq.MSBuild.OrchardCore.Module.Sdk" Version="1.0.1-alpha.0.osoe-1208" />
 </Project>
