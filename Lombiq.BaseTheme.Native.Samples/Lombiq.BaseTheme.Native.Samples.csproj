@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Admin" Version="3.0.0-preview-18943" />
+    <PackageReference Include="OrchardCore.Admin" Version="3.0.0-preview-18960" />
   </ItemGroup>
 
   <ItemGroup>
