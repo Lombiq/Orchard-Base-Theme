@@ -1,49 +1,33 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
-
+<Project>
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <DefaultItemExcludes>$(DefaultItemExcludes);.git*</DefaultItemExcludes>
   </PropertyGroup>
+
+  <Import Condition="'$(NuGetBuild)' != 'true'" Project="../../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.OrchardCore.Theme.Sdk/Sdk/Import.props" />
+  <Import Condition="'$(NuGetBuild)' == 'true'" Project="Sdk.props" Sdk="Lombiq.MSBuild.OrchardCore.Theme.Sdk" Version="1.0.1-alpha.6.osoe-1208" />
 
   <PropertyGroup>
+    <IsLombiqProject>true</IsLombiqProject>
     <Title>Lombiq Base Theme for Orchard Core (Core Features)</Title>
-    <Authors>Lombiq Technologies</Authors>
-    <Copyright>Copyright © 2021, Lombiq Technologies Ltd.</Copyright>
-    <Description>Lombiq Base Theme for Orchard Core (Core Features): All the shared content between the Sass and native CSS versions of the base theme.</Description>
-    <PackageIcon>NuGetIcon.png</PackageIcon>
+    <CopyrightYear>2021</CopyrightYear>
+    <DescriptionBody>All the shared content between the Sass and native CSS versions of the base theme.</DescriptionBody>
     <PackageTags>OrchardCore;Lombiq;AspNetCore;Theming</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Base-Theme</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/Lombiq/Orchard-Base-Theme</PackageProjectUrl>
-    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Readme.md" />
-    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="3.0.0-preview-18960" />
     <PackageReference Include="OrchardCore.Menu" Version="3.0.0-preview-18960" />
     <PackageReference Include="OrchardCore.Media" Version="3.0.0-preview-18960" />
-    <PackageReference Include="OrchardCore.ContentManagement" Version="3.0.0-preview-18960" />
-    <PackageReference Include="OrchardCore.DisplayManagement" Version="3.0.0-preview-18960" />
-    <PackageReference Include="OrchardCore.ResourceManagement" Version="3.0.0-preview-18960" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
-    <ProjectReference Include="..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.csproj" />
     <ProjectReference Include="..\..\..\Modules\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.HelpfulLibraries" Version="12.6.1-alpha.5.osoe-925" />
     <PackageReference Include="Lombiq.HelpfulExtensions" Version="11.1.1-alpha.6.osoe-925" />
   </ItemGroup>
 
+  <Import Condition="'$(NuGetBuild)' != 'true'" Project="../../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.OrchardCore.Theme.Sdk/Sdk/Import.targets" />
+  <Import Condition="'$(NuGetBuild)' == 'true'" Project="Sdk.targets" Sdk="Lombiq.MSBuild.OrchardCore.Theme.Sdk" Version="1.0.1-alpha.6.osoe-1208" />
 </Project>
