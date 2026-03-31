@@ -8,7 +8,6 @@
   <Import Condition="'$(NuGetBuild)' == 'true'" Project="Sdk.props" Sdk="Lombiq.MSBuild.OrchardCore.Theme.Sdk" Version="1.0.1-alpha.6.osoe-1208" />
 
   <PropertyGroup>
-    <IsLombiqProject>true</IsLombiqProject>
     <Title>Lombiq Base Theme for Orchard Core - Native CSS - Samples</Title>
     <CopyrightYear>2021</CopyrightYear>
     <DescriptionBody>Sample project that demonstrates the features of Lombiq Base Theme for Orchard Core. See the project website for detailed documentation.</DescriptionBody>
