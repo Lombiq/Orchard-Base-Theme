@@ -90,7 +90,8 @@ public class ResourceManagerDecorator(
         #region CustomCode
         var displayedTheme = themeManager.GetThemeAsync().GetAwaiter().GetResult();
         var currentThemeUsesLombiqBaseTheme = displayedTheme?.Id == "Lombiq.BaseTheme" ||
-            displayedTheme?.Manifest.ModuleInfo is ThemeAttribute { BaseTheme: "Lombiq.BaseTheme" };
+            (displayedTheme?.Manifest.ModuleInfo is ThemeAttribute themeAttribute &&
+            themeAttribute.BaseTheme.EqualsOrdinalIgnoreCase("Lombiq.BaseTheme"));
         #endregion
 
         var first = true;
