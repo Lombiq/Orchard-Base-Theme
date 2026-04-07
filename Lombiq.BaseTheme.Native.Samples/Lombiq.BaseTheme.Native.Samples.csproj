@@ -10,7 +10,7 @@
   <PropertyGroup>
     <Title>Lombiq Base Theme for Orchard Core - Native CSS - Samples</Title>
     <CopyrightYear>2021</CopyrightYear>
-    <DescriptionBody>Sample project that demonstrates the features of Lombiq Base Theme for Orchard Core. See the project website for detailed documentation.</DescriptionBody>
+    <DescriptionBody>Sample project that demonstrates the features of Lombiq Base Theme for Orchard Core.</DescriptionBody>
     <PackageTags>OrchardCore;Lombiq;AspNetCore;Css;Theming</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Base-Theme</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Lombiq/Orchard-Base-Theme/blob/dev/Lombiq.BaseTheme.Native.Samples/Readme.md</PackageProjectUrl>
