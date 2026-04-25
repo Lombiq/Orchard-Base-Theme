@@ -41,7 +41,9 @@ public class BreakpointBodyClassProvider : SyncBodyClassProvider
         var results = new List<string>
         {
             $"{Prefix}{size}",
-            size is "xs" or "sm" ? $"{Prefix}small" : $"{Prefix}big",
+            size.EqualsOrdinalIgnoreCase("xs") || size.EqualsOrdinalIgnoreCase("sm")
+                ? $"{Prefix}small"
+                : $"{Prefix}big",
         };
 
         var sizes = _sizes.Keys.ToList();

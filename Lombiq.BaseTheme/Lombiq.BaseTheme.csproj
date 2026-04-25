@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="3.0.0-preview-18960" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="3.0.0-preview-18988" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,8 +56,8 @@
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
     <PackageReference Include="Lombiq.NodeJs.Extensions" Version="3.0.0" />
-    <PackageReference Include="Lombiq.HelpfulLibraries.SourceGenerators" Version="12.6.1-alpha.5.osoe-925" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <PackageReference Include="Lombiq.HelpfulLibraries.Attributes" Version="12.6.1-alpha.5.osoe-925" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+    <PackageReference Include="Lombiq.HelpfulLibraries.SourceGenerators" Version="12.6.1-alpha.7.osoe-925" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <PackageReference Include="Lombiq.HelpfulLibraries.Attributes" Version="12.6.1-alpha.7.osoe-925" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
 
     <Content Include="Assets/Styles/**/*.*">
       <IncludeInPackage>true</IncludeInPackage>
