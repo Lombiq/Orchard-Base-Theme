@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="3.0.0-preview-19009" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="3.0.0-preview-19023" />
   </ItemGroup>
 
   <ItemGroup>
