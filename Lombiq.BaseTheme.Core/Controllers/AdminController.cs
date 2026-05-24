@@ -49,7 +49,7 @@ public sealed class AdminController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var section = (await _siteService.LoadSiteSettingsAsync()).As<BaseThemeSettings>();
+        var section = (await _siteService.LoadSiteSettingsAsync()).GetOrCreate<BaseThemeSettings>();
 
         var model = new BaseThemeSettingsViewModel
         {
@@ -117,7 +117,7 @@ public sealed class AdminController : Controller
             },
         });
 
-        return content.As<BaseThemeSettingsPart>();
+        return content.GetOrCreate<BaseThemeSettingsPart>();
     }
 
     public class BaseThemeSettingsPart : ContentPart

@@ -38,12 +38,12 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
     {
         if (await _contentHandleManager.GetContentItemIdAsync("alias:main-menu") is not { } id ||
             await _contentManager.GetAsync(id) is not { } contentItem ||
-            contentItem.As<MenuItemsListPart>() is not { } menuItemsListPart)
+            contentItem.GetOrCreate<MenuItemsListPart>().MenuItems is not { } menuItems)
         {
             return;
         }
 
-        foreach (var menuItem in menuItemsListPart.MenuItems)
+        foreach (var menuItem in menuItems)
         {
             await AddAsync(builder, menuItem);
         }
@@ -51,7 +51,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 
     private Task AddAsync(NavigationBuilder builder, ContentItem menuItem)
     {
-        if (menuItem.As<HtmlMenuItemPart>() is { } htmlMenuItemPart)
+        if (menuItem.TryGet<HtmlMenuItemPart>(out var htmlMenuItemPart))
         {
             var textContent = HtmlHelper.ConvertToPlainText(htmlMenuItemPart.Html);
             builder.Add(new(textContent, textContent), menu => menu
@@ -63,7 +63,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 
         var text = GetTitle(menuItem);
 
-        return menuItem.As<LinkMenuItemPart>() is { } linkMenuItemPart
+        return menuItem.TryGet<LinkMenuItemPart>(out var linkMenuItemPart)
             ? Task.FromResult(
                 builder.Add(text, menu => menu
                     .Url(linkMenuItemPart.Url)
@@ -74,7 +74,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
 
     private async Task AddInnerAsync(NavigationBuilder builder, ContentItem menuItem, LocalizedString text)
     {
-        if (menuItem.As<ContentMenuItemPart>() is { } contentMenuItemPart)
+        if (menuItem.TryGet<ContentMenuItemPart>(out var contentMenuItemPart))
         {
             if (_hca.HttpContext is not { } httpContext ||
                 contentMenuItemPart.GetProperty<IEnumerable<string>>("SelectedContentItem.ContentItemIds") is not { } ids ||
@@ -98,7 +98,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
                 }
             });
         }
-        else if (menuItem.As<MenuItemsListPart>() is { } menuItemsListPart)
+        else if (menuItem.TryGet<MenuItemsListPart>(out var menuItemsListPart))
         {
             await builder.AddAsync(text, menu =>
                 menuItemsListPart.MenuItems.AwaitEachAsync(child => AddAsync(menu, child)));

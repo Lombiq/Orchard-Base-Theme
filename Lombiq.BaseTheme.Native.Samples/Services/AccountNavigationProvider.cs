@@ -33,7 +33,7 @@ public class AccountNavigationProvider : MainMenuNavigationProviderBase
         {
             builder.Add(T["Log In"], builder => builder
                 .LocalNav()
-                .Action("Login", "Account", new { area = "OrchardCore.Users" }));
+                .Action("Login", "Account", new { area = OrchardCore.Users.UserConstants.Features.Users }));
             return;
         }
 
@@ -46,7 +46,7 @@ public class AccountNavigationProvider : MainMenuNavigationProviderBase
                     "Account",
                     new RouteValueDictionary
                     {
-                        ["area"] = "OrchardCore.Users",
+                        ["area"] = OrchardCore.Users.UserConstants.Features.Users,
                         // This is a special value recognized by the MenuWidget to indicate the link must be a button
                         // that sends a POST request instead of a link.
                         [RouteValueNames.MenuWidgetPost] = true,
