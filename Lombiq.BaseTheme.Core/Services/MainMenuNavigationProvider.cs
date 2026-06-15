@@ -43,7 +43,7 @@ public class MainMenuNavigationProvider : MainMenuNavigationProviderBase
             return;
         }
 
-        foreach (var menuItem in menuItemsListPart.MenuItems)
+        foreach (var menuItem in menuItems)
         {
             await AddAsync(builder, menuItem);
         }
