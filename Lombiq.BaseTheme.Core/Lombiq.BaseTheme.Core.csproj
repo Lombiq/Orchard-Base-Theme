@@ -16,8 +16,8 @@
 
   <ItemGroup>
 
-    <PackageReference Include="OrchardCore.Menu" Version="3.0.0-preview-19050" />
-    <PackageReference Include="OrchardCore.Media" Version="3.0.0-preview-19050" />
+    <PackageReference Include="OrchardCore.Menu" Version="3.0.0" />
+    <PackageReference Include="OrchardCore.Media" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
