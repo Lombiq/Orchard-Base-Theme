@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Lombiq.BaseTheme.Core/Lombiq.BaseTheme.Core.csproj" />
+  <Project Path="Lombiq.BaseTheme.Native.Samples/Lombiq.BaseTheme.Native.Samples.csproj" />
+  <Project Path="Lombiq.BaseTheme.Native/Lombiq.BaseTheme.Native.csproj" />
+  <Project Path="Lombiq.BaseTheme.Tests.UI/Lombiq.BaseTheme.Tests.UI.csproj" />
+</Solution>
