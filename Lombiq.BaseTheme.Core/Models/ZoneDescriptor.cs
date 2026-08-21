@@ -2,7 +2,6 @@ using AngleSharp.Dom;
 using GraphQL;
 using Lombiq.BaseTheme.Core.Constants;
 using Lombiq.BaseTheme.Core.Services;
-using Lombiq.HelpfulLibraries.Common.Utilities;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.DependencyInjection;
@@ -72,7 +71,7 @@ public class ZoneDescriptor
         var id = ZoneName.ToCamelCase();
         var layoutClassName = string.IsNullOrEmpty(parent)
             ? "layout" + ZoneName
-            : StringHelper.CreateInvariant($"layout{parent}__{id}");
+            : $"layout{parent}__{id}";
 
         var classHolder = serviceProvider.GetRequiredService<ICssClassHolder>();
         var classNames = classHolder.ConcatenateZoneClasses(
@@ -108,9 +107,9 @@ public class ZoneDescriptor
             }
 
             body = new HtmlContentBuilder()
-                .AppendHtml(StringHelper.CreateInvariant($"<{elementName} {bodyAttributes}>"))
+                .AppendHtml($"<{elementName} {bodyAttributes}>")
                 .AppendHtml(body)
-                .AppendHtml(StringHelper.CreateInvariant($"</{elementName}>"));
+                .AppendHtml($"</{elementName}>");
         }
 
         attributesFlattened += GetAriaLabelAttribute(ElementName);
@@ -121,11 +120,11 @@ public class ZoneDescriptor
                 : ConcatenateInnerAsync(serviceProvider, zoneDescriptors, ZoneName, parent);
 
         return new HtmlContentBuilder()
-            .AppendHtml(StringHelper.CreateInvariant($"<{ElementName} id=\"{id}\" class=\"{classNames}\" {attributesFlattened}>"))
+            .AppendHtml($"<{ElementName} id=\"{id}\" class=\"{classNames}\" {attributesFlattened}>")
             .AppendHtml(await ConcatenateChildrenAsync(ChildrenBefore, parent))
             .AppendHtml(body)
             .AppendHtml(await ConcatenateChildrenAsync(ChildrenAfter, parent))
-            .AppendHtml(StringHelper.CreateInvariant($"</{ElementName}>"));
+            .AppendHtml($"</{ElementName}>");
     }
 
     private string GetAriaLabelAttribute(string elementName)
@@ -154,7 +153,7 @@ public class ZoneDescriptor
 
         var newParent = string.IsNullOrEmpty(parent)
             ? zoneName
-            : StringHelper.CreateInvariant($"{parent}__{zoneName}");
+            : $"{parent}__{zoneName}";
 
         foreach (var zoneDescriptor in zoneDescriptors)
         {
