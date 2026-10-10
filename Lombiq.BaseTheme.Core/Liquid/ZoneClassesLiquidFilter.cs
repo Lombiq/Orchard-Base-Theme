@@ -21,9 +21,7 @@ public class ZoneClassesLiquidFilter : ILiquidFilter
         var classHolder = context.Services.GetRequiredService<ICssClassHolder>();
         var zoneClasses = classHolder.GetZoneClasses(zoneName);
 
-#pragma warning disable IDE0010 // Populate switch. We only want to handle relevant types.
         switch (input?.Type)
-#pragma warning restore IDE0010 // Populate switch.
         {
             case FluidValues.String:
                 AddClasses(new([input]), zoneClasses, remove);
@@ -31,6 +29,15 @@ public class ZoneClassesLiquidFilter : ILiquidFilter
             case FluidValues.Array:
                 AddClasses((ArrayValue)input, zoneClasses, remove);
                 break;
+            case FluidValues.Nil:
+            case FluidValues.Empty:
+            case FluidValues.Blank:
+            case FluidValues.Boolean:
+            case FluidValues.Dictionary:
+            case FluidValues.Number:
+            case FluidValues.Object:
+            case FluidValues.DateTime:
+            case FluidValues.Function:
             default:
                 AddClasses(new([new StringValue(input?.ToStringValue())]), zoneClasses, remove);
                 break;
